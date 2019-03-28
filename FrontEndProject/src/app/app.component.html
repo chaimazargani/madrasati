@@ -1,0 +1,32 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <title> Authentification </title>
+</head>
+
+<body>
+    <form class="example-form">
+      
+  <div class="authentification">Authentification</div>
+  <div style="margin:auto;width: 50%;">
+    <img src="http://blog.syloe.com/wp-content/uploads/2017/02/certificat-authentification.png">
+  </div>
+  <div class="fields">
+  <table>
+      
+
+    <tr><div class="label">  <td> login         </td> </div><td><mat-form-field class="example-full-width"> <input matInput name="login" [(ngModel)]="login" >         </mat-form-field>
+    </td> </tr>
+    <tr> <div class="label"> <td>  mot de passe  </td></div> <td> <input matInput type="password" [(ngModel)]="motdepasse" class="example-full-width" name="motdepasse">  </td> </tr>
+  </table>
+</div>
+
+  <div class="boutton"> 
+  <input type="button" (click)="onClick()" value="Connecter">
+</div>
+  </form>
+</body>
+
+</html>
