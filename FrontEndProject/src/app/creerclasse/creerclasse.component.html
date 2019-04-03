@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title> creer_une_classe</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <mat-form-field class="input">
+              <input matInput type="number" id="id classe" name="id classe" placeholder="id calsse" min="10" max="100">
+              </mat-form-field>
+          </tr>
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="text" id="name" name="name" placeholder="nom de la classe" appearance="standard"
+              required minlength="4" maxlength="8" size="10"  >
+          </mat-form-field>
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="text" id="prenom" name="niveau de la classe" placeholder="niveau de la calsse" required minlength="4" maxlength="8" size="10" >
+            </mat-form-field>
+        </tr>
+  
+        
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="tel" id="number" name="nombre des eleves" placeholder="nombre des eleves" >
+            </mat-form-field>
+        </tr>
+    
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="number" id="id enseignant" name="id enseignant" placeholder="id enseignant" >
+            </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="number" id="id matiere" name="id matiere" placeholder="id matiére" > 
+            </mat-form-field>
+        </tr>
+        <input matButton class = 'button' type="button" (click)="sauvegarder()" value="enregistrer">
+      </table>
+    </div>
+  </body>
