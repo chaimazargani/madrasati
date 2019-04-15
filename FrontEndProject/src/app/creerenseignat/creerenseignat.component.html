@@ -25,45 +25,47 @@
       <tr>
         <mat-form-field class="input">
           <input matInput type="text" id="name" name="name" placeholder="Nom de l'enseignant" appearance="standard"
-            required minlength="4" maxlength="8" size="10"  [(ngModel)]="enseignant.nom">
+            required minlength="4" maxlength="8" size="10"  [(ngModel)]="utilisateur.nom">
         </mat-form-field>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="text" id="prenom" name="prenom" placeholder="prénom" required minlength="4" maxlength="8" size="10"  [(ngModel)]="enseignant.prenom">
+          <input matInput type="text" id="prenom" name="prenom" placeholder="prénom" required minlength="4" maxlength="8" size="10"  [(ngModel)]="utilisateur.prenom">
           </mat-form-field>
       </tr>
 
       <tr>
         <mat-form-field class="input">
-          <input matInput type="number" id="CIN" name="CIN" placeholder="CIN" min="10" max="100"  [(ngModel)]="enseignant.cin">
+          <input matInput type="number" id="CIN" name="CIN" placeholder="CIN" min="10" max="100"  [(ngModel)]="utilisateur.cin">
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="tel" id="phone" name="Num_de_telephone" placeholder="Numéro de téléphone" [(ngModel)]="enseignant.numtel">
+          <input matInput type="tel" id="phone" name="Num_de_telephone" placeholder="Numéro de téléphone" [(ngModel)]="utilisateur.numTel" >
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="email" id="email" pattern=".+@globex.com" placeholder="Email" size="30" required  [(ngModel)]="enseignant.email">
+          <input matInput type="email" id="email" pattern=".+@globex.com" placeholder="Email" size="30" required  [(ngModel)]="utilisateur.email">
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="date" id="Date_de_naissance"  placeholder="Date de naissance" name="Date_de_naissance"  [(ngModel)]="enseignant.dateDenaissance">
+          <input matInput type="date" id="Date_de_naissance"  placeholder="Date de naissance" name="Date_de_naissance"  [(ngModel)]="utilisateur.dateDenaissance">
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="text" id="username" name="username" placeholder="Login"  [(ngModel)]="enseignant.login">
+          <input matInput type="text" id="username" name="username" placeholder="Login"  [(ngModel)]="utilisateur.login">
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="password" id="pass" name="password" placeholder="Password"  [(ngModel)]="enseignant.password">
+          <input matInput type="password" id="pass" name="password" placeholder="Password"  [(ngModel)]="utilisateur.password">
           </mat-form-field>
       </tr>
       <input matButton class = 'button' type="button" (click)="enregistrer()" value="Sauvegarder">
+      <input matButton class = 'button' type="button" (click)="afficherListeutilisateur()" value="afficherListeutilisateur()">
+
     </table>
   </div>
 </body>

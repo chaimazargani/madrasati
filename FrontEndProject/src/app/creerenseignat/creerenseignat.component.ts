@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Enseignant } from '../model/enseignant';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Classe } from '../model/classe';
+import { Utilisateur } from '../model/utilisateur';
 
 @Component({
   selector: 'app-creerenseignat',
@@ -9,24 +10,35 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./creerenseignat.component.css']
 })
 export class CreerenseignatComponent implements OnInit {
-  private enseignant:Enseignant;
+  private utilisateur: Utilisateur;
+  private listeDesutilisateur: Utilisateur[];
 
   constructor(private httpClient: HttpClient) {
-    this.enseignant = new Enseignant();
+    this.utilisateur = new Utilisateur();
+    this.listeDesutilisateur = [];
   }
   ngOnInit() {}
 
-   enregistrer():void {
+   enregistrer(): void {
   // tslint:disable-next-line:no-debugger
-  debugger;
     this.creerEnseignant().subscribe(result => {
       console.log(result);
     });
    }
 
-creerEnseignant(): Observable<void> {
+creerEnseignant(): Observable<Utilisateur> {
   // tslint:disable-next-line:no-debugger
-  debugger;
-  return this.httpClient.get<any> ('http://localhost:8080/madrasati/utilisateur');
+  return this.httpClient.post<Utilisateur>('http://localhost:18080/madrasati/creerUtilisateur', this.utilisateur);
+}
+afficherListeutilisateur(): void {
+  // tslint:disable-next-line:no-debugger
+    this.afficherListe().subscribe(result => {
+      console.log(result);
+    });
+  }
+    afficherListe(): Observable<Utilisateur[]> {
+  console.log(this.listeDesutilisateur);
+
+  return this.httpClient.get<Utilisateur[]>('http://localhost:18080/madrasati/listUtilisateur');
 }
 }

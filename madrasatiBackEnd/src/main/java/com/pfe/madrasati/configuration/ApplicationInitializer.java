@@ -10,7 +10,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
  
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { PersistenceJPAConfig.class };
+        return new Class[] { SpringMvcConfiguration.class };
     }
   
     @Override

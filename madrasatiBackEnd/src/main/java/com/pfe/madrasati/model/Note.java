@@ -6,7 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
-
+@Entity
+@Table (name = "Note")
 public class Note {
+	@Id
+	  @GeneratedValue 
+	  @Column(name = "idNote")
 private Integer idNote;
+	  @Column(name = "note")
+	private Integer note;
 }

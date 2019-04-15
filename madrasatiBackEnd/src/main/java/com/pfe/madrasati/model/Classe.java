@@ -3,6 +3,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table (name = "Classe")
@@ -12,10 +14,14 @@ public class Classe {
 	  @GeneratedValue 
 	  @Column(name = "idClasse")
     private Integer idClasse;
-	
+	@Column(name="nomclasse")
 	private String nomClasse;
-	
+	@Column(name="nombreeleve")
 	private Integer nombreEleve;
+	@Column(name="niveauClasse")
+	private String niveauClasse;
+	@ManyToOne
+	private Enseignant enseignant;
 	
 	public Classe() {
 		super();

@@ -12,19 +12,19 @@
         <tr>
           <mat-form-field class="input">
             <input matInput type="text" id="name" name="name" placeholder="nom de la classe" appearance="standard"
-              required minlength="4" maxlength="8" size="10" [(ngModel)]="classe.nom">
+              required minlength="4" maxlength="8" size="10" [(ngModel)]="classe.nomClasse">
           </mat-form-field>
         </tr>
         <tr>
           <mat-form-field class="input">
-            <input matInput type="text" id="niveau de la classe" name="niveau de la classe" placeholder="niveau de la calsse" required minlength="4" maxlength="8" size="10"[(ngModel)]="classe.niveaudelaclasse" >
+            <input matInput type="text" id="niveau de la classe" name="niveau de la classe" placeholder="niveau de la calsse" required minlength="4" maxlength="8" size="10"[(ngModel)]="classe.nombreEleve" >
             </mat-form-field>
         </tr>
   
         
         <tr>
           <mat-form-field class="input">
-            <input matInput type="number" id="number" name="nombre des eleves" placeholder="nombre des eleves" [(ngModel)]="classe.nombredeseleves">
+            <input matInput type="number" id="number" name="nombre des eleves" placeholder="nombre des eleves" [(ngModel)]="classe.nombreEleve">
             </mat-form-field>
         </tr>
     

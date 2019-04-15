@@ -1,7 +1,7 @@
 export class Classe {
  public idClasse: number;
  public nomClasse: string;
- public nombreDeseleves: number;
+ public nombreEleve: number;
 
  constructor() {}
 }

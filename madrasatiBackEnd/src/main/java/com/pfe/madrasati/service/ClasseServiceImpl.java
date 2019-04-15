@@ -10,13 +10,15 @@ import com.pfe.madrasati.model.Classe;
 
 @Service
 public class ClasseServiceImpl implements ClasseService {
-	@Autowired
-	    private ClasseDAO classeDAO;
+//	@Autowired
+//	    private ClasseDAO classeDAO;
 	 
 	    @Override
 	    @Transactional
 	    public Classe ajouterClasse(Classe classe) {
-	        return (Classe) classeDAO.save(classe);
+//	        return (Classe) classeDAO.save(classe);
+	        return null;
+
 	    }
 
 

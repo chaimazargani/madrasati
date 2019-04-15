@@ -9,6 +9,8 @@ import { RoutingModule } from '../modules/routing/routing.module';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreerclasseComponent } from './creerclasse/creerclasse.component';
+import { EnseignantComponent } from './app-new/enseignant/enseignant.component';
+import { AppWebComponent } from './app-web/app-web.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { CreerclasseComponent } from './creerclasse/creerclasse.component';
     CreerenseignatComponent,
     LoginComponent,
     CreerclasseComponent,
+    EnseignantComponent,
+    AppWebComponent,
   ],
   imports: [
     BrowserModule,

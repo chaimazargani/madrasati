@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -27,8 +29,8 @@ public class Utilisateur {
 	private Integer cin;
 	  @Column(name = "numTel")
 	private Integer numTel;
-	  @Column(name = "dateDenaissance")
-	private Date dateDenaissance;
+	  @Column(name = "dateNaissance")
+	private Date dateNaissance;
 	  @Column(name = "adresse")
 	private String adresse;
 	  @Column(name = "email", unique = true)
@@ -40,18 +42,19 @@ public class Utilisateur {
 	  @Column(name = "motDepasse")
 	private String motDepasse;
 	  
+	  
 	public Utilisateur() {
 	}
 	
 	public Utilisateur(Integer idUtilisateur, String nom, String prenom, Integer cin, Integer numTel,
-			Date dateDenaissance, String adresse, String email, String login, String motDepasse) {
+			Date dateNaissance, String adresse, String email, String login, String motDepasse) {
 		super();
 		this.idUtilisateur = idUtilisateur;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.cin = cin;
 		this.numTel = numTel;
-		this.dateDenaissance = dateDenaissance;
+		this.dateNaissance = dateNaissance;
 		this.adresse = adresse;
 		this.email = email;
 		this.login = login;
@@ -98,12 +101,14 @@ public class Utilisateur {
 		this.numTel = numTel;
 	}
 
-	public Date getDateDenaissance() {
-		return dateDenaissance;
+
+
+	public Date getDateNaissance() {
+		return dateNaissance;
 	}
 
-	public void setDateDenaissance(Date dateDenaissance) {
-		this.dateDenaissance = dateDenaissance;
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
 	}
 
 	public String getAdresse() {
@@ -138,10 +143,12 @@ public class Utilisateur {
 		this.motDepasse = motDepasse;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
-				+ ", numTel=" + numTel + ", dateDenaissance=" + dateDenaissance + ", adresse=" + adresse + ", email="
+				+ ", numTel=" + numTel + ", dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", email="
 				+ email + ", login=" + login + ", motDepasse=" + motDepasse + "]";
 	}
 

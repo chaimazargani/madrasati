@@ -11,16 +11,19 @@ import com.pfe.madrasati.model.Utilisateur;
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService  {
 	
-	@Autowired
-	    private UtilisateurDAO utilisateurDAO;
-	 
+//	@Autowired
+//	    private UtilisateurDAO utilisateurDAO;
+//	 
 	    @Override
 	    @Transactional
 	    public Utilisateur ajouterUtilisateur(Utilisateur utilisateur) {
-	        return (Utilisateur) utilisateurDAO.save(utilisateur);
+//	        return (Utilisateur) utilisateurDAO.save(utilisateur);
+	        return null;
+
 	    }
 //
 		@Override
+		
 		public Utilisateur create(Utilisateur utilisateur) {
 			// TODO Auto-generated method stub
 			return null;
@@ -33,8 +36,9 @@ public class UtilisateurServiceImpl implements UtilisateurService  {
 		}
 
 		@Override
+		@Transactional
 		public List<Utilisateur> findAll() {
-			// TODO Auto-generated method stub
+//      	return (List<Utilisateur>) utilisateurDAO.findAll();
 			return null;
 		}
 
@@ -49,5 +53,7 @@ public class UtilisateurServiceImpl implements UtilisateurService  {
 			// TODO Auto-generated method stub
 			return null;
 		}
+	
+		
 		
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Classe } from '../model/classe';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 @Component({
 
   selector: 'app-creerclasse',
@@ -9,23 +9,26 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./creerclasse.component.css']
 })
 export class CreerclasseComponent implements OnInit {
-       private classe: Classe;
+  private classe: Classe;
 
   constructor(private httpClient: HttpClient) {
     this.classe = new Classe();
   }
 
-  ngOnInit () {
+  ngOnInit() {
 
   }
 
-  sauvegarder(): void {
-      this.Creerclasse().subscribe(result => {
-        console.log(result);
-      });
-     }
-  
-   Creerclasse(): Observable<void> {
-  return this.httpClient.get<any> ('http://localhost:18080/madrasati/classe');
-}
+  sauvegarder(): void { 
+    this.Creerclasse().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  Creerclasse(): Observable<Classe> {
+    this.classe.nomClasse = 'abc';
+    this.classe.nombreEleve = 23;
+    debugger;
+    return this.httpClient.post<Classe>('http://localhost:18080/madrasati/creerclasse', this.classe);
+  }
 }
