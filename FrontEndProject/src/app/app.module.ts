@@ -9,8 +9,10 @@ import { RoutingModule } from '../modules/routing/routing.module';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreerclasseComponent } from './creerclasse/creerclasse.component';
-import { EnseignantComponent } from './app-new/enseignant/enseignant.component';
 import { AppWebComponent } from './app-web/app-web.component';
+import { EnseignantComponent } from './app-web/enseignant/enseignant.component';
+import { AppWebModule } from './app-web/app-web.module';
+
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { AppWebComponent } from './app-web/app-web.component';
     CreerenseignatComponent,
     LoginComponent,
     CreerclasseComponent,
-    EnseignantComponent,
     AppWebComponent,
+    EnseignantComponent
+
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,9 @@ import { AppWebComponent } from './app-web/app-web.component';
     MatInputModule,
     FormsModule,
     BrowserAnimationsModule,
-    RoutingModule
+    RoutingModule,
+    AppWebModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

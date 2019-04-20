@@ -26,9 +26,7 @@ export class CreerclasseComponent implements OnInit {
   }
 
   Creerclasse(): Observable<Classe> {
-    this.classe.nomClasse = 'abc';
-    this.classe.nombreEleve = 23;
-    debugger;
+  
     return this.httpClient.post<Classe>('http://localhost:18080/madrasati/creerclasse', this.classe);
   }
 }
