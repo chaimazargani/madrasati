@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
+
+
+
 
 
 @Component({
@@ -8,21 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClasseComponent implements OnInit {
   title = 'app';
-
   columnDefs = [
-      {headerName: 'Make', field: 'make' },
-      {headerName: 'Model', field: 'model' },
-      {headerName: 'Price', field: 'price'}
+      {headerName: 'nom', field: 'make' , sortable: true , filter: true, checkboxSelection: true },
+        {headerName: 'prénom', field: 'model', sortable: true, filter: true },
+        {headerName: 'Synthése', field: 'price', sortable: true , filter: true},
+        {headerName: 'Controle', field: 'price1', sortable: true , filter: true},
+        {headerName: 'Orale', field: 'price2', sortable: true , filter: true},
+
   ];
 
   rowData = [
-      { make: 'Toyota', model: 'Celica', price: 35000 },
-      { make: 'Ford', model: 'Mondeo', price: 32000 },
-      { make: 'Porsche', model: 'Boxter', price: 72000 }
+      { make: 'ahmed', model: 'saadi', price: 18 , price1: 14 , price2: 12 },
+      { make: 'senda', model: 'zargani', price: 15 , price1: 18 , price2: 15 },
+      { make: 'mariem', model: 'Bouali', price: 15 , price1: 17 , price2: 15 },
   ];
-  constructor() { }
+  constructor() {
+
+   }
 
   ngOnInit() {
+
   }
 
  
