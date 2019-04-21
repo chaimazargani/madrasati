@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 
-
+export interface Food {
+  value: string;
+  viewValue: string;
+}
 
 
 
@@ -25,6 +28,11 @@ export class ClasseComponent implements OnInit {
       { make: 'ahmed', model: 'saadi', price: 18 , price1: 14 , price2: 12 },
       { make: 'senda', model: 'zargani', price: 15 , price1: 18 , price2: 15 },
       { make: 'mariem', model: 'Bouali', price: 15 , price1: 17 , price2: 15 },
+  ];
+  foods = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
   ];
   constructor() {
 
