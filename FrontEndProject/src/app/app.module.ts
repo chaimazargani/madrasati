@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreerenseignatComponent } from './creerenseignat/creerenseignat.component';
@@ -12,6 +11,7 @@ import { CreerclasseComponent } from './creerclasse/creerclasse.component';
 import { AppWebComponent } from './app-web/app-web.component';
 import { EnseignantComponent } from './app-web/enseignant/enseignant.component';
 import { AppWebModule } from './app-web/app-web.module';
+import { MaterialModule } from '../modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -29,13 +29,7 @@ import { AppWebModule } from './app-web/app-web.module';
     BrowserAnimationsModule,
     RoutingModule,
     AppWebModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatIconModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

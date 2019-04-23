@@ -6,29 +6,30 @@
   <title> enseignant</title>
 </head>
 <body>
-  <div class="div" ></div>
-<table>
-  <tr>
+  <h1>enseignant</h1>
+    <div class="div">
 <input matButton class = 'button' type="button"  value="Acceuil">
-</tr>
-</table>
-<div>
+  <mat-form-field>        
+      <mat-label>Classe</mat-label>                                                              
+    <mat-select [(ngModel)] ="classeSelectione"  (change)="onClasseSelection1()" >
+
+        <mat-option *ngFor= "let c of classes" [value]="c.idClasse">  {{c.nomClasse}}  </mat-option>
+       
+    </mat-select>
+  </mat-form-field> 
   <mat-form-field>
-    <mat-select placeholder="How Many?">
-        <mat-option>One</mat-option>
-        <mat-option>Two</mat-option>
-        <mat-option>Three</mat-option>
-        <mat-option>Four</mat-option>
-        <mat-option>Five</mat-option>
+      <mat-label>Matiere</mat-label>                                                              
+    <mat-select [(ngModel)] ="matiereSelectionee"  >
+        <mat-option *ngFor= "let m of matieres" [value]="m.idMatiere"> {{m.nomMatiere}} </mat-option> 
     </mat-select>
 </mat-form-field>
 </div>
 <ag-grid-angular 
-    style="width: 1000px; height: 800px;" 
+    style="width: 500px; height: 500px;" 
     class="ag-theme-balham"
     [rowData]="rowData" 
     [columnDefs]="columnDefs"
     >
 </ag-grid-angular>
-
 </body>
+</html>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { Classe } from '../../../model/classe';
+import { Matiere } from '../../../model/matiere';
 
 export interface Food {
   value: string;
@@ -14,8 +16,38 @@ export interface Food {
   styleUrls: ['./classe.component.css']
 })
 export class ClasseComponent implements OnInit {
+  private classe1: Classe;
+  private matiere1: Matiere;
+  private classes: Classe[] = [];
+  private matieres: Matiere[] = [];
+  private classeSelectione: number; 
+  private matiereSelectionee: number;
+
+  onClick(): void {
+    console.log(this.classeSelectione);
+  }
+
+  onClasseSelection1() {
+    console.log(this.classeSelectione);
+  }
+
+ 
+  constructor() {
+    this.classe1 = new Classe() ;
+ this.classe1.idClasse = 1 ;
+ this.classe1.nomClasse = 'classeb1';
+ this.classe1.nombreEleve = 25 ;
+ this.classes.push(this.classe1);
+    this.matiere1 = new Matiere ;
+    this.matiere1.idMatiere = 2 ;
+    this.matiere1.nbrHeur = 4 ;
+    this.matiere1.nomMatiere = 'algébre' ;
+    this.matiere1.section = 'math';
+    this.matieres.push(this.matiere1);
+  }
+
   title = 'app';
-  columnDefs = [
+    columnDefs = [
       {headerName: 'nom', field: 'make' , sortable: true , filter: true, checkboxSelection: true },
         {headerName: 'prénom', field: 'model', sortable: true, filter: true },
         {headerName: 'Synthése', field: 'price', sortable: true , filter: true},
@@ -29,19 +61,12 @@ export class ClasseComponent implements OnInit {
       { make: 'senda', model: 'zargani', price: 15 , price1: 18 , price2: 15 },
       { make: 'mariem', model: 'Bouali', price: 15 , price1: 17 , price2: 15 },
   ];
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-  constructor() {
+  
 
-   }
 
   ngOnInit() {
 
   }
-
+}
  
 
-}
