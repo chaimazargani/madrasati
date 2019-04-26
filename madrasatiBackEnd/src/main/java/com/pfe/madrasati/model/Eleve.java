@@ -1,17 +1,98 @@
 package com.pfe.madrasati.model;
+
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
+
 @Entity
-@Table (name = "Eleve")
-public class Eleve {
+@Table(name = "eleve")
+public class Eleve implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	  @GeneratedValue 
-	  @Column(name = "idEeleve")
-  private Integer idEleve;
+	@GeneratedValue
+	@Column(name = "ideleve")
+	private Integer idEleve;
+
+	@ManyToOne
+	@JoinColumn(name = "idclasse")
+	private Classe classe;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="ideleve" ,insertable = false, updatable = false)
+	private Utilisateur utilisateur ;
+
+	public Eleve() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Eleve(Integer idEleve, Classe classe) {
+		super();
+		this.idEleve = idEleve;
+		this.classe = classe;
+	}
+
+	public Integer getIdEleve() {
+		return idEleve;
+	}
+
+	public void setIdEleve(Integer idEleve) {
+		this.idEleve = idEleve;
+	}
+
+	public Classe getClasse() {
+		return classe;
+	}
+
+	public void setClasse(Classe classe) {
+		this.classe = classe;
+	}
+
+	@Override
+	public String toString() {
+		return "Eleve [idEleve=" + idEleve + ", classe=" + classe + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((classe == null) ? 0 : classe.hashCode());
+		result = prime * result + ((idEleve == null) ? 0 : idEleve.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Eleve other = (Eleve) obj;
+		if (classe == null) {
+			if (other.classe != null)
+				return false;
+		} else if (!classe.equals(other.classe))
+			return false;
+		if (idEleve == null) {
+			if (other.idEleve != null)
+				return false;
+		} else if (!idEleve.equals(other.idEleve))
+			return false;
+		return true;
+	}
 
 }

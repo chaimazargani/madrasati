@@ -9,17 +9,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pfe.madrasati.model.Activite;
-import com.pfe.madrasati.service.ActiviteService;
-
+import com.pfe.madrasati.model.Eleve;
+import com.pfe.madrasati.service.EleveService;
 @RestController
-public class ActiviteController {
+public class EleveController {
+
 	@Autowired
-	private ActiviteService activiteService;
+	 EleveService eleveService ;
 	
-	@RequestMapping (value = "/activiteEnseignant", method = RequestMethod.GET)
+	@RequestMapping (value = "/getEleveByIdClasse", method = RequestMethod.GET)
 	@ResponseBody
-     public List<Activite> listactivite(@RequestParam("idEnseignant") Integer idEnseignant) {
-		return (List<Activite>) activiteService.getActivites(idEnseignant);
-	} 
-}
+    public	List<Eleve> getEleveByIdClasse(@RequestParam ("idClasse") Integer idClasse){
+		return (List<Eleve>) eleveService.getEleveByIdClasse(idClasse);
+		
+	}
+
+}   

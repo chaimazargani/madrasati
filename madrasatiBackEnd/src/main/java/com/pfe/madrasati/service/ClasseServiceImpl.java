@@ -7,17 +7,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.dao.ClasseDAO;
 import com.pfe.madrasati.model.Classe;
+import com.pfe.madrasati.model.MatierEnseignantClasse;
 
-@Service
+@Service (value="classeService")
 public class ClasseServiceImpl implements ClasseService {
-//	@Autowired
-//	    private ClasseDAO classeDAO;
+	@Autowired
+	    private ClasseDAO classeDAO;
+	     private Classe  classes[];
 	 
 	    @Override
 	    @Transactional
 	    public Classe ajouterClasse(Classe classe) {
-//	        return (Classe) classeDAO.save(classe);
-	        return null;
+	        return (Classe) classeDAO.ajouterClasse(classe);
+	        
 
 	    }
 
@@ -44,5 +46,16 @@ public class ClasseServiceImpl implements ClasseService {
 		public Classe findById(int id) {
 			// TODO Auto-generated method stub
 			return null;
+		}
+
+
+		@Override
+	    @Transactional
+
+		public List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant, Integer idMatier) {
+			List<MatierEnseignantClasse> list = (List<MatierEnseignantClasse>)  classeDAO.getClassesByIdEnseignant(idEnseignant, idMatier);
+			return list ;
+					
+					
 		}
 }

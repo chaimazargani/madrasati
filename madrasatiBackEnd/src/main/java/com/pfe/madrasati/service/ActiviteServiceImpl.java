@@ -10,7 +10,7 @@ import com.pfe.madrasati.dao.ActiviteDAO;
 import com.pfe.madrasati.model.Activite;
 import com.pfe.madrasati.model.Classe;
 
-@Service
+@Service (value="activiteService")
 public class ActiviteServiceImpl implements ActiviteService {
 	@Autowired
     private ActiviteDAO activiteDAO;

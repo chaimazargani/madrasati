@@ -13,7 +13,7 @@ public interface UtilisateurService {
     public List<Utilisateur> findAll();
     public Utilisateur update(Utilisateur utilisateur) ;
     public Utilisateur findById(int id);
-	Utilisateur ajouterUtilisateur(Utilisateur utilisateur);
+	  public Utilisateur ajouterUtilisateur(Utilisateur utilisateur);
 	
 }
     

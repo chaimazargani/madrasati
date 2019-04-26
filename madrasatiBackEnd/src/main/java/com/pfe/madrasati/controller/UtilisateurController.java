@@ -23,5 +23,6 @@ public class UtilisateurController {
 	@RequestMapping(value = "/listUtilisateur", method = RequestMethod.GET) 
 	public List<Utilisateur> Afficherlaliste(){
 		return (List<Utilisateur>) utilisateurService.findAll();
+		
 	}
 }

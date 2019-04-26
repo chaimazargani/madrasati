@@ -1,4 +1,5 @@
 package com.pfe.madrasati.model;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -6,37 +7,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Entity
-@Table (name = "Examen")
+@Table(name = "examen")
 public class Examen {
 	@Id
-	  @GeneratedValue 
-	  @Column(name = "idExamen")
-private Integer idExamen;
-	  @Column(name = "date")
+	@GeneratedValue
+	@Column(name = "idexamen")
+	private Integer idExamen;
+
+	@Column(name = "date")
 	private Date date;
-	  @ManyToOne
-	  @JoinColumn(name="idEnseignant")
+	@ManyToOne
+	@JoinColumn(name = "idenseignant")
 	private Enseignant enseignant;
-	
+
 	public Examen() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Examen(Integer idExamen, Date date, Enseignant enseignant) {
 		super();
 		this.idExamen = idExamen;
 		this.date = date;
 		this.enseignant = enseignant;
 	}
+
 	@Override
 	public String toString() {
 		return "Examen [idExamen=" + idExamen + ", date=" + date + ", enseignant=" + enseignant + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -44,6 +48,7 @@ private Integer idExamen;
 		result = prime * result + ((idExamen == null) ? 0 : idExamen.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -60,5 +65,5 @@ private Integer idExamen;
 			return false;
 		return true;
 	}
-	
+
 }

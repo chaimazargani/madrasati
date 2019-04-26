@@ -13,11 +13,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table (name = "Utilisateur")
+@Table (name = "utilisateur")
 public class Utilisateur {
 	  @Id
 	  @GeneratedValue  
-	  @Column(name = "idUtilisateur")
+	  @Column(name = "idutilisateur")
 	private Integer idUtilisateur;
 	  @Column(name = "nom")
 	   @Size(max = 20, min = 3, message = "{user.name.invalid}")
@@ -27,9 +27,9 @@ public class Utilisateur {
 	private String prenom;
 	  @Column(name = "cin")
 	private Integer cin;
-	  @Column(name = "numTel")
+	  @Column(name = "numtel")
 	private Integer numTel;
-	  @Column(name = "dateNaissance")
+	  @Column(name = "datenaissance")
 	private Date dateNaissance;
 	  @Column(name = "adresse")
 	private String adresse;
@@ -39,7 +39,7 @@ public class Utilisateur {
     private String email; 
 	  @Column(name = "login")
 	private String login;
-	  @Column(name = "motDepasse")
+	  @Column(name = "motdepasse")
 	private String motDepasse;
 	  
 	  

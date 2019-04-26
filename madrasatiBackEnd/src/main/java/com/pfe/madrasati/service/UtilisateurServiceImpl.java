@@ -8,17 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pfe.madrasati.dao.UtilisateurDAO;
 import com.pfe.madrasati.model.Utilisateur;
  
-@Service
+@Service (value="utilisateurService")
 public class UtilisateurServiceImpl implements UtilisateurService  {
 	
-//	@Autowired
-//	    private UtilisateurDAO utilisateurDAO;
-//	 
+	@Autowired
+	    private UtilisateurDAO utilisateurDAO;
+	 
 	    @Override
 	    @Transactional
 	    public Utilisateur ajouterUtilisateur(Utilisateur utilisateur) {
-//	        return (Utilisateur) utilisateurDAO.save(utilisateur);
-	        return null;
+	        return (Utilisateur) utilisateurDAO.ajouterUtilisateur(utilisateur);
 
 	    }
 //

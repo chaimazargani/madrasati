@@ -10,34 +10,32 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
-@Table (name = "Activite")
+@Table (name = "activite")
 public class Activite {
 	@Id
 	  @GeneratedValue 
-	  @Column(name = "idActivite")
+	  @Column(name = "idactivite")
 		private Integer idActivite;
-	  @Column(name = "nomActivite")
-      private String nomActivite;
+	  @Column(name = "nomactivite")
+      private String nomactivite;
 	  @Column(name = "dateDebut")
-		private Date dateDebut;
+		private Date datedebut;
 	  @Column(name = "dateFin")
-		private Date dateFin;
-	  
-	  @ManyToOne
-	  @JoinColumn(name="idEnseignant")
+		private Date datefin;
+	  	  @ManyToOne
+	  @JoinColumn(name="idenseignant", insertable = false,updatable = false)
 	  private Enseignant enseignant;
-	
-	
-		public Activite(Integer idActivite, String nomActivite, Date dateDebut, Date dateFin) {
-		super();
-		this.idActivite = idActivite;
-		this.nomActivite = nomActivite;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-	}
 		public Activite() {
 			super();
 			// TODO Auto-generated constructor stub
+		}
+		public Activite(Integer idActivite, String nomactivite, Date datedebut, Date datefin, Enseignant enseignant) {
+			super();
+			this.idActivite = idActivite;
+			this.nomactivite = nomactivite;
+			this.datedebut = datedebut;
+			this.datefin = datefin;
+			this.enseignant = enseignant;
 		}
 		public Integer getIdActivite() {
 			return idActivite;
@@ -45,25 +43,24 @@ public class Activite {
 		public void setIdActivite(Integer idActivite) {
 			this.idActivite = idActivite;
 		}
-		public String getNomActivite() {
-			return nomActivite;
+		public String getNomactivite() {
+			return nomactivite;
 		}
-		public void setNomActivite(String nomActivite) {
-			this.nomActivite = nomActivite;
+		public void setNomactivite(String nomactivite) {
+			this.nomactivite = nomactivite;
 		}
-		public Date getDateDebut() {
-			return dateDebut;
+		public Date getDatedebut() {
+			return datedebut;
 		}
-		public void setDateDebut(Date dateDebut) {
-			this.dateDebut = dateDebut;
+		public void setDatedebut(Date datedebut) {
+			this.datedebut = datedebut;
 		}
-		public Date getDateFin() {
-			return dateFin;
+		public Date getDatefin() {
+			return datefin;
 		}
-		public void setDateFin(Date dateFin) {
-			this.dateFin = dateFin;
+		public void setDatefin(Date datefin) {
+			this.datefin = datefin;
 		}
-		
 		public Enseignant getEnseignant() {
 			return enseignant;
 		}
@@ -72,8 +69,8 @@ public class Activite {
 		}
 		@Override
 		public String toString() {
-			return "Activite [idActivite=" + idActivite + ", nomActivite=" + nomActivite + ", dateDebut=" + dateDebut
-					+ ", dateFin=" + dateFin + "]";
+			return "Activite [idActivite=" + idActivite + ", nomactivite=" + nomactivite + ", datedebut=" + datedebut
+					+ ", datefin=" + datefin + ", enseignant=" + enseignant + "]";
 		}
 		@Override
 		public int hashCode() {
@@ -99,5 +96,6 @@ public class Activite {
 			return true;
 		}
 	
-
+	
+		
 }

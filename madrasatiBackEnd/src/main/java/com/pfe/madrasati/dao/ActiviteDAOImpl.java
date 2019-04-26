@@ -5,13 +5,13 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.model.Activite;
-
-@Repository
+@Transactional
+@Repository  (value="activiteDAO")
 public class ActiviteDAOImpl implements ActiviteDAO  {
 	   @Autowired
 	   SessionFactory sessionFactory;
@@ -22,7 +22,7 @@ public class ActiviteDAOImpl implements ActiviteDAO  {
 	@Override
 	public List<Activite> getActivites(Integer idEnseignant) {
 		 
-    String hql = "From Activite where idEnseignant = :a";
+    String hql = "From Activite where idActivite = :a";
     Query query = getCurrentSession().createQuery(hql);
     query.setParameter("a",idEnseignant);
     List<Activite> results = query.list();
