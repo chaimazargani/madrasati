@@ -25,7 +25,7 @@ export class CreerenseignatComponent implements OnInit {
       console.log(result);
     });
    }
-
+    //  karthouna li feha les infrs
 creerEnseignant(): Observable<Utilisateur> {
   // tslint:disable-next-line:no-debugger
   return this.httpClient.post<Utilisateur>('http://localhost:18080/madrasati/creerUtilisateur', this.utilisateur);
@@ -33,6 +33,7 @@ creerEnseignant(): Observable<Utilisateur> {
 afficherListeutilisateur(): void {
   // tslint:disable-next-line:no-debugger
     this.afficherListe().subscribe(result => {
+      // subsribe ili bch t7el l karthouna observable
       console.log(result);
     });
   }

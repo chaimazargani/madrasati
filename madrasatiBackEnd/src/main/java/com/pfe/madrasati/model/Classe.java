@@ -74,9 +74,13 @@ public class Classe {
 	
 
 
+
+
+
 	@Override
 	public String toString() {
-		return "Classe [idClasse=" + idClasse + ", nomClasse=" + nomClasse + ", nombreEleve=" + nombreEleve + "]";
+		return "Classe [idClasse=" + idClasse + ", nomClasse=" + nomClasse + ", nombreEleve=" + nombreEleve
+				+ ", niveauClasse=" + niveauClasse + "]";
 	}
 
 

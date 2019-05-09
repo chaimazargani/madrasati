@@ -13,14 +13,14 @@
       <mat-label>Classe</mat-label>                                                              
     <mat-select [(ngModel)] ="classeSelectione"  (change)="onClasseSelection1()" >
 
-        <mat-option *ngFor= "let c of classes" [value]="c.idClasse">  {{c.nomClasse}}  </mat-option>
+        <mat-option *ngFor= "let mecClasses of mecClasses " [value]="mecClasses.classe.idClasse">  {{mecClasses.classe.nomClasse}}  </mat-option>
        
     </mat-select>
   </mat-form-field> 
   <mat-form-field>
       <mat-label>Matiere</mat-label>                                                              
-    <mat-select [(ngModel)] ="matiereSelectionee"  >
-        <mat-option *ngFor= "let m of matieres" [value]="m.idMatiere"> {{m.nomMatiere}} </mat-option> 
+    <mat-select [(ngModel)] ="matiereSelectionee"  (change)="selectionnermatier()" >
+        <mat-option *ngFor= "let mec of matierNonDouble" [value]="mec.matier.idMatier"> {{mec.matier.nomMatier}} </mat-option> 
     </mat-select>
 </mat-form-field>
 </div>
@@ -28,8 +28,9 @@
     style="width: 1000px; height: 500px;" 
     class="ag-theme-balham"
     [rowData]="rowData" 
-    [columnDefs]="columnDefs"
-    >
-</ag-grid-angular>
+    [columnDefs]="columnDefs" > <!-- la liste des colonnes -->
+  </ag-grid-angular>
+    
+
 </body>
 </html>

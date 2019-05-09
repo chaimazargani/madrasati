@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.dao.NoteDAO;
+import com.pfe.madrasati.model.EleveNoteDTO;
 import com.pfe.madrasati.model.Note;
 
 @Service (value="noteService")
@@ -24,10 +25,14 @@ public class NoteServiceImpl implements NoteService {
 
    }
    
+   @Override
+   @Transactional
+   public List<EleveNoteDTO> getNoteEleve( Integer idMatier , Integer  idClasse){
+	List<EleveNoteDTO> list= (List<EleveNoteDTO>) noteDAO.getNoteEleve(idMatier, idClasse);
+	   return list;
+
    
-   
-   
-   
+   }
    
    
    

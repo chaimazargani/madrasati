@@ -24,7 +24,7 @@ public class ClasseController {
 	@RequestMapping(value = "/creerclasse", method = RequestMethod.POST)
 	@ResponseBody
     public ResponseEntity<Classe> Saveclasse(@RequestBody Classe classe) {
-		
+	
 		return new ResponseEntity<Classe> ((Classe)classeService.ajouterClasse(classe),HttpStatus.OK);
 	}
 	@RequestMapping (value ="/getClassesByIdEnseignant", method = RequestMethod.GET)

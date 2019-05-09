@@ -20,7 +20,7 @@ import { MaterialModule } from '../modules/material/material.module';
     LoginComponent,
     CreerclasseComponent,
     AppWebComponent,
-    EnseignantComponent
+    EnseignantComponent,
   ],
   imports: [
     BrowserModule,
