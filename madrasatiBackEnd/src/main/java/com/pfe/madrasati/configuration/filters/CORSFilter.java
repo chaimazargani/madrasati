@@ -11,36 +11,24 @@ public class CORSFilter implements Filter {
     public static String VALID_METHODS = "DELETE, HEAD, GET, OPTIONS, POST, PUT";
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        HttpServletRequest httpReq = (HttpServletRequest) req;
-        HttpServletResponse httpResp = (HttpServletResponse) resp;
+        HttpServletResponse response = (HttpServletResponse) resp;
 
-        // No Origin header present means this is not a cross-domain request
-        String origin = httpReq.getHeader("Origin");
-         if (origin == null) {
-            // Return standard response if OPTIONS request w/o Origin header
-           if ("OPTIONS".equalsIgnoreCase(httpReq.getMethod())) {
-                httpResp.setHeader("Allow", VALID_METHODS);
-                httpResp.setStatus(200);
-                return;
-            }
+        HttpServletRequest request = (HttpServletRequest) req;
+
+            response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, PATCH, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept, Key");
+
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
         } else {
-            // This is a cross-domain request, add headers allowing access
-            httpResp.setHeader("Access-Control-Allow-Origin", origin);
-            httpResp.setHeader("Access-Control-Allow-Methods", VALID_METHODS);
-
-            String headers = httpReq.getHeader("Access-Control-Request-Headers");
-            if (headers != null)
-                httpResp.setHeader("Access-Control-Allow-Headers", headers);
-
-            // Allow caching cross-domain permission
-            httpResp.setHeader("Access-Control-Max-Age", "3600");
-        }
-        // Pass request down the chain, except for OPTIONS
-        if (!"OPTIONS".equalsIgnoreCase(httpReq.getMethod())) {
             chain.doFilter(req, resp);
         }
- }
-    
+    }
+
     @Override
     public void init(FilterConfig arg0) throws ServletException {
     }
