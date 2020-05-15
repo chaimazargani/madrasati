@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title> liste utilisateur </title>
+</head>
+<body>
+  
+  
+  <div class="div" ></div>
+  <table>
+    <tr>
+    <input matButton class = 'button' type="button"  value="Acceuil"   >    <input matButton class = 'button' type="button"  (click)= "redirection()" value="Note"  > <input matButton class = 'button' type="button" value="éléve"><input matButton class = 'button' type="button" value="Cours"><input matButton class = 'button' type="button" value="Examen">
+  </tr>
+    </table>
+  
+  
+  <table>
+  <tr>
+    <td>{{prenom}}</td>
+    <td>{{nom}}</td>
+    <td>{{age}}</td>
+    <td>Mail</td>
+  </tr>
+  <tr>
+    <td>{{nomUtilisateur[1]}}</td>
+    <td>abc</td>
+    <td>{{ageUtilisateur[1]}}</td>
+    <td>ahmed@gmail.com</td>
+  </tr>
+  <tr>
+    <td>{{nomUtilisateur[0]}}</td>
+    <td>bhc</td>
+    <td>{{ageUtilisateur[0]}}</td>
+    <td>asma@gmail.com</td>
+  </tr>
+  <tr>
+    <td>{{nomUtilisateur[2]}}</td>
+    <td>bjh</td>
+    <td>{{ageUtilisateur[2]}}</td>
+    <td>amal@gmail.com</td>
+  </tr>
+
+     <tr>
+       <td>{{specificite.enseignant}} </td>
+       <td>{{specificite.matier}} </td>
+
+     </tr>
+</table>
+
+  
+<input #newTitle class="demo" [value]="specificite.enseignant" (keyup)="onkeyup(newTitle.value)"    >
+<img width="300" (click) = "onLogoClicked()" src = "https://www.softfluent.fr/wp-content/uploads/2019/10/angularjs.png" >
+<input  #nomEnseignant type = "text" placeholder="ajouter un enseignant" ><button (click)= "addens(nomEnseignant.value)">ajouter</button> <li  [value]="specificite. matier"></li>
+<ul>
+</ul>
+<ag-grid-angular 
+    style="width: 2000px; height: 2000px;"
+    class="ag-theme-balham"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)"
+    [defaultColDef]="defaultColDef"
+    [frameworkComponents]="frameworkComponents"
+    >
+</ag-grid-angular>
+</body>

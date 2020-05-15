@@ -27,6 +27,6 @@ export class CreerclasseComponent implements OnInit {
 
   Creerclasse(): Observable<Classe> {
   
-    return this.httpClient.post<Classe>('http://localhost:18080/madrasati/creerclasse', this.classe);
+    return this.httpClient.post<Classe>('http://localhost:8080/madrasati/creerclasse', this.classe,);
   }
 }

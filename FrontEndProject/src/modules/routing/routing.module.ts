@@ -7,6 +7,13 @@ import { CreerclasseComponent } from '../../app/creerclasse/creerclasse.componen
 import { EnseignantComponent } from '../../app/app-web/enseignant/enseignant.component';
 import { NoteComponent } from '../../app/app-web/enseignant/note/note.component';
 import { CoursComponent } from '../../app/app-web/enseignant/cours/cours.component';
+import { EleveComponent } from '../../app/app-web/enseignant/eleve/eleve.component';
+import { UtilisateurComponent } from '../../app/app-web/utilisateur/utilisateur.component';
+import { AppareilComponent } from '../../app/appareil/appareil.component';
+import { AppareilviewComponent } from '../../app/appareilview/appareilview.component';
+import { AuthComponent } from '../../app/auth/auth.component';
+import { RegistreComponent } from "../../app/registre/RegistreComponent";
+import { CenderCellRendererComponent } from '../../app/cender-cell-renderer/cender-cell-renderer.component';
 
 const appRoutes: Routes = [
   { path: 'creerEnseignant', component: CreerenseignatComponent },
@@ -15,6 +22,21 @@ const appRoutes: Routes = [
   { path: 'enseignant', component: EnseignantComponent },
   { path: 'note', component: NoteComponent},
   { path:'cours', component: CoursComponent},
+  { path:'eleve', component: EleveComponent},
+  { path:'utilisateur', component: UtilisateurComponent},
+  { path: 'appareil', component:AppareilComponent},
+  { path: 'appareilview', component:AppareilviewComponent},
+  { path: 'auth', component: AuthComponent},
+  { path: 'registre', component: RegistreComponent},
+  { path : 'cenderCellRendererComponent' , component: CenderCellRendererComponent },
+
+  
+
+
+
+
+
+
   { path: '' , redirectTo: '/login', pathMatch: 'full'}
   
 ];

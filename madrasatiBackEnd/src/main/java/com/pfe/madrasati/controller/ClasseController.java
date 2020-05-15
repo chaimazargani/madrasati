@@ -20,16 +20,18 @@ import com.pfe.madrasati.service.ClasseService;
 public class ClasseController {
 	@Autowired
 	private ClasseService classeService;
-	
+
 	@RequestMapping(value = "/creerclasse", method = RequestMethod.POST)
 	@ResponseBody
-    public ResponseEntity<Classe> Saveclasse(@RequestBody Classe classe) {
-	
-		return new ResponseEntity<Classe> ((Classe)classeService.ajouterClasse(classe),HttpStatus.OK);
+	public ResponseEntity<Classe> Saveclasse(@RequestBody Classe classe) {
+
+		return new ResponseEntity<Classe>((Classe) classeService.ajouterClasse(classe), HttpStatus.OK);
 	}
-	@RequestMapping (value ="/getClassesByIdEnseignant", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/getClassesByIdEnseignant", method = RequestMethod.GET)
 	@ResponseBody
-   public 	List<MatierEnseignantClasse> getClassesByIdEnseignant( @RequestParam ("idEnseignant")Integer idEnseignant,@RequestParam("idMatier") Integer idMatier ){
-   return (List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
-}
+	public List<MatierEnseignantClasse> getClassesByIdEnseignant(@RequestParam("idEnseignant") Integer idEnseignant,
+			@RequestParam("idMatier") Integer idMatier) {
+		return (List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
+	}
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-eleve',
@@ -8,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class EleveComponent implements OnInit {
 
   constructor() { }
+  
 
+ 
   ngOnInit() {
   }
 

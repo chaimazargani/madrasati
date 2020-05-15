@@ -1,0 +1,7 @@
+<li >
+  
+<h4 [ngStyle] = "{color : getColor()}" >appareil : {{ appareilsName }} -- statu : {{ getStatus()}} </h4>
+
+  <button (click)= onSwitchOn() [disabled] ="appareilStatus ==='allumer'">allumé</button>
+  <button (click)=  ofSwitchOf() [disabled]="appareilStatus ==='eteint'">eteindre</button>
+</li>

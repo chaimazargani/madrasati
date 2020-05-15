@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Classe } from '../model/classe';
 import { Utilisateur } from '../model/utilisateur';
 
@@ -28,7 +28,7 @@ export class CreerenseignatComponent implements OnInit {
     //  karthouna li feha les infrs
 creerEnseignant(): Observable<Utilisateur> {
   // tslint:disable-next-line:no-debugger
-  return this.httpClient.post<Utilisateur>('http://localhost:18080/madrasati/creerUtilisateur', this.utilisateur);
+  return this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/creerUtilisateur', this.utilisateur);
 }
 afficherListeutilisateur(): void {
   // tslint:disable-next-line:no-debugger
@@ -39,7 +39,8 @@ afficherListeutilisateur(): void {
   }
     afficherListe(): Observable<Utilisateur[]> {
   console.log(this.listeDesutilisateur);
-
-  return this.httpClient.get<Utilisateur[]>('http://localhost:18080/madrasati/listUtilisateur');
+let httpHeader:HttpHeaders = new HttpHeaders();
+httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
+  return this.httpClient.get<Utilisateur[]>('http://localhost:8080/madrasati/listUtilisateur',{headers:httpHeader});
 }
 }

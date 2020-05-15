@@ -22,7 +22,7 @@ public class ActiviteDAOImpl implements ActiviteDAO  {
 	@Override
 	public List<Activite> getActivites(Integer idEnseignant) {
 		 
-    String hql = "From Activite where idActivite = :a";
+    String hql = "From Activite where idEnseignant = :a";
     Query query = getCurrentSession().createQuery(hql);
     query.setParameter("a",idEnseignant);
     List<Activite> results = query.list();

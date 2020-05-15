@@ -1,6 +1,10 @@
 package com.pfe.madrasati.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import javax.swing.Spring;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,13 +25,20 @@ public class EleveDAOImpl implements EleveDAO {
 		@Override
      public List<Eleve> getEleveByIdClasse(Integer idClasse){
 			String hql1= "from Eleve E where E.classe.idClasse= :idClasse";
-		    Query query = getCurrentSession().createQuery(hql1);
+	    Query query = getCurrentSession().createQuery(hql1);
 		    query.setParameter("idClasse", idClasse);
 		    List<Eleve> results = query.list();
 		    return results;
 
 
   }
-
-
-}
+    
+    
+    
+        }	
+        
+        	
+        	
+        	
+        	
+        

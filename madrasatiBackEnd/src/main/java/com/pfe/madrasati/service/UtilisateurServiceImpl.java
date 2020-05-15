@@ -16,7 +16,8 @@ public class UtilisateurServiceImpl implements UtilisateurService  {
 	 
 	    @Override
 	    @Transactional
-	    public Utilisateur ajouterUtilisateur(Utilisateur utilisateur) {
+	    public Utilisateur ajouterUtilisateur(Utilisateur utilisateur ) {
+	    	utilisateur.setIdUtilisateur(5252);
 	        return (Utilisateur) utilisateurDAO.ajouterUtilisateur(utilisateur);
 
 	    }
@@ -37,7 +38,7 @@ public class UtilisateurServiceImpl implements UtilisateurService  {
 		@Override
 		@Transactional
 		public List<Utilisateur> findAll() {
-//      	return (List<Utilisateur>) utilisateurDAO.findAll();
+      // return (List<Utilisateur>) utilisateurDAO.findAll();
 			return null;
 		}
 

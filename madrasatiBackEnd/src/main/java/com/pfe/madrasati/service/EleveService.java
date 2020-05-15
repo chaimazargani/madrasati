@@ -7,4 +7,5 @@ import com.pfe.madrasati.model.Eleve;
 public interface EleveService {
 	List<Eleve> getEleveByIdClasse(Integer idClasse);
 
+
 }

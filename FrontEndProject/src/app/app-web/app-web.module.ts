@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoteHttpService } from './enseignant/note/note-http.service';
 import { NoteService } from './enseignant/note/note.service';
 import { CoursComponent } from './enseignant/cours/cours.component';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { CoursComponent } from './enseignant/cours/cours.component';
   declarations: [
   NoteComponent,
   CoursComponent,
+  UtilisateurComponent,
   ]
 })
 export class AppWebModule { }

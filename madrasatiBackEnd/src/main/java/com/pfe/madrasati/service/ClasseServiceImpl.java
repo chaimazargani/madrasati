@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pfe.madrasati.dao.ClasseDAO;
 import com.pfe.madrasati.model.Classe;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
+import com.pfe.madrasati.model.RegistreDTO;
 
 @Service (value="classeService")
 public class ClasseServiceImpl implements ClasseService {

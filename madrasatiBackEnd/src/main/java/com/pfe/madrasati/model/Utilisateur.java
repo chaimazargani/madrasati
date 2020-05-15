@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @Table (name = "utilisateur")
 public class Utilisateur {
 	  @Id
-	  @GeneratedValue  
+	  //@GeneratedValue 
 	  @Column(name = "idutilisateur")
 	private Integer idUtilisateur;
 	  @Column(name = "nom")
@@ -33,7 +33,7 @@ public class Utilisateur {
 	private Date dateNaissance;
 	  @Column(name = "adresse")
 	private String adresse;
-	  @Column(name = "email", unique = true)
+	  @Column(name = "emaill", unique = true)
 	   @Email(message = "{user.email.invalid}")
 	   @NotEmpty(message="Please Enter your email")
     private String email; 

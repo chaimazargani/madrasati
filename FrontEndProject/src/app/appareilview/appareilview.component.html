@@ -1,0 +1,21 @@
+<div class= "col-xs-12">
+    
+  <h2> Mes appareils </h2>
+  <p> Mise a jour {{lastupdate|async| date : 'yMMMM{EEEEd' | uppercase}}</p>
+  <ul class ="list-group"> 
+<app-appareil *ngFor ="let appareil of appareils ; let i = index" 
+            [indxApp] = "i"
+           [appareilsName]= "appareil.name"
+          [appareilStatus]="appareil.etat"  >   </app-appareil>
+ 
+      </ul>
+     <button (click)= "onAllume()"> allumer</button>
+     <button (click)="onEteindre()">etteindre</button>
+     <p>
+     
+      <button (click)="seDeconnecter()">se deconnecter</button>
+
+    </p>
+
+ 
+  </div>

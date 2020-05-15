@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
-@Table (name = "activite")
+@Table (name = "act")
 public class Activite {
 	@Id
 	  @GeneratedValue 
@@ -18,9 +18,9 @@ public class Activite {
 		private Integer idActivite;
 	  @Column(name = "nomactivite")
       private String nomactivite;
-	  @Column(name = "dateDebut")
+	  @Column(name = "datedebut")
 		private Date datedebut;
-	  @Column(name = "dateFin")
+	  @Column(name = "datefin")
 		private Date datefin;
 	  	  @ManyToOne
 	  @JoinColumn(name="idenseignant", insertable = false,updatable = false)

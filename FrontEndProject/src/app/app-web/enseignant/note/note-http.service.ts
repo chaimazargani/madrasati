@@ -10,7 +10,7 @@ import { MatierEnseignantClasse } from '../../../model/MatierEnseignantClasse';
 import { EleveNoteDTO } from '../../../model/EleveNoteDTO';
 
 @Injectable()
-export class NoteHttpService {
+export class NoteHttpService{
 private noteList: Note[];
 private classe: Classe ;
 private matier: Matier;
@@ -55,7 +55,7 @@ getNoteEleve(idMatier: number, idClasse: number): Observable<EleveNoteDTO[]> {
  params= params.append('idClasse', idClasse.toString());
   return this.httpClient.get<EleveNoteDTO[]>('http://localhost:18080/madrasati/getNoteEleve', {params: params});
 
-
-
-
 }
+}
+
+
