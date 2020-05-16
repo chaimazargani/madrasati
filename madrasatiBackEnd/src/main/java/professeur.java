@@ -1,10 +1,8 @@
 
-public class professeur   extends Employe {
+public class professeur {
    private String specialite;
 
 public professeur() {
-	super();
-	// TODO Auto-generated constructor stub
 }
 
 @Override

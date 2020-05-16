@@ -1,4 +1,3 @@
-import com.pfe.madrasati.model.Employe;
 import com.pfe.madrasati.model.Personne;
 
 public class Employe extends Personne {
@@ -35,7 +34,7 @@ public class Employe extends Personne {
 		Employe emp1 = new Employe ( 200.222 ,  "salah" , "abc" , 7 , 1000);
 		Employe empl2 = new Employe (500.52 ,"asma" , "abc" , 9, 2000);
 		Personne per1 = new Personne("ali", "zzz", 2);
-		Etudiant et1 =new Etudiant (22554, "abc" , "aaa" , 4 );
+//		Etudiant et1 =new Etudiant (22554, "abc" , "aaa" , 4 );
 
 	}
 }

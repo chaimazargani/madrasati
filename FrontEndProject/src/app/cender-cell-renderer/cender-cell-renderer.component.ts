@@ -1,24 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
+// import { ICellRenderer } from 'ag-grid-community';
+// import { INoRowsOverlayAngularComp } from 'ag-grid-angular';
 
-@Component({
-  selector: 'app-cender-cell-renderer',
-  templateUrl: './cender-cell-renderer.component.html',
-  styleUrls: ['./cender-cell-renderer.component.css'],
- 
-})
+// @Component({
+//   selector: 'app-gender-renderer',
+//   template: `
+//     <span> <img [src]="imageSource" />{{ value }} </span>
+//   `,
+// })
+// export class GenderCellRenderer implements INoRowsOverlayAngularComp {
+//   private imageSource: string;
+//   private value: any;
 
-export class CenderCellRendererComponent  {
-//  private imageSource: string;
- // private value: any;
- public  selected = 'option2'
+//   agInit(params): void {
+//     // const image = 'male' === 'Male' ? 'male.png' : 'female.png';
+//     this.imageSource = `./iageSource.jpg`;
+//     this.value = 'male';
+//   }
 
-  constructor() { }
- // agInit(params): void {
-   // const image = params.value === 'Male' ? 'male.png' : 'female.png';
-   // this.imageSource = `../images/${image}`;
-   // this.value = params.value;
- // }
- 
-  
-
-}
+// }

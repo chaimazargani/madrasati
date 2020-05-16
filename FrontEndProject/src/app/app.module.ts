@@ -21,10 +21,9 @@ import {AuthService} from './service/auth.service';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilviewComponent } from './appareilview/appareilview.component';
 import { RegistreComponent } from "./registre/RegistreComponent";
-import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
+//import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
 
 
-//import { UtilisateurComponent } from './app-web/utilisateur/utilisateur.component';
 
 
 @NgModule({
@@ -41,8 +40,8 @@ import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-
     AppareilviewComponent,
     RegistreComponent,
     RegistreComponent,
-    CenderCellRendererComponent,
-  
+    //CenderCellRendererComponent,
+     
        
 
      // UtilisateurComponent

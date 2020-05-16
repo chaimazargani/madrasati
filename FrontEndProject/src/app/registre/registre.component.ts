@@ -179,4 +179,3 @@ getRegistre(): Observable<RegistreDTO[]>  {
 }
 }
 
-}

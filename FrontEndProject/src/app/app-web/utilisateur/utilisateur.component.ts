@@ -1,71 +1,92 @@
-import { Component, OnInit } from '@angular/core';
-import { CenderCellRendererComponent } from '../../cender-cell-renderer/cender-cell-renderer.component';
-@Component({
-  selector: 'app-utilisateur',
-  templateUrl: './utilisateur.component.html',
-  styleUrls: ['./utilisateur.component.css']
-})
-export class UtilisateurComponent {
-    nom : String = 'nom' ;
-    prenom : String = 'prenom' ;
-    age : String = 'age'; 
-    specificite : any ;
-    cellEditorParams  : any ;
-    nomEns : Array<String> = ['arwa' , 'chaima'] ;
-public nomUtilisateur: Array<String> = ['ahmed', 'amal', 'asma'];
-public ageUtilisateur: Array<String> = ['22', '25', '26'];
-public columnDefs : any ;
- public  rowData : any ; 
-  public defaultColDef : any ;
-  public frameworkComponents : any ; 
-  onkeyup(newTitle ) { 
-    //this.specificite.enseignant = newTitle ;
-    console.log(newTitle)
-  }
-  private gridApi;
-  private gridColumnApi;
+// import { Component } from '@angular/core';
+// import { GenderCellRenderer } from '../../cender-cell-renderer/cender-cell-renderer.component';
 
+// @Component({
+//   selector: 'my-app',
+//   template: `
+//     <ag-grid-angular
+//       #agGrid
+//       style="width: 100%; height: 100%;"
+//       id="myGrid"
+//       class="ag-theme-alpine"
+//       [modules]="modules"
+//       [rowData]="rowData"
+//       [columnDefs]="columnDefs"
+//       [defaultColDef]="defaultColDef"
+//       [frameworkComponents]="frameworkComponents"
+//       (cellValueChanged)="onCellValueChanged($event)"
+//       (gridReady)="onGridReady($event)"
+//     ></ag-grid-angular>
+//   `,
+// })
+// export class UtilisateurComponent {
+//   private gridApi;
+//   private gridColumnApi;
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-  }
-  onLogoClicked() {
-
-    alert ('Hello word ') ;
-  }
-   addens(nomEnseignant : String)  {
-     //console.log(nomEnseignant) ;
-     this.nomEns.push(nomEnseignant);
-  }
-  constructor() { 
-    
-    this.specificite = { 
-      enseignant :'salah'  ,
-      matier : ' angular ' ,
-  }
-  this.columnDefs = [
-    {
-      field: 'gender',
-      cellRenderer: 'GenderCellRenderer' ,
-      cellEditorParams: {
-        cellRenderer: 'genderCellRenderer',
-       }
-      }
-  ];
   
-  this.rowData = [
-    {
-      gender: 'Male'
-    }];
+//   private rowData;
+//   private columnDefs;
+//   private defaultColDef;
+//   private frameworkComponents;
 
-        this.defaultColDef = {
-      flex: 1,
-      minWidth: 130,
-      editable: true,
-      resizable: true,
-    };
+//   constructor() {
+//     this.rowData = [
+//       {
+//         name: 'Bob Harrison',
+//         gender: 'Male',
 
-  this.frameworkComponents = { genderCellRenderer : CenderCellRendererComponent }
-}
+//       },
+//       {
+//         name: 'Mary Wilson',
+//         gender: 'Female',
+
+//       },
+//       {
+//         name: 'Sadiq Khan',
+//         gender: 'Male',
+//       },
+      
+//     ];
+//     this.columnDefs = [
+//       { field: 'name' },
+//       {
+//         field: 'gender',
+//         cellRenderer: 'genderCellRenderer',
+//       },
+   
+//     ];
+//     this.defaultColDef = {
+//       flex: 1,
+//       minWidth: 130,
+//       editable: true,
+//       resizable: true,
+//     };
+//     this.frameworkComponents = { genderCellRenderer: GenderCellRenderer };
+//   }
+
+//   onCellValueChanged(params) {
+//     var colId = params.column.getId();
+//     if (colId === 'country') {
+//       var selectedCountry = params.data.country;
+//       var selectedCity = params.data.city;
+//       var allowedCities = countyToCityMap(selectedCountry);
+//       var cityMismatch = allowedCities.indexOf(selectedCity) < 0;
+//       if (cityMismatch) {
+//         params.node.setDataValue('city', null);
+//       }
+//     }
+//   }
+
+//   onGridReady(params) {
+//     this.gridApi = params.api;
+//     this.gridColumnApi = params.columnApi;
+//   }
+// }
+
+// function countyToCityMap(match) {
+//   var map = {
+//     Ireland: ['Dublin', 'Cork', 'Galway'],
+//     USA: ['New York', 'Los Angeles', 'Chicago', 'Houston'],
+//   };
+//   return map[match];
 }

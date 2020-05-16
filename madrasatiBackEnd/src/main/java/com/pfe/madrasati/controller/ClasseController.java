@@ -1,5 +1,6 @@
 package com.pfe.madrasati.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pfe.madrasati.model.Classe;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
+import com.pfe.madrasati.model.Niveau;
 import com.pfe.madrasati.service.ClasseService;
+import com.pfe.madrasati.service.NiveauService;
 
 @RestController
 public class ClasseController {
 	@Autowired
 	private ClasseService classeService;
-
+	
+	
 	@RequestMapping(value = "/creerclasse", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Classe> Saveclasse(@RequestBody Classe classe) {
@@ -32,6 +36,10 @@ public class ClasseController {
 	@ResponseBody
 	public List<MatierEnseignantClasse> getClassesByIdEnseignant(@RequestParam("idEnseignant") Integer idEnseignant,
 			@RequestParam("idMatier") Integer idMatier) {
-		return (List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
+		return  new ArrayList();
+				//(List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
 	}
+	
+	
+	
 }
