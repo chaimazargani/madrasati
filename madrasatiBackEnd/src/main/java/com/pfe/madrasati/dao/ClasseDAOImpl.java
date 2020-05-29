@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.model.Classe;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
+import com.pfe.madrasati.model.Niveau;
 @Repository  (value="classeDAO")
 @Transactional
 public class ClasseDAOImpl implements ClasseDAO{
@@ -34,5 +35,13 @@ public class ClasseDAOImpl implements ClasseDAO{
 		    List<MatierEnseignantClasse> results = query.list();
                return results;
 }
+		@Override
+		public List<Classe> getClassesByIdNiveau(Integer idNiveau) {
+			String hql1 = " from  Classe C  where idNiveau = :idNiveau ORDER BY C.nomClasse";
+			Query query = getCurrentSession().createQuery(hql1);
+			query.setParameter("idNiveau", idNiveau);
+			List<Classe> results = query.list();		
+			return results;
+		}
 		
 }

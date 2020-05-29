@@ -1,4 +1,3 @@
-import { CellEditorParams } from "./cellEditorParams";
 
 export class Children {
    public  headerName : string ;

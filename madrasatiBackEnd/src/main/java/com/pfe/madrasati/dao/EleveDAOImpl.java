@@ -1,10 +1,6 @@
 package com.pfe.madrasati.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import javax.swing.Spring;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.model.Eleve;
-@Repository ("name=eleveDAO")
+@Repository (value="eleveDAO")
 @Transactional
 public class EleveDAOImpl implements EleveDAO {
        @Autowired

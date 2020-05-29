@@ -22,77 +22,53 @@ public class Classe {
 	private String nomClasse;
 	@Column(name="nombreeleve")
 	private Integer nombreEleve;
-	@Column(name="niveauclasse")
-	private String niveauClasse;
-	
-
-
-
-	
+	@Column(name="idniveau")
+	private Integer idNiveau;
 	public Classe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-	public Integer getIdClasse() {
-		return idClasse;
-	}
-
-
-	public void setIdClasse(Integer idClasse) {
-		this.idClasse = idClasse;
-	}
-
-
-	public String getNomClasse() {
-		return nomClasse;
-	}
-
-
-	public void setNomClasse(String nomClasse) {
-		this.nomClasse = nomClasse;
-	}
-
-
-	public Integer getNombreEleve() {
-		return nombreEleve;
-	}
-
-
-	public void setNombreEleve(Integer nombreEleve) {
-		this.nombreEleve = nombreEleve;
-	}
-
-
-	public Classe(Integer idClasse, String nomClasse, Integer nombreEleve) {
+	public Classe(Integer idClasse, String nomClasse, Integer nombreEleve, Integer idNiveau) {
 		super();
 		this.idClasse = idClasse;
 		this.nomClasse = nomClasse;
 		this.nombreEleve = nombreEleve;
+		this.idNiveau = idNiveau;
 	}
-	
-
-
-
-
-
-	@Override
-	public String toString() {
-		return "Classe [idClasse=" + idClasse + ", nomClasse=" + nomClasse + ", nombreEleve=" + nombreEleve
-				+ ", niveauClasse=" + niveauClasse + "]";
+	public Integer getIdClasse() {
+		return idClasse;
 	}
-
-
+	public void setIdClasse(Integer idClasse) {
+		this.idClasse = idClasse;
+	}
+	public String getNomClasse() {
+		return nomClasse;
+	}
+	public void setNomClasse(String nomClasse) {
+		this.nomClasse = nomClasse;
+	}
+	public Integer getNombreEleve() {
+		return nombreEleve;
+	}
+	public void setNombreEleve(Integer nombreEleve) {
+		this.nombreEleve = nombreEleve;
+	}
+	public Integer getIdNiveau() {
+		return idNiveau;
+	}
+	public void setIdNiveau(Integer idNiveau) {
+		this.idNiveau = idNiveau;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((idClasse == null) ? 0 : idClasse.hashCode());
+		result = prime * result + ((idNiveau == null) ? 0 : idNiveau.hashCode());
+		result = prime * result + ((nomClasse == null) ? 0 : nomClasse.hashCode());
+		result = prime * result + ((nombreEleve == null) ? 0 : nombreEleve.hashCode());
 		return result;
 	}
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -107,11 +83,24 @@ public class Classe {
 				return false;
 		} else if (!idClasse.equals(other.idClasse))
 			return false;
+		if (idNiveau == null) {
+			if (other.idNiveau != null)
+				return false;
+		} else if (!idNiveau.equals(other.idNiveau))
+			return false;
+		if (nomClasse == null) {
+			if (other.nomClasse != null)
+				return false;
+		} else if (!nomClasse.equals(other.nomClasse))
+			return false;
+		if (nombreEleve == null) {
+			if (other.nombreEleve != null)
+				return false;
+		} else if (!nombreEleve.equals(other.nombreEleve))
+			return false;
 		return true;
 	}
 
-	
 
-	
-	
+
 }

@@ -18,9 +18,10 @@ import com.pfe.madrasati.model.RegistreDTO;
 import com.pfe.madrasati.service.RegistreService;
 
 @RestController
-public class RejistreController {
+public class RegistreController {
 	@Autowired
 	private RegistreService registreService;
+
 	private RegistreDTO registre;
 
 	@RequestMapping(value = "/getPresenceByIdEleve", method = RequestMethod.GET)
@@ -28,17 +29,22 @@ public class RejistreController {
 	public Map<String, List<RegistreDTO>> getPresenceByIdEleve(@RequestParam("idClasse") Integer idClasse,
 			@RequestParam("datePresenceString") String datePresenceString) {
 
+		
 		OffsetDateTime offsetStartDateTime = OffsetDateTime.parse(datePresenceString);
 		final LocalDateTime datePresence = offsetStartDateTime.toLocalDateTime();
 		// return new ArrayList () ;
-		List<RegistreDTO> registreDTOList = new ArrayList<>();
-		RegistreDTO registreDTO = new RegistreDTO(datePresence, "absent", "ahmed");
-		RegistreDTO registreDTO1 = new RegistreDTO(datePresence, "Absent", "amal");
-		RegistreDTO registreDTO2 = new RegistreDTO(datePresence, "Absent", "chaima");
-		registreDTOList.add(registreDTO);
-		registreDTOList.add(registreDTO1);
-		registreDTOList.add(registreDTO2);
-		return  getPresenceGroupeBY(registreDTOList);
+		
+		final List<RegistreDTO> dbResultList =  registreService.getPresenceByIdEleve(datePresence , idClasse);
+
+		
+//		List<RegistreDTO> registreDTOList = new ArrayList<>();
+//		RegistreDTO registreDTO = new RegistreDTO(datePresence, "absent", "ahmed");
+//		RegistreDTO registreDTO1 = new RegistreDTO(datePresence, "Absent", "amal");
+//		RegistreDTO registreDTO2 = new RegistreDTO(datePresence, "Absent", "chaima");
+//		registreDTOList.add(registreDTO);
+//		registreDTOList.add(registreDTO1);
+//		registreDTOList.add(registreDTO2);
+		return  getPresenceGroupeBY(dbResultList);
 
 	}
 
@@ -50,6 +56,5 @@ public class RejistreController {
 		return map;
 	}
 
-//		return registreService.getPresenceByIdEleve(datePresence , idClasse);
 	
 }

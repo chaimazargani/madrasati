@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RegistreDTO } from '../model/RegistreDTO';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AgGridAngular } from 'ag-grid-angular';
 import { RowData } from '../model/rowData';
 import { ColomnDef } from '../model/ColomnDef';
 import { Children } from '../model/Children';
+import { Niveau } from '../model/niveau';
+import { Classe } from '../model/classe';
 @Component({
   selector: 'app-registre',
   templateUrl: './registre.component.html',
@@ -14,11 +16,17 @@ import { Children } from '../model/Children';
 export class RegistreComponent implements OnInit {
   registreDTO: RegistreDTO;
   listRegistredto: RegistreDTO[];
- public columnDefs: ColomnDef ;
+ public columnDefs:any ;
  public  columnDefs1 : ColomnDef ;
- public  rowData: any ;
+ public  rowData: any = [] ;
+
  public  children : Children ;
+ public niveauSelectionner : number ;
   public columnDeflist  : ColomnDef[]= [] ;
+  public classeSelectionner : number ;
+  public  listnomEleve : any[] = [];
+  public    listresult = []; 
+
   selected = 'option2';
   selected2 = 'option2';
 
@@ -27,172 +35,262 @@ export class RegistreComponent implements OnInit {
 
    
     //construction de objet children
-    let children1:Children;
-    children1 = {
-      headerName:"Nom et Prénom",
-      field:"nomEleve",
-      minWidth:300,
-      maxWidth:null,
-      columnGroupShow:null,
-      field1: null ,
-      cellRenderer : null ,
-      cellEditor : null,
-      cellEditorParams : null ,
-    } ;
+    // let children1:Children;
+    // children1 = {
+    //   headerName:"Nom et Prénom",
+    //   field:"nomEleve",
+    //   minWidth:300,
+    //   maxWidth:null,
+    //   columnGroupShow:null,
+      
+    // } ;
     //construction et remplissage du list of children
-    let childrenList: Children[] = [] ; 
-    childrenList.push(children1);
+   // let childrenList: Children[] = [] ; 
+   // childrenList.push(children1);
 
 
 
-    this.listRegistredto = [];
+   // this.listRegistredto = [];
   
-    this.columnDefs = {  
-      headerName:"list des éleves",
-      marryChildren:true,
-      children : childrenList ,
-      field1 : null ,
- cellRenderer :  null ,
- cellEditor : null ,
- cellEditorParams : null ,
-    }
-
-let children2 : Children ;
-  children2 = {
-    headerName:"8h-9h",
-    field:"date1heure1",
-    minWidth:300,
-    maxWidth: 550,
-    columnGroupShow: "open",
+    // this.columnDefs = {  
+    //   headerName:"list des éleves",
+    //   marryChildren:true,
+    //   children : childrenList ,
   
-  }
+    // }
+
+    this.columnDefs = [
+  {  headerName:"list des éleves" ,
+  children: [ 
+    {headerName:"Nom et Prénom", field:"nomEleve", minWidth:300,maxWidth:null,columnGroupShow:null },
+    { headerName: '8h', field: '8' },
+    { headerName: '9h', field: '9' },
+    { headerName: '10h', field: '10' },
+    { headerName: '11h', field: '11' },
+    { headerName: '12h', field: '12' },
+    { headerName: '13h', field: '13' },
+    { headerName: '14h', field: '14' },
+
+    ]
+  }];
+
+
+
+
+// let children2 : Children ;
+//   children2 = {
+//     headerName:"8h-9h",
+//     field:"date1heure1",
+//     minWidth:300,
+//     maxWidth: 550,
+//     columnGroupShow: "open",
+  
+//   }
  
-  let children3 : Children ;
-  children3 = {
-    headerName:"9h-10h",
-    field:"date1heure3",
-    minWidth:300,
-    maxWidth: 550,
-    columnGroupShow: "open",
+//   let children3 : Children ;
+//   children3 = {
+//     headerName:"9h-10h",
+//     field:"date1heure3",
+//     minWidth:300,
+//     maxWidth: 550,
+//     columnGroupShow: "open",
    
-  }
-  let children4 : Children ;
-  children4 = {
-    headerName:"10h-11h",
-    field:"date1heure4",
-    minWidth:300,
-    maxWidth: 550,
-    columnGroupShow: "open",
+//   }
+//   let children4 : Children ;
+//   children4 = {
+//     headerName:"10h-11h",
+//     field:"date1heure4",
+//     minWidth:300,
+//     maxWidth: 550,
+//     columnGroupShow: "open",
    
-  }
- let children5 : Children ; 
- children5 = {
-  headerName:"11h-12h",
-  field:"date1heure5",
-  minWidth:300,
-  maxWidth: 550,
-  columnGroupShow: "open",
+//   }
+//  let children5 : Children ; 
+//  children5 = {
+//   headerName:"11h-12h",
+//   field:"date1heure5",
+//   minWidth:300,
+//   maxWidth: 550,
+//   columnGroupShow: "open",
  
-}
+// }
 
-let children6 : Children ; 
-children6 = {
- headerName:"12h-13h",
- field:"date1heure6",
- minWidth:300,
- maxWidth: 550,
- columnGroupShow: "open",
+// let children6 : Children ; 
+// children6 = {
+//  headerName:"12h-13h",
+//  field:"date1heure6",
+//  minWidth:300,
+//  maxWidth: 550,
+//  columnGroupShow: "open",
 
-}
+// }
 
-let children7 : Children ; 
-children7 = {
- headerName:"13h-14h",
- field:"date1heure7",
- minWidth:300,
- maxWidth: 550,
- columnGroupShow: "open",
+// let children7 : Children ; 
+// children7 = {
+//  headerName:"13h-14h",
+//  field:"date1heure7",
+//  minWidth:300,
+//  maxWidth: 550,
+//  columnGroupShow: "open",
  
-}
+// }
 
-let children8 : Children ; 
-children8 = {
- headerName:"15h-16h",
- field:"date1heure8",
- minWidth:300,
- maxWidth: 550,
- columnGroupShow: "open",
+// let children8 : Children ; 
+// children8 = {
+//  headerName:"15h-16h",
+//  field:"date1heure8",
+//  minWidth:300,
+//  maxWidth: 550,
+//  columnGroupShow: "open",
 
-}
-let children9 : Children ; 
-children9 = {
- headerName:"16h-17h",
- field:"date1heure9",
- minWidth:300,
- maxWidth: 550,
- columnGroupShow: "open",
+// }
+// let children9 : Children ; 
+// children9 = {
+//  headerName:"16h-17h",
+//  field:"date1heure9",
+//  minWidth:300,
+//  maxWidth: 550,
+//  columnGroupShow: "open",
 
-}
+// }
 
-let children10 : Children ; 
- children10 = {
- headerName:"17h-18h",
- field:"date1heure10",
- minWidth:300,
- maxWidth: 550,
- columnGroupShow: "open",
- }
+// let children10 : Children ; 
+//  children10 = {
+//  headerName:"17h-18h",
+//  field:"date1heure10",
+//  minWidth:300,
+//  maxWidth: 550,
+//  columnGroupShow: "open",
+//  }
  
- let childrenList2: Children[] = [] ;
- childrenList2.push(children2 , children3 , children4 , children5 , children6 , children7 , children8 , children9, children10);
+ //let childrenList2: Children[] = [] ;
+ //childrenList2.push(children1);
+  // children2 , children3 , children4 , children5 , children6 , children7 , children8 , children9, children10
 
- this.columnDefs1 = {
-  headerName : "03-01-2020" ,
-  marryChildren: null ,
-  children : childrenList2 ,
-  field1 : "date1heure1" ,
- cellRenderer :  'genderCellRenderer' ,
- cellEditor : 'agRichSelectCellEditor' ,
- cellEditorParams : null,
+//  this.columnDefs1 = {
+//   headerName : "03-01-2020" ,
+//   marryChildren: null ,
+//   children : childrenList2 ,
+ 
 
-}
-this.columnDeflist.push(this.columnDefs , this.columnDefs1 )
+// }
+//this.columnDeflist.push(this.columnDefs )
 
-this.rowData = [
-  { nomEleve: 'ahmed', date1heure1: 'present' , date1heure2: 'present' , date1heure3: 'absent', date1heure4: 'present' },
-  { nomEleve: 'asma', date1heure1: 'absente' , date1heure2: 'absente' , date1heure3: 'presente', date1heure4: 'presente' },
- { nomEleve: 'amal', date1heure1: 'present' , date1heure2: 'exclut' , date1heure3: 'absent', date1heure4: 'presente' },
-  { nomEleve: 'chaima', date1heure1: 'exclut' , date1heure2: 'present' , date1heure3: 'absent', date1heure4: 'present' },
+ //this.rowData = [
+   this.listnomEleve = [{ nomEleve: 'ahmed', date1heure1: 'present' , date1heure2: 'present' , date1heure3: 'absent', date1heure4: 'present' }]
+//    { nomEleve: 'asma', date1heure1: 'absente' , date1heure2: 'absente' , date1heure3: 'presente', date1heure4: 'presente' },
+//   { nomEleve: 'amal', date1heure1: 'present' , date1heure2: 'exclut' , date1heure3: 'absent', date1heure4: 'presente' },
+//   { nomEleve: 'chaima', date1heure1: 'exclut' , date1heure2: 'present' , date1heure3: 'absent', date1heure4: 'present' },
 
-]
-}
+
+
+ };
+
   ngOnInit(): void {
-  
+    this.getListNiveau();
     } 
   
  
 
- // getRegistre(): Observable<RegistreDTO[]> {
-  //  let httpHeader: HttpHeaders = new HttpHeaders();
-  // httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-  // return this.httpClient.get<RegistreDTO[]>('http://localhost:8080/madrasati/getPresenceByIdEleve?idClasse=2&datePresenceString=2012-02-22T02:06:58.147Z', { headers: httpHeader });
+  getRegistre(datePresenceString : string ): Observable<Map<string,RegistreDTO[]>> {
+    let httpHeader: HttpHeaders = new HttpHeaders();
+  httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
+  let params: HttpParams = new HttpParams();
+  params= params.append('idClasse', this.classeSelectionner.toString());
+  params= params.append('datePresenceString', datePresenceString.toString());
 
+  return this.httpClient.get<Map<string,RegistreDTO[]>>('http://localhost:8080/madrasati/getPresenceByIdEleve', { headers: httpHeader , params:params });
+
+ }
+
+ public rowDataList :  RegistreDTO [] = [] ;
+ 
+
+  @ViewChild('agGridComponent') agGridComponent : AgGridAngular
+  datePresenceString : string = "2020-10-19T08:00Z"
+ getListregistre(): void {
+  let nomEleve1 : RowData   ;
+let nomEleve2 : RowData ;
+let list : any [];
+let hour : any = []; 
+let etat : any = [];
+let nouveauObjet : any={} ;
+let hour2 : any = [];
+let hour3 : any = [];
+  this.getRegistre ( this.datePresenceString).subscribe(result => {
+   
+    let list : RowData[]=[] ;
+    let map = Object.keys(result);  
+    map.forEach (nom => {
+      let rd
+     for ( let object of result[nom] ) {
+      hour = object.datePresence.hour ;
+         etat = object.nomEtat ;
+             rd = { 
+        nomEleve: nom,
+       }   ;
+      rd[hour] =etat;
+
+    }
+    list.push(rd);
+
+    })
+this.listresult = list;
+console.log(result);
+
+hour2 = result["Mariem"][0] 
+ hour3 = result["Mariem"][1]
+console.log(hour2)
+console.log(hour3)
+ //nouveauObjet[hour] =etat
+ let abc =  nouveauObjet["8"]
+console.log(hour)
+
+  });
+  
+ }
+ 
+  getObjetaggrid(result): any {
   }
 
+  getColomnDef(result): any {
 
- // @ViewChild('agGridComponent') agGridComponent : AgGridAngular
- // getListregistre(): void {
-   //  this.getRegistre ().subscribe(result => {
-    //  this.rowData = result;
-    //   console.log(result);
+  }
+  
+getNiveau():  Observable<Niveau[]> {
+  let httpHeader:HttpHeaders = new HttpHeaders();
+  httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
+  return this.httpClient.get<Niveau[]>('http://localhost:8080/madrasati/getListNiveau?idNiveau= 1,2,3,4,5,6',{headers:httpHeader});
 
 
-   // });
-  // }
-  //getObjetaggrid(result): any {
-  //console.log(result);
-  //}
-  //getColomnDef(result): any {
+}
+public niveauList : Niveau[] ;
 
-  //}
+getListNiveau(): void {
+  this.getNiveau().subscribe(result => {
+    // subsribe ili bch t7el l karthouna observable
+    this.niveauList = result ;
+    console.log(result);
+  });
+}
+
+
+public classeList : Classe[] ;
+
+getClasseByNiveau( ): Observable <Classe[]> {
+  let httpHeader : HttpHeaders = new HttpHeaders();
+  httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
+  let niveauParametre: HttpParams = new HttpParams();
+  niveauParametre= niveauParametre.append('idNiveau', this.niveauSelectionner.toString());
+
+   return this.httpClient.get<Classe[]>('http://localhost:8080/madrasati/getClassesByIdNiveau',{headers:httpHeader,params:niveauParametre})
+}
+  getListClasse(): void {
+    this.getClasseByNiveau().subscribe(result => {
+      this.classeList = result ;
+      console.log(result);
+    });
+
+    
+  }
 }

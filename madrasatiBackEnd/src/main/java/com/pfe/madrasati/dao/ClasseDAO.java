@@ -7,4 +7,6 @@ public interface ClasseDAO {
 	
 	Classe ajouterClasse(Classe classe);
 	List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant, Integer idMatier);
+	 List<Classe> getClassesByIdNiveau(Integer idNiveau);
+
 }

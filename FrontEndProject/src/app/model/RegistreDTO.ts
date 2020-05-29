@@ -1,6 +1,6 @@
 export class RegistreDTO {
 
-public datePresence :Date ;
+public datePresence : string  ;
 public nomEleve : string ;
 public nomEtat : string ;
 

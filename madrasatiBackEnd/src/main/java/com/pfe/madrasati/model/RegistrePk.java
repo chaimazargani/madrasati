@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Embeddable;
+
+import com.pfe.madrasati.dao.LocalDateTimeConverter;
 
 @Embeddable
 public class RegistrePk implements Serializable {
@@ -24,6 +27,7 @@ public class RegistrePk implements Serializable {
 	 @Column(name = "idetat",insertable = false, updatable = false)
     private Integer idEtat ;
 	
+	 @Convert(converter = LocalDateTimeConverter.class)
 	 @Column(name = "datepresence",insertable = false, updatable = false)
    private LocalDateTime datePresence ;
 

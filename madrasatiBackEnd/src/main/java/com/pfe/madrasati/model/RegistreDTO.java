@@ -18,6 +18,13 @@ public class RegistreDTO {
 	}
 	
 
+	public RegistreDTO(String nomEtat, String nomEleve) {
+		super();
+		this.nomEtat = nomEtat;
+		this.nomEleve = nomEleve;
+	}
+
+
 	public RegistreDTO(LocalDateTime datePresence, String nomEtat, String nomEleve) {
 		super();
 		this.datePresence = datePresence;

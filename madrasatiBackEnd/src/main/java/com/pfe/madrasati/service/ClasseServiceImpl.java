@@ -1,4 +1,5 @@
 package com.pfe.madrasati.service;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,13 @@ public class ClasseServiceImpl implements ClasseService {
 			return list ;
 					
 					
+		}
+
+
+		@Override
+	    @Transactional
+    	public List<Classe> getClassesByIdNiveau(Integer idNiveau) {
+			// TODO Auto-generated method stub
+			return classeDAO.getClassesByIdNiveau(idNiveau) ;
 		}
 }

@@ -13,5 +13,7 @@ public interface ClasseService {
     public Classe findById(int id);
 	public Classe ajouterClasse(Classe classe);
 	List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant, Integer idMatier);
- 
+	List<Classe> getClassesByIdNiveau( Integer idNiveau);
+
+
 }

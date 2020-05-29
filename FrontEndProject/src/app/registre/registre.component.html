@@ -2,31 +2,24 @@
 
     <mat-form-field>
         <mat-label>selectionner la classe </mat-label>
-        <mat-select [(value)]="selected">
-          <mat-option value="option1">7 eme b1</mat-option>
-          <mat-option value="option2">7 eme b2</mat-option>
-          <mat-option value="option3">7 eme b3</mat-option>
+        <mat-select  [(ngModel)]="classeSelectionner" (change)= "getListregistre()">
+          <mat-option *ngFor= "let classe of classeList" [value]="classe.idClasse">{{classe.nomClasse}}</mat-option>
+   
         </mat-select>
       </mat-form-field>
-  
       <mat-form-field>
         <mat-label>selectionner le niveau</mat-label>
-        <mat-select [(value)]="selected">
-          <mat-option value="option1">Niveau 1</mat-option>
-          <mat-option value="option2">Niveau 2</mat-option>
-          <mat-option value="option3">Niveau 3</mat-option>
-          <mat-option value="option3">Niveau 4</mat-option>
-          <mat-option value="option3">Niveau 5</mat-option>
-          <mat-option value="option3">Niveau 6</mat-option>
-
+        <mat-select [(ngModel)]="niveauSelectionner" (change)="getListClasse()">
+          <mat-option  *ngFor="let niveau of niveauList" 
+        [value]="niveau.idNiveau">{{niveau.nomNiveau}}</mat-option>
         </mat-select>
       </mat-form-field>
 
 <ag-grid-angular #agGridComponent
     style="width: 2000px; height: 2000px;"
     class="ag-theme-balham"
-    [rowData]="rowData"
-    [columnDefs]="columnDeflist"
+    [rowData]="listresult"
+    [columnDefs]="columnDefs"
     
     >
 </ag-grid-angular>

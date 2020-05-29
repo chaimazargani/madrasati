@@ -8,5 +8,5 @@ import com.pfe.madrasati.model.RegistreDTO;
 
 public interface RegistreService {
 	
-	public List<RegistreDTO> getPresenceByIdEleve( LocalDateTime datePresence , Integer IdClass);
+	public List<RegistreDTO> getPresenceByIdEleve( LocalDateTime datePresence , Integer idClasse);
 }

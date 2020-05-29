@@ -1,7 +1,5 @@
 package com.pfe.madrasati.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,11 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "eleve")
-public class Eleve implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Eleve{
 
 	@Id
 	@GeneratedValue
@@ -27,6 +21,8 @@ public class Eleve implements Serializable {
 	@JoinColumn(name = "idclasse")
 	private Classe classe;
 	
+	@Column(name="nomeleve")
+	private String nomEleve;
 	
 	@ManyToOne
 	@JoinColumn(name="ideleve" ,insertable = false, updatable = false)
@@ -57,6 +53,22 @@ public class Eleve implements Serializable {
 
 	public void setClasse(Classe classe) {
 		this.classe = classe;
+	}
+
+	public String getNomEleve() {
+		return nomEleve;
+	}
+
+	public void setNomEleve(String nomEleve) {
+		this.nomEleve = nomEleve;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	@Override

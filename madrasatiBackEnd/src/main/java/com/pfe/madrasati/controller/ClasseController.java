@@ -36,10 +36,15 @@ public class ClasseController {
 	@ResponseBody
 	public List<MatierEnseignantClasse> getClassesByIdEnseignant(@RequestParam("idEnseignant") Integer idEnseignant,
 			@RequestParam("idMatier") Integer idMatier) {
-		return  new ArrayList();
-				//(List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
+		  
+			return	(List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
 	}
 	
-	
+	@RequestMapping(value = "/getClassesByIdNiveau", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Classe> getClassesByIdNiveau(@RequestParam("idNiveau") Integer idNiveau) {
+		return classeService. getClassesByIdNiveau(idNiveau);
+				//(List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
+	}
 	
 }
