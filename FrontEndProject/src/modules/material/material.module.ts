@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatSelectModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatTableModule } from '@angular/material';
+//import { CommonModule } from '@angular/common';
+import { MatSelectModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatTableModule, MatTableDataSource } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { enableProdMode } from '@angular/core';
-import {CdkTableModule} from '@angular/cdk/table';
-import {A11yModule} from '@angular/cdk/a11y';
-import {PortalModule} from '@angular/cdk/portal';
-import {CdkStepperModule} from '@angular/cdk/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCardModule} from '@angular/material/card';
@@ -29,7 +24,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSortModule} from '@angular/material/sort';
+import {MatSortModule, MatSort} from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -37,8 +32,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -52,10 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    CdkTableModule,
-    MatTableModule,
-    A11yModule,
-    MatTooltipModule,
+   MatTableModule,
+   MatTooltipModule,
     MatTabsModule,
     MatSortModule,
     MatSnackBarModule,
@@ -79,14 +71,19 @@ import { HttpClientModule } from '@angular/common/http';
     MatChipsModule,
     MatCardModule,
     MatButtonToggleModule,
-    MatAutocompleteModule,
-    CdkStepperModule,
-    PortalModule,
     ReactiveFormsModule,
     BrowserModule,
     AgGridModule.withComponents([]),
     CommonModule,  
     HttpClientModule,  
+    MatSort,
+     MatTableDataSource,
+
+
+
+
+
+
     ],
     exports: [
       MatSelectModule,
@@ -98,9 +95,9 @@ import { HttpClientModule } from '@angular/common/http';
       BrowserAnimationsModule,
       BrowserModule,
       FormsModule,
-      CdkTableModule,
+      
       MatTableModule,
-      A11yModule,
+      
       MatToolbarModule,
       MatTabsModule,
       MatSortModule,
@@ -126,13 +123,15 @@ import { HttpClientModule } from '@angular/common/http';
       MatCardModule,
       MatButtonToggleModule,
       MatAutocompleteModule,
-      CdkStepperModule,
-      PortalModule,
+     
       ReactiveFormsModule,
       BrowserModule,
       AgGridModule,
       CommonModule,
       HttpClientModule,
+      MatSort,
+      MatTableDataSource,
+
     ],
   declarations: [
     

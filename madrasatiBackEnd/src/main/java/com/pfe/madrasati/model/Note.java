@@ -18,51 +18,33 @@ public class Note implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "idnote")
-	private Integer idNote;
 
-	@Column(name="nomnote")
-	private String nomNote;
 
 	@Column(name = "valeurnote")
 	private Double valeurNote;
-
-	@ManyToOne
-	@JoinColumn(name = "ideleve")
-	private Eleve eleve;
+	@Id
 	
-	@ManyToOne
+	@JoinColumn(name = "ideleve")
+	private Integer idEleve ;
+	
+
 	@JoinColumn(name = "idmatier")
-    private Matier matier;
+    private Integer idMatier;
+	
+	@JoinColumn(name = "idexamen")
+    private Integer idExamen ;
+
 	public Note() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Note(Integer idNote, String nomNote, Double valeurNote, Eleve eleve) {
+	public Note(Double valeurNote, Integer idEleve, Integer idMatier, Integer idExamen) {
 		super();
-		this.idNote = idNote;
-		this.nomNote = nomNote;
 		this.valeurNote = valeurNote;
-		this.eleve = eleve;
-	}
-
-	public Integer getIdNote() {
-		return idNote;
-	}
-
-	public void setIdNote(Integer idNote) {
-		this.idNote = idNote;
-	}
-
-	public String getNomNote() {
-		return nomNote;
-	}
-
-	public void setNomNote(String nomNote) {
-		this.nomNote = nomNote;
+		this.idEleve = idEleve;
+		this.idMatier = idMatier;
+		this.idExamen = idExamen;
 	}
 
 	public Double getValeurNote() {
@@ -73,12 +55,28 @@ public class Note implements Serializable {
 		this.valeurNote = valeurNote;
 	}
 
-	public Eleve getEleve() {
-		return eleve;
+	public Integer getIdEleve() {
+		return idEleve;
 	}
 
-	public void setEleve(Eleve eleve) {
-		this.eleve = eleve;
+	public void setIdEleve(Integer idEleve) {
+		this.idEleve = idEleve;
+	}
+
+	public Integer getIdMatier() {
+		return idMatier;
+	}
+
+	public void setIdMatier(Integer idMatier) {
+		this.idMatier = idMatier;
+	}
+
+	public Integer getIdExamen() {
+		return idExamen;
+	}
+
+	public void setIdExamen(Integer idExamen) {
+		this.idExamen = idExamen;
 	}
 
 	public static long getSerialversionuid() {
@@ -87,15 +85,18 @@ public class Note implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Note [idNote=" + idNote + ", nomNote=" + nomNote + ", valeurNote=" + valeurNote + ", eleve=" + eleve
-				+ "]";
+		return "Note [valeurNote=" + valeurNote + ", idEleve=" + idEleve + ", idMatier=" + idMatier + ", idExamen="
+				+ idExamen + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idNote == null) ? 0 : idNote.hashCode());
+		result = prime * result + ((idEleve == null) ? 0 : idEleve.hashCode());
+		result = prime * result + ((idExamen == null) ? 0 : idExamen.hashCode());
+		result = prime * result + ((idMatier == null) ? 0 : idMatier.hashCode());
+		result = prime * result + ((valeurNote == null) ? 0 : valeurNote.hashCode());
 		return result;
 	}
 
@@ -108,10 +109,25 @@ public class Note implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Note other = (Note) obj;
-		if (idNote == null) {
-			if (other.idNote != null)
+		if (idEleve == null) {
+			if (other.idEleve != null)
 				return false;
-		} else if (!idNote.equals(other.idNote))
+		} else if (!idEleve.equals(other.idEleve))
+			return false;
+		if (idExamen == null) {
+			if (other.idExamen != null)
+				return false;
+		} else if (!idExamen.equals(other.idExamen))
+			return false;
+		if (idMatier == null) {
+			if (other.idMatier != null)
+				return false;
+		} else if (!idMatier.equals(other.idMatier))
+			return false;
+		if (valeurNote == null) {
+			if (other.valeurNote != null)
+				return false;
+		} else if (!valeurNote.equals(other.valeurNote))
 			return false;
 		return true;
 	}

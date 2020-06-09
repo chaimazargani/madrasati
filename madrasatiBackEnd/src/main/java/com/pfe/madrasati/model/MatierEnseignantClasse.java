@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "matier_classe_enseignant")
+@Table(name = "matierenseignantclasse")
 public class MatierEnseignantClasse {
 
 	@EmbeddedId

@@ -25,7 +25,7 @@ public class NiveauImpl implements NiveauDAO {
 
 	@Override
 	public List<Niveau> getListNiveau(List<Integer> idNiveau) {
-		String hql1 = "from  Niveau N where idNiveau in (1,2,3,4,5,6) order by N.nomNiveau";
+		String hql1 = "from  Niveau N where idNiveau in (1,2,3) order by N.nomNiveau";
 		Query query = getCurrentSession().createQuery(hql1);
 	//	query.setParameterList("idNiveau", idNiveau);
 		List<Niveau> results = query.list();		

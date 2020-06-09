@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pfe.madrasati.model.Classe;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
 import com.pfe.madrasati.model.Niveau;
+import com.pfe.madrasati.model.Utilisateur;
 import com.pfe.madrasati.service.ClasseService;
 import com.pfe.madrasati.service.NiveauService;
 
@@ -46,5 +47,10 @@ public class ClasseController {
 		return classeService. getClassesByIdNiveau(idNiveau);
 				//(List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
 	}
-	
+	@RequestMapping(value = "/getClasse", method = RequestMethod.GET) 
+	@ResponseBody
+	public List<Classe> Afficherlaliste(){
+		return (List<Classe>) classeService.findAll();
+		
+	}
 }

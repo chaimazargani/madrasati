@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pfe.madrasati.model.Classe;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
 import com.pfe.madrasati.model.Niveau;
+import com.pfe.madrasati.model.Utilisateur;
 @Repository  (value="classeDAO")
 @Transactional
 public class ClasseDAOImpl implements ClasseDAO{
@@ -21,7 +22,8 @@ public class ClasseDAOImpl implements ClasseDAO{
 	      return sessionFactory.getCurrentSession();
 	   }
 		@Override
-		public Classe ajouterClasse(Classe classe) {
+		   @Transactional
+    public Classe ajouterClasse(Classe classe) {
 			this.getCurrentSession().save(classe);
           return classe ;
 			
@@ -42,6 +44,13 @@ public class ClasseDAOImpl implements ClasseDAO{
 			query.setParameter("idNiveau", idNiveau);
 			List<Classe> results = query.list();		
 			return results;
+		}
+		@Override
+		public List<Classe> findAll() {
+			String hql2 = " from Classe C " ;
+			Query query = getCurrentSession().createQuery(hql2);
+			List<Classe> results = query.list();
+			return results ;
 		}
 		
 }

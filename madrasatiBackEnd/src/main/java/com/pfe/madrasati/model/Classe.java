@@ -5,17 +5,20 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 @Entity
 @Table (name = "classe")
 public class Classe {
 
 	@Id
-	  @GeneratedValue 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
+    @SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
 	  @Column(name = "idclasse")
     private Integer idClasse;
 	@Column(name="nomclasse")

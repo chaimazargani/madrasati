@@ -1,18 +1,24 @@
 
+   <mat-form-field>
+    <mat-label>selectionner le niveau</mat-label>
+    <mat-select [(ngModel)]="niveauSelectionner" (change)="getListClasse()">
+      <mat-option  *ngFor="let niveau of niveauList" [value]="niveau.idNiveau">{{niveau.nomNiveau}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
     <mat-form-field>
         <mat-label>selectionner la classe </mat-label>
-        <mat-select  [(ngModel)]="classeSelectionner" (change)= "getListregistre()">
+        <mat-select  [(ngModel)]="classeSelectionner" (change)= "getListregistre()" >
           <mat-option *ngFor= "let classe of classeList" [value]="classe.idClasse">{{classe.nomClasse}}</mat-option>
    
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>selectionner le niveau</mat-label>
-        <mat-select [(ngModel)]="niveauSelectionner" (change)="getListClasse()">
-          <mat-option  *ngFor="let niveau of niveauList" 
-        [value]="niveau.idNiveau">{{niveau.nomNiveau}}</mat-option>
-        </mat-select>
+   
+   <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" (dateChange)= "getListregistre()" [(ngModel)]="dateSelectionner"   >
+        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
 <ag-grid-angular #agGridComponent

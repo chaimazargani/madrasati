@@ -8,6 +8,7 @@ import { ColomnDef } from '../model/ColomnDef';
 import { Children } from '../model/Children';
 import { Niveau } from '../model/niveau';
 import { Classe } from '../model/classe';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-registre',
   templateUrl: './registre.component.html',
@@ -24,9 +25,11 @@ export class RegistreComponent implements OnInit {
  public niveauSelectionner : number ;
   public columnDeflist  : ColomnDef[]= [] ;
   public classeSelectionner : number ;
+  public dateSelectionner; 
+  public datepipe: DatePipe
   public  listnomEleve : any[] = [];
   public    listresult = []; 
-
+public placeholder = 'Please select Date'
   selected = 'option2';
   selected2 = 'option2';
 
@@ -62,14 +65,14 @@ export class RegistreComponent implements OnInit {
     this.columnDefs = [
   {  headerName:"list des éleves" ,
   children: [ 
-    {headerName:"Nom et Prénom", field:"nomEleve", minWidth:300,maxWidth:null,columnGroupShow:null },
-    { headerName: '8h', field: '8' },
-    { headerName: '9h', field: '9' },
-    { headerName: '10h', field: '10' },
-    { headerName: '11h', field: '11' },
-    { headerName: '12h', field: '12' },
-    { headerName: '13h', field: '13' },
-    { headerName: '14h', field: '14' },
+    {headerName:"Nom et Prénom", field:"nomEleve", minWidth:300,maxWidth:null,columnGroupShow:null , sortable: true , filter: true, checkboxSelection: true},
+    { headerName: '8h', field: '8' ,  sortable: true, filter: true , editable: true},
+    { headerName: '9h', field: '9' , editable: true },
+    { headerName: '10h', field: '10' ,  editable: true },
+    { headerName: '11h', field: '11' ,  editable: true },
+    { headerName: '12h', field: '12' ,  editable: true },
+    { headerName: '13h', field: '13' ,  editable: true  },
+    { headerName: '14h', field: '14',  editable: true  },
 
     ]
   }];
@@ -192,12 +195,27 @@ export class RegistreComponent implements OnInit {
   
  
 
-  getRegistre(datePresenceString : string ): Observable<Map<string,RegistreDTO[]>> {
+  getRegistre(): Observable<Map<string,RegistreDTO[]>> {
     let httpHeader: HttpHeaders = new HttpHeaders();
   httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
   let params: HttpParams = new HttpParams();
+  let params1: HttpParams = new HttpParams();
+
+  let date: HttpParams = new HttpParams();
+  //hédha mta3 datepiker format (string) 20/10/2020
+  console.log('hédha mta3 datepiker format (string) ');
+console.log(this.dateSelectionner);
+  //datepicker badalnéh de type Date javascript Wednesday Oct 2020 8h00
+  let dateDate = new Date(this.dateSelectionner);
+  let datePlusHour = dateDate.setHours(1);
+  let dataDatePlusHour = new Date(datePlusHour);
+  console.log('datepicker badalnéh de type Date javascript Timestamp w zédnéh sé3a')
+  console.log(datePlusHour);
+    console.log('date piker Date transofrm iso Datefomat 20102020T');
+  let dateIsoFormat = dataDatePlusHour.toISOString();
+console.log(dateIsoFormat);
   params= params.append('idClasse', this.classeSelectionner.toString());
-  params= params.append('datePresenceString', datePresenceString.toString());
+  params= params.append('datePresenceString', dateIsoFormat.toString());
 
   return this.httpClient.get<Map<string,RegistreDTO[]>>('http://localhost:8080/madrasati/getPresenceByIdEleve', { headers: httpHeader , params:params });
 
@@ -207,30 +225,24 @@ export class RegistreComponent implements OnInit {
  
 
   @ViewChild('agGridComponent') agGridComponent : AgGridAngular
-  datePresenceString : string = "2020-10-19T08:00Z"
+ // datePresenceString : string = "2020-10-19T08:00Z"
  getListregistre(): void {
-  let nomEleve1 : RowData   ;
-let nomEleve2 : RowData ;
+
 let list : any [];
 let hour : any = []; 
 let etat : any = [];
 let nouveauObjet : any={} ;
-let hour2 : any = [];
-let hour3 : any = [];
-  this.getRegistre ( this.datePresenceString).subscribe(result => {
+
+  this.getRegistre ( ).subscribe(result => {
    
     let list : RowData[]=[] ;
     let map = Object.keys(result);  
     map.forEach (nom => {
-      let rd
+      let rd = { nomEleve: nom }
      for ( let object of result[nom] ) {
       hour = object.datePresence.hour ;
          etat = object.nomEtat ;
-             rd = { 
-        nomEleve: nom,
-       }   ;
-      rd[hour] =etat;
-
+         rd[hour] =etat;
     }
     list.push(rd);
 
@@ -238,10 +250,7 @@ let hour3 : any = [];
 this.listresult = list;
 console.log(result);
 
-hour2 = result["Mariem"][0] 
- hour3 = result["Mariem"][1]
-console.log(hour2)
-console.log(hour3)
+
  //nouveauObjet[hour] =etat
  let abc =  nouveauObjet["8"]
 console.log(hour)

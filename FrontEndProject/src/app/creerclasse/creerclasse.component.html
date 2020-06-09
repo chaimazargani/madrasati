@@ -12,12 +12,12 @@
         <tr>
           <mat-form-field class="input">
             <input matInput type="text" id="name" name="name" placeholder="nom de la classe" appearance="standard"
-              required minlength="4" maxlength="8" size="10" [(ngModel)]="classe.nomClasse">
+              required minlength="4" maxlength="80" size="100" [(ngModel)]="classe.nomClasse">
           </mat-form-field>
         </tr>
         <tr>
           <mat-form-field class="input">
-            <input matInput type="text" id="niveau de la classe" name="niveau de la classe" placeholder="niveau de la calsse" required minlength="4" maxlength="8" size="10"[(ngModel)]="classe.niveauClasse" >
+            <input matInput type="text" id="niveau de la classe" name="niveau de la classe" placeholder="niveau de la calsse" [(ngModel)]="classe.idNiveau" >
             </mat-form-field>
         </tr>
   
@@ -30,6 +30,8 @@
     
         <tr>
         <input matButton class = 'button' type="button" (click)="sauvegarder()" value="enregistrer">
+        <input matButton class = 'button' type="button" (click)= "afficheListeDesClasses()"  value="afficher la liste des classes()">
+
       </tr>
       </div>
      </table>

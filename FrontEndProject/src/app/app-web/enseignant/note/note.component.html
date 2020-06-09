@@ -11,7 +11,7 @@
 <input matButton class = 'button' type="button"  value="Acceuil">
   <mat-form-field>        
       <mat-label>Classe</mat-label>                                                              
-    <mat-select [(ngModel)] ="classeSelectione"  (change)="onClasseSelection1()" >
+    <mat-select [(ngModel)] ="classeSelectione"  (change)= "NoteEleve()"  >
 
         <mat-option *ngFor= "let mecClasses of mecClasses " [value]="mecClasses.classe.idClasse">  {{mecClasses.classe.nomClasse}}  </mat-option>
        
@@ -27,9 +27,14 @@
 <ag-grid-angular 
     style="width: 1000px; height: 500px;" 
     class="ag-theme-balham"
-    [rowData]="rowData" 
+    [rowData]="listresult" 
     [columnDefs]="columnDefs" > <!-- la liste des colonnes -->
   </ag-grid-angular>
-    
+  <mat-divider></mat-divider>
+<section>
+  <div class="example-button-row">
+  <button mat-raised-button color="primary" (click)=" enregistrerNote()" >Sauvegarder Note</button>
+  </div>
+</section>
 </body>
 </html>

@@ -20,6 +20,7 @@ public class ClasseServiceImpl implements ClasseService {
 	    @Override
 	    @Transactional
 	    public Classe ajouterClasse(Classe classe) {
+	   //	classe.setIdClasse(23);
 	        return (Classe) classeDAO.ajouterClasse(classe);
 	        
 
@@ -34,8 +35,8 @@ public class ClasseServiceImpl implements ClasseService {
 
 		@Override
 		public List<Classe> findAll() {
-			// TODO Auto-generated method stub
-			return null;
+			return (List<Classe>) classeDAO.findAll() ;
+			
 		}
 
 		@Override

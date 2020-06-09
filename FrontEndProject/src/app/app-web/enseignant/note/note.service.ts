@@ -26,6 +26,8 @@ export class NoteService {
       
    return this.noteHttpService.getNoteEleve(idMatier , idClasse);
 
-
-   }
+    }
+     postNote(){
+        return this.noteHttpService.ajouterNote()
+     }
 }

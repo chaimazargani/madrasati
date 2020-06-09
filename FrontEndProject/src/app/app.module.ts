@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, Pipe } from '@angular/core';
+import { NgModule,Directive ,Component } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreerenseignatComponent } from './creerenseignat/creerenseignat.component';
@@ -14,15 +14,16 @@ import { AppWebModule } from './app-web/app-web.module';
 import { MaterialModule } from '../modules/material/material.module';
 import { EleveComponent } from'./app-web/enseignant/eleve/eleve.component';
 import { AppareilComponent } from './appareil/appareil.component';
-import {enableProdMode} from '@angular/core';
+//import {enableProdMode} from '@angular/core';
 import {AppareilService} from './service/appareil.service';
 import {AuthService} from './service/auth.service';
 
 import { AuthComponent } from './auth/auth.component';
 import { AppareilviewComponent } from './appareilview/appareilview.component';
 import { RegistreComponent } from "./registre/RegistreComponent";
+import { CreerexamenComponent } from './creerexamen/creerexamen.component';
+//import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
-
 
 
 
@@ -40,11 +41,10 @@ import { RegistreComponent } from "./registre/RegistreComponent";
     AppareilviewComponent,
     RegistreComponent,
     RegistreComponent,
-    //CenderCellRendererComponent,
-     
-       
-
-     // UtilisateurComponent
+    CreerexamenComponent,
+    
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -54,6 +54,7 @@ import { RegistreComponent } from "./registre/RegistreComponent";
     RoutingModule,
     AppWebModule,
     MaterialModule,
+   
   ],
   providers: [
     AppareilService ,

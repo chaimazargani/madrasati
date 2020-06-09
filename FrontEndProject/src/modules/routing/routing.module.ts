@@ -13,7 +13,8 @@ import { AppareilComponent } from '../../app/appareil/appareil.component';
 import { AppareilviewComponent } from '../../app/appareilview/appareilview.component';
 import { AuthComponent } from '../../app/auth/auth.component';
 import { RegistreComponent } from "../../app/registre/RegistreComponent";
-//import { CenderCellRendererComponent } from '../../app/cender-cell-renderer/cender-cell-renderer.component';
+import { CreerexamenComponent } from '../../app/creerexamen/creerexamen.component';
+
 
 const appRoutes: Routes = [
   { path: 'creerEnseignant', component: CreerenseignatComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
   { path: 'appareilview', component:AppareilviewComponent},
   { path: 'auth', component: AuthComponent},
   { path: 'registre', component: RegistreComponent},
-  //{ path : 'cenderCellRendererComponent' , component: CenderCellRendererComponent },
+  { path: 'creerexamen', component: CreerexamenComponent },
+
 
   
 

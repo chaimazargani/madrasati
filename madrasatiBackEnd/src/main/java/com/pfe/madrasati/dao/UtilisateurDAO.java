@@ -1,5 +1,7 @@
 package com.pfe.madrasati.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.pfe.madrasati.model.Utilisateur;
@@ -7,4 +9,5 @@ import com.pfe.madrasati.model.Utilisateur;
 public interface UtilisateurDAO  {
 
      Utilisateur ajouterUtilisateur(Utilisateur utilisateur);
+     public List<Utilisateur> findAll();
 }

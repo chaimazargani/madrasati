@@ -8,77 +8,43 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-public class EleveNoteDTO implements Serializable {
+public class EleveNoteDTO {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "idnote")
-	private String idNote;
 	
-	@Column(name="nomnote")
-	private Double nomNote;
 	
-	@Column(name = "valeurnote")
+	
+//	@Column(name = "valeurnote")
 	private Double valeurNote;
-	
-	@ManyToOne
-	@JoinColumn(name = "ideleve")
-	private Eleve eleve;
- 
-	@ManyToOne
-	@JoinColumn(name = "idmatier")
-    private Matier matier;
-	
-	@Id
-	@GeneratedValue
-	@Column(name = "ideleve")
-	private Integer idEleve;
+	private String nomEleve ;
+    private String nomExamen;
 
 	
-	@ManyToOne
-	@JoinColumn(name = "idclasse")
-	private Classe classe;
+//	@JoinColumn(name = "ideleve")
+	//private Eleve eleve;
+ 
+	//@JoinColumn(name = "nomeleve")
 	
-	@ManyToOne
-	@JoinColumn(name="ideleve" ,insertable = false, updatable = false)
-	private Utilisateur utilisateur ;
+	
+  //@JoinColumn(name = "nomexamen")
+	
+//	@Id
+	//@GeneratedValue
+	//@Column(name = "ideleve")
 
 	public EleveNoteDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public EleveNoteDTO(String idNote, Double nomNote, Double valeurNote, Eleve eleve, Matier matier, Integer idEleve,
-			Classe classe, Utilisateur utilisateur) {
+	public EleveNoteDTO(Double valeurNote, String nomEleve, String nomExamen) {
 		super();
-		this.idNote = idNote;
-		this.nomNote = nomNote;
 		this.valeurNote = valeurNote;
-		this.eleve = eleve;
-		this.matier = matier;
-		this.idEleve = idEleve;
-		this.classe = classe;
-		this.utilisateur = utilisateur;
-	}
-
-	public String getIdNote() {
-		return idNote;
-	}
-
-	public void setIdNote(String idNote) {
-		this.idNote = idNote;
-	}
-
-	public Double getNomNote() {
-		return nomNote;
-	}
-
-	public void setNomNote(Double nomNote) {
-		this.nomNote = nomNote;
+		this.nomEleve = nomEleve;
+		this.nomExamen = nomExamen;
 	}
 
 	public Double getValeurNote() {
@@ -89,63 +55,31 @@ public class EleveNoteDTO implements Serializable {
 		this.valeurNote = valeurNote;
 	}
 
-	public Eleve getEleve() {
-		return eleve;
+	public String getNomEleve() {
+		return nomEleve;
 	}
 
-	public void setEleve(Eleve eleve) {
-		this.eleve = eleve;
+	public void setNomEleve(String nomEleve) {
+		this.nomEleve = nomEleve;
 	}
 
-	public Matier getMatier() {
-		return matier;
+	public String getNomExamen() {
+		return nomExamen;
 	}
 
-	public void setMatier(Matier matier) {
-		this.matier = matier;
+	public void setNomExamen(String nomExamen) {
+		this.nomExamen = nomExamen;
 	}
 
-	public Integer getIdEleve() {
-		return idEleve;
-	}
-
-	public void setIdEleve(Integer idEleve) {
-		this.idEleve = idEleve;
-	}
-
-	public Classe getClasse() {
-		return classe;
-	}
-
-	public void setClasse(Classe classe) {
-		this.classe = classe;
-	}
-
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public String toString() {
-		return "EleveNoteDTO [idNote=" + idNote + ", nomNote=" + nomNote + ", valeurNote=" + valeurNote + ", eleve="
-				+ eleve + ", matier=" + matier + ", idEleve=" + idEleve + ", classe=" + classe + ", utilisateur="
-				+ utilisateur + "]";
-	}
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idEleve == null) ? 0 : idEleve.hashCode());
-		result = prime * result + ((idNote == null) ? 0 : idNote.hashCode());
+		result = prime * result + ((nomEleve == null) ? 0 : nomEleve.hashCode());
+		result = prime * result + ((nomExamen == null) ? 0 : nomExamen.hashCode());
+		result = prime * result + ((valeurNote == null) ? 0 : valeurNote.hashCode());
 		return result;
 	}
 
@@ -158,19 +92,31 @@ public class EleveNoteDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		EleveNoteDTO other = (EleveNoteDTO) obj;
-		if (idEleve == null) {
-			if (other.idEleve != null)
+		if (nomEleve == null) {
+			if (other.nomEleve != null)
 				return false;
-		} else if (!idEleve.equals(other.idEleve))
+		} else if (!nomEleve.equals(other.nomEleve))
 			return false;
-		if (idNote == null) {
-			if (other.idNote != null)
+		if (nomExamen == null) {
+			if (other.nomExamen != null)
 				return false;
-		} else if (!idNote.equals(other.idNote))
+		} else if (!nomExamen.equals(other.nomExamen))
+			return false;
+		if (valeurNote == null) {
+			if (other.valeurNote != null)
+				return false;
+		} else if (!valeurNote.equals(other.valeurNote))
 			return false;
 		return true;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "EleveNoteDTO [valeurNote=" + valeurNote + ", nomEleve=" + nomEleve + ", nomExamen=" + nomExamen + "]";
+	}
+
+
+ 
+
 	
 }

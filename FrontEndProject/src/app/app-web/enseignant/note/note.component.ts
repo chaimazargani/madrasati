@@ -6,6 +6,9 @@ import { NoteService } from './note.service';
 import { MatierEnseignantClasse } from '../../../model/MatierEnseignantClasse';
 import { EleveNoteDTO } from '../../../model/EleveNoteDTO';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { RowDataNote } from '../../../model/RowDataNote';
+import { Note } from '../../../model/note';
+import { Observable } from 'rxjs';
 
 export interface Food {
   value: string;
@@ -23,8 +26,8 @@ export class NoteComponent implements OnInit {
   private matiere1: Matier;
   private mecClasses: MatierEnseignantClasse[] = [];
   private matierEnseignantClasse: MatierEnseignantClasse[] = []; 
-  private classeSelectione: number; 
-  private matiereSelectionee: number;
+  public  classeSelectione: number; 
+  public matiereSelectionee: number;
   private title: any;
   private columnDefs: any;
   private  rowData: any;
@@ -32,7 +35,8 @@ export class NoteComponent implements OnInit {
   private mecMatier: MatierEnseignantClasse[] = [];
   private  matierNonDouble : MatierEnseignantClasse[]= [];
   private eleveNoteDTOList: EleveNoteDTO[] = [];
-
+  public    listresult = []; 
+  public note : Note ;
 
 
   onClick(): void {
@@ -50,8 +54,7 @@ export class NoteComponent implements OnInit {
 
 
   getListMatiere() {
-    debugger ;
-    this.noteService.getMatierservice(1).subscribe( result=> { 
+    this.noteService.getMatierservice(8).subscribe( result=> { 
       this.matierEnseignantClasse = result ;
 
 
@@ -91,29 +94,47 @@ export class NoteComponent implements OnInit {
 // bch tjiblik tfiltri les classe ili l ma
 
 
-agGridNoteEleve() {
-
-  this.noteService.getNoteEleveService(5,11).subscribe( resultat => {
-     this.eleveNoteDTOList =  resultat ;
-     const distinctThings = this.eleveNoteDTOList.filter((eleveNote, i, arr) => {
-      return arr.indexOf( 
-        arr.find(t => {
-          debugger;
-          return t[2] === eleveNote[2] 
-        })) ===i;
-    });
-    distinctThings.forEach(obj=> {
-      debugger;
-      this.columnDefs.push({
-        headerName:obj[2],
-        field:obj[2],
-        filter:true,
-        sortable:true 
-        
-      })
-    
-    })
+NoteEleve() : void {
+  let list : any =[] ;
+  let nomExamen : any = []; 
+  let valeurNote : any = [];
+  this.noteService.getNoteEleveService(4,1).subscribe( resultat => {
    
+    let eleveNoteDTOList =  resultat ;
+    console.log(eleveNoteDTOList) ;
+    let list : RowDataNote[]=[] ;
+
+     let map = Object.keys(resultat );  
+    map.forEach (nom => {
+   let rd = { nomPrenom : nom }
+   for ( let object of resultat[nom] ) {
+    nomExamen = object.nomExamen ;
+       valeurNote = object.valeurNote ;
+       rd[nomExamen] =valeurNote;
+  }
+  list.push(rd);
+
+    //  const distinctThings = this.eleveNoteDTOList.filter((eleveNote, i, arr) => {
+    //   return arr.indexOf( 
+    //     arr.find(t => {
+    //       debugger;
+    //       return t[2] === eleveNote[2] 
+    //     })) ===i;
+    // });
+    // distinctThings.forEach(obj=> {
+    //   debugger;
+    //   this.columnDefs.push({
+    //     headerName:obj[2],
+    //     field:obj[2],
+    //     filter:true,
+    //     sortable:true 
+        
+    //   })
+    
+    });
+    this.listresult = list;
+    console.log(this.listresult);
+
     }) ;
   
  
@@ -124,27 +145,38 @@ agGridNoteEleve() {
 
   ngOnInit() {
     this.getListMatiere();
-    this.agGridNoteEleve();
     this.ngGridTableau();
+
   }
   ngGridTableau () {
   this.title = 'app';
   this.columnDefs =[ 
 
-   {headerName: 'nom', field: 'make' , sortable: true , filter: true, checkboxSelection: true },
-     {headerName: 'prénom', field: 'model', sortable: true, filter: true },
+    {headerName: 'nom et prénom', field: 'nomPrenom' , sortable: true , filter: true, },
+    {headerName: 'Note Controle 1', field: 'controle1' , sortable: true , filter: true , editable : true },
+    {headerName: 'Note Controle 2', field: 'controle2' , sortable: true , filter: true , editable : true },
+    {headerName: 'Note Orale', field: 'orale' , sortable: true , filter: true , editable : true },
+    {headerName: 'Note Synthése', field: 'synthese' , sortable: true , filter: true , editable : true},
+    {headerName: 'Moyenne', field: 'moyenne' , sortable: true , filter: true , editable : true},
+ 
+ 
  ]; 
 
  console.log(this.columnDefs);
 
 
- this.rowData = [
-     { make: 'ahmed', model: 'saadi', price: 18 , price1: 14 , price2: 12 },
-     { make: 'senda', model: 'zargani', price: 15 , price1: 18 , price2: 15 },
-     { make: 'mariem', model: 'Bouali', price: 15 , price1: 17 , price2: 15 },
+//  this.rowData = [
+//      {nomPrenom: 'Ikram saadi', controle1: 15, orale: 18 , synthese: 14 , moyenne: 12 , controle2 : 15 },
+//      {nomPrenom: 'Chaima zargani', controle1: 18, orale: 18 , synthese: 14 , moyenne: 12 , controle2 : 15  },
+//      {nomPrenom: 'Mariem bouali', controle1: 19, orale: 18 , synthese: 14 , moyenne: 12 , controle2 : 15  },
 
- ];
-  }
+//  ];
+   }
+  enregistrerNote() {
+    this.noteService.postNote().subscribe(result => {
+      console.log(result);
+    });
+   }
+  
 }
- 
 

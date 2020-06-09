@@ -4,9 +4,11 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -15,8 +17,10 @@ import javax.validation.constraints.Size;
 @Entity
 @Table (name = "utilisateur")
 public class Utilisateur {
-	  @Id
-	  //@GeneratedValue 
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
+    @SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
 	  @Column(name = "idutilisateur")
 	private Integer idUtilisateur;
 	  @Column(name = "nom")

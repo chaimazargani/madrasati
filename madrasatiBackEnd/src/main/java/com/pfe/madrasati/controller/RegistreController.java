@@ -1,8 +1,8 @@
 package com.pfe.madrasati.controller;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,8 +30,14 @@ public class RegistreController {
 			@RequestParam("datePresenceString") String datePresenceString) {
 
 		
-		OffsetDateTime offsetStartDateTime = OffsetDateTime.parse(datePresenceString);
-		final LocalDateTime datePresence = offsetStartDateTime.toLocalDateTime();
+//OffsetDateTime offsetStartDateTime = OffsetDateTime.parse(datePresenceString);
+//	
+//		final LocalDateTime datePresence = offsetStartDateTime.toLocalDateTime();
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'.000Z'")
+	            .withZone(ZoneId.of("UTC"));
+//	        LocalDateTime date = LocalDateTime.parse("+2017-02-26T01:02:03Z", formatter);	
+	       LocalDateTime datePresence = LocalDateTime.parse(datePresenceString, formatter);
+
 		// return new ArrayList () ;
 		
 		final List<RegistreDTO> dbResultList =  registreService.getPresenceByIdEleve(datePresence , idClasse);
