@@ -8,7 +8,7 @@ import com.pfe.madrasati.model.Utilisateur;
 
 public interface ClasseService {
 	
-    public Classe delete(int id);
+    public Classe delete(Classe classe);
     public List<Classe> findAll();
     public Classe update(Classe classe);
     public Classe findById(int id);

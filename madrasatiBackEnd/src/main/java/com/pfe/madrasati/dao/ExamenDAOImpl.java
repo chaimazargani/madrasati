@@ -34,9 +34,27 @@ public class ExamenDAOImpl implements ExamenDAO {
 	@Override
 	public List<Examen> findAll() {
 		String hql2 = " from Examen E " ;
-		Query query = getCurrentSession().createQuery(hql2);
+		Query query = getCurrentSession().createQuery(hql2);		
 		List<Examen> results = query.list();
 		return results ;
+	
+
+}
+
+
+	@Override
+	@Transactional
+	public Examen delete(Examen examen) {
+		this.getCurrentSession().delete(examen);
+        this.getCurrentSession().flush();		
+        return examen;
 	}
 
+
+	@Override
+	
+	public Examen update(Examen examen) {
+		this.getCurrentSession().update(examen);
+		return examen;
+	}
 }

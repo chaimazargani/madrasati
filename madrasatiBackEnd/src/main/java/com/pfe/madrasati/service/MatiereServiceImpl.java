@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.dao.MatiereDAO;
+import com.pfe.madrasati.model.Classe;
+import com.pfe.madrasati.model.Matier;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
 @Service (value="matiereService")
 public class MatiereServiceImpl implements MatiereService {
@@ -30,6 +32,30 @@ public class MatiereServiceImpl implements MatiereService {
           
           
           }
+
+		@Override
+		public Matier ajouterExamen(Matier matier) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public List<Matier> findAll() {
+			// TODO Auto-generated method stub
+			return (List<Matier>) matiereDAO.findAll() ;
+		}
+
+		@Override
+		public Matier delete(Matier matier) {
+			// TODO Auto-generated method stub
+			return (Matier) matiereDAO.delete(matier) ;
+		}
+
+		@Override
+		public Matier update(Matier matier) {
+			// TODO Auto-generated method stub
+			return(Matier) matiereDAO.update(matier);
+		}
 
 
 

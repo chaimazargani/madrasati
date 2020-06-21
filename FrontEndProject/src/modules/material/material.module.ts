@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 //import { CommonModule } from '@angular/common';
-import { MatSelectModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatTableModule, MatTableDataSource } from '@angular/material';
+import { MatSelectModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatTableDataSource } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -33,6 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+
 
 @NgModule({
   imports: [
@@ -76,8 +78,9 @@ import { CommonModule } from '@angular/common';
     AgGridModule.withComponents([]),
     CommonModule,  
     HttpClientModule,  
-    MatSort,
-     MatTableDataSource,
+  
+    MatTableModule,
+   
 
 
 
@@ -92,10 +95,8 @@ import { CommonModule } from '@angular/common';
       MatFormFieldModule,
       MatSelectModule,
       MatInputModule,
-      BrowserAnimationsModule,
-      BrowserModule,
+     
       FormsModule,
-      
       MatTableModule,
       
       MatToolbarModule,
@@ -129,8 +130,8 @@ import { CommonModule } from '@angular/common';
       AgGridModule,
       CommonModule,
       HttpClientModule,
-      MatSort,
-      MatTableDataSource,
+      MatSortModule,
+      MatTableModule,
 
     ],
   declarations: [

@@ -10,4 +10,6 @@ public interface ClasseDAO {
 	List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant, Integer idMatier);
 	 List<Classe> getClassesByIdNiveau(Integer idNiveau);
 	   public List<Classe> findAll();
+	   public Classe delete(Classe classe);
+	   public Classe update(Classe classe);
 }

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.dao.ExamenDAO;
 import com.pfe.madrasati.model.Examen;
+import com.pfe.madrasati.model.Utilisateur;
 @Service (value="examenService")
 public class ExamenServiceImpl implements ExamenService {
 	
@@ -34,6 +35,30 @@ public class ExamenServiceImpl implements ExamenService {
 		// TODO Auto-generated method stub
 		return (List<Examen>) examenDAO.findAll();
 	}
+
+
+
+
+
+	@Override
+	public Examen delete(Examen examen) {
+		// TODO Auto-generated method stub
+		return (Examen) examenDAO.delete(examen);
+	}
+
+
+
+
+
+	@Override
+	public Examen update(Examen examen) {
+		// TODO Auto-generated method stub
+		return (Examen) examenDAO.update(examen);
+	}
+
+
+
+
 	
 
 

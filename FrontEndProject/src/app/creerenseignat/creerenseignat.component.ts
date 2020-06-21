@@ -43,4 +43,23 @@ let httpHeader:HttpHeaders = new HttpHeaders();
 httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
   return this.httpClient.get<Utilisateur[]>('http://localhost:8080/madrasati/listUtilisateur',{headers:httpHeader});
 }
+
+supprimerEnseignant(): Observable<Utilisateur> {
+  return this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/supprimerUtilisateur', this.utilisateur );
+ }
+ supprimerUnenseignant() : void {
+ this.supprimerEnseignant().subscribe(result=>{
+   console.log(result);
+ })
+ 
+ }
+ modifierEnseignant(): Observable<Utilisateur> {
+  return this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/modifierUtlisateur', this.utilisateur );
+ }
+ modifierUnExamen() : void {
+  this.modifierEnseignant().subscribe(result=>{
+    console.log(result);
+  })
+  
+  }
 }

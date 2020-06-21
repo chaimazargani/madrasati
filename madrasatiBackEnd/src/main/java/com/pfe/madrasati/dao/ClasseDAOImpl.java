@@ -52,5 +52,18 @@ public class ClasseDAOImpl implements ClasseDAO{
 			List<Classe> results = query.list();
 			return results ;
 		}
+		@Override
+		@Transactional
+		public Classe delete(Classe classe) {
+			this.getCurrentSession().delete(classe);
+            this.getCurrentSession().flush();		
+			return classe ;
+		}
+		@Override
+		@Transactional
+		public Classe update(Classe classe) {
+			this.getCurrentSession().update(classe);
+			return classe ;
+		}
 		
 }

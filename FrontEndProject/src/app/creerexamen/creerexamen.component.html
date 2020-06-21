@@ -7,8 +7,10 @@
 </head>
 
 <body>
+  
     <table>
        <div>
+       
         <tr>
           <mat-form-field class="input">
             <input matInput type="text" id="name" name="name" placeholder="nom de l'examen" [(ngModel)]="examen.nomExamen">
@@ -27,10 +29,21 @@
         <tr>
         <input matButton class = 'button' type="button" (click)="sauvegarder()" value="enregistrer ">
         <input matButton class = 'button' type="button" (click)="afficherListDesExamen()" value="afficher la liste des examens">
+        <input matButton class = 'button' type="button" (click)="supprimerUnExamen()" value="Supprimer Examen">
+        <input matButton class = 'button' type="button" (click)="modifierUnExamen()" value="Modifier Examen">
 
       </tr>
       </div>
      </table>
+     
+<ag-grid-angular #agGridComponent
+style="width: 2000px; height: 2000px;"
+class="ag-theme-balham"
+[rowData]="listresult"
+[columnDefs]="columnDefs"
+
+>
+</ag-grid-angular>
      <!-- <p-table [values]="cars">
      <ng-template pTemplate="header">
       <tr>

@@ -8,7 +8,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.pfe.madrasati.model.Classe;
 import com.pfe.madrasati.model.Eleve;
 import com.pfe.madrasati.model.Utilisateur;
 @Repository ("name= UtilisateurDAO ")
@@ -42,4 +45,24 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		List<Utilisateur> results = query.list();
 		return results ;
 	}
+	@Override
+	public Utilisateur delete(Utilisateur utilisateur) {
+        this.getCurrentSession().delete(utilisateur);
+        this.getCurrentSession().flush();		
+
+		return utilisateur;
+	}
+	@Override
+	public Utilisateur update(Utilisateur utilisateur) {
+        this.getCurrentSession().update(utilisateur);
+		return utilisateur ;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

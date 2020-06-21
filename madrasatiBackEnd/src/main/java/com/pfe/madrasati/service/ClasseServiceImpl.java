@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.dao.ClasseDAO;
 import com.pfe.madrasati.model.Classe;
+import com.pfe.madrasati.model.Examen;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
 import com.pfe.madrasati.model.RegistreDTO;
 
@@ -27,11 +28,7 @@ public class ClasseServiceImpl implements ClasseService {
 	    }
 
 
-		@Override
-		public Classe delete(int id) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 
 		@Override
 		public List<Classe> findAll() {
@@ -42,7 +39,7 @@ public class ClasseServiceImpl implements ClasseService {
 		@Override
 		public Classe update(Classe classe) {
 			// TODO Auto-generated method stub
-			return null;
+			return (Classe) classeDAO.update( classe) ;
 		}
 
 		@Override
@@ -68,5 +65,12 @@ public class ClasseServiceImpl implements ClasseService {
     	public List<Classe> getClassesByIdNiveau(Integer idNiveau) {
 			// TODO Auto-generated method stub
 			return classeDAO.getClassesByIdNiveau(idNiveau) ;
+		}
+
+
+		@Override
+		public Classe delete(Classe classe) {
+			// TODO Auto-generated method stub
+			return  (Classe) classeDAO.delete(classe);
 		}
 }

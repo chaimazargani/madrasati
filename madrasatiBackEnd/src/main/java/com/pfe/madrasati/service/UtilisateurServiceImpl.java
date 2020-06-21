@@ -29,12 +29,7 @@ public class UtilisateurServiceImpl implements UtilisateurService  {
 			return null;
 		}
 
-		@Override
-		public Utilisateur delete(int id) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
+		
 		@Override
 		@Transactional
 		public List<Utilisateur> findAll() {
@@ -45,13 +40,20 @@ public class UtilisateurServiceImpl implements UtilisateurService  {
 		@Override
 		public Utilisateur update(Utilisateur utilisateur) {
 			// TODO Auto-generated method stub
-			return null;
+			return (Utilisateur) utilisateurDAO.update( utilisateur) ;
 		}
 
 		@Override
 		public Utilisateur findById(int id) {
 			// TODO Auto-generated method stub
 			return null;
+		}
+		@Override
+		@Transactional
+
+		public Utilisateur delete(Utilisateur utilisateur) {
+			// TODO Auto-generated method stub
+			return (Utilisateur) utilisateurDAO.delete( utilisateur);
 		}
 	
 		

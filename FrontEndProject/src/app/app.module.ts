@@ -1,6 +1,7 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule,Directive ,Component } from '@angular/core';
+import { Directive ,Component } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreerenseignatComponent } from './creerenseignat/creerenseignat.component';
@@ -17,11 +18,15 @@ import { AppareilComponent } from './appareil/appareil.component';
 //import {enableProdMode} from '@angular/core';
 import {AppareilService} from './service/appareil.service';
 import {AuthService} from './service/auth.service';
-
+import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilviewComponent } from './appareilview/appareilview.component';
 import { RegistreComponent } from "./registre/RegistreComponent";
 import { CreerexamenComponent } from './creerexamen/creerexamen.component';
+import { MatSortModule } from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { CreermatierComponent } from './creermatier/creermatier.component';
+
 //import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
 
@@ -42,7 +47,7 @@ import { CreerexamenComponent } from './creerexamen/creerexamen.component';
     RegistreComponent,
     RegistreComponent,
     CreerexamenComponent,
-    
+    CreermatierComponent,
     
     
   ],
@@ -53,8 +58,12 @@ import { CreerexamenComponent } from './creerexamen/creerexamen.component';
     BrowserAnimationsModule,
     RoutingModule,
     AppWebModule,
-    MaterialModule,
-   
+    MaterialModule, 
+    BrowserModule,
+    BrowserAnimationsModule,
+
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     AppareilService ,
