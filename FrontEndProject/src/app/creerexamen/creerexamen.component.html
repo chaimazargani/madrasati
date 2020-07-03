@@ -13,7 +13,7 @@
        
         <tr>
           <mat-form-field class="input">
-            <input matInput type="text" id="name" name="name" placeholder="nom de l'examen" [(ngModel)]="examen.nomExamen">
+            <input matInput type="text" id="name" name="name" placeholder="nom de l'examen" [(ngModel)]="data.examen.nomExamen">
           </mat-form-field>
         </tr>
         
@@ -22,38 +22,18 @@
         
         <tr>
           <mat-form-field class="input">
-            <input matInput type="number" id="coefficeint" name="coefficeint de l'examen" placeholder="coefficeint de l'examen" [(ngModel)]="examen.coefficeint">
+            <input matInput type="number" id="coefficeint" name="coefficeint de l'examen" placeholder="coefficeint de l'examen" [(ngModel)]="data.examen.coefficeint">
             </mat-form-field>
         </tr>
     
         <tr>
-        <input matButton class = 'button' type="button" (click)="sauvegarder()" value="enregistrer ">
-        <input matButton class = 'button' type="button" (click)="afficherListDesExamen()" value="afficher la liste des examens">
-        <input matButton class = 'button' type="button" (click)="supprimerUnExamen()" value="Supprimer Examen">
-        <input matButton class = 'button' type="button" (click)="modifierUnExamen()" value="Modifier Examen">
-
+          <button mat-raised-button mat-dialog-close>Cancel</button>
+          <button mat-raised-button (click)="dialogClose()">Sauvegarder</button>
       </tr>
       </div>
      </table>
      
-<ag-grid-angular #agGridComponent
-style="width: 2000px; height: 2000px;"
-class="ag-theme-balham"
-[rowData]="listresult"
-[columnDefs]="columnDefs"
-
->
-</ag-grid-angular>
-     <!-- <p-table [values]="cars">
-     <ng-template pTemplate="header">
-      <tr>
-          <th>Vin</th>
-          <th>Year</th> 
-          <th>Brand</th>
-          <th>Color</th>
-      </tr>
-  </ng-template>
-</p-table> -->
+  
   </body>
 
 </html>

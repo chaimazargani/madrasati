@@ -52,8 +52,7 @@ public class ExamenDAOImpl implements ExamenDAO {
 
 
 	@Override
-	
-	public Examen update(Examen examen) {
+	 public Examen update(Examen examen) {
 		this.getCurrentSession().update(examen);
 		return examen;
 	}

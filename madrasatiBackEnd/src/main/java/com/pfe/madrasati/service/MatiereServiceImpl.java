@@ -22,22 +22,9 @@ public class MatiereServiceImpl implements MatiereService {
         public List<MatierEnseignantClasse> getMatiereByIdEnseignant (Integer idEnseignant){
 	    	List<MatierEnseignantClasse> list = (List<MatierEnseignantClasse>)  matiereDAO.getMatiereByIdEnseignant(idEnseignant);
 	    	  return list;
+	    	  }
 
-          
-          
-          
-          
-          
-          
-          
-          
-          }
-
-		@Override
-		public Matier ajouterExamen(Matier matier) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 
 		@Override
 		public List<Matier> findAll() {
@@ -55,6 +42,12 @@ public class MatiereServiceImpl implements MatiereService {
 		public Matier update(Matier matier) {
 			// TODO Auto-generated method stub
 			return(Matier) matiereDAO.update(matier);
+		}
+
+		@Override
+		public Matier ajouterMatier(Matier matiere) {
+			// TODO Auto-generated method stub
+			return (Matier) matiereDAO.ajouterMatier(matiere);
 		}
 
 

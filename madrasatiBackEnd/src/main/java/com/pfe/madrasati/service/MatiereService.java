@@ -8,7 +8,7 @@ import com.pfe.madrasati.model.MatierEnseignantClasse;
 
 public interface MatiereService {
 	 List<MatierEnseignantClasse> getMatiereByIdEnseignant (Integer idEnseignant);
-		public  Matier   ajouterExamen( Matier matier) ;
+		public  Matier   ajouterMatier( Matier matiere) ;
 	    public List<Matier> findAll();
 	    public 	Matier delete(Matier matier) ;
 	    public Matier update(Matier matier) ;

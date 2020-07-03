@@ -14,10 +14,18 @@ import { AppareilviewComponent } from '../../app/appareilview/appareilview.compo
 import { AuthComponent } from '../../app/auth/auth.component';
 import { RegistreComponent } from "../../app/registre/RegistreComponent";
 import { CreerexamenComponent } from '../../app/creerexamen/creerexamen.component';
+import { ListclasseComponent } from '../../app/listclasse/listclasse.component';
+import { ListexamenComponent } from '../../app/listexamen/listexamen.component';
+import { ListmatiereComponent } from '../../app/listmatiere/listmatiere.component';
+import { CreermatierComponent } from '../../app/creermatier/creermatier.component';
+import { ListenseignantComponent } from '../../app/listenseignant/listenseignant.component';
+import { EmploiComponent } from '../../app/emploi/emploi.component';
 
 
 const appRoutes: Routes = [
   { path: 'creerEnseignant', component: CreerenseignatComponent },
+  { path: 'creerexamen', component: CreerexamenComponent },
+
   { path: 'login', component: LoginComponent },
   { path: 'creerclasse', component: CreerclasseComponent },
   { path: 'enseignant', component: EnseignantComponent },
@@ -29,10 +37,20 @@ const appRoutes: Routes = [
   { path: 'appareilview', component:AppareilviewComponent},
   { path: 'auth', component: AuthComponent},
   { path: 'registre', component: RegistreComponent},
-  { path: 'creerexamen', component: CreerexamenComponent },
+  { path: 'creerexeerexaamen', component: CreerexamenComponent },
+  { path: 'listclasse', component: ListclasseComponent },
+  { path: 'listexamen', component: ListexamenComponent },
+  { path: 'listmatiere', component: ListmatiereComponent },
+  { path: 'creermatier', component: CreermatierComponent },
+  { path: 'listenseignant', component: ListenseignantComponent },
 
 
   
+  
+  
+
+
+
 
 
 

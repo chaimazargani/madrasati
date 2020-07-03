@@ -34,6 +34,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
+import { SchedulerModule } from 'angular-calendar-scheduler';
+import { CalendarModule } from 'angular-calendar';
 
 
 @NgModule({
@@ -78,12 +80,9 @@ import { MatTableModule } from '@angular/material/table';
     AgGridModule.withComponents([]),
     CommonModule,  
     HttpClientModule,  
-  
     MatTableModule,
-   
-
-
-
+    SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
+    CalendarModule,
 
 
 
@@ -124,7 +123,6 @@ import { MatTableModule } from '@angular/material/table';
       MatCardModule,
       MatButtonToggleModule,
       MatAutocompleteModule,
-     
       ReactiveFormsModule,
       BrowserModule,
       AgGridModule,
@@ -132,6 +130,7 @@ import { MatTableModule } from '@angular/material/table';
       HttpClientModule,
       MatSortModule,
       MatTableModule,
+       CalendarModule,
 
     ],
   declarations: [

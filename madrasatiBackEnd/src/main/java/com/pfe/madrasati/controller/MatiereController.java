@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pfe.madrasati.model.Classe;
+import com.pfe.madrasati.model.Examen;
 import com.pfe.madrasati.model.Matier;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
 import com.pfe.madrasati.service.MatiereService;
@@ -25,22 +26,29 @@ public class MatiereController {
 	public List<MatierEnseignantClasse> getMatiereByIdEnseignant(@RequestParam ("idEnseignant") Integer idEnseignant){
        return (List<MatierEnseignantClasse>) matiereService.getMatiereByIdEnseignant( idEnseignant);
 } 
-   @RequestMapping(value = "/getMatieres", method = RequestMethod.GET) 
+   @RequestMapping(value = "/getMatiere", method = RequestMethod.GET) 
 	@ResponseBody
-	public  List<Matier> AfficherlisteMatier(){
+	public List<Matier> Afficherlaliste(){
 		 
-	   return   matiereService.findAll();
-	
+		List<Matier> listMatiere =  matiereService.findAll();
+		return  listMatiere  ;
 	}
-	@RequestMapping(value = "/supprimerMatiers", method = RequestMethod.DELETE) 
+	
+	@RequestMapping(value = "/supprimerMatiers", method = RequestMethod.POST) 
 	@ResponseBody
-	public Matier supprimerClasse(Matier matier ){
+	public Matier supprimerClasse(@RequestBody Matier matier ){
 		return  (Matier) matiereService.delete( matier) ;
 
 }
-	@RequestMapping(value = "/modifierMatier", method = RequestMethod.POST) 
+	@RequestMapping(value = "/modifierMatiere", method = RequestMethod.POST) 
+	@ResponseBody
 	public Matier  modifierClasse(@RequestBody Matier matier ){
 		return  (Matier) matiereService.update( matier) ;
 		
+	}
+	@RequestMapping(value = "/ajouterMatiere", method = RequestMethod.POST)
+	@ResponseBody
+	   public Matier ajouterExamen(@RequestBody Matier matiere) {
+   return  (Matier) matiereService.ajouterMatier(matiere);
 	}
 	}

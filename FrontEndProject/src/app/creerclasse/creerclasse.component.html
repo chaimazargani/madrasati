@@ -7,86 +7,33 @@
 </head>
 
 <body>
+  <h2 mat-dialog-title>New Class</h2>
   <div>
-  <tr>
-    <mat-form-field class="input">
-      <input matInput type="text" id="name" name="name" placeholder="nom de la classe" appearance="standard"
-        required minlength="4" maxlength="80" size="100" [(ngModel)]="classe.nomClasse">
-    </mat-form-field>
-  </tr>
-  <tr>
-    <mat-form-field class="input">
-      <input matInput type="text" id="niveau de la classe" name="niveau de la classe" placeholder="niveau de la calsse" [(ngModel)]="classe.idNiveau" >
+    <tr>
+      <mat-form-field class="input">
+        <input matInput type="text" id="name" name="name" placeholder="nom de la classe" appearance="standard" required
+          minlength="4" maxlength="80" size="100" [(ngModel)]="data.classe.nomClasse">
       </mat-form-field>
-  </tr>
-
-  
-  <tr>
-    <mat-form-field class="input">
-      <input matInput type="number" id="number" name="nombredeseleves" placeholder="nombre des eleves" [(ngModel)]="classe.nombreEleve">
+    </tr>
+    <tr>
+      <mat-form-field class="input">
+        <input matInput type="text" id="niveau de la classe" name="niveau de la classe"
+          placeholder="niveau de la calsse" [(ngModel)]="data.classe.idNiveau">
       </mat-form-field>
-  </tr>
+    </tr>
 
-  <tr>
-  <input matButton class = 'button' type="button" (click)="sauvegarder()" value="enregistrer">
-  <input matButton class = 'button' type="button" (click)= "afficheListeDesClasses()"  value="afficher la liste des classes()">
 
-</tr>
-</div>
-
-<div class="example-container mat-elevation-z8">
-  <div class="example-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
+    <tr>
+      <mat-form-field class="input">
+        <input matInput type="number" id="number" name="nombredeseleves" placeholder="nombre des eleves"
+          [(ngModel)]="data.classe.nombreEleve">
+      </mat-form-field>
+    </tr>
+    <div class="footer">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button (click)="dialogClose()">Sauvegarder</button>
+    </div>
   </div>
-  <ng-container matColumnDef="select">
-    <mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()">
-      </mat-checkbox>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()"
-                    (change)="$event ? selection.toggle(row) : null"
-                    [checked]="selection.isSelected(row)">
-      </mat-checkbox>
-    </mat-cell>
-  </ng-container>
-  <mat-table #table [dataSource]="dataSource">
+</body>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="nomClasse">
-      <mat-header-cell *matHeaderCellDef> nom des classes </mat-header-cell>
-      <mat-cell *matCellDef="let rd"> {{rd.nomClasse}} </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="niveauClasse">
-      <mat-header-cell *matHeaderCellDef> Niveau de la classe </mat-header-cell>
-      <mat-cell *matCellDef="let  listNiveau"> {{listNiveau.idNiveau}} </mat-cell>
-    </ng-container>
-    <!-- Weight Column -->
-    <ng-container matColumnDef="nombreEleve">
-      <mat-header-cell *matHeaderCellDef> Nombre des eleves </mat-header-cell>
-      <mat-cell *matCellDef="let listEleve"> {{listEleve.nombreEleve }} </mat-cell>
-    </ng-container>
-
-    <!-- Symbol Column -->
-   
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-  <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-</mat-paginator>
-</div>
-  
-  </body>
-  </html>
+</html>

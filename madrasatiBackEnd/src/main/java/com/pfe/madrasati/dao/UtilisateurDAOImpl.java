@@ -28,22 +28,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	   public Utilisateur ajouterUtilisateur(Utilisateur utilisateur) {
         this.getCurrentSession().save(utilisateur);
       return utilisateur ;
-
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
 }
 	@Override
 	public List<Utilisateur> findAll() {
 		String hql2 = " from Utilisateur U " ;
 		Query query = getCurrentSession().createQuery(hql2);
-		List<Utilisateur> results = query.list();
-		return results ;
+		List<Utilisateur> 
+		results = query.list();
+	return results ;
 	}
 	@Override
 	public Utilisateur delete(Utilisateur utilisateur) {

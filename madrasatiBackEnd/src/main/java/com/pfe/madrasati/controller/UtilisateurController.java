@@ -26,7 +26,7 @@ public class UtilisateurController {
 		return (List<Utilisateur>) utilisateurService.findAll();
 		
 	}
-	@RequestMapping(value = "/supprimerUtiisateur", method = RequestMethod.DELETE) 
+	@RequestMapping(value = "/supprimerUtiisateur", method = RequestMethod.POST) 
 	public Utilisateur supprimerUtilisateur( @RequestBody Utilisateur utilisateur ){
 		return  (Utilisateur) utilisateurService.delete( utilisateur) ;
 		

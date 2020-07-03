@@ -1,3 +1,39 @@
-<p>
-  creermatier works!
-</p>
+<!doctype html>
+
+<html>
+
+<head>
+  <title> Ajouter un Examen </title>
+</head>
+
+<body>
+  
+    <table>
+       <div>
+       
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="text" id="matiere" name="matiere" placeholder="Matiéres" [(ngModel)]="data.matiere.nomMatier">
+          </mat-form-field>
+        </tr>
+        
+  
+
+        
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="number" id="coefficeint" name="coefficeint " placeholder="coefficeint " [(ngModel)]="data.matiere.coefficeint">
+            </mat-form-field>
+        </tr>
+    
+        <tr>
+          <button mat-raised-button mat-dialog-close>Cancel</button>
+          <button mat-raised-button (click)="dialogClose()">Sauvegarder</button>
+      </tr>
+      </div>
+     </table>
+     
+  
+  </body>
+
+</html>

@@ -1,0 +1,23 @@
+.filter{
+    position: absolute;
+    left:5px;
+    top:5px;
+}
+.definition-header{
+    font-size: x-large;
+    line-height: 40px;
+    padding-left:5px;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    color: gray;
+    font-family: Roboto,"Helvetica Neue",sans-serif;  
+}
+
+.footer{
+    display:flex;
+    flex-direction:row;
+}
+.footer > button  {
+    flex:1 1 auto;
+    margin:5px;  /* and that, will result in a 10px gap */
+}

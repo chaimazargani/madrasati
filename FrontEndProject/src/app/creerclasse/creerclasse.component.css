@@ -39,3 +39,13 @@
             box-shadow: inset -2px -2px 3px rgba(62, 50, 223, 0.6),
                         inset 2px 2px 3px rgba(0, 0, 0, .6);   
     }
+
+ 
+.footer{
+    display:flex;
+    flex-direction:row;
+}
+.footer > button  {
+    flex:1 1 auto;
+    margin:5px;  /* and that, will result in a 10px gap */
+}

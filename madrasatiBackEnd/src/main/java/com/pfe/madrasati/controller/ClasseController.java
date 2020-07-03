@@ -31,11 +31,10 @@ public class ClasseController {
 	
 	
 	@RequestMapping(value = "/creerclasse", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<Classe> Saveclasse(@RequestBody Classe classe) {
-
-		return new ResponseEntity<Classe>((Classe) classeService.ajouterClasse(classe), HttpStatus.OK);
+   public Classe Saveclasse(@RequestBody Classe classe) {
+   return (Classe) classeService.ajouterClasse(classe);
 	}
+	
 
 	@RequestMapping(value = "/getClassesByIdEnseignant", method = RequestMethod.GET)
 	@ResponseBody
@@ -53,28 +52,23 @@ public class ClasseController {
 	}
 	@RequestMapping(value = "/getClasse", method = RequestMethod.GET) 
 	@ResponseBody
-	public Map<String, List<Classe>> Afficherlaliste(){
+	public List<Classe> Afficherlaliste(){
 		 
 		List<Classe> listClasse =  classeService.findAll();
-		return getClasseGroupeBY( listClasse)  ;
-	}
-	public Map<String, List<Classe>> getClasseGroupeBY(List<Classe> listClasse) {
-		List<Classe> list = listClasse;
- 
-		Map<String, List<Classe>> map = list.stream().collect(Collectors.groupingBy(Classe::getNomClasse));
-
-		return map;
+		return  listClasse  ;
 	}
 	
-	@RequestMapping(value = "/supprimerClasse", method = RequestMethod.DELETE) 
+	@RequestMapping(value = "/supprimerClasse", method = RequestMethod.POST) 
 	@ResponseBody
-	public Classe supprimerClasse(Classe classe ){
+	public Classe _(@RequestBody Classe classe ){
 		return  (Classe) classeService.delete( classe) ;
 		
 	}
 	@RequestMapping(value = "/modifierClasse", method = RequestMethod.POST) 
-	public Classe  modifierClasse(@RequestBody Classe classe ){
-		return  (Classe) classeService.update( classe) ;
+	@ResponseBody
+
+	public Classe  modifierClasse(@RequestBody Classe data ){
+		return  (Classe) classeService.update( data) ;
 		
 	}
 	

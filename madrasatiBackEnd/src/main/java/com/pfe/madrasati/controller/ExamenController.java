@@ -30,25 +30,21 @@ public class ExamenController {
 	
 	
 	@RequestMapping(value = "/getExamen", method = RequestMethod.GET) 
-	@ResponseBody()
-	public Map<String, List<Examen>>  Afficherlaliste(){
+	@ResponseBody	
+	public List<Examen>  Afficherlaliste(){
 		List<Examen> listExamen =  examenService.findAll();
-		return  getExamenGroupeBY(listExamen) ;
+		return  listExamen ;
 	}
-	public Map<String, List<Examen>> getExamenGroupeBY(List<Examen> listExamen) {
-		List<Examen> list = listExamen;
- 
-		Map<String, List<Examen>> map = list.stream().collect(Collectors.groupingBy(Examen::getNomExamen));
-
-		return map;
-	}
+	
 
 	@RequestMapping(value = "/supprimerExamen", method = RequestMethod.POST) 
+	@ResponseBody
 	public Examen supprimerExamen(@RequestBody Examen examen ){
 		return  (Examen) examenService.delete( examen) ;
 		
 	}
 	@RequestMapping(value = "/modifierExamen", method = RequestMethod.POST) 
+	@ResponseBody
 	public Examen  modifierExamen(@RequestBody Examen examen ){
 		return  (Examen) examenService.update( examen) ;
 		

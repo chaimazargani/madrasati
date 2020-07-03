@@ -4,11 +4,11 @@ export class Utilisateur {
     public prenom: string;
     public cin: number;
     public numTel: number;
-    public  dateDenaissance: Date;
+    public  dateNaissance: Date;
     public adresse: string;
     public email: String;
     public login: string;
-    public password: string;
+    public motDepasse: string;
 
     constructor() {}
 }

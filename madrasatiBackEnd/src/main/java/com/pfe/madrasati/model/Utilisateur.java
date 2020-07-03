@@ -2,6 +2,7 @@ package com.pfe.madrasati.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.pfe.madrasati.dao.LocalDateTimeConverter;
+
 @Entity
 @Table (name = "utilisateur")
 public class Utilisateur {
@@ -24,22 +27,23 @@ public class Utilisateur {
 	  @Column(name = "idutilisateur")
 	private Integer idUtilisateur;
 	  @Column(name = "nom")
-	   @Size(max = 20, min = 3, message = "{user.name.invalid}")
+	 //  @Size(max = 20, min = 3, message = "{user.name.invalid}")
 	private String nom;
 	  @Column(name = "prenom")
-	   @Size(max = 20, min = 3, message = "{user.name.invalid}")
+	  // @Size(max = 20, min = 3, message = "{user.name.invalid}")
 	private String prenom;
 	  @Column(name = "cin")
 	private Integer cin;
 	  @Column(name = "numtel")
 	private Integer numTel;
+
 	  @Column(name = "datenaissance")
 	private Date dateNaissance;
 	  @Column(name = "adresse")
 	private String adresse;
 	  @Column(name = "emaill", unique = true)
-	   @Email(message = "{user.email.invalid}")
-	   @NotEmpty(message="Please Enter your email")
+	   //@Email(message = "{user.email.invalid}")
+	   //@NotEmpty(message="Please Enter your email")
     private String email; 
 	  @Column(name = "login")
 	private String login;

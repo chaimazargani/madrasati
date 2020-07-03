@@ -24,7 +24,7 @@ public class ClasseDAOImpl implements ClasseDAO{
 		@Override
 		   @Transactional
     public Classe ajouterClasse(Classe classe) {
-			this.getCurrentSession().save(classe);
+			this.getCurrentSession().saveOrUpdate(classe);
           return classe ;
 			
 }	
@@ -62,7 +62,7 @@ public class ClasseDAOImpl implements ClasseDAO{
 		@Override
 		@Transactional
 		public Classe update(Classe classe) {
-			this.getCurrentSession().update(classe);
+			this.getCurrentSession().saveOrUpdate(classe);
 			return classe ;
 		}
 		

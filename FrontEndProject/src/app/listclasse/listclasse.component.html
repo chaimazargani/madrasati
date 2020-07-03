@@ -1,0 +1,81 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title> Definition Classes</title>
+</head>
+
+<body>
+<div class="definition-header">Classes
+  <div class="example-container mat-elevation-z8" style="position: relative;">
+    <div class="filter">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    <div style="position: absolute;top: 15px;right:50px;">
+      <tr>
+        <!-- <input matButton class = 'button' type="button" (click)=" ajouterClasse()" value="Ajouter classe"> -->
+        <button mat-raised-button (click)="creerClasse(classe)" style="font-size:40px;color:gray;">+</button>
+      </tr>
+    </div>
+    <div style="position:absolute;width:100%;top:100px;left:auto">
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? null: null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <mat-table #table [dataSource]="listClassedata">
+        <ng-container matColumnDef="supprimer">
+          <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+          <mat-cell *matCellDef="let classe"> <input matButton class='button' type="button"
+              (click)="supprimerClasse(classe)" value="Supprimer Classe">
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="modifier">
+          <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
+          <mat-cell *matCellDef="let classe"> <input matButton class='button' type="button"
+              (click)="modifierClasse(classe)" value="Modifier Classe">
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="nomClasse">
+          <mat-header-cell *matHeaderCellDef> nom des classes </mat-header-cell>
+          <mat-cell *matCellDef="let classe"> {{classe.nomClasse}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="niveauClasse">
+          <mat-header-cell *matHeaderCellDef> Niveau de la classe </mat-header-cell>
+          <mat-cell *matCellDef="let  classe"> {{classe.idNiveau}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="nombreEleve">
+          <mat-header-cell *matHeaderCellDef> Nombre des eleves </mat-header-cell>
+          <mat-cell *matCellDef="let classe"> {{classe.nombreEleve }} </mat-cell>
+        </ng-container>
+
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </div>
+  </div></div>
+  <ng-template #alertDialog>
+    <h2 mat-dialog-title>voulez vous vraiment supprimer la Classe </h2>
+    <mat-dialog-actions align="end"class="footer">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button (click)="dialogClose()">Supprimer</button>
+    </mat-dialog-actions>
+  </ng-template>
+</body>
+
+</html>

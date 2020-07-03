@@ -30,14 +30,10 @@ public class MatiereDAOImp implements MatiereDAO{
            return results ;
 		   
 	   }
-	@Override
-	public Matier ajouterExamen(Matier matier) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	@Override
 	public List<Matier> findAll() {
-		String hql2 = " from Matier E " ;
+		String hql2 = " from Matier  M" ;
 		Query query = getCurrentSession().createQuery(hql2);		
 		List<Matier> results = query.list();
 		return results ;
@@ -52,9 +48,16 @@ public class MatiereDAOImp implements MatiereDAO{
         return matier ;
 	}
 	@Override
+	@Transactional
 	public Matier update(Matier matier) {
 		this.getCurrentSession().update(matier);		
 		return matier;
+	}
+	@Override
+	@Transactional
+	public Matier ajouterMatier(Matier matiere) {
+		this.getCurrentSession().saveOrUpdate(matiere);
+		return matiere;
 	}	
     	
     }

@@ -26,6 +26,10 @@ import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 import { MatSortModule } from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import { CreermatierComponent } from './creermatier/creermatier.component';
+import { ListclasseComponent } from './listclasse/listclasse.component';
+import { ListexamenComponent } from './listexamen/listexamen.component';
+import { ListmatiereComponent } from './listmatiere/listmatiere.component';
+import { ListenseignantComponent } from './listenseignant/listenseignant.component';
 
 //import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
@@ -48,6 +52,11 @@ import { CreermatierComponent } from './creermatier/creermatier.component';
     RegistreComponent,
     CreerexamenComponent,
     CreermatierComponent,
+    ListclasseComponent,
+    ListexamenComponent,
+    ListmatiereComponent,
+    ListenseignantComponent,
+    
     
     
   ],
