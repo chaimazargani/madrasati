@@ -34,8 +34,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
-import { SchedulerModule } from 'angular-calendar-scheduler';
-import { CalendarModule } from 'angular-calendar';
 
 
 @NgModule({
@@ -81,8 +79,6 @@ import { CalendarModule } from 'angular-calendar';
     CommonModule,  
     HttpClientModule,  
     MatTableModule,
-    SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
-    CalendarModule,
 
 
 
@@ -130,7 +126,6 @@ import { CalendarModule } from 'angular-calendar';
       HttpClientModule,
       MatSortModule,
       MatTableModule,
-       CalendarModule,
 
     ],
   declarations: [

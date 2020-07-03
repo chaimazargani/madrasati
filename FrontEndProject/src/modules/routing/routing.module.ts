@@ -19,7 +19,6 @@ import { ListexamenComponent } from '../../app/listexamen/listexamen.component';
 import { ListmatiereComponent } from '../../app/listmatiere/listmatiere.component';
 import { CreermatierComponent } from '../../app/creermatier/creermatier.component';
 import { ListenseignantComponent } from '../../app/listenseignant/listenseignant.component';
-import { EmploiComponent } from '../../app/emploi/emploi.component';
 
 
 const appRoutes: Routes = [
