@@ -19,6 +19,8 @@ import { ListexamenComponent } from '../../app/listexamen/listexamen.component';
 import { ListmatiereComponent } from '../../app/listmatiere/listmatiere.component';
 import { CreermatierComponent } from '../../app/creermatier/creermatier.component';
 import { ListenseignantComponent } from '../../app/listenseignant/listenseignant.component';
+import { EmploiComponent } from '../../app/emploi/emploi.component';
+import { CreereventemploiComponent } from '../../app/creereventemploi/creereventemploi.component';
 
 
 const appRoutes: Routes = [
@@ -42,6 +44,8 @@ const appRoutes: Routes = [
   { path: 'listmatiere', component: ListmatiereComponent },
   { path: 'creermatier', component: CreermatierComponent },
   { path: 'listenseignant', component: ListenseignantComponent },
+  { path: 'emploi', component: EmploiComponent },
+  { path: 'creereventemploiComponent', component: CreereventemploiComponent },
 
 
   

@@ -224,7 +224,7 @@ console.log(dateIsoFormat);
  public rowDataList :  RegistreDTO [] = [] ;
  
 
-  @ViewChild('agGridComponent') agGridComponent : AgGridAngular
+  @ViewChild('agGridComponent', {static: true}) agGridComponent : AgGridAngular
  // datePresenceString : string = "2020-10-19T08:00Z"
  getListregistre(): void {
 

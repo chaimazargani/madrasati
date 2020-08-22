@@ -18,9 +18,13 @@ export class ListclasseComponent implements OnInit {
   public data : any
   displayedColumns = ['nomClasse', 'niveauClasse', 'nombreEleve' , 'supprimer' ,'modifier'];
   selection = new SelectionModel<Classe>(true, []);
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
-    @ViewChild('alertDialog') chaima ;
+    @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
+    //@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator; // For pagination
+    @ViewChild(MatSort, {static: true}) sort: MatSort; // For pagination
+
+    //@ViewChild(MatSort) sort: MatSort;
+
+    @ViewChild('alertDialog',{static:true}) chaima ;
     private listeDesclasse : Classe[] ; 
     nomClasse: string;
     nombreEleve: string;

@@ -16,9 +16,11 @@ export class ListmatiereComponent implements OnInit {
   public matiere : Matier[] = [];
   displayedColumns: string[] = ['nomMatier' , 'coefficeint' , 'supprimer' ,'modifier'];
  public matier : Matier ;
- @ViewChild('alertDialog')  dialogsuppression ;
- @ViewChild(MatPaginator) paginator: MatPaginator;
- @ViewChild(MatSort) sort: MatSort;
+ @ViewChild('alertDialog', {static: true})  dialogsuppression ;
+@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // For pagination
+
+ @ViewChild(MatSort, {static: true}) sort: MatSort; // For pagination
+
  selection = new SelectionModel<Matier>(true, []);
  public dialogRefCreermatiere: MatDialogRef<CreermatierComponent> ;
  public dialogRefAlert: MatDialogRef<any>;

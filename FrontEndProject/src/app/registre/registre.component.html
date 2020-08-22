@@ -1,7 +1,7 @@
 
    <mat-form-field>
     <mat-label>selectionner le niveau</mat-label>
-    <mat-select [(ngModel)]="niveauSelectionner" (change)="getListClasse()">
+    <mat-select [(ngModel)]="niveauSelectionner" (ngModelChange)="getListClasse()">
       <mat-option  *ngFor="let niveau of niveauList" [value]="niveau.idNiveau">{{niveau.nomNiveau}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -11,7 +11,7 @@
         <mat-select  [(ngModel)]="classeSelectionner" (change)= "getListregistre()" >
           <mat-option *ngFor= "let classe of classeList" [value]="classe.idClasse">{{classe.nomClasse}}</mat-option>
    
-        </mat-select>
+        </mat-select> 
       </mat-form-field>
    
    <mat-form-field>

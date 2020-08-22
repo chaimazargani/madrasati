@@ -16,9 +16,11 @@ export class ListexamenComponent implements OnInit {
   public examen : Examen[] = [];
   displayedColumns: string[] = ['nomExamen' , 'coefficeint' , 'modifier' ,'supprimer'];
  public examens : Examen ;
- @ViewChild('alertDialog')  dialogsuppression ;
- @ViewChild(MatPaginator) paginator: MatPaginator;
- @ViewChild(MatSort) sort: MatSort;
+@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // For pagination
+
+ @ViewChild('alertDialog', {static: true})  dialogsuppression ;
+ @ViewChild(MatSort, {static: true}) sort: MatSort; // For pagination
+
  selection = new SelectionModel<Examen>(true, []);
  public dialogRefCreerClass: MatDialogRef<CreerexamenComponent> ;
  public dialogRefAlert: MatDialogRef<any>;

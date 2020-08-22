@@ -16,9 +16,10 @@ export class ListenseignantComponent implements OnInit {
   displayedColumns: string[] = ['nom', 'prenom', 'cin' ,'numTel' ,'email', 'dateNaissance' , 'adresse', 'login' ,'motDepasse', 'supprimer' ,'modifier'];
   private utilisateur: Utilisateur;
   private listeDesutilisateur: Utilisateur[];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('alertDialog') daialogSuppression ; ;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // For pagination
+  @ViewChild(MatSort, {static: true}) sort: MatSort; // For pagination
+
+  @ViewChild('alertDialog',{static: true}) daialogSuppression ; ;
 
   public dialogRefCreerEnseignant: MatDialogRef<CreerenseignatComponent> ;
   public dialogRefAlert: MatDialogRef<any>;

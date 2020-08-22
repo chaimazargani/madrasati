@@ -1,0 +1,37 @@
+<html>
+<body>
+  
+    <table>
+       <div>
+        <tr>
+            <mat-form-field class="input">
+              <input matInput type="text" id="title" name="nomEvenement" placeholder="Nom de l'évemenemnt" [(ngModel)]="data.event.title">
+            </mat-form-field>
+          </tr>
+          
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="datetime-local" id="start" name="dateDebut" placeholder="Date Début de l'évemenemnt" [(ngModel)]="data.event.start">
+          </mat-form-field>
+        </tr>
+        
+  
+
+        
+        <tr>
+          <mat-form-field class="input">
+            <input matInput type="datetime-local" id="dateFin" name="end " placeholder="Date Fin de l'évemenemnt " [(ngModel)]="data.event.end">
+            </mat-form-field>
+        </tr>
+    
+        <tr>
+          <button mat-raised-button mat-dialog-close>Cancel</button>
+          <button mat-raised-button (click)="dialogClose()">Sauvegarder</button>
+      </tr>
+      </div>
+     </table>
+     
+  
+  </body>
+
+</html>

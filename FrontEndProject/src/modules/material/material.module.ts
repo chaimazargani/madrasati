@@ -34,7 +34,13 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
-
+import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+import {CheckboxModule} from 'primeng/checkbox';
+import {FullCalendarModule} from 'primeng/fullcalendar';
+import {CalendarModule} from 'primeng/calendar';
+import {ButtonModule} from 'primeng/button';
+import {DialogModule} from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   imports: [
@@ -79,9 +85,13 @@ import { MatTableModule } from '@angular/material/table';
     CommonModule,  
     HttpClientModule,  
     MatTableModule,
-
-
-
+    AccordionModule,
+    CheckboxModule,
+    FullCalendarModule,
+    CalendarModule,
+    ButtonModule,
+    DialogModule,
+    InputTextModule,
     ],
     exports: [
       MatSelectModule,
@@ -90,10 +100,10 @@ import { MatTableModule } from '@angular/material/table';
       MatFormFieldModule,
       MatSelectModule,
       MatInputModule,
-     
+      CheckboxModule,
       FormsModule,
       MatTableModule,
-      
+      FullCalendarModule,
       MatToolbarModule,
       MatTabsModule,
       MatSortModule,
@@ -126,7 +136,10 @@ import { MatTableModule } from '@angular/material/table';
       HttpClientModule,
       MatSortModule,
       MatTableModule,
-
+      AccordionModule,
+      ButtonModule,
+      DialogModule,
+      InputTextModule,
     ],
   declarations: [
     

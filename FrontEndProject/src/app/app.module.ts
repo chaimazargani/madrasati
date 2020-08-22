@@ -30,6 +30,10 @@ import { ListclasseComponent } from './listclasse/listclasse.component';
 import { ListexamenComponent } from './listexamen/listexamen.component';
 import { ListmatiereComponent } from './listmatiere/listmatiere.component';
 import { ListenseignantComponent } from './listenseignant/listenseignant.component';
+import { ExamenComponent } from './app-web/enseignant/examen/examen.component';
+import { EmploiComponent } from './emploi/emploi.component';
+import { EventService } from './emploi/eventservice';
+import { CreereventemploiComponent } from './creereventemploi/creereventemploi.component';
 
 //import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
@@ -56,7 +60,9 @@ import { ListenseignantComponent } from './listenseignant/listenseignant.compone
     ListexamenComponent,
     ListmatiereComponent,
     ListenseignantComponent,
-    
+    ExamenComponent,
+    EmploiComponent,
+    CreereventemploiComponent, 
     
     
   ],
@@ -77,6 +83,7 @@ import { ListenseignantComponent } from './listenseignant/listenseignant.compone
   providers: [
     AppareilService ,
     AuthService,
+    EventService
   ],
   bootstrap: [AppComponent]
 

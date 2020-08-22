@@ -3,10 +3,10 @@ import { Matier } from './matier';
 import { Enseignant } from './Enseignant';
 
 export class MatierEnseignantClasse {
-   public matier: Matier;
-   public enseignant: Enseignant;
-   public classe: Classe; 
-
-     public constructor () {
-     }
+    public matier: Matier;
+    public enseignant: Enseignant;
+    public classe: Classe; 
+ 
+      public constructor () {
+      }
 }
