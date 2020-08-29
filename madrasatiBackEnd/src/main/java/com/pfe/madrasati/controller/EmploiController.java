@@ -1,6 +1,5 @@
 package com.pfe.madrasati.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pfe.madrasati.model.Classe;
-import com.pfe.madrasati.model.Eleve;
 import com.pfe.madrasati.model.Event;
 import com.pfe.madrasati.model.EventEleve;
-import com.pfe.madrasati.model.Examen;
 import com.pfe.madrasati.service.EmploiService;
 
 @RestController
@@ -23,18 +19,16 @@ public class EmploiController {
 	@Autowired
 	EmploiService emploiService  ;
 	
-	@RequestMapping (value = "/creerEvent", method = RequestMethod.GET)
-	@ResponseBody
-    public	List<Event> ajouterEvent(@RequestParam ("event") Event event   ){
+	@RequestMapping (value = "/creerEvent", method = RequestMethod.POST)
+    public	List<Event> ajouterEvent(@RequestBody Event event   ){
 		return (List<Event>) emploiService.ajouterEvent(event);
 		
 	}
 	
 	@RequestMapping(value = "/modifierEvent", method = RequestMethod.POST) 
-	@ResponseBody
-   public Event  modifierEvent(@RequestParam ("event") Event event  ){
-	return  (Event) emploiService.update( event) ;
-		
+   public Event  modifierEvent(@RequestBody Event event){
+		return  (Event) emploiService.update(event);
+	  
 	}
 	@RequestMapping (value = "/getEventByClasse", method = RequestMethod.GET)
 	@ResponseBody
@@ -54,9 +48,8 @@ public class EmploiController {
 	
 	
 	@RequestMapping(value = "/supprimerEvent", method = RequestMethod.POST) 
-	@ResponseBody
-	public Event _(@RequestBody Event event ){
-		return  (Event) emploiService.delete( event) ;
+	public Event _(@RequestBody  Event data ){
+		return  (Event) emploiService.delete( data) ;
 		
 	}
 	

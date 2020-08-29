@@ -37,30 +37,7 @@ public placeholder = 'Please select Date'
   constructor(private httpClient: HttpClient) {
 
    
-    //construction de objet children
-    // let children1:Children;
-    // children1 = {
-    //   headerName:"Nom et Prénom",
-    //   field:"nomEleve",
-    //   minWidth:300,
-    //   maxWidth:null,
-    //   columnGroupShow:null,
-      
-    // } ;
-    //construction et remplissage du list of children
-   // let childrenList: Children[] = [] ; 
-   // childrenList.push(children1);
-
-
-
-   // this.listRegistredto = [];
-  
-    // this.columnDefs = {  
-    //   headerName:"list des éleves",
-    //   marryChildren:true,
-    //   children : childrenList ,
-  
-    // }
+   
 
     this.columnDefs = [
   {  headerName:"list des éleves" ,

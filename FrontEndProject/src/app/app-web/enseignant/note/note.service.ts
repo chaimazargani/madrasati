@@ -14,19 +14,17 @@ export class NoteService {
    }
 
 
-   getClasseservice(idEnseignant: number, idMatier: number) {
-    this.noteHttpService.getClasse(idEnseignant , idMatier);
+   getClasseservice(idEnseignant: number ) :Observable<any> {
+    return this.noteHttpService.getClasse(idEnseignant );
    }
 
-   getMatierservice(idEnseignant: number ) : Observable<MatierEnseignantClasse[]> {
+   getMatierservice(idEnseignant: number ) : Observable<any> {
     return  this.noteHttpService.getMatier(idEnseignant);
    }
  
-   getNoteEleveService(idMatier: number, idClasse: number) :  Observable<EleveNoteDTO[]> {
-      
-   return this.noteHttpService.getNoteEleve(idMatier , idClasse);
-
-    }
+   //getNoteEleveService(idMatier: number, idClasse: number) :  Observable<EleveNoteDTO[]> {
+      //return this.noteHttpService.getNoteEleve(idMatier , idClasse);
+   //}
      postNote(){
         return this.noteHttpService.ajouterNote()
      }

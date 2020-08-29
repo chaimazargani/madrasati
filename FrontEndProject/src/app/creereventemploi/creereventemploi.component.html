@@ -5,29 +5,46 @@
        <div>
         <tr>
             <mat-form-field class="input">
-              <input matInput type="text" id="title" name="nomEvenement" placeholder="Nom de l'évemenemnt" [(ngModel)]="data.event.title">
+              <input matInput type="text" id="title" name="nomEvenement" placeholder="Nom de l'évemenemnt" [(ngModel)]="data.popupData.title">
             </mat-form-field>
           </tr>
           
-        <tr>
-          <mat-form-field class="input">
-            <input matInput type="datetime-local" id="start" name="dateDebut" placeholder="Date Début de l'évemenemnt" [(ngModel)]="data.event.start">
+        <!-- <tr>
+          <mat-form-field class="datetime">
+            <input matInput type="datetime" id="start" name="dateDebut" placeholder="Date Début de l'évemenemnt" [(ngModel)]="data.popupData.start">
           </mat-form-field>
-        </tr>
-        
-  
+        </tr> -->
+        <tr>dateDebut</tr>
+        <p-calendar [(ngModel)]="data.popupData.start" showTime="true" hourFormat="24"></p-calendar>
+        <tr>dateFin</tr>
+        <p-calendar [(ngModel)]="data.popupData.end" showTime="true" hourFormat="24" ></p-calendar>
 
         
-        <tr>
-          <mat-form-field class="input">
-            <input matInput type="datetime-local" id="dateFin" name="end " placeholder="Date Fin de l'évemenemnt " [(ngModel)]="data.event.end">
+        <!-- <tr>
+          <mat-form-field class="datetime">
+            <input matInput type="date" id="dateFin" name="end " placeholder="Date Fin de l'évemenemnt " [(ngModel)]="data.popupData.end">
             </mat-form-field>
         </tr>
-    
         <tr>
+          <mat-form-field class="datetime">
+            <input matInput type="datetime" id="dateFin" name="end " placeholder="Date Fin de l'évemenemnt " >
+            </mat-form-field>
+        </tr>-->
+      <tr>
           <button mat-raised-button mat-dialog-close>Cancel</button>
           <button mat-raised-button (click)="dialogClose()">Sauvegarder</button>
-      </tr>
+          <button mat-raised-button (click)="supprimerEvent(data)">Supprimer</button>
+
+      </tr> 
+      <ng-template #alertDialog>
+        <h2 mat-dialog-title>voulez vous vraiment supprimer l'evénement </h2>
+        <mat-dialog-actions align="end"class="footer">
+          <button mat-raised-button mat-dialog-close>Cancel</button>
+          <button mat-raised-button (click)="dialoggClose()">Supprimer</button>
+        </mat-dialog-actions>
+      </ng-template>
+      
+     
       </div>
      </table>
      

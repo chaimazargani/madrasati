@@ -25,7 +25,8 @@ export class EventMadrasati {
   // public def : string ;
   // public instance: any ; 
   // public editable: boolean ;
-  
+  public  color : string ;
+  public textColor : string ;
  public constructor () {
 }
 

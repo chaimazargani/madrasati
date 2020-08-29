@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 import { Classe } from '../model/classe';
 import { EventEmitter } from 'protractor';
 import { EventMadrasati } from '../model/Event';
+import { PopupData } from '../model/popupData';
+import { start } from 'repl';
 @Component({
   selector: 'app-emploi',
   templateUrl: './emploi.component.html',
@@ -23,25 +25,28 @@ export class EmploiComponent implements OnInit {
   public classeList: Classe[];
   public eventList: any[];
   public examen: Event[] = [];
-
+  public  popupData : any  = [];
   data: any[];
   event: Event[] = [];
   public dialogRefCreerevent: MatDialogRef<CreereventemploiComponent>;
   public dialogRefAlert: MatDialogRef<any>;
   @ViewChild('daySchedule', { static: true }) fc: FullCalendar;
+  @ViewChild('alertDialog', {static: true})  dialogsuppression ;
 
   options: any;
 
-  constructor(public dialog: MatDialog, private httpClient: HttpClient,) { }
+  constructor(public dialog: MatDialog, private httpClient: HttpClient,  ) { }
   ngOnInit() {
     this.getListclasse();
-
+  
     //this.eventService.getEvents().then(events => {this.events = events;});
     this.data = [
       {
         id: 1,
         title: "All Day Event",
-        start: "2017-02-01"
+        start: "2017-02-01",
+        color: 'yellow',   // an option!
+        textColor: 'black' // an option!
       },
       {
         id: 2,
@@ -89,18 +94,24 @@ export class EmploiComponent implements OnInit {
       {
         id: 10,
         title: "Dinner",
-        start: "2017-02-12T20:00:00"
+        start: "2017-02-12T20:00:00",
+        color: 'yellow',   // an option!
+        textColor: 'black' // an option!
       },
       {
         id: 11,
         title: "Birthday Party",
-        start: "2017-02-13T07:00:00"
+        start: "2017-02-13T07:00:00",
+        color: 'yellow',   // an option!
+        textColor: 'black' // an option!
       },
       {
         id: 12,
         title: "Click for Google",
         url: "http://google.com/",
-        start: "2017-02-28"
+        start: "2017-02-28",
+        color: 'yellow',   // an option!
+  textColor: 'black' // an option!,
       }
     ]
 
@@ -117,72 +128,68 @@ export class EmploiComponent implements OnInit {
       eventClick: ($eventObject) => {this.dateClick(null,$eventObject)},
       editable: true,
       durationEditable:true
-      // eventClick: (e) => {
-      //   console.log(e)
-      //   this.dialogRefCreerevent = this.dialog.open(CreereventemploiComponent, {
-      //     width: '400px',
-      //     height: '100%',
-      //     data: { event: event }
-      //   });
-      //   this.dialogRefCreerevent.afterClosed()
-      //     .subscribe(result => {
-      //       if (result.validation == "sauvegarder") {
-      //         console.log('Creation en cours ...');
-
-      //         this.httpClient.post<Event>('http://localhost:8080/madrasati/creerUtilisateur', result.e)
-      //           .subscribe(d => {
-
-
-
-      //           });
-      //       }
-
-      //     });
-
-
-      // },
-      //  eventClick: (e) =>  {
-      //          console.log(e)
-      //  },
-
-
+     
     }
 
-  }
+  } 
+ 
 
-  dateClick(dateObject,eventObject)  {
-     let popupData : any ; 
+  dateClick(dateObject, eventObject)  {
+   let popupData : any = [];
      if (dateObject) {
-      popupData.start = dateObject.event.start ;
-     }
-    else(eventObject)=>{
-      popupData.start = eventObject.event.start ; 
-      popupData.title = eventObject.event.title ;
-      popupData.end = eventObject.event.end ;
-
-
+      this.popupData.start = dateObject.dateStr  ;
+      this.dialogRefCreerevent = this.dialog.open(CreereventemploiComponent, {
+        width: '400px',
+        height:'100%',
+        data: {popupData : popupData}
+     }); 
+     this.dialogRefCreerevent.afterClosed() 
+     .subscribe(result => {
+        
+          if (result.validation == "sauvegarder"){
+            let event = new EventMadrasati();
+            event.start = new Date(result.event.start);
+            event.end = new Date(result.event.end);
+            event.title = result.event.title;
+              
+       this.httpClient.post<any>('http://localhost:8080/madrasati/creerEvent', event )
+          .subscribe (d =>{
+            console.log(d);
+          
+ 
+            });
+      }
+  
+         });
     }
-
+    else {
+    popupData.start = eventObject.event.start ; 
+    popupData.title = eventObject.event.title ;
+      popupData.end = eventObject.event.end ;
+      popupData.id =  eventObject.event.id ;
      this.dialogRefCreerevent = this.dialog.open(CreereventemploiComponent, {
        width: '400px',
        height:'100%',
        data: {popupData : popupData}
-    });
+    }); 
     this.dialogRefCreerevent.afterClosed() 
     .subscribe(result => {
        if (result.validation == "sauvegarder"){
-       console.log('Creation en cours ...');
-
-         this.httpClient.post<Event>('http://localhost:8080/madrasati/creerUtilisateur', result.event )
+      let event = new EventMadrasati();
+      event.start = new Date(result.event.start);
+      event.end = new Date(result.event.end);
+      event.title = result.event.title;
+        event.id = result.event.id ;
+         this.httpClient.post<any>('http://localhost:8080/madrasati/modifierEvent',event)
          .subscribe (d =>{
-
-
+          console.log(d);
+         
 
            });
      }
-
+    
         });
-
+      }
 
   }
   getClasse(): Observable<Classe[]> {
@@ -213,10 +220,36 @@ export class EmploiComponent implements OnInit {
       // this.eventList.forEach(e => {
       //   e.click = ($data) => this.dateClick($data)
       // });
+      console.log(this.eventList);
       this.eventList = this.eventList.concat(this.data);
       console.log(this.fc._options);
       console.log(this.fc.options);
     })
   }
+  // supprimerEvent(eventObject) {
+  //   this.dialogRefAlert = this.dialog.open(this.dialogsuppression, {
+  //     width: '250px',
+  
+  //  });
+  //  this.dialogRefAlert.afterClosed()
+  //   .subscribe(result => {
+  //     if (result == "supprimer"){
+  //       console.log('Suppression en cours ...');
+  
+  //       this.httpClient.post<Event>('http://localhost:8080/madrasati/supprimerEvent', eventObject )
+  //       .subscribe (d =>{
+  //               console.log(d);
+                
+  
+  //          });
+  //     }
+     
+  //       });
+  // }
+  dialogClose(){
+    this.dialogRefAlert.close("supprimer");
+  }
 }
+
+
 

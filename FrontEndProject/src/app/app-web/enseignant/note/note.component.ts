@@ -9,6 +9,8 @@ import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { RowDataNote } from '../../../model/RowDataNote';
 import { Note } from '../../../model/note';
 import { Observable } from 'rxjs';
+import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
+import { NoteHttpService } from './note-http.service';
 
 export interface Food {
   value: string;
@@ -28,6 +30,9 @@ export class NoteComponent implements OnInit {
   private matierEnseignantClasse: MatierEnseignantClasse[] = []; 
   public  classeSelectione: number; 
   public matiereSelectionee: number;
+  public Classe : number ;
+
+
   private title: any;
   private columnDefs: any;
   private  rowData: any;
@@ -39,6 +44,7 @@ export class NoteComponent implements OnInit {
   public note : Note ;
 
 
+
   onClick(): void {
     console.log(this.classeSelectione);
   }
@@ -48,7 +54,7 @@ export class NoteComponent implements OnInit {
   }
 
 
-  constructor(private noteService: NoteService) {
+  constructor(private noteService: NoteService , private httpClient: HttpClient ,  private noteHttpService: NoteHttpService) {
     
   }
 
@@ -56,41 +62,50 @@ export class NoteComponent implements OnInit {
   getListMatiere() {
     this.noteService.getMatierservice(8).subscribe( result=> { 
       this.matierEnseignantClasse = result ;
-
+   console.log(this.matierEnseignantClasse)
 
       //tableau matierNonDouble vide alors on fait l'initialization
-      this.matierNonDouble.push(this.matierEnseignantClasse[0]);
-      //taille de tableau sans duplication
-      let m :number = 1;
+    //   this.matierNonDouble.push(this.matierEnseignantClasse[0]);
+    //   //taille de tableau sans duplication
+    //   let m :number = 1;
 
-      //bdit b'1 parsque j'ai déjà remplit le premier valeur
-    for (let _i = 1; _i < this.matierEnseignantClasse.length ; _i++) {
-      let j=0;
-      let trouverDupliquer=false;
-    while ((j < m) &&  ( trouverDupliquer == false )) {
-        if (this.matierEnseignantClasse[_i].matier.idMatier  !=  this.matierNonDouble[j].matier.idMatier) {
-          j++ ;
-        }
-          else {
-             trouverDupliquer = true;
-            }
+    //   //bdit b'1 parsque j'ai déjà remplit le premier valeur
+    // for (let _i = 1; _i < this.matierEnseignantClasse.length ; _i++) {
+    //   let j=0;
+    //   let trouverDupliquer=false;
+    // while ((j < m) &&  ( trouverDupliquer == false )) {
+    //     if (this.matierEnseignantClasse[_i].matier.idMatier  !=  this.matierNonDouble[j].matier.idMatier) {
+    //       j++ ;
+    //     }
+    //       else {
+    //          trouverDupliquer = true;
+    //         }
 
 
-        }
-        if (j >= m ) {
-          this.matierNonDouble.push(this.matierEnseignantClasse[_i]) ;
-             m++ ;
-            }
-          }
+    //     }
+    //     if (j >= m ) {
+    //       this.matierNonDouble.push(this.matierEnseignantClasse[_i]) ;
+    //          m++ ;
+    //          console.log( this.matierNonDouble)
+
+    //         }
+    //       }
     }) ;
 
   }
  
-
+getclasse() {
+  this.noteService. getClasseservice(8).subscribe( result=> { 
+    this.Classe = result ;
+    console.log(this.Classe);
+  }) ;
+}
 
  selectionnermatier() {
   this.mecClasses = this.matierEnseignantClasse.filter( obj => obj.matier.idMatier == this.matiereSelectionee);
-    }
+  }
+
+  
 // bch tjiblik tfiltri les classe ili l ma
 
 
@@ -98,7 +113,7 @@ NoteEleve() : void {
   let list : any =[] ;
   let nomExamen : any = []; 
   let valeurNote : any = [];
-  this.noteService.getNoteEleveService(4,1).subscribe( resultat => {
+  this.noteHttpService.getNoteEleve(this.classeSelectione).subscribe( resultat => {
    
     let eleveNoteDTOList =  resultat ;
     console.log(eleveNoteDTOList) ;
@@ -144,9 +159,10 @@ NoteEleve() : void {
 
 
   ngOnInit() {
-    this.getListMatiere();
+    this.getclasse() ;
+    // this.getListMatiere();
     this.ngGridTableau();
-
+     //this.NoteEleve()
   }
   ngGridTableau () {
   this.title = 'app';
@@ -178,5 +194,12 @@ NoteEleve() : void {
     });
    }
   
+
+   
+
+  //  getNoteEleveService() :  Observable<EleveNoteDTO[]> {
+  //     return this.getNoteEleve();
+ 
+  //    }
 }
 

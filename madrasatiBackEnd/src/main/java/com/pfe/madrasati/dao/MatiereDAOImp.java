@@ -23,7 +23,7 @@ public class MatiereDAOImp implements MatiereDAO{
 	   }
 	   @Override
     public List<MatierEnseignantClasse> getMatiereByIdEnseignant (Integer idEnseignant) {
-		   String hql1=" from MatierEnseignantClasse MEC  where MEC.enseignant.idEnseignant= :idEnseignant " ;
+		   String hql1=" from MatierEnseignantClasse MEC  where MEC.idEnseignant= :idEnseignant " ;
 		   Query query = getCurrentSession().createQuery(hql1);
 		    query.setParameter("idEnseignant",idEnseignant);
 		    List<MatierEnseignantClasse> results = query.list();

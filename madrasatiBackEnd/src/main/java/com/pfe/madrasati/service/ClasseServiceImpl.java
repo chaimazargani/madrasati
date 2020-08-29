@@ -52,8 +52,8 @@ public class ClasseServiceImpl implements ClasseService {
 		@Override
 	    @Transactional
 
-		public List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant, Integer idMatier) {
-			List<MatierEnseignantClasse> list = (List<MatierEnseignantClasse>)  classeDAO.getClassesByIdEnseignant(idEnseignant, idMatier);
+		public List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant) {
+			List<MatierEnseignantClasse> list = (List<MatierEnseignantClasse>)  classeDAO.getClassesByIdEnseignant(idEnseignant);
 			return list ;
 					
 					

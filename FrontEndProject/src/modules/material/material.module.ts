@@ -42,6 +42,7 @@ import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -92,6 +93,8 @@ import {InputTextModule} from 'primeng/inputtext';
     ButtonModule,
     DialogModule,
     InputTextModule,
+    CalendarModule,
+  
     ],
     exports: [
       MatSelectModule,
@@ -140,6 +143,8 @@ import {InputTextModule} from 'primeng/inputtext';
       ButtonModule,
       DialogModule,
       InputTextModule,
+      CalendarModule,
+     
     ],
   declarations: [
     

@@ -12,7 +12,7 @@ public interface EmploiService {
    List<Event> getEvent( Integer idClasse   ) ;
    List<EventEleve> getEventbyeleve( Integer idEleve) ;
 
-   public Event delete(Event event);
+   public Event delete(Event data);
    public List<Event> findAll();
    public Event update(Event event);
    public Event findById(int id);

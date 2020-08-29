@@ -2,6 +2,7 @@ package com.pfe.madrasati.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
     @SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
-	@JoinColumn(name = "id")
+	@Column(name="id")
       public  Integer id ;  
 	
 //	@JoinColumn(name = "allday")
@@ -38,7 +39,7 @@ public class Event {
 //	
 //	@JoinColumn(name = "durationeditable")
 //   public  String  durationEditable ; 
-//	@JoinColumn(name = "end")
+    @Column(name="end")
   public Date  end ;
 ////public  any extendedProps ;
 //	@JoinColumn(name = "groupid")
@@ -50,16 +51,20 @@ public class Event {
 //	@JoinColumn(name = "rendering")
 //    public  String rendering ; 
 ////public  EventSourceApi source:  ;
-//	@JoinColumn(name = "start")
+
+  @Column(name="start")
     public  Date start ;
-//	
-//	@JoinColumn(name = "starteditable")
+  @Column(name="color")
+	public String color ;
+  @Column(name="textColor")
+	public String textColor ;
+
 //    public String  startEditable  ; 
 //	
-//	@JoinColumn(name = "textcolor")
+
 //   public  String textColor ; 
 //	
-//	@JoinColumn(name = "title")
+  @Column(name="title")
     public String title  ; 
 //	
 //	@JoinColumn(name = "url")
@@ -78,56 +83,69 @@ public class Event {
 //	@JoinColumn(name = "editable")
 //    public boolean editable ;
 //
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Date getEnd() {
-		return end;
-	}
-	public void setEnd(Date end) {
-		this.end = end;
-	}
-	public Date getStart() {
-		return start;
-	}
-	public void setStart(Date start) {
-		this.start = start;
-	}
+
+public Event() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+public Event(Integer id, Date end, Date start, String color, String textColor, String title) {
+	super();
+	this.id = id;
+	this.end = end;
+	this.start = start;
+	this.color = color;
+	this.textColor = textColor;
+	this.title = title;
+}
+
+public Integer getId() {
+	return id;
+}
+
+public void setId(Integer id) {
+	this.id = id;
+}
+
+public Date getEnd() {
+	return end;
+}
+
+public void setEnd(Date end) {
+	this.end = end;
+}
+
+public Date getStart() {
+	return start;
+}
+
+public void setStart(Date start) {
+	this.start = start;
+}
+
+public String getColor() {
+	return color;
+}
+
+public void setColor(String color) {
+	this.color = color;
+}
+
+public String getTextColor() {
+	return textColor;
+}
+
+public void setTextColor(String textColor) {
+	this.textColor = textColor;
+}
+
+public String getTitle() {
+	return title;
+}
+
+public void setTitle(String title) {
+	this.title = title;
+}
 	
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Event other = (Event) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-
-
 	
 }

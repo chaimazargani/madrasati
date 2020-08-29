@@ -1,5 +1,7 @@
 package com.pfe.madrasati.dao;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -9,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pfe.madrasati.model.Classe;
 import com.pfe.madrasati.model.Event;
 import com.pfe.madrasati.model.EventEleve;
-import com.pfe.madrasati.model.Examen;
 @Repository ("name= emploiDAO ")
 @Transactional
 public class EmploiDAOImpl implements EmploiDAO {
@@ -34,10 +34,11 @@ public class EmploiDAOImpl implements EmploiDAO {
 	}
 
 	@Override
-	public Event delete(Event event) {
-		this.getCurrentSession().delete(event);
+	@Transactional
+	public Event delete(Event data) {
+		this.getCurrentSession().delete(data);
         this.getCurrentSession().flush();		
-        return event;
+        return data;
 	}
 
 	@Override
@@ -49,11 +50,23 @@ public class EmploiDAOImpl implements EmploiDAO {
 	}
 
 	@Override
+	@Transactional
 	public Event update(Event event) {
+		//final Event eventDTO = new Event();
+		//eventDTO.setTitle(event.getTitle());
+		//eventDTO.setId(event.getId());
+		/// LocalDateTime ldt = this.convertToLocalDateTimeViaSqlTimestamp(event.getEnd());
+		//final LocalDateTime ldtStart = this.convertToLocalDateTimeViaSqlTimestamp(event.getStart());
+		//eventDTO.setStart(ldtStart);
+		//eventDTO.setEnd(ldt);
 		this.getCurrentSession().update(event);
 		return event;
 	}
-
+	
+	LocalDateTime convertToLocalDateTimeViaSqlTimestamp(Date dateToConvert) {
+	    return new java.sql.Timestamp(
+	      dateToConvert.getTime()).toLocalDateTime();
+	}
 	@Override
 	public Event findById(int id) {
 		// TODO Auto-generated method stub
@@ -61,6 +74,7 @@ public class EmploiDAOImpl implements EmploiDAO {
 	}
 
 	@Override
+	@Transactional
 	public Event ajouterEvent(Event event) {
 		this.getCurrentSession().save(event);		
 		return event;

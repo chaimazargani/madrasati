@@ -2,6 +2,7 @@ package com.pfe.madrasati.model;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -10,97 +11,83 @@ import javax.persistence.Table;
 @Table(name = "matierenseignantclasse")
 public class MatierEnseignantClasse {
 
-	@EmbeddedId
-	private MatierEnseignantClassePk matierEnseignantClassePk;
+	////@EmbeddedId
+	//private MatierEnseignantClassePk matierEnseignantClassePk;
 
-	@ManyToOne
+	//@ManyToOne
+	@Id
 	@JoinColumn(name = "idmatier",insertable = false, updatable = false)
-	private Matier matier;
+	private Integer idMatier;
 
-	@ManyToOne
+	//@ManyToOne
 	@JoinColumn(name = "idenseignant",insertable = false, updatable = false)
-	private Enseignant enseignant;
+	private Integer idEnseignant;
 
-	@ManyToOne
+	//@ManyToOne
 	@JoinColumn(name = "idclasse",insertable = false, updatable = false)
-	private Classe classe;
+	private Integer  idClasse;
+	
+	@JoinColumn(name = "nommatier",insertable = false, updatable = false)
+	private String  nomMatier;
+	
+	@JoinColumn(name = "nomclasse",insertable = false, updatable = false)
+	private String  nomClasse;
 
 	public MatierEnseignantClasse() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MatierEnseignantClasse(Matier matier, Enseignant enseignant, Classe classe) {
+	public MatierEnseignantClasse(Integer idMatier, Integer idEnseignant, Integer idClasse, String nomMatier,
+			String nomClasse) {
 		super();
-		this.matier = matier;
-		this.enseignant = enseignant;
-		this.classe = classe;
+		this.idMatier = idMatier;
+		this.idEnseignant = idEnseignant;
+		this.idClasse = idClasse;
+		this.nomMatier = nomMatier;
+		this.nomClasse = nomClasse;
 	}
 
-	public Matier getMatier() {
-		return matier;
+	public Integer getIdMatier() {
+		return idMatier;
 	}
 
-	public void setMatier(Matier matier) {
-		this.matier = matier;
+	public void setIdMatier(Integer idMatier) {
+		this.idMatier = idMatier;
 	}
 
-	public Enseignant getEnseignant() {
-		return enseignant;
+	public Integer getIdEnseignant() {
+		return idEnseignant;
 	}
 
-	public void setEnseignant(Enseignant enseignant) {
-		this.enseignant = enseignant;
+	public void setIdEnseignant(Integer idEnseignant) {
+		this.idEnseignant = idEnseignant;
 	}
 
-	public Classe getClasse() {
-		return classe;
+	public Integer getIdClasse() {
+		return idClasse;
 	}
 
-	public void setClasse(Classe classe) {
-		this.classe = classe;
+	public void setIdClasse(Integer idClasse) {
+		this.idClasse = idClasse;
 	}
 
-	@Override
-	public String toString() {
-		return "MatierEnseignantClasse [matier=" + matier + ", enseignant=" + enseignant + ", classe=" + classe + "]";
+	public String getNomMatier() {
+		return nomMatier;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((classe == null) ? 0 : classe.hashCode());
-		result = prime * result + ((enseignant == null) ? 0 : enseignant.hashCode());
-		result = prime * result + ((matier == null) ? 0 : matier.hashCode());
-		return result;
+	public void setNomMatier(String nomMatier) {
+		this.nomMatier = nomMatier;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MatierEnseignantClasse other = (MatierEnseignantClasse) obj;
-		if (classe == null) {
-			if (other.classe != null)
-				return false;
-		} else if (!classe.equals(other.classe))
-			return false;
-		if (enseignant == null) {
-			if (other.enseignant != null)
-				return false;
-		} else if (!enseignant.equals(other.enseignant))
-			return false;
-		if (matier == null) {
-			if (other.matier != null)
-				return false;
-		} else if (!matier.equals(other.matier))
-			return false;
-		return true;
+	public String getNomClasse() {
+		return nomClasse;
 	}
+
+	public void setNomClasse(String nomClasse) {
+		this.nomClasse = nomClasse;
+	}
+
+
 
 }

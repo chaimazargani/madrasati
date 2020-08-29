@@ -6,7 +6,7 @@ export class MatierEnseignantClasse {
     public matier: Matier;
     public enseignant: Enseignant;
     public classe: Classe; 
- 
+     public nomMatier : string ;
       public constructor () {
       }
 }

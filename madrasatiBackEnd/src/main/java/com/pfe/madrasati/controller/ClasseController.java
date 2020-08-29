@@ -38,10 +38,9 @@ public class ClasseController {
 
 	@RequestMapping(value = "/getClassesByIdEnseignant", method = RequestMethod.GET)
 	@ResponseBody
-	public List<MatierEnseignantClasse> getClassesByIdEnseignant(@RequestParam("idEnseignant") Integer idEnseignant,
-			@RequestParam("idMatier") Integer idMatier) {
-		  
-			return	(List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant, idMatier);
+	public List<MatierEnseignantClasse> getClassesByIdEnseignant(@RequestParam("idEnseignant") Integer idEnseignant) {
+		//@RequestParam("idMatier") Integer idMatier
+			return	(List<MatierEnseignantClasse>) classeService.getClassesByIdEnseignant(idEnseignant);
 	}
 	
 	@RequestMapping(value = "/getClassesByIdNiveau", method = RequestMethod.GET)

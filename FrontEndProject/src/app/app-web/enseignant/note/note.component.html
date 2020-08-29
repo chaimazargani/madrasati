@@ -7,22 +7,22 @@
 </head>
 <body>
   <h1>enseignant</h1>
-    <div class="div">
-<input matButton class = 'button' type="button"  value="Acceuil">
+    <!-- <div class="div">
+<input matButton class = 'button' type="button"  value="Acceuil"> -->
   <mat-form-field>        
       <mat-label>Classe</mat-label>                                                              
     <mat-select [(ngModel)] ="classeSelectione"  (change)= "NoteEleve()"  >
 
-        <mat-option *ngFor= "let mecClasses of mecClasses " [value]="mecClasses.classe.idClasse">  {{mecClasses.classe.nomClasse}}  </mat-option>
+        <mat-option *ngFor= "let mecClasses of Classe " [value]="mecClasses.idClasse">  {{mecClasses.nomClasse}}  </mat-option>
        
     </mat-select>
   </mat-form-field> 
-  <mat-form-field>
+  <!-- <mat-form-field>
       <mat-label>Matiere</mat-label>                                                              
     <mat-select [(ngModel)] ="matiereSelectionee"  (change)="selectionnermatier()" >
-        <mat-option *ngFor= "let mec of matierNonDouble" [value]="mec.matier.idMatier"> {{mec.matier.nomMatier}} </mat-option> 
+        <mat-option *ngFor= "let mec of matierEnseignantClasse" [value]="mec.idMatier"> {{mec.nomMatier}} </mat-option> 
     </mat-select>
-</mat-form-field>
+</mat-form-field> -->
 </div>
 <ag-grid-angular 
     style="width: 1000px; height: 500px;" 
@@ -31,10 +31,10 @@
     [columnDefs]="columnDefs" > <!-- la liste des colonnes -->
   </ag-grid-angular>
   <mat-divider></mat-divider>
-<section>
+<!-- <section>
   <div class="example-button-row">
   <button mat-raised-button color="primary" (click)=" enregistrerNote()" >Sauvegarder Note</button>
   </div>
-</section>
+</section> -->
 </body>
 </html>

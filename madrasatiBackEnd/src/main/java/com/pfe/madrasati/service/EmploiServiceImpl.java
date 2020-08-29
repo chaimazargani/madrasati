@@ -25,9 +25,9 @@ public class EmploiServiceImpl implements EmploiService {
 
 	@Override
 	@Transactional
-	public Event delete(Event event) {
+	public Event delete(Event data) {
 		// TODO Auto-generated method stub
-		return (Event) emlpoiDAO.delete(event);
+		return (Event) emlpoiDAO.delete(data);
 	}
 
 	@Override

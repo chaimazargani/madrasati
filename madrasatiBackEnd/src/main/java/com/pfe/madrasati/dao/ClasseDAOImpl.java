@@ -29,11 +29,13 @@ public class ClasseDAOImpl implements ClasseDAO{
 			
 }	
 		@Override
-	public List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant, Integer idMatier) {
-         String hql2 ="from MatierEnseignantClasse MEC where MEC.enseignant.idEnseignant= :idEnseignant and MEC.matier.idMatier= :idMatier";
+	public List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant) {
+       //  String hql2 ="from MatierEnseignantClasse MEC where MEC.enseignant.idEnseignant= :idEnseignant and MEC.matier.idMatier= :idMatier";
+         String hql2 ="from MatierEnseignantClasse MEC where MEC.idEnseignant= :idEnseignant";
+
 		    Query query = getCurrentSession().createQuery(hql2);
 		    query.setParameter("idEnseignant",idEnseignant);
-		    query.setParameter("idMatier",idMatier);
+		    //query.setParameter("idMatier",idMatier);
 		    List<MatierEnseignantClasse> results = query.list();
                return results;
 }

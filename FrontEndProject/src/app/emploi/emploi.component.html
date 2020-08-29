@@ -4,9 +4,15 @@
     <mat-label>selectionner la classe </mat-label>
     <mat-select  [(ngModel)]="classeSelectionner" (ngModelChange)="getListEvent()">
       <mat-option *ngFor= "let classe of classeList" [value]="classe.idClasse">{{classe.nomClasse}}</mat-option>
-
     </mat-select>
-  </mat-form-field>
+     </mat-form-field>
+  
+<!-- <input matButton class='button' type="button"
+        (click)="getListEvent()" value="Supprimer Event">  -->
+   
+   
+
+  
 <p-fullCalendar #daySchedule  [events]="eventList" [options]="options"></p-fullCalendar>
 
 
