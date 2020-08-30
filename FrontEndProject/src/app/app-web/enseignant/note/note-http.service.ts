@@ -4,7 +4,6 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Classe } from '../../../model/classe';
 import { Matier } from '../../../model/matier';
-import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { Eleve } from '../../../model/eleve';
 import { MatierEnseignantClasse } from '../../../model/MatierEnseignantClasse';
 import { EleveNoteDTO } from '../../../model/EleveNoteDTO';
@@ -18,7 +17,7 @@ private classe: Classe ;
 private matier: Matier;
 private eleveNote : EleveNoteDTO ;
 
-  constructor(private httpClient: HttpClient , private noteComponent : NoteComponent) {
+  constructor(private httpClient: HttpClient) {
     this.noteList = [] ;
     this.classe = new Classe ();
     this.matier = new Matier();

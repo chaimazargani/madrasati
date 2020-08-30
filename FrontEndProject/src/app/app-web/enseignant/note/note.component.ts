@@ -5,7 +5,6 @@ import { Matier } from '../../../model/matier';
 import { NoteService } from './note.service';
 import { MatierEnseignantClasse } from '../../../model/MatierEnseignantClasse';
 import { EleveNoteDTO } from '../../../model/EleveNoteDTO';
-import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { RowDataNote } from '../../../model/RowDataNote';
 import { Note } from '../../../model/note';
 import { Observable } from 'rxjs';
