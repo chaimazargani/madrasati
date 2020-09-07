@@ -41,7 +41,10 @@ import {CalendarModule} from 'primeng/calendar';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
-
+import {SidebarModule} from 'primeng/sidebar';
+import {MenubarModule} from 'primeng/menubar';
+import {RouterModule} from '@angular/router';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   imports: [
@@ -94,7 +97,12 @@ import {InputTextModule} from 'primeng/inputtext';
     DialogModule,
     InputTextModule,
     CalendarModule,
-  
+    SidebarModule,
+    MenubarModule,
+    RouterModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
     ],
     exports: [
       MatSelectModule,
@@ -144,7 +152,14 @@ import {InputTextModule} from 'primeng/inputtext';
       DialogModule,
       InputTextModule,
       CalendarModule,
-     
+      SidebarModule,
+      RouterModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      MenubarModule,
+      ToastModule,
+      ReactiveFormsModule,
+
     ],
   declarations: [
     

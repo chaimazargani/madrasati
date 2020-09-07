@@ -5,11 +5,33 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CreermatierComponent } from '../creermatier/creermatier.component';
+import { MessageService } from 'primeng/api';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-listmatiere',
   templateUrl: './listmatiere.component.html',
-  styleUrls: ['./listmatiere.component.css']
+  styleUrls: ['./listmatiere.component.css'],
+  styles: [`
+  :host ::ng-deep button {
+      margin-right: .25em;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message {
+      background: #FC466B;
+      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+      background: linear-gradient(to right, #3F5EFB, #FC466B);
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message div {
+      color: #ffffff;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+      color: #ffffff;
+  }
+`],
+  providers: [MessageService]
 })
 export class ListmatiereComponent implements OnInit {
   public listmatieredata : MatTableDataSource<Matier>
@@ -24,16 +46,24 @@ export class ListmatiereComponent implements OnInit {
  selection = new SelectionModel<Matier>(true, []);
  public dialogRefCreermatiere: MatDialogRef<CreermatierComponent> ;
  public dialogRefAlert: MatDialogRef<any>;
-  constructor(private httpClient : HttpClient , public dialog: MatDialog) { }
+//  nomMatier = new FormControl('');
+public heroForm : any ;
+ 
+
+  constructor(private httpClient : HttpClient , public dialog: MatDialog , private messageService : MessageService) { }
+  
+
+
 
   ngOnInit() {
     this.afficherListDesMatieres();
   }
+
   getListMatiere(): Observable<Matier[]> {
   
     let httpHeader:HttpHeaders = new HttpHeaders();
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-      return this.httpClient.get<Matier[]>('http://localhost:8080/madrasati/getMatieres',{headers:httpHeader});
+      return this.httpClient.get<Matier[]>('http://localhost:8080/madrasati/getMatiere',{headers:httpHeader});
     }
     afficherListDesMatieres() : void {
       this.getListMatiere().subscribe(listdesmatieres=> {
@@ -41,7 +71,18 @@ export class ListmatiereComponent implements OnInit {
          this.listmatieredata = new MatTableDataSource(this.matiere);
     });
     }
-
+    showSuccess() {
+      this.messageService.add({severity:'success', summary: 'Sauvegarde avec succé', detail:'Matiére Sauvegarder'});
+    }
+showSuccessSuppression() {
+  this.messageService.add({severity:'success', summary: 'Suppression avec succé', detail:'Matiére Supprimé'});
+}
+showSuccessModification() {
+this.messageService.add({severity:'success', summary: 'Modification avec succé', detail:'Matiére Modifié'});
+}
+  showError() {
+    this.messageService.add({severity:'error', summary: 'Error ', detail:'failed'});
+}
     ajouterMatiere(){
       this.dialogRefCreermatiere = this.dialog.open(CreermatierComponent, {
         width: '400px',
@@ -55,9 +96,15 @@ export class ListmatiereComponent implements OnInit {
           this.httpClient.post<Matier>('http://localhost:8080/madrasati/ajouterMatiere', result.matiere )
           .subscribe (d =>{
                   console.log(d);
+                  this.showSuccess(); 
               this.afficherListDesMatieres();
     
-             });
+             },
+             err => {
+              this.showError();
+          }
+             );
+             
         }
        
           });
@@ -77,8 +124,14 @@ export class ListmatiereComponent implements OnInit {
           this.httpClient.post<Matier>('http://localhost:8080/madrasati/modifierMatiere', result.matiere )
           .subscribe (d =>{
                   console.log(d);
-                  this.afficherListDesMatieres();        
-             });
+                  this.showSuccessModification(); 
+         this.afficherListDesMatieres();        
+             },
+             err => {
+              this.showError();
+          }
+             );
+            
         }
        
           });
@@ -96,9 +149,15 @@ export class ListmatiereComponent implements OnInit {
           this.httpClient.post<Matier>('http://localhost:8080/madrasati/supprimerMatiers', matiere )
           .subscribe (d =>{
                   console.log(d);
-                  this.afficherListDesMatieres();  
+                  this.showSuccessSuppression(); 
+         this.afficherListDesMatieres();  
     
-             });
+             },
+             err => {
+              this.showError();
+          }
+             );
+           
         }
        
           });

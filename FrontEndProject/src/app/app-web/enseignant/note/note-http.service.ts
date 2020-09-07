@@ -7,7 +7,6 @@ import { Matier } from '../../../model/matier';
 import { Eleve } from '../../../model/eleve';
 import { MatierEnseignantClasse } from '../../../model/MatierEnseignantClasse';
 import { EleveNoteDTO } from '../../../model/EleveNoteDTO';
-import {  NoteDt } from '../../../model/NoteDt';
 import { NoteComponent } from './note.component';
 
 @Injectable()
@@ -65,15 +64,15 @@ ajouterNote(): Observable<EleveNoteDTO[]> {
   return this.httpClient.post<EleveNoteDTO[]>('http://localhost:8080/madrasati/ajouterNote', this.eleveNote);
 }
 
-getNoteEleve(classeSelectione): Observable<EleveNoteDTO[]> {
-  let httpHeader: HttpHeaders = new HttpHeaders();
-  httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-  let params: HttpParams = new HttpParams();
-  let params1: HttpParams = new HttpParams();
-  params= params.append('idClasse', classeSelectione.toString());
-  return this.httpClient.get<EleveNoteDTO[]>('http://localhost:8080/madrasati/getNoteEleve', { headers: httpHeader , params:params });
+// getNoteEleve(): Observable<EleveNoteDTO[]> {
+//   // let httpHeader: HttpHeaders = new HttpHeaders();
+//   // httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
+//   // let params: HttpParams = new HttpParams();
+//   // let params1: HttpParams = new HttpParams();
+//   // params= params.append('idClasse', classeSelectione.toString());
+//   return this.httpClient.get<EleveNoteDTO[]>('http://localhost:8080/madrasati/getNoteEleve?idClasse=1', { headers: httpHeader , params:params });
 
-}
+// }
 }
 
 

@@ -7,5 +7,6 @@ import com.pfe.madrasati.model.Eleve;
 public interface EleveDAO {
 
 	List<Eleve> getEleveByIdClasse(Integer idClasse);
+	List<Eleve> getListEleveByIdClasse(Integer idClasse);
 
 }

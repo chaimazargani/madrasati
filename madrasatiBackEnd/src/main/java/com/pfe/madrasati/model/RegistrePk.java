@@ -23,13 +23,21 @@ public class RegistrePk implements Serializable {
 	@Column(name = "ideleve",insertable = false, updatable = false)
 	private Integer idEleve ;
 	 
+	@Convert(converter = LocalDateTimeConverter.class)
+	@Column(name = "datepresence",insertable = false, updatable = false)
+	private LocalDateTime datePresence ;
 	
-	 @Column(name = "idetat",insertable = false, updatable = false)
-    private Integer idEtat ;
+//	 @Column(name = "idetat",insertable = false, updatable = false)
+//    private Integer idEtat ;
 	
-	 @Convert(converter = LocalDateTimeConverter.class)
-	 @Column(name = "datepresence",insertable = false, updatable = false)
-   private LocalDateTime datePresence ;
+//	 public String getNomEtat() {
+//		return nomEtat;
+//	}
+//
+//	public void setNomEtat(String nomEtat) {
+//		this.nomEtat = nomEtat;
+//	}
+
 
 	public Integer getIdEleve() {
 		return idEleve;
@@ -39,13 +47,13 @@ public class RegistrePk implements Serializable {
 		this.idEleve = idEleve;
 	}
 
-	public Integer getIdEtat() {
-		return idEtat;
-	}
-
-	public void setIdEtat(Integer idEtat) {
-		this.idEtat = idEtat;
-	}
+//	public Integer getIdEtat() {
+//		return idEtat;
+//	}
+//
+//	public void setIdEtat(Integer idEtat) {
+//		this.idEtat = idEtat;
+//	}
 
 	public LocalDateTime getDatePresence() {
 		return datePresence;

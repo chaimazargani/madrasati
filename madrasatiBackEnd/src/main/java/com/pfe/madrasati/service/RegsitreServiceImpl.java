@@ -1,7 +1,9 @@
 package com.pfe.madrasati.service;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,37 @@ public class RegsitreServiceImpl implements RegistreService {
 	public List<RegistreDTO> getPresenceByIdEleve(LocalDateTime datePresence, Integer idClasse) {
       List<Eleve> list1 =  registreDAO.getListEleveByIdClasse(idClasse);
    List<RegistreDTO> list = registreDAO.getPresenceByIdEleve(datePresence, list1);
+   list.forEach( object -> {
+	   LocalDateTime dateP = object.getDatePresence();
+	   Timestamp datePT = Timestamp.valueOf(dateP);
+	   object.setDatePresenceTimeStamp(datePT);
+//	   Timestamp.valueOf(object.getDatePresence()));
+   });
 		return list ;
+	}
+
+	
+
+	@Override
+	@Transactional
+	public  List<RegistreDTO> sauvegarderPresence(List<RegistreDTO> registreDTO) {
+		 registreDTO.forEach( object -> {
+			   Timestamp datePT = object.getDatePresenceTimeStamp();
+				 LocalDateTime dateP = datePT.toLocalDateTime();
+				   object.setDatePresence(dateP);
+				   	
+		 });
+		 List<RegistreDTO>  list =  registreDAO.sauvegarderPresence(registreDTO);
+
+		return list;
+	}
+
+
+
+	@Override
+	public List<RegistreDTO> getPresence(String datePresence, Integer idClasse) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

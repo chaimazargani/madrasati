@@ -12,6 +12,7 @@ import com.pfe.madrasati.model.EleveNoteDTO;
 import com.pfe.madrasati.model.Note;
 import com.pfe.madrasati.model.NoteDT;
 import com.pfe.madrasati.model.NoteDTO;
+import com.pfe.madrasati.model.NoteEleveDTO;
 import com.pfe.madrasati.model.Utilisateur;
 
 @Service (value="noteService")
@@ -31,56 +32,70 @@ public class NoteServiceImpl implements NoteService {
    
    @Override
    @Transactional
-   public List<NoteDTO> getNoteEleve( Integer idMatier , Integer  idClasse){
+   public List<NoteDTO> getNoteEleve( Integer  idClasse){
 	    
-	   List<NoteDTO> list =   (List<NoteDTO>) noteDAO.getNoteEleve(idMatier, idClasse);
+	   List<NoteDTO> list =   (List<NoteDTO>) noteDAO.getNoteEleve( idClasse);
 	  
 			   return list ;
    
    }
 
-@Override
-public Note create(Note note) {
+               @Override
+         public Note create(Note note) {
 	// TODO Auto-generated method stub
-	return null;
-}
+	         return null;
+     }
 
-@Override
-public Note delete(int id) {
-	// TODO Auto-generated method stub
-	return null;
-}
+               @Override
+               public Note delete(int id) {
+               	// TODO Auto-generated method stub
+               	return null;
+               }
 
-@Override
-public List<Note> findAll() {
-	// TODO Auto-generated method stub
-	return null;
-}
+               @Override
+               public List<Note> findAll() {
+               	// TODO Auto-generated method stub
+               	return null;
+               }
 
-@Override
-public Note update(Note note) {
-	// TODO Auto-generated method stub
-	return null;
-}
+               @Override
+               public Note update(Note note) {
+               	// TODO Auto-generated method stub
+               	return null;
+               }
 
-@Override
-public Note findById(int id) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-
-
-@Override
-public NoteDTO ajouterNote(NoteDTO noteDTO) {
-	// TODO Auto-generated method stub
-	return (NoteDTO) noteDAO.ajouterNote( noteDTO);
-}
+               @Override
+               public Note findById(int id) {
+               	// TODO Auto-generated method stub
+               	return null;
+               }
 
 
-   
-   
-   
-   
-   
+
+               @Override
+               public NoteDTO ajouterNote(NoteDTO noteDTO) {
+               	// TODO Auto-generated method stub
+               	return (NoteDTO) noteDAO.ajouterNote( noteDTO);
+               }
+
+               @Override
+               public List<NoteEleveDTO> getNoteByEleve(Integer idEleve) {
+               	   
+               	   List<NoteEleveDTO> list =   (List<NoteEleveDTO>) noteDAO.getNoteByEleve(idEleve);
+               	  
+               			   return list ;
+               }
+
+			@Override
+			public List<NoteDTO> sauvegarderNote(List<NoteDTO> noteDto) {
+				List<NoteDTO> 	list =  noteDAO.sauvegarderNote(noteDto);		
+				return list ;
+			}
+
+
+                  
+                  
+                  
+                  
+                  
 }

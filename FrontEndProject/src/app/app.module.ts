@@ -34,6 +34,9 @@ import { ExamenComponent } from './app-web/enseignant/examen/examen.component';
 import { EmploiComponent } from './emploi/emploi.component';
 import { EventService } from './emploi/eventservice';
 import { CreereventemploiComponent } from './creereventemploi/creereventemploi.component';
+import { NoteeleveComponent } from './noteeleve/noteeleve.component';
+import { CheckboxRenderer } from './registre/checkbox-renderer.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 //import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
@@ -62,8 +65,9 @@ import { CreereventemploiComponent } from './creereventemploi/creereventemploi.c
     ListenseignantComponent,
     ExamenComponent,
     EmploiComponent,
-    CreereventemploiComponent, 
-    
+    CreereventemploiComponent,
+    NoteeleveComponent, 
+    CheckboxRenderer,
     
   ],
   imports: [
@@ -76,9 +80,10 @@ import { CreereventemploiComponent } from './creereventemploi/creereventemploi.c
     MaterialModule, 
     BrowserModule,
     BrowserAnimationsModule,
-
+    AgGridModule.withComponents([CheckboxRenderer]),
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    
   ],
   providers: [
     AppareilService ,

@@ -6,11 +6,32 @@ import { MatSort, MatPaginator, MatTableDataSource, MatDialog, MatDialogContent,
 import { PeriodicElement } from '../model/PeriodicElement';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CreerclasseComponent } from '../creerclasse/creerclasse.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-listclasse',
   templateUrl: './listclasse.component.html',
-  styleUrls: ['./listclasse.component.css']
+  styleUrls: ['./listclasse.component.css'],
+  styles: [`
+  :host ::ng-deep button {
+      margin-right: .25em;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message {
+      background: #FC466B;
+      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+      background: linear-gradient(to right, #3F5EFB, #FC466B);
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message div {
+      color: #ffffff;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+      color: #ffffff;
+  }
+`],
+  providers: [MessageService]
 })
 export class ListclasseComponent implements OnInit {
   public listClassedata : MatTableDataSource<Classe> ;
@@ -31,7 +52,7 @@ export class ListclasseComponent implements OnInit {
     public dialogRefCreerClass: MatDialogRef<CreerclasseComponent> ;
      public dialogRefAlert: MatDialogRef<any>;
 
-    constructor(private httpClient: HttpClient ,  public dialog: MatDialog) {
+    constructor(private httpClient: HttpClient ,  public dialog: MatDialog , public  messageService : MessageService)  {
       //this.classe = new Classe();
       //this.listeDesclasse = [];
     
@@ -43,7 +64,18 @@ export class ListclasseComponent implements OnInit {
   ngOnInit() {
     this.afficheListeDesClasses();
   }
- 
+  showSuccess() {
+    this.messageService.add({severity:'success', summary: 'Sauvegarde avec succé', detail:'Classe Sauvegarder'});
+  }
+showSuccessSuppression() {
+this.messageService.add({severity:'success', summary: 'Suppression avec succé', detail:'Classe Supprimé'});
+}
+showSuccessModification() {
+this.messageService.add({severity:'success', summary: 'Modification avec succé', detail:'Classe Modifié'});
+}
+showError() {
+  this.messageService.add({severity:'error', summary: 'Error ', detail:'failed'});
+}
 
   afficherListe(): Observable<Classe[]> {
     console.log(this.listeDesclasse);
@@ -78,10 +110,16 @@ supprimerClasse(classe) {
 
       this.httpClient.post<Classe>('http://localhost:8080/madrasati/supprimerClasse', classe )
       .subscribe (d =>{
-              console.log(d);
+              
+              this.showSuccessSuppression();
           this.afficheListeDesClasses();
 
-         });
+         },
+         err => {
+          this.showError();
+      }
+         );
+        
     }
    
       });
@@ -100,9 +138,15 @@ creerClasse() {
       this.httpClient.post<Classe>('http://localhost:8080/madrasati/creerclasse', result.classe )
       .subscribe (d =>{
               console.log(d);
+              this. showSuccess();
           this.afficheListeDesClasses();
 
-         });
+         },
+         err => {
+          this.showError();
+      }
+         );
+        
     }
    
       });
@@ -130,9 +174,15 @@ modifierClasse(classe) {
       this.httpClient.post<Classe>('http://localhost:8080/madrasati/creerclasse', result.classe )
       .subscribe (d =>{
               console.log(d);
+              this.showSuccessModification();
           this.afficheListeDesClasses();
 
-         });
+         },
+         err => {
+          this.showError();
+      }
+         );
+       
     }
    
       });

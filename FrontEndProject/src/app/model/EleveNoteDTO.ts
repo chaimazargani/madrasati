@@ -5,12 +5,19 @@ import { Utilisateur } from "./utilisateur";
 
 export class EleveNoteDTO {
   //  public idNote: number ;
-    public nomNote: number; 
+    public nomEleve: number; 
     public valeurNote: number;
     public nomExamen : string ;
+    public idExamen : number ; 
+    public idEleve : number ; 
+    public idMatier : number ; 
+
 //   public eleve: Eleve;
  //  public matier: Matier;
   // public  idEleve: number;
   // public  classe: Classe;
   // public  utilisateur: Utilisateur;
+  
+
+
 }

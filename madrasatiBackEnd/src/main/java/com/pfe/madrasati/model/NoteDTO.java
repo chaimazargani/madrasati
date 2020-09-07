@@ -2,10 +2,22 @@ package com.pfe.madrasati.model;
 
 public class NoteDTO {
 
-	
+    private Integer idMatier ; 
+	private Integer idExamen ; 
+	private Integer idEleve;
+
 	private Double valeurNote;
 	private String nomEleve ;
     private String nomExamen;
+	
+	
+	public Integer getIdMatier() {
+		return idMatier;
+	}
+	public void setIdMatier(Integer idMatier) {
+		this.idMatier = idMatier;
+	}
+
 	public NoteDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -15,6 +27,18 @@ public class NoteDTO {
 		this.valeurNote = valeurNote;
 		this.nomEleve = nomEleve;
 		this.nomExamen = nomExamen;
+	}
+	public Integer getIdEleve() {
+		return idEleve;
+	}
+	public void setIdEleve(Integer idEleve) {
+		this.idEleve = idEleve;
+	}
+	public Integer getIdExamen() {
+		return idExamen;
+	}
+	public void setIdExamen(Integer idExamen) {
+		this.idExamen = idExamen;
 	}
 	public Double getValeurNote() {
 		return valeurNote;
@@ -34,6 +58,9 @@ public class NoteDTO {
 	public void setNomExamen(String nomExamen) {
 		this.nomExamen = nomExamen;
 	}
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,6 +100,7 @@ public class NoteDTO {
 	public String toString() {
 		return "NoteDTO [valeurNote=" + valeurNote + ", nomEleve=" + nomEleve + ", nomExamen=" + nomExamen + "]";
 	}
+	
 
     
     

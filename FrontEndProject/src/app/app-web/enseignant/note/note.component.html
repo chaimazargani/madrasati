@@ -3,20 +3,21 @@
 <html>
 
 <head>
-  <title> enseignant</title>
+  <title>Note</title>
 </head>
 <body>
-  <h1>enseignant</h1>
     <!-- <div class="div">
 <input matButton class = 'button' type="button"  value="Acceuil"> -->
   <mat-form-field>        
       <mat-label>Classe</mat-label>                                                              
-    <mat-select [(ngModel)] ="classeSelectione"  (change)= "NoteEleve()"  >
+    <mat-select [(ngModel)] ="classeSelectione"  (ngModelChange)="creerAgGridNoteEleve()"  >
 
         <mat-option *ngFor= "let mecClasses of Classe " [value]="mecClasses.idClasse">  {{mecClasses.nomClasse}}  </mat-option>
        
     </mat-select>
   </mat-form-field> 
+  <button mat-raised-button color="primary" (click)="sauvegarderNote(listresult)">Sauvegarder</button>
+
   <!-- <mat-form-field>
       <mat-label>Matiere</mat-label>                                                              
     <mat-select [(ngModel)] ="matiereSelectionee"  (change)="selectionnermatier()" >
@@ -36,5 +37,6 @@
   <button mat-raised-button color="primary" (click)=" enregistrerNote()" >Sauvegarder Note</button>
   </div>
 </section> -->
+<p-toast></p-toast>
 </body>
 </html>

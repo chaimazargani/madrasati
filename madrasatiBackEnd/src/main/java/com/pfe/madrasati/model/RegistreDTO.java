@@ -1,5 +1,6 @@
 package com.pfe.madrasati.model;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class RegistreDTO {
@@ -7,95 +8,54 @@ public class RegistreDTO {
 	/**
 	 * 
 	 */
-
+    private  Integer idEleve ;
 	private LocalDateTime datePresence;
+	private Timestamp datePresenceTimeStamp;
 	private String nomEtat;
 	private String nomEleve;
-
 	public RegistreDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-
-	public RegistreDTO(String nomEtat, String nomEleve) {
+	public RegistreDTO(Integer idEleve, LocalDateTime datePresence, Timestamp datePresenceTimeStamp, String nomEtat,
+			String nomEleve) {
 		super();
-		this.nomEtat = nomEtat;
-		this.nomEleve = nomEleve;
-	}
-
-
-	public RegistreDTO(LocalDateTime datePresence, String nomEtat, String nomEleve) {
-		super();
+		this.idEleve = idEleve;
 		this.datePresence = datePresence;
+		this.datePresenceTimeStamp = datePresenceTimeStamp;
 		this.nomEtat = nomEtat;
 		this.nomEleve = nomEleve;
 	}
-
-
+	public Integer getIdEleve() {
+		return idEleve;
+	}
+	public void setIdEleve(Integer idEleve) {
+		this.idEleve = idEleve;
+	}
 	public LocalDateTime getDatePresence() {
 		return datePresence;
 	}
-
 	public void setDatePresence(LocalDateTime datePresence) {
 		this.datePresence = datePresence;
 	}
-
+	public Timestamp getDatePresenceTimeStamp() {
+		return datePresenceTimeStamp;
+	}
+	public void setDatePresenceTimeStamp(Timestamp datePresenceTimeStamp) {
+		this.datePresenceTimeStamp = datePresenceTimeStamp;
+	}
 	public String getNomEtat() {
 		return nomEtat;
 	}
-
 	public void setNomEtat(String nomEtat) {
 		this.nomEtat = nomEtat;
 	}
-
 	public String getNomEleve() {
 		return nomEleve;
 	}
-
 	public void setNomEleve(String nomEleve) {
 		this.nomEleve = nomEleve;
 	}
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((datePresence == null) ? 0 : datePresence.hashCode());
-		result = prime * result + ((nomEleve == null) ? 0 : nomEleve.hashCode());
-		result = prime * result + ((nomEtat == null) ? 0 : nomEtat.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RegistreDTO other = (RegistreDTO) obj;
-		if (datePresence == null) {
-			if (other.datePresence != null)
-				return false;
-		} else if (!datePresence.equals(other.datePresence))
-			return false;
-		if (nomEleve == null) {
-			if (other.nomEleve != null)
-				return false;
-		} else if (!nomEleve.equals(other.nomEleve))
-			return false;
-		if (nomEtat == null) {
-			if (other.nomEtat != null)
-				return false;
-		} else if (!nomEtat.equals(other.nomEtat))
-			return false;
-		return true;
-	}
-
 
 
 }

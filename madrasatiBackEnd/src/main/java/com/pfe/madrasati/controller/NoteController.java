@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pfe.madrasati.model.EleveNoteDTO;
 import com.pfe.madrasati.model.Note;
-import com.pfe.madrasati.model.NoteDT;
 import com.pfe.madrasati.model.NoteDTO;
-import com.pfe.madrasati.model.RegistreDTO;
-import com.pfe.madrasati.model.Utilisateur;
+import com.pfe.madrasati.model.NoteEleveDTO;
 import com.pfe.madrasati.service.NoteService;
-import com.pfe.madrasati.service.UtilisateurService;
 @RestController
 
 public class NoteController {
@@ -36,9 +32,9 @@ public class NoteController {
 }
 	@RequestMapping (value = "/getNoteEleve", method = RequestMethod.GET)
 	@ResponseBody
-	 public  Map<String, List<NoteDTO>>getNoteEleve(@RequestParam ("idMatier")Integer idMatier , @RequestParam ("idClasse")Integer  idClasse){
+	 public  Map<String, List<NoteDTO>>getNoteEleve( @RequestParam ("idClasse")Integer  idClasse){
 
-	final List<NoteDTO> resultList	=	noteService.getNoteEleve( idMatier , idClasse);
+	final List<NoteDTO> resultList	=	noteService.getNoteEleve(idClasse);
 	//	return new ArrayList();
 	 return getNoteGroupeBY(resultList) ;
 	
@@ -58,4 +54,28 @@ public class NoteController {
 			return noteService.ajouterNote( noteDTO);
 		}
 	
+
+		@RequestMapping (value = "/getNoteBYEleve", method = RequestMethod.GET)
+		@ResponseBody
+		 public  Map<String, List<NoteEleveDTO>>getNoteByEleve(@RequestParam ("idEleve") Integer  idEleve){
+
+		final List<NoteEleveDTO> resultList	=	noteService.getNoteByEleve(idEleve);
+		//	return new ArrayList();
+		 return getNoteEleveGroupeBY(resultList) ;
+		
+	}
+		
+		public Map<String, List<NoteEleveDTO>> getNoteEleveGroupeBY(List<NoteEleveDTO> eleveNoteDtoList) {
+			List<NoteEleveDTO> list = eleveNoteDtoList;
+
+			Map<String, List<NoteEleveDTO>> map = list.stream().collect(Collectors.groupingBy(NoteEleveDTO::getNomMatier));
+
+			return map;
+		}
+		@RequestMapping(value = "/SauvegarderNote", method = RequestMethod.POST)
+		@ResponseBody
+		public  List<NoteDTO> sauvegarderNote( @RequestBody List<NoteDTO> noteDto){
+       	 List<NoteDTO> list = noteService.sauvegarderNote(noteDto);
+					return list;
+		}
 }

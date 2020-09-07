@@ -47,18 +47,19 @@
         </mat-checkbox>
       </td>
     </ng-container>
-    <ng-container matColumnDef="supprimer">
-      <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
-      <mat-cell *matCellDef="let matiere"> <input matButton class='button' type="button"
-          (click)="supprimerMatiere(matiere)" value="Supprimer Examen">
-      </mat-cell>
-    </ng-container>
     <ng-container matColumnDef="modifier">
       <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
       <mat-cell *matCellDef="let matiere"> <input matButton class='button' type="button"
           (click)="modifierMatiere(matiere)" value="Modifier Examen">
       </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="supprimer">
+      <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+      <mat-cell *matCellDef="let matiere"> <input matButton class='button' type="button"
+          (click)="supprimerMatiere(matiere)" value="Supprimer Examen">
+      </mat-cell>
+    </ng-container>
+    
     <ng-container matColumnDef="nomMatier">
       <mat-header-cell *matHeaderCellDef>  Matiére </mat-header-cell>
       <mat-cell *matCellDef="let matiere"> {{matiere.nomMatier}} </mat-cell>
@@ -82,5 +83,7 @@
   </mat-dialog-actions>
 </ng-template>
 </div>
+<p-toast></p-toast>
+
 </div></div>
 </body>

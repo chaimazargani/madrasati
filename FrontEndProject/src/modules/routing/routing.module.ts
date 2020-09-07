@@ -21,6 +21,7 @@ import { CreermatierComponent } from '../../app/creermatier/creermatier.componen
 import { ListenseignantComponent } from '../../app/listenseignant/listenseignant.component';
 import { EmploiComponent } from '../../app/emploi/emploi.component';
 import { CreereventemploiComponent } from '../../app/creereventemploi/creereventemploi.component';
+import { NoteeleveComponent } from '../../app/noteeleve/noteeleve.component';
 
 
 const appRoutes: Routes = [
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
   { path: 'listenseignant', component: ListenseignantComponent },
   { path: 'emploi', component: EmploiComponent },
   { path: 'creereventemploiComponent', component: CreereventemploiComponent },
+  { path: 'noteeleve', component: NoteeleveComponent },
 
 
   

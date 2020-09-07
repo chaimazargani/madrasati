@@ -1,5 +1,6 @@
 package com.pfe.madrasati.model;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -14,20 +15,21 @@ public class Registre{
 	@EmbeddedId
 	private RegistrePk registrePk ;
 
+	
+	@Column(name = "nomEtat",insertable = true, updatable = true)
+    private String nomEtat ;
+
 	@ManyToOne
 	@JoinColumn(name = "ideleve",insertable = false, updatable = false)
 	private Eleve eleve;
 
-	@ManyToOne
-	@JoinColumn(name = "idetat",insertable = false, updatable = false)
-	private Etat etat;
+	
+//	@ManyToOne
+//	@JoinColumn(name = "idetat",insertable = false, updatable = false)
+//	private Eleve etat;
 
 	public RegistrePk getRegistrePk() {
 		return registrePk;
-	}
-
-	public void setRegistrePk(RegistrePk registrePk) {
-		this.registrePk = registrePk;
 	}
 
 	public Eleve getEleve() {
@@ -38,17 +40,24 @@ public class Registre{
 		this.eleve = eleve;
 	}
 
-	public Etat getEtat() {
-		return etat;
+//	public Eleve getEtat() {
+//		return etat;
+//	}
+//
+//	public void setEtat(Eleve etat) {
+//		this.etat = etat;
+//	}
+
+	public void setRegistrePk(RegistrePk registrePk) {
+		this.registrePk = registrePk;
 	}
 
-	public void setEtat(Etat etat) {
-		this.etat = etat;
+	public String getNomEtat() {
+		return nomEtat;
 	}
-	
 
-	 
+	public void setNomEtat(String nomEtat) {
+		this.nomEtat = nomEtat;
+	}
 
-	
-	
 }

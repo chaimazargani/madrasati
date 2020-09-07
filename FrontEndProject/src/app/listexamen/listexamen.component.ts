@@ -5,11 +5,32 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreerexamenComponent } from '../creerexamen/creerexamen.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-listexamen',
   templateUrl: './listexamen.component.html',
-  styleUrls: ['./listexamen.component.css']
+  styleUrls: ['./listexamen.component.css'],
+  styles: [`
+  :host ::ng-deep button {
+      margin-right: .25em;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message {
+      background: #FC466B;
+      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+      background: linear-gradient(to right, #3F5EFB, #FC466B);
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message div {
+      color: #ffffff;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+      color: #ffffff;
+  }
+`],
+  providers: [MessageService]
 })
 export class ListexamenComponent implements OnInit {
   public listExamendata : MatTableDataSource<Examen>
@@ -17,14 +38,12 @@ export class ListexamenComponent implements OnInit {
   displayedColumns: string[] = ['nomExamen' , 'coefficeint' , 'modifier' ,'supprimer'];
  public examens : Examen ;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // For pagination
-
- @ViewChild('alertDialog', {static: true})  dialogsuppression ;
+@ViewChild('alertDialog', {static: true})  dialogsuppression ;
  @ViewChild(MatSort, {static: true}) sort: MatSort; // For pagination
-
  selection = new SelectionModel<Examen>(true, []);
  public dialogRefCreerClass: MatDialogRef<CreerexamenComponent> ;
  public dialogRefAlert: MatDialogRef<any>;
-  constructor(private httpClient : HttpClient , public dialog: MatDialog) { 
+  constructor(private httpClient : HttpClient , public dialog: MatDialog , private  messageService : MessageService)  { 
     this.examens = new Examen();
   }
 
@@ -56,15 +75,32 @@ export class ListexamenComponent implements OnInit {
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
       return this.httpClient.get<Examen[]>('http://localhost:8080/madrasati/getExamen',{headers:httpHeader});
     }
+
     afficherListDesExamen() : void {
-      this.getListExamen().subscribe(listdesexamens=> {
-         this.examen = listdesexamens 
-         this.listExamendata = new MatTableDataSource(this.examen);
-    });
+      this.getListExamen().subscribe(
+                        listdesexamens => {
+                                  this.examen = listdesexamens 
+                                  this.listExamendata = new MatTableDataSource(this.examen);
+                              //  this.showSuccess(); 
+                              },
+                        err => {
+                          this.showError();
+                      });
     }
 
 
-   
+    showSuccess() {
+      this.messageService.add({severity:'success', summary: 'Sauvegarde avec succé', detail:'Examen Sauvegardé'});
+  }
+  showSuccessSuppression() {
+    this.messageService.add({severity:'success', summary: 'Suppression avec succé', detail:'Examen Supprimé'});
+}
+showSuccessModification() {
+  this.messageService.add({severity:'success', summary: 'Modification avec succé', detail:'Examen Modifié'});
+}
+  showError() {
+    this.messageService.add({severity:'error', summary: 'Error', detail:'failed'});
+}
         ajouterExamen(){
           this.dialogRefCreerClass = this.dialog.open(CreerexamenComponent, {
             width: '400px',
@@ -76,11 +112,16 @@ export class ListexamenComponent implements OnInit {
               console.log('Creation en cours ...');
         
               this.httpClient.post<Examen>('http://localhost:8080/madrasati/ajouterExamen', result.examen )
-              .subscribe (d =>{
-                      console.log(d);
-                  this.afficherListDesExamen();
-        
-                 });
+              .subscribe (
+                dataAfterSave =>{
+                      this.showSuccess(); 
+                      this.afficherListDesExamen();
+                },
+                 err => {
+                  this.showError();
+              }
+             );
+
             }
            
               });
@@ -100,8 +141,15 @@ export class ListexamenComponent implements OnInit {
               this.httpClient.post<Examen>('http://localhost:8080/madrasati/modifierExamen', result.examen )
               .subscribe (d =>{
                       console.log(d);
+                      this.showSuccessModification(); 
                       this.afficherListDesExamen();        
-                 });
+                 },
+                 err => {
+                  this.showError();
+              }
+                 
+                 );
+                
             }
            
               });
@@ -119,9 +167,15 @@ export class ListexamenComponent implements OnInit {
               this.httpClient.post<Examen>('http://localhost:8080/madrasati/supprimerExamen', examen )
               .subscribe (d =>{
                       console.log(d);
+                      this.showSuccessSuppression(); 
                       this.afficherListDesExamen();  
         
-                 });
+                 },
+                 err => {
+                  this.showError();
+              }
+                 );
+               
             }
            
               });

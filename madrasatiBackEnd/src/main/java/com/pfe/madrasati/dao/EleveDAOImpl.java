@@ -28,6 +28,14 @@ public class EleveDAOImpl implements EleveDAO {
 
 
   }
+		@Override
+		public List<Eleve> getListEleveByIdClasse(Integer idClasse) {
+			String hql1= "from Eleve E where  E.idClasse= :idClasse";
+		    Query query = getCurrentSession().createQuery(hql1);
+			    query.setParameter("idClasse", idClasse);
+			    List<Eleve> results = (List<Eleve>) query.list();			
+			    return results;
+		}
     
     
     

@@ -4,11 +4,32 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatDialogRef } fr
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreerenseignatComponent } from '../creerenseignat/creerenseignat.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-listenseignant',
   templateUrl: './listenseignant.component.html',
-  styleUrls: ['./listenseignant.component.css']
+  styleUrls: ['./listenseignant.component.css'],
+  styles: [`
+  :host ::ng-deep button {
+      margin-right: .25em;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message {
+      background: #FC466B;
+      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+      background: linear-gradient(to right, #3F5EFB, #FC466B);
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message div {
+      color: #ffffff;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+      color: #ffffff;
+  }
+`],
+  providers: [MessageService]
 })
 export class ListenseignantComponent implements OnInit {
   public enseignant : Utilisateur[] = [];
@@ -23,13 +44,27 @@ export class ListenseignantComponent implements OnInit {
 
   public dialogRefCreerEnseignant: MatDialogRef<CreerenseignatComponent> ;
   public dialogRefAlert: MatDialogRef<any>;
-  constructor(private httpClient: HttpClient , public dialog: MatDialog) {
+  constructor(private httpClient: HttpClient , public dialog: MatDialog ,private messageService : MessageService) {
      this.utilisateur = new Utilisateur();
     this.listeDesutilisateur = []; }
 
   ngOnInit() {
     this.afficherListeutilisateur();
   }
+
+
+  showSuccess() {
+    this.messageService.add({severity:'success', summary: 'Sauvegarde avec succé', detail:'Utilisateur Sauvegarder'});
+  }
+showSuccessSuppression() {
+this.messageService.add({severity:'success', summary: 'Suppression avec succé', detail:'Utilisateur Supprimé'});
+}
+showSuccessModification() {
+this.messageService.add({severity:'success', summary: 'Modification avec succé', detail:'Utilisateur Modifié'});
+}
+showError() {
+  this.messageService.add({severity:'error', summary: 'Error ', detail:'failed'});
+}
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.listEnseignantdata.filter = filterValue.trim().toLowerCase();
@@ -64,9 +99,15 @@ export class ListenseignantComponent implements OnInit {
         this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/supprimerUtiisateur', enseignant )
         .subscribe (d =>{
                 console.log(d);
+                this.showSuccessSuppression()
             this.afficherListeutilisateur();
   
-           });
+           },
+           err => {
+            this.showError();
+        }
+           );
+       
       }
      
         });
@@ -86,9 +127,15 @@ export class ListenseignantComponent implements OnInit {
         this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/creerUtilisateur', result.enseignant )
         .subscribe (d =>{
                 console.log(d);
+                this.showSuccess();
             this.afficherListeutilisateur();
   
-           });
+           },
+           err => {
+            this.showError();
+        }
+           );
+          
       }
      
         });
@@ -117,9 +164,15 @@ export class ListenseignantComponent implements OnInit {
         this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/modifierUtlisateur', result.enseignant )
         .subscribe (d =>{
                 console.log(d);
+                this.showSuccessModification()
             this.afficherListeutilisateur();
   
-           });
+           },
+           err => {
+            this.showError();
+        }
+           );
+          
       }
      
         });

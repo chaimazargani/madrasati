@@ -1,0 +1,66 @@
+[
+    {
+        "8": "A",
+        "9": "A",
+        "nomEleve": "Mariem"
+    },
+    {
+        "8": "A",
+        "9": "A",
+        "nomEleve": "zaineb"
+    },
+    {
+        "9": "P",
+        "10": "E",
+        "11": "P",
+        "12": "P",
+        "nomEleve": "Chaima"
+    }
+]
+
+
+
+{
+    "chaima": [
+        {
+            "datePresence": {…
+            },
+            "nomEtat": "P",
+            "nomEleve": "Chaima"
+        },
+        {
+            "datePresence": {…
+            },
+            "nomEtat": "E",
+            "nomEleve": "Chaima"
+        },
+        {
+            "datePresence": {…
+            },
+            "nomEtat": "P",
+            "nomEleve": "Chaima"
+        },
+        {
+            "datePresence": {…
+            },
+            "nomEtat": "P",
+            "nomEleve": "Chaima"
+        }
+    ]
+}
+
+
+
+
+ : 
+
+ if(params.value){
+    if(params.value.etat =='P'){
+        true
+    }
+     else {
+        false
+     }
+ } else {
+    return
+ }

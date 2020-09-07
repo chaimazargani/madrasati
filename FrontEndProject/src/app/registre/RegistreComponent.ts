@@ -9,10 +9,34 @@ import { Children } from '../model/Children';
 import { Niveau } from '../model/niveau';
 import { Classe } from '../model/classe';
 import { DatePipe } from '@angular/common';
+import { CheckboxRenderer } from './checkbox-renderer.component';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {MenubarModule} from 'primeng/menubar';
+import {MenuItem, MessageService} from 'primeng/api';
 @Component({
   selector: 'app-registre',
   templateUrl: './registre.component.html',
-  styleUrls: ['./registre.component.css']
+  styleUrls: ['./registre.component.css'],
+  styles: [`
+  :host ::ng-deep button {
+      margin-right: .25em;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message {
+      background: #FC466B;
+      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+      background: linear-gradient(to right, #3F5EFB, #FC466B);
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message div {
+      color: #ffffff;
+  }
+
+  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+      color: #ffffff;
+  }
+`],
+  providers: [MessageService]
 })
 export class RegistreComponent implements OnInit {
   registreDTO: RegistreDTO;
@@ -20,7 +44,8 @@ export class RegistreComponent implements OnInit {
  public columnDefs:any ;
  public  columnDefs1 : ColomnDef ;
  public  rowData: any = [] ;
-
+ private gridApi;
+public frameworkComponents;
  public  children : Children ;
  public niveauSelectionner : number ;
   public columnDeflist  : ColomnDef[]= [] ;
@@ -29,12 +54,17 @@ export class RegistreComponent implements OnInit {
   public datepipe: DatePipe
   public  listnomEleve : any[] = [];
   public    listresult = []; 
+  public datePresence : any = []; 
+  public date : any ; 
+  public list : any ; 
+  public list2 : any ;
+
 public placeholder = 'Please select Date'
   selected = 'option2';
   selected2 = 'option2';
 
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient , public messageService : MessageService) {
 
    
    
@@ -42,135 +72,80 @@ public placeholder = 'Please select Date'
     this.columnDefs = [
   {  headerName:"list des éleves" ,
   children: [ 
-    {headerName:"Nom et Prénom", field:"nomEleve", minWidth:300,maxWidth:null,columnGroupShow:null , sortable: true , filter: true, checkboxSelection: true},
-    { headerName: '8h', field: '8' ,  sortable: true, filter: true , editable: true},
-    { headerName: '9h', field: '9' , editable: true },
-    { headerName: '10h', field: '10' ,  editable: true },
-    { headerName: '11h', field: '11' ,  editable: true },
-    { headerName: '12h', field: '12' ,  editable: true },
-    { headerName: '13h', field: '13' ,  editable: true  },
-    { headerName: '14h', field: '14',  editable: true  },
-
+    {headerName:"Nom et Prénom", field:"nomEleve", minWidth:300,maxWidth:null,columnGroupShow:null , sortable: true , filter: true},
+    { headerName: '8h', field: '8' ,  sortable: false, editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '9h', field: '9' , editable: false , filter: true , cellRenderer:'checkboxRenderer' },
+    { headerName: '10h', field: '10' ,  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'} ,
+    { headerName: '11h', field: '11' ,  editable: false  , filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '12h', field: '12' ,  editable: false , filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '13h', field: '13' ,  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '14h', field: '14',  editable: false   ,filter: true, cellRenderer: 'checkboxRenderer'},
+    { headerName: '15h', field: '12' ,  editable: false  , filter: true, cellRenderer:'checkboxRenderer'},
+    { headerName: '16h', field: '13' ,  editable: false ,filter: true , cellRenderer:'checkboxRenderer'},
+    { headerName: '17h', field: '14',  editable: false ,filter: true, cellRenderer:'checkboxRenderer'},
     ]
   }];
+  this.frameworkComponents = {
+    
+    checkboxRenderer: CheckboxRenderer,
+  };
+};  
 
-
-
-
-// let children2 : Children ;
-//   children2 = {
-//     headerName:"8h-9h",
-//     field:"date1heure1",
-//     minWidth:300,
-//     maxWidth: 550,
-//     columnGroupShow: "open",
-  
-//   }
- 
-//   let children3 : Children ;
-//   children3 = {
-//     headerName:"9h-10h",
-//     field:"date1heure3",
-//     minWidth:300,
-//     maxWidth: 550,
-//     columnGroupShow: "open",
-   
-//   }
-//   let children4 : Children ;
-//   children4 = {
-//     headerName:"10h-11h",
-//     field:"date1heure4",
-//     minWidth:300,
-//     maxWidth: 550,
-//     columnGroupShow: "open",
-   
-//   }
-//  let children5 : Children ; 
-//  children5 = {
-//   headerName:"11h-12h",
-//   field:"date1heure5",
-//   minWidth:300,
-//   maxWidth: 550,
-//   columnGroupShow: "open",
- 
-// }
-
-// let children6 : Children ; 
-// children6 = {
-//  headerName:"12h-13h",
-//  field:"date1heure6",
-//  minWidth:300,
-//  maxWidth: 550,
-//  columnGroupShow: "open",
-
-// }
-
-// let children7 : Children ; 
-// children7 = {
-//  headerName:"13h-14h",
-//  field:"date1heure7",
-//  minWidth:300,
-//  maxWidth: 550,
-//  columnGroupShow: "open",
- 
-// }
-
-// let children8 : Children ; 
-// children8 = {
-//  headerName:"15h-16h",
-//  field:"date1heure8",
-//  minWidth:300,
-//  maxWidth: 550,
-//  columnGroupShow: "open",
-
-// }
-// let children9 : Children ; 
-// children9 = {
-//  headerName:"16h-17h",
-//  field:"date1heure9",
-//  minWidth:300,
-//  maxWidth: 550,
-//  columnGroupShow: "open",
-
-// }
-
-// let children10 : Children ; 
-//  children10 = {
-//  headerName:"17h-18h",
-//  field:"date1heure10",
-//  minWidth:300,
-//  maxWidth: 550,
-//  columnGroupShow: "open",
-//  }
- 
- //let childrenList2: Children[] = [] ;
- //childrenList2.push(children1);
-  // children2 , children3 , children4 , children5 , children6 , children7 , children8 , children9, children10
-
-//  this.columnDefs1 = {
-//   headerName : "03-01-2020" ,
-//   marryChildren: null ,
-//   children : childrenList2 ,
- 
-
-// }
-//this.columnDeflist.push(this.columnDefs )
-
- //this.rowData = [
-   this.listnomEleve = [{ nomEleve: 'ahmed', date1heure1: 'present' , date1heure2: 'present' , date1heure3: 'absent', date1heure4: 'present' }]
-//    { nomEleve: 'asma', date1heure1: 'absente' , date1heure2: 'absente' , date1heure3: 'presente', date1heure4: 'presente' },
-//   { nomEleve: 'amal', date1heure1: 'present' , date1heure2: 'exclut' , date1heure3: 'absent', date1heure4: 'presente' },
-//   { nomEleve: 'chaima', date1heure1: 'exclut' , date1heure2: 'present' , date1heure3: 'absent', date1heure4: 'present' },
-
-
-
- };
-
+ onGridReady(params) {
+  this.gridApi = params.api;
+ }
   ngOnInit(): void {
-    this.getListNiveau();
-    } 
-  
- 
+   this.getListNiveau();
+  } 
+  showSuccess() {
+    this.messageService.add({severity:'success', summary: 'Sauvegarde avec succé', detail:'Classe Sauvegarder'});
+  }
+
+showError() {
+  this.messageService.add({severity:'error', summary: 'Error ', detail:'failed'});
+}
+    valider(listresult){
+       let dataBaseObject =[];
+       // this.ajouterPresence(this.listresult)
+       for (let object of this.listresult ){
+        let keys:any[] = Object.keys(object);  
+        let hours:any[] = keys.filter(key => 
+          { let keyN:any = +key;
+           return keyN >0;});
+        let newList:any[]=[];
+        hours.forEach(hour => 
+          {let newObj:RegistreDTO= new RegistreDTO();
+           newObj.nomEtat = object[hour].etat;
+           newObj.datePresenceTimeStamp = object[hour].datePresenceTimeStamp;
+           newObj.nomEleve = object.nomEleve;
+           newObj.idEleve = object[hour].idEleve;
+           newList.push(newObj);
+          //  dataBaseObject = dataBaseObject.concat(newObj)
+          }
+
+        )
+      //   nomEl = object.nomEleve ;  
+      // //  let rd =  this.listresult.keys(nomEl)
+      //   nomEleve = object.nomEleve ; 
+         dataBaseObject = dataBaseObject.concat(newList)
+         console.log(dataBaseObject)
+      //  dataBaseObject[nomEl]=newList;
+       }
+       this.httpClient.post<any>('http://localhost:8080/madrasati/sauvegarderPresence',dataBaseObject)
+       .subscribe (d =>{
+         this.showSuccess();
+          },
+          err => {
+            this.showError();
+        }
+          );
+          
+    }
+    getAllRows() {
+      let rowData = [];
+      this.gridApi.forEachNode(node => rowData.push(node.data));
+      return rowData;
+    }
 
   getRegistre(): Observable<Map<string,RegistreDTO[]>> {
     let httpHeader: HttpHeaders = new HttpHeaders();
@@ -182,6 +157,7 @@ public placeholder = 'Please select Date'
   //hédha mta3 datepiker format (string) 20/10/2020
   console.log('hédha mta3 datepiker format (string) ');
 console.log(this.dateSelectionner);
+
   //datepicker badalnéh de type Date javascript Wednesday Oct 2020 8h00
   let dateDate = new Date(this.dateSelectionner);
   let datePlusHour = dateDate.setHours(1);
@@ -205,27 +181,35 @@ console.log(dateIsoFormat);
  // datePresenceString : string = "2020-10-19T08:00Z"
  getListregistre(): void {
 
+  if(this.dateSelectionner){
+    localStorage.setItem("dateSelectionner",this.dateSelectionner)
+  }
 let list : any [];
 let hour : any = []; 
 let etat : any = [];
 let nouveauObjet : any={} ;
 
   this.getRegistre ( ).subscribe(result => {
-   
+    console.log(result);
+
     let list : RowData[]=[] ;
     let map = Object.keys(result);  
     map.forEach (nom => {
-      let rd = { nomEleve: nom }
+      let rd = { nomEleve: nom  }
      for ( let object of result[nom] ) {
       hour = object.datePresence.hour ;
+     
          etat = object.nomEtat ;
-         rd[hour] =etat;
+         let houObjct = { "etat":etat ,"datePresenceTimeStamp":object.datePresenceTimeStamp ,"idEleve" : object.idEleve }
+         rd[hour]= houObjct;
+        //  this.datePresence = object.datePresence ;
     }
+  // this.date.push(hour , month )
     list.push(rd);
 
     })
 this.listresult = list;
-console.log(result);
+console.log(this.listresult);
 
 
  //nouveauObjet[hour] =etat
@@ -246,7 +230,7 @@ console.log(hour)
 getNiveau():  Observable<Niveau[]> {
   let httpHeader:HttpHeaders = new HttpHeaders();
   httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-  return this.httpClient.get<Niveau[]>('http://localhost:8080/madrasati/getListNiveau?idNiveau= 1,2,3,4,5,6',{headers:httpHeader});
+  return this.httpClient.get<Niveau[]>('http://localhost:8080/madrasati/getListNiveau?idNiveau= 1,2,3',{headers:httpHeader});
 
 
 }
@@ -279,4 +263,11 @@ getClasseByNiveau( ): Observable <Classe[]> {
 
     
   }
+  ajouterPresence(dataBaseObject : any ): Observable<any> {
+    
+    return this.httpClient.post<any>('http://localhost:8080/madrasati/sauvegarderPresence', dataBaseObject)
+  }
+
+
+ 
 }

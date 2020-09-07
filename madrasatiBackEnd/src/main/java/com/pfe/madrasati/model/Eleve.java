@@ -23,9 +23,9 @@ public class Eleve{
 	@Column(name="nomeleve")
 	private String nomEleve;
 	
-	@ManyToOne
-	@JoinColumn(name="ideleve" ,insertable = false, updatable = false)
-	private Utilisateur utilisateur ;
+//	@ManyToOne
+//	@JoinColumn(name="ideleve" ,insertable = false, updatable = false)
+//	private Utilisateur utilisateur ;
 
 	public Eleve() {
 		super();
@@ -37,7 +37,6 @@ public class Eleve{
 		this.idEleve = idEleve;
 		this.idClasse = idClasse;
 		this.nomEleve = nomEleve;
-		this.utilisateur = utilisateur;
 	}
 
 	public Integer getIdEleve() {
@@ -64,19 +63,19 @@ public class Eleve{
 		this.nomEleve = nomEleve;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
+//	public Utilisateur getUtilisateur() {
+//		return utilisateur;
+//	}
+//
+//	public void setUtilisateur(Utilisateur utilisateur) {
+//		this.utilisateur = utilisateur;
+//	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	@Override
-	public String toString() {
-		return "Eleve [idEleve=" + idEleve + ", idClasse=" + idClasse + ", nomEleve=" + nomEleve + ", utilisateur="
-				+ utilisateur + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Eleve [idEleve=" + idEleve + ", idClasse=" + idClasse + ", nomEleve=" + nomEleve + ", utilisateur="
+//				+ utilisateur + "]";
+//	}
 
 	@Override
 	public int hashCode() {
@@ -85,7 +84,7 @@ public class Eleve{
 		result = prime * result + ((idClasse == null) ? 0 : idClasse.hashCode());
 		result = prime * result + ((idEleve == null) ? 0 : idEleve.hashCode());
 		result = prime * result + ((nomEleve == null) ? 0 : nomEleve.hashCode());
-		result = prime * result + ((utilisateur == null) ? 0 : utilisateur.hashCode());
+//		result = prime * result + ((utilisateur == null) ? 0 : utilisateur.hashCode());
 		return result;
 	}
 
@@ -112,11 +111,6 @@ public class Eleve{
 			if (other.nomEleve != null)
 				return false;
 		} else if (!nomEleve.equals(other.nomEleve))
-			return false;
-		if (utilisateur == null) {
-			if (other.utilisateur != null)
-				return false;
-		} else if (!utilisateur.equals(other.utilisateur))
 			return false;
 		return true;
 	}

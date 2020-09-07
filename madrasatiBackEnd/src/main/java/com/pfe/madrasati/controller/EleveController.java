@@ -24,4 +24,11 @@ public class EleveController {
 		
 	}
 
+	@RequestMapping (value = "/getListEleveByIdClasse", method = RequestMethod.GET)
+	@ResponseBody
+    public	List<Eleve> getListEleveByIdClasse(@RequestParam ("idClasse") Integer idClasse){
+		return (List<Eleve>) eleveService.getListEleveByIdClasse(idClasse);
+		
+	}
+	
 }   

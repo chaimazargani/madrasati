@@ -6,6 +6,7 @@ import com.pfe.madrasati.model.Eleve;
 
 public interface EleveService {
 	List<Eleve> getEleveByIdClasse(Integer idClasse);
+	List<Eleve> getListEleveByIdClasse(Integer idClasse);
 
 
 }
