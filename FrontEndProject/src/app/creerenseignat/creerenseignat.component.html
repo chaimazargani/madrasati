@@ -7,56 +7,67 @@
 </head>
 
 <body>
+  <form [formGroup]="profileFormGroup" (ngSubmit)="dialogClose()">
   <div class="classe">
         <mat-form-field class="input">
           <input matInput type="text" id="name" name="name" placeholder="Nom de l'enseignant" appearance="standard"
-            required minlength="4" maxlength="8" size="10"  [(ngModel)]="data.enseignant.nom">
+            required minlength="4" maxlength="8" size="10"   formControlName="nom" >
         </mat-form-field>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="text" id="prenom" name="prenom" placeholder="prénom" required minlength="4" maxlength="8" size="10"  [(ngModel)]="data.enseignant.prenom">
+          <input matInput type="text" id="prenom" name="prenom" placeholder="prénom" required minlength="4" maxlength="8" size="10"    formControlName="prenom" >
           </mat-form-field>
       </tr>
   
       <tr>
         <mat-form-field class="input">
-          <input matInput type="tel" id="numTel" name="numTel" placeholder="Numéro de téléphone" [(ngModel)]="data.enseignant.numTel" >
+          <input matInput type="tel" id="numTel" name="numTel" placeholder="Numéro de téléphone"   formControlName="numTel" >
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input"><i class="material-icons">email</i>
-          <input matInput type="email" id="email" pattern=".+@globex.com" placeholder="Email" size="30" required  [(ngModel)]="data.enseignant.email">
+          <input matInput type="text" id="email"  placeholder="Email" size="30" required    formControlName="email" >
+          </mat-form-field>
+          <!-- pattern=".+@globex.com" -->
+      </tr>
+      <tr>
+        <!-- <mat-form-field class="input">
+          <input  matInput [matDatepicker]="picker"  id="dateNaissance"  placeholder="dd/mm/yyyy" name="dateNaissance"   formControlName = "dateNaissance"  >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field> -->
+          <mat-form-field appearance="fill">
+            <mat-label>Date de Naissance </mat-label>
+            <input matInput [matDatepicker]="dp" formControlName = "dateNaissance">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="date" id="dateNaissance"  placeholder="Date de naissance" name="dateNaissance"  [(ngModel)]="data.enseignant.dateNaissance">
+          <input matInput type="adresse" id="adresse" name="adresse" placeholder="Adresse"   formControlName="adresse" >
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="adresse" id="adresse" name="adresse" placeholder="Adresse"  [(ngModel)]="data.enseignant.adresse">
+          <input matInput type="text" id="login" name="login" placeholder="Login"   formControlName="login" >
           </mat-form-field>
       </tr>
       <tr>
         <mat-form-field class="input">
-          <input matInput type="text" id="login" name="login" placeholder="Login"  [(ngModel)]="data.enseignant.login">
+          <input matInput type="password" id="motDepasse" name="motDepasse" placeholder="Mot de passe"    formControlName="motDepasse" >
           </mat-form-field>
-      </tr>
-      <tr>
-        <mat-form-field class="input">
-          <input matInput type="password" id="motDepasse" name="motDepasse" placeholder="Mot de passe"  [(ngModel)]="data.enseignant.motDepasse">
-          </mat-form-field>
-      </tr> -->
+      </tr> 
 
         <mat-form-field class="input">
-          <input matInput type="number" id="cin" name="cin" placeholder="CIN" min="10" max="100"  [(ngModel)]="data.utilisateur.cin">
+          <input matInput type="number" id="cin" name="cin" placeholder="CIN" min="10" max="100"   formControlName="identifiant" >
         </mat-form-field>
 
       
       <button mat-raised-button mat-dialog-close>Cancel</button>
-      <button mat-raised-button (click)="dialogClose()">Sauvegarder</button>
+      <button mat-raised-button type="submit" [disabled]="profileFormGroup.valid"> Sauvegarder </button>
     </div>
+  </form>
 </body> 
 
 </html>

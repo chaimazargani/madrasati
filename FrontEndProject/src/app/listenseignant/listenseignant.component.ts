@@ -32,11 +32,12 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class ListenseignantComponent implements OnInit {
-  public enseignant : Utilisateur[] = [];
+  public Listenseignant : Utilisateur[] = [] ;
   public listEnseignantdata : MatTableDataSource<Utilisateur>
   displayedColumns: string[] = ['nom', 'prenom', 'cin' ,'numTel' ,'email', 'dateNaissance' , 'adresse', 'login' ,'motDepasse', 'supprimer' ,'modifier'];
   private utilisateur: Utilisateur;
   private listeDesutilisateur: Utilisateur[];
+  public listdesnewdate : any[] = [];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // For pagination
   @ViewChild(MatSort, {static: true}) sort: MatSort; // For pagination
 
@@ -71,12 +72,25 @@ showError() {
   }
   afficherListeutilisateur(): void {
     // tslint:disable-next-line:no-debugger
-      this.afficherListe().subscribe(listdesenseignant => {
+      this.afficherListe().subscribe(result => {
         // subsribe ili bch t7el l karthouna observable
-        this.enseignant = listdesenseignant
-        this.listEnseignantdata = new MatTableDataSource(this.enseignant);
-  
-        console.log(this.enseignant);
+        this.Listenseignant = result;
+
+        for(let enseignant of this.Listenseignant){
+          let list : any[]  = [];
+        let newdate = new Date(enseignant.dateNaissance ) ; 
+      let mois = newdate.getMonth();
+      let annee = newdate.getFullYear();
+      let jour = newdate.getDate();
+      let datefinalString:string =  mois+"/"+jour+"/"+annee ;
+      // list.push(datefinalString)
+      // this.listdesnewdate = this.listdesnewdate.concat(list)
+      enseignant.dateNaissanceString =datefinalString;
+       
+      }
+      this.listEnseignantdata = new MatTableDataSource(this.Listenseignant);
+        console.log(this.Listenseignant);
+      
       });
     }
       afficherListe(): Observable<Utilisateur[]> {

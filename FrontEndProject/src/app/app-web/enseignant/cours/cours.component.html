@@ -1,3 +1,38 @@
-<p>
-  cours works!
-</p>
+<!-- <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple"
+        accept="image/*"></p-fileUpload> -->
+
+
+
+<button mat-raised-button type="submit" (click)="listCour()">List des Cours</button>
+<p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="putFiles($event.files)">
+        <ng-template pTemplate="toolbar">
+                <button pButton type="button" label="Download Files"
+                (click)="Downloadfiles()">
+                </button>
+        </ng-template> 
+</p-fileUpload>
+
+
+<table mat-table [dataSource]="listNomFichier" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="cours">
+                <th mat-header-cell *matHeaderCellDef> cours </th>
+                <td mat-cell *matCellDef="let nomFichier "> {{nomFichier}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="telechargement">
+                <mat-header-cell *matHeaderCellDef> Télécharger </mat-header-cell>
+                <mat-cell *matCellDef="let nomFichier">
+                        <input matButton class='button' type="button" (click)="getObjectFile(nomFichier)"
+                                value="Télécharger Cour">
+                </mat-cell>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

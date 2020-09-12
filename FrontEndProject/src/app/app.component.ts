@@ -60,6 +60,10 @@ export class AppComponent implements OnInit {
                     label: 'NoteEleve'  , routerLink : "noteeleve",
                     icon: 'pi pi-fw pi-pencil',
                     },
+                    {
+                      label: 'Cours'  , routerLink : "cours",
+                      icon: 'pi pi-fw pi-pencil',
+                      },
  {
           label: 'Quit', icon: 'pi pi-fw pi-times'
       }

@@ -6,6 +6,7 @@ import { MatSort, MatPaginator, MatTableDataSource, MatDialogRef, MAT_DIALOG_DAT
 import { PeriodicElement } from '../model/PeriodicElement';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ListclasseComponent } from '../listclasse/listclasse.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 
@@ -21,12 +22,20 @@ import { ListclasseComponent } from '../listclasse/listclasse.component';
 
 export class CreerclasseComponent implements OnInit {
 public listClassedata : MatTableDataSource<Classe> ;
-
+ public profileFormGroup : FormGroup
  constructor(private httpClient : HttpClient , public dialogRef: MatDialogRef<CreerclasseComponent>, @Inject(MAT_DIALOG_DATA) public data: any)
   {
   }
 
-  ngOnInit() {} 
+  ngOnInit() {
+    this.profileFormGroup = new FormGroup({
+      nomClasse: new FormControl(this.data.classe.nomClasse,Validators.maxLength(10)),
+      idNiveau: new FormControl(this.data.classe.idNiveau , Validators.min(3)),
+      nombreEleve: new FormControl(this.data.classe.nombreEleve , Validators.min(3)),
+
+    });
+
+  } 
  
 
   onNoClick(): void {

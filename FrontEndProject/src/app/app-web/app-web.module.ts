@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoteHttpService } from './enseignant/note/note-http.service';
 import { NoteService } from './enseignant/note/note.service';
 import { CoursComponent } from './enseignant/cours/cours.component';
+import { CoursService } from './enseignant/cours/cours.service';
 //import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 @NgModule({
@@ -22,7 +23,7 @@ import { CoursComponent } from './enseignant/cours/cours.component';
     FormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [NoteHttpService, NoteService
+  providers: [NoteHttpService, NoteService  , CoursService
   ],
   bootstrap: [NoteComponent],
   declarations: [

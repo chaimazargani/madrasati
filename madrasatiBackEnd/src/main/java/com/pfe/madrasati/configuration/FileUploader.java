@@ -1,116 +1,147 @@
 package com.pfe.madrasati.configuration;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.stereotype.Repository;
-import org.xmlpull.v1.XmlPullParserException;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartFile;
 
+import io.minio.BucketExistsArgs;
+import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
+import io.minio.PutObjectOptions;
+import io.minio.Result;
+import io.minio.UploadObjectArgs;
 import io.minio.errors.ErrorResponseException;
 import io.minio.errors.InsufficientDataException;
 import io.minio.errors.InternalException;
-import io.minio.errors.InvalidArgumentException;
 import io.minio.errors.InvalidBucketNameException;
-import io.minio.errors.InvalidEndpointException;
-import io.minio.errors.InvalidPortException;
-import io.minio.errors.NoResponseException;
+import io.minio.errors.InvalidResponseException;
 import io.minio.errors.RegionConflictException;
+import io.minio.errors.ServerException;
+import io.minio.errors.XmlParserException;
+import io.minio.messages.Item;
+@Configuration
+public class FileUploader  {
+	
 
-@Repository
-public class FileUploader {
-	private  MinioClient minioClient;
-	final private String endPoint = System.getProperty("ENDPOINT");
-	final private String accessKey= System.getProperty("ACCESSKEY");
-	final private String secretKey= System.getProperty("SECRETKEY");
-	 public void newMinioClient () {
-		     // Créer un minioClient avec le nom du serveur MinIO, le port, la clé d'accès et la clé secrète.
-		      try {
-				 this.minioClient = new MinioClient(this.endPoint,this.accessKey , "secretKey");
-			} catch (InvalidEndpointException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvalidPortException e) {
+  private  final String  bucketName = "madrasati/" ;
+      // Create a minioClient with the MinIO Server name, Port, Access key and Secret key.
+      @SuppressWarnings("deprecation")
+	MinioClient minioClient = new MinioClient("127.0.0.1",9000, "minioadmin", "minioadmin",false);
+    public void fileExist() { 
+      // Check if the bucket already exists.
+      boolean isExist = false;
+	
+		try {
+			isExist = minioClient.bucketExists(BucketExistsArgs.builder().bucket("asiatrip").build());
+		} catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException | InsufficientDataException
+				| InternalException | InvalidBucketNameException | InvalidResponseException | NoSuchAlgorithmException
+				| ServerException | XmlParserException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+
+      if(isExist) {
+        System.out.println("Bucket already exists.");
+      } else {
+        // Make a new bucket called asiatrip to hold a zip file of photos.
+        
+			try {
+				minioClient.makeBucket(MakeBucketArgs.builder().bucket("madrasati").build());
+			} catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException | InsufficientDataException
+					| InternalException | InvalidBucketNameException | InvalidResponseException
+					| NoSuchAlgorithmException | RegionConflictException | ServerException | XmlParserException
+					| IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    }
-		      
-		      
-	 
-		    	  public void makeBucket (String nomBucket) {
-		     	  try {
-					minioClient.makeBucket(nomBucket);
-				} catch (InvalidKeyException e) {
+
+     }
+    } 
+
+	public List<String> getFile() {
+    List<String>  listCour = new ArrayList();
+		
+			Iterable<Result<Item>> result;
+			try {
+				result = minioClient.listObjects("madrasati");
+				result.forEach(obj -> { 
+					getListFilesNames(listCour, obj);	
+				});
+				return listCour ;
+			} catch (XmlParserException e) {
+				// TODO Auto-generated catch block
+				throw new IllegalStateException(e);
+			}
+			
+
+	}
+
+	private void getListFilesNames(List<String> listCour, Result<Item> obj) {
+		try {
+			
+		String cours = obj.get().objectName();
+		listCour.add(cours) ; 
+
+		} catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException
+				| InsufficientDataException | InternalException | InvalidBucketNameException
+				| InvalidResponseException | NoSuchAlgorithmException | ServerException | XmlParserException
+				| IOException e) {
+		
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+      public void putFile(MultipartFile files) {
+      // Upload the zip file to the bucket with putObject
+   
+				//creating an InputStreamReader object
+				try {
+					PutObjectOptions options = new PutObjectOptions(-1,6 * 1024 * 1024);
+						this.minioClient.putObject("madrasati", "niveau1/cours/"+files.getOriginalFilename(), files.getInputStream(), options);
+				} catch (IOException e1) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InvalidBucketNameException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (RegionConflictException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (NoSuchAlgorithmException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InsufficientDataException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (NoResponseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ErrorResponseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InternalException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
+					e1.printStackTrace();
+				}catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException | InsufficientDataException
+						| InternalException | InvalidBucketNameException | InvalidResponseException
+						| NoSuchAlgorithmException | ServerException | XmlParserException  e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		      }
-		    	  
-		    	  
-		    	  public void putObject (String nomBucket , String nomFichier , String pathRepertoire ) {
-		   // Télécharger le fichier zip dans le compartiment avec putObject
-		      try {
-				minioClient.putObject( nomBucket,nomFichier, pathRepertoire);
-			} catch (InvalidKeyException e) {
+				
+
+//			minioClient.putObject("madrasati","/matiere/cours/file.pdf", file, null);
+
+  }
+      
+      
+      public InputStream getObjectCours(String nomFichier) {
+    	  
+    
+    		  InputStream fileObject;
+			try {
+				fileObject = this.minioClient.getObject("madrasati", nomFichier);
+				return fileObject ;
+			} catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException | InsufficientDataException
+					| InternalException | InvalidBucketNameException | InvalidResponseException
+					| NoSuchAlgorithmException | ServerException | XmlParserException | IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvalidBucketNameException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InsufficientDataException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoResponseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ErrorResponseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InternalException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvalidArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (XmlPullParserException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new IllegalStateException(e);
 			}
-		   
-		    }
-		    
+    			
+		
+    	  }
+     
+      
+      
+      
 }
+ 

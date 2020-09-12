@@ -26,6 +26,7 @@
     "@fullcalendar/daygrid": "^4.1.0",
     "@fullcalendar/interaction": "^4.1.0",
     "@fullcalendar/timegrid": "^4.1.0",
+    "@types/minio": "^7.0.6",
     "ag-grid-angular": "^21.1.1",
     "ag-grid-community": "^21.1.1",
     "primeicons": "^4.0.0",

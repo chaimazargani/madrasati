@@ -45,7 +45,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {MenubarModule} from 'primeng/menubar';
 import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
-
+import {FileUploadModule} from 'primeng/fileupload';
 @NgModule({
   imports: [
     CommonModule,
@@ -103,6 +103,7 @@ import {ToastModule} from 'primeng/toast';
     ToastModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FileUploadModule,
     ],
     exports: [
       MatSelectModule,
@@ -159,7 +160,7 @@ import {ToastModule} from 'primeng/toast';
       MenubarModule,
       ToastModule,
       ReactiveFormsModule,
-
+      FileUploadModule,
     ],
   declarations: [
     

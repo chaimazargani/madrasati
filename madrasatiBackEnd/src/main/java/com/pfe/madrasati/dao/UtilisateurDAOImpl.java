@@ -8,13 +8,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.pfe.madrasati.model.Classe;
-import com.pfe.madrasati.model.Eleve;
 import com.pfe.madrasati.model.Utilisateur;
-@Repository ("name= UtilisateurDAO ")
+@Repository
 @Transactional
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	  @Autowired
@@ -33,8 +29,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	public List<Utilisateur> findAll() {
 		String hql2 = " from Utilisateur U " ;
 		Query query = getCurrentSession().createQuery(hql2);
-		List<Utilisateur> 
-		results = query.list();
+		List<Utilisateur> 	results = query.list();
 	return results ;
 	}
 	@Override
@@ -50,8 +45,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		return utilisateur ;
 	}
 	
-	
-	
+	@Override
+	public List<Utilisateur> loadUserByUsername(String  username) {
+		String hql2 = " Select * from Utilisateur U where nomUtilisateur= :username  " ;
+		Query query = getCurrentSession().createQuery(hql2);
+      query.setParameter("nomUtilisateur",username);
+		List<Utilisateur> result = query.list();
+		return result ;
+	}
 	
 	
 	

@@ -6,12 +6,14 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventMadrasati } from '../model/Event';
 import { Observable } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-creereventemploi',
   templateUrl: './creereventemploi.component.html',
   styleUrls: ['./creereventemploi.component.css']
 })
 export class CreereventemploiComponent implements OnInit {
+ public  profileFormGroup : FormGroup ;
   public dialogRefAlert: MatDialogRef<any>;
   options: any;
     public classeSelectionner: number;
@@ -43,7 +45,9 @@ export class CreereventemploiComponent implements OnInit {
       durationEditable:true
      
     }
-
+    this.profileFormGroup = new FormGroup({
+      title: new FormControl(this.data.popupData.title,Validators.maxLength(20)),
+    });
   }
  
 

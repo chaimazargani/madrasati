@@ -1,11 +1,11 @@
 <html>
 <body>
-  
+ <form [formGroup]="profileFormGroup" (ngSubmit)="dialogClose()" (ngSubmit)="supprimerEvent(data)">
     <table>
        <div>
         <tr>
             <mat-form-field class="input">
-              <input matInput type="text" id="title" name="nomEvenement" placeholder="Nom de l'évemenemnt" [(ngModel)]="data.popupData.title">
+              <input matInput type="text" id="title" name="nomEvenement" placeholder="Nom de l'évemenemnt"  formControlName="title" required>
             </mat-form-field>
           </tr>
           
@@ -32,10 +32,12 @@
         </tr>-->
       <tr>
           <button mat-raised-button mat-dialog-close>Cancel</button>
-          <button mat-raised-button (click)="dialogClose()">Sauvegarder</button>
-          <button mat-raised-button (click)="supprimerEvent(data)">Supprimer</button>
+          <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Sauvegarder</button>
+          <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Supprimer</button>
 
       </tr> 
+    
+
       <ng-template #alertDialog>
         <h2 mat-dialog-title>voulez vous vraiment supprimer l'evénement </h2>
         <mat-dialog-actions align="end"class="footer">
@@ -47,8 +49,7 @@
      
       </div>
      </table>
-     
-  
+    </form>
   </body>
 
 </html>

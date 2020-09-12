@@ -10,13 +10,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./creermatier.component.css']
 })
 export class CreermatierComponent implements OnInit {
-  profileForm = new FormGroup({
-    nomMatier: new FormControl(''),
-    coefficeint: new FormControl(''),
-  });
+public profileFormGroup: FormGroup;
   constructor(private httpClient : HttpClient ,public dialogRef: MatDialogRef<CreermatierComponent>, @Inject(MAT_DIALOG_DATA)public data: any) { }
 
   ngOnInit() {
+    this.profileFormGroup = new FormGroup({
+      nomMatier: new FormControl(this.data.matiere.nomMatier,Validators.maxLength(15)),
+      coefficeint: new FormControl(this.data.matiere.coefficeint , Validators.max(4)),
+    });
   }
  
   onNoClick(): void {

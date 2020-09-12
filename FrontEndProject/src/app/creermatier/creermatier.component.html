@@ -7,13 +7,13 @@
 </head>
 
 <body>
-  
+  <form [formGroup]="profileFormGroup" (ngSubmit)="dialogClose()">
     <table>
        <div>
        
         <tr>
           <mat-form-field class="input">
-            <input matInput type="text" id="matiere" form [formGroup]="profileForm" name="matiere" class="form-control" placeholder="Matiéres" [formControl]="data.matiere.nomMatier">
+            <input matInput type="text" id="matiere"  placeholder="Matiéres"  formControlName="nomMatier" required>
           </mat-form-field>
         </tr>
         
@@ -22,18 +22,17 @@
         
         <tr>
           <mat-form-field class="input">
-            <input matInput type="number" id="coefficeint" name="coefficeint " placeholder="coefficeint " [formControl]="data.matiere.coefficeint">
+            <input matInput type="number" id="coefficient" name="coefficient " placeholder="coefficeint " formControlName="coefficeint" required>
             </mat-form-field>
         </tr>
     
         <tr>
           <button mat-raised-button mat-dialog-close>Cancel</button>
-          <button mat-raised-button type="submit" [disabled]="!profileForm.valid" (click)="dialogClose()">Sauvegarder</button>
+          <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Sauvegarder</button>
       </tr>
       </div>
      </table>
-     
-  
+    </form>  
   </body>
 
 </html>

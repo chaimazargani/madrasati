@@ -1,66 +1,72 @@
 package com.pfe.madrasati.model;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumns;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
-import com.pfe.madrasati.dao.LocalDateTimeConverter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-@Table (name = "utilisateur")
-public class Utilisateur {
+@Table(name = "utilisateur")
+public class Utilisateur implements Serializable , UserDetails {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
-    @SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
-	  @Column(name = "idutilisateur")
+	@SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
+	@Column(name = "idutilisateur")
 	private Integer idUtilisateur;
-	  @Column(name = "nom")
-	 //  @Size(max = 20, min = 3, message = "{user.name.invalid}")
+
+	@Column(name = "nom")
+	// @Size(max = 20, min = 3, message = "{user.name.invalid}")
 	private String nom;
-	  @Column(name = "prenom")
-	  // @Size(max = 20, min = 3, message = "{user.name.invalid}")
+	@Column(name = "prenom")
+	// @Size(max = 20, min = 3, message = "{user.name.invalid}")
 	private String prenom;
-	  @Column(name = "cin")
-	private Integer cin;
-	  @Column(name = "numtel")
+	@Column(name = "identifiant")
+	private Integer identifiant;
+	@Column(name = "numtel")
 	private Integer numTel;
 
-	  @Column(name = "datenaissance")
+	@Column(name = "datedenaissance")
 	private Date dateNaissance;
-	  @Column(name = "adresse")
+	@Column(name = "adresse")
 	private String adresse;
-	  @Column(name = "emaill", unique = true)
-	   //@Email(message = "{user.email.invalid}")
-	   //@NotEmpty(message="Please Enter your email")
-    private String email; 
-	  @Column(name = "login")
+	@Column(name = "emaill", unique = true)
+	// @Email(message = "{user.email.invalid}")
+	// @NotEmpty(message="Please Enter your email")
+	private String email;
+	@Column(name = "login")
 	private String login;
-	  @Column(name = "motdepasse")
+	@Column(name = "motdepasse")
 	private String motDepasse;
-	  
-	  
+
 	public Utilisateur() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
-	public Utilisateur(Integer idUtilisateur, String nom, String prenom, Integer cin, Integer numTel,
+
+	public Utilisateur(Integer idUtilisateur, String nom, String prenom, Integer identifiant, Integer numTel,
 			Date dateNaissance, String adresse, String email, String login, String motDepasse) {
 		super();
 		this.idUtilisateur = idUtilisateur;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.cin = cin;
+		this.identifiant = identifiant;
 		this.numTel = numTel;
 		this.dateNaissance = dateNaissance;
 		this.adresse = adresse;
@@ -93,12 +99,12 @@ public class Utilisateur {
 		this.prenom = prenom;
 	}
 
-	public Integer getCin() {
-		return cin;
+	public Integer getIdentifiant() {
+		return identifiant;
 	}
 
-	public void setCin(Integer cin) {
-		this.cin = cin;
+	public void setIdentifiant(Integer identifiant) {
+		this.identifiant = identifiant;
 	}
 
 	public Integer getNumTel() {
@@ -108,8 +114,6 @@ public class Utilisateur {
 	public void setNumTel(Integer numTel) {
 		this.numTel = numTel;
 	}
-
-
 
 	public Date getDateNaissance() {
 		return dateNaissance;
@@ -151,39 +155,44 @@ public class Utilisateur {
 		this.motDepasse = motDepasse;
 	}
 
-
-
 	@Override
-	public String toString() {
-		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
-				+ ", numTel=" + numTel + ", dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", email="
-				+ email + ", login=" + login + ", motDepasse=" + motDepasse + "]";
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((idUtilisateur == null) ? 0 : idUtilisateur.hashCode());
-		return result;
+	public String getPassword() {
+		return this.motDepasse;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Utilisateur other = (Utilisateur) obj;
-		if (idUtilisateur == null) {
-			if (other.idUtilisateur != null)
-				return false;
-		} else if (!idUtilisateur.equals(other.idUtilisateur))
-			return false;
-		return true;
+	public String getUsername() {
+		return this.nom;
+		}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

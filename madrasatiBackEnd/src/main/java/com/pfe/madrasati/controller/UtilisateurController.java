@@ -23,8 +23,8 @@ public class UtilisateurController {
 	}
 	@RequestMapping(value = "/listUtilisateur", method = RequestMethod.GET) 
 	public List<Utilisateur> Afficherlaliste(){
-		return (List<Utilisateur>) utilisateurService.findAll();
-		
+		List<Utilisateur> results = utilisateurService.findAll();
+		return results ;
 	}
 	@RequestMapping(value = "/supprimerUtiisateur", method = RequestMethod.POST) 
 	public Utilisateur supprimerUtilisateur( @RequestBody Utilisateur utilisateur ){

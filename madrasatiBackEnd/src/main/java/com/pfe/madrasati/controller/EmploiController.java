@@ -59,4 +59,13 @@ public class EmploiController {
 		List<Event> listEvent =  emploiService.findAll();
 		return  listEvent ;
 	}
+	
+
+	@RequestMapping (value = "/getEventByEnseignant", method = RequestMethod.GET)
+	@ResponseBody
+    public	List<EventEleve> getEventbyEnseignant(@RequestParam ("idEnseignant") Integer idEnseignant  ){
+		return (List<EventEleve>) emploiService.getEventbyeleve(idEnseignant);
+		
+	}
+	
 }

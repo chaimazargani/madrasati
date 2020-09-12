@@ -37,6 +37,7 @@ import { CreereventemploiComponent } from './creereventemploi/creereventemploi.c
 import { NoteeleveComponent } from './noteeleve/noteeleve.component';
 import { CheckboxRenderer } from './registre/checkbox-renderer.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { CourseleveComponent } from './courseleve/courseleve.component';
 
 //import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
@@ -67,7 +68,7 @@ import { AgGridModule } from 'ag-grid-angular';
     EmploiComponent,
     CreereventemploiComponent,
     NoteeleveComponent, 
-    CheckboxRenderer,
+    CheckboxRenderer, CourseleveComponent,
     
   ],
   imports: [
@@ -88,7 +89,7 @@ import { AgGridModule } from 'ag-grid-angular';
   providers: [
     AppareilService ,
     AuthService,
-    EventService
+    EventService,
   ],
   bootstrap: [AppComponent]
 

@@ -91,6 +91,23 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring-framework-version}</version>
 		</dependency>
+		<dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-web</artifactId>
+	<version>4.2.0.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+    <version>4.2.0.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>4.2.0.RELEASE</version>
+</dependency>
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -114,12 +131,13 @@
     <artifactId>commons-fileupload</artifactId>
     <version>1.4</version>
 </dependency>
+
 		
 		<dependency>
-			<groupId>io.minio</groupId>
-			<artifactId>minio</artifactId>
-			<version>3.0.7</version>
-		</dependency>
+    <groupId>io.minio</groupId>
+    <artifactId>minio</artifactId>
+    <version>7.1.2</version>
+</dependency>
 
 	</dependencies>
 	<build>

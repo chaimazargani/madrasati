@@ -10,7 +10,6 @@ import { Note } from '../../../model/note';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
 import { NoteHttpService } from './note-http.service';
-import { RegistreDTO } from 'src/app/model/RegistreDTO';
 import { ExamenEnum } from './examensEnum';
 import { MessageService } from 'primeng/api';
 

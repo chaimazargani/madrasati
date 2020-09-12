@@ -13,5 +13,6 @@ public interface UtilisateurDAO  {
      public List<Utilisateur> findAll();
      public 	Utilisateur delete(Utilisateur utilisateur) ;
      public Utilisateur update(Utilisateur utilisateur);
+	List<Utilisateur> loadUserByUsername(String username);
 
 }
