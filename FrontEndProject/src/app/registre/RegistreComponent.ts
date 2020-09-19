@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { RegistreDTO } from '../model/RegistreDTO';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -17,25 +17,7 @@ import {MenuItem, MessageService} from 'primeng/api';
   selector: 'app-registre',
   templateUrl: './registre.component.html',
   styleUrls: ['./registre.component.css'],
-  styles: [`
-  :host ::ng-deep button {
-      margin-right: .25em;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message {
-      background: #FC466B;
-      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
-      background: linear-gradient(to right, #3F5EFB, #FC466B);
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message div {
-      color: #ffffff;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
-      color: #ffffff;
-  }
-`],
+  encapsulation: ViewEncapsulation.None,
   providers: [MessageService]
 })
 export class RegistreComponent implements OnInit {
@@ -70,21 +52,19 @@ public placeholder = 'Please select Date'
    
 
     this.columnDefs = [
-  {  headerName:"list des éleves" ,
-  children: [ 
-    {headerName:"Nom et Prénom", field:"nomEleve", minWidth:300,maxWidth:null,columnGroupShow:null , sortable: true , filter: true},
-    { headerName: '8h', field: '8' ,  sortable: false, editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
-    { headerName: '9h', field: '9' , editable: false , filter: true , cellRenderer:'checkboxRenderer' },
-    { headerName: '10h', field: '10' ,  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'} ,
-    { headerName: '11h', field: '11' ,  editable: false  , filter: true , cellRenderer: 'checkboxRenderer'},
-    { headerName: '12h', field: '12' ,  editable: false , filter: true , cellRenderer: 'checkboxRenderer'},
-    { headerName: '13h', field: '13' ,  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
-    { headerName: '14h', field: '14',  editable: false   ,filter: true, cellRenderer: 'checkboxRenderer'},
-    { headerName: '15h', field: '12' ,  editable: false  , filter: true, cellRenderer:'checkboxRenderer'},
-    { headerName: '16h', field: '13' ,  editable: false ,filter: true , cellRenderer:'checkboxRenderer'},
-    { headerName: '17h', field: '14',  editable: false ,filter: true, cellRenderer:'checkboxRenderer'},
-    ]
-  }];
+    {headerName:"Nom et Prénom", field:"nomEleve", width: 110 ,columnGroupShow:null , sortable: true , filter: true},
+    { headerName: '8h', field: '8' , width: 100,   sortable: false, editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '9h', field: '9' , width: 100,  editable: false , filter: true , cellRenderer:'checkboxRenderer' },
+    { headerName: '10h', field: '10', width: 100 , /*  */  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'} ,
+    { headerName: '11h', field: '11', width: 100 ,  editable: false  , filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '12h', field: '12', width: 100 ,  editable: false , filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '13h', field: '13', width: 100 ,  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '14h', field: '14', width: 100,  editable: false   ,filter: true, cellRenderer: 'checkboxRenderer'},
+    { headerName: '15h', field: '12', width: 100 ,  editable: false  , filter: true, cellRenderer:'checkboxRenderer'},
+    { headerName: '16h', field: '16', width: 100 ,  editable: false ,filter: true , cellRenderer:'checkboxRenderer'},
+    { headerName: '17h', field: '17', width: 100,  editable: false ,filter: true, cellRenderer:'checkboxRenderer'},
+    { headerName: '18h', field: '18', width: 100,  editable: false ,filter: true, cellRenderer:'checkboxRenderer'},
+  ];
   this.frameworkComponents = {
     
     checkboxRenderer: CheckboxRenderer,

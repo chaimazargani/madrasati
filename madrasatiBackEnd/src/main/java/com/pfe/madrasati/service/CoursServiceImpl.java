@@ -1,9 +1,7 @@
 package com.pfe.madrasati.service;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -12,9 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pfe.madrasati.configuration.FileUploader;
-
-import io.minio.Result;
-import io.minio.messages.Item;
 @Service (value="CoursService")
 
 public class CoursServiceImpl implements CoursService{
@@ -24,7 +19,7 @@ public class CoursServiceImpl implements CoursService{
 	
 	
 	@Override
-	public List<String> getCours() {
+	public List<String> getCours( ) {
 		return   fileUploader.getFile(); 
 
 //				    
@@ -37,23 +32,15 @@ public class CoursServiceImpl implements CoursService{
 	}
 
 	@Override
-	public File getObjectCours(String nomFichier) {
-		InputStream   cours = fileUploader.getObjectCours(nomFichier);
-		
-		File targetFile = new File("newName.docx");
-//		 
-		    try {
-				java.nio.file.Files.copy(
-						cours, 
-				  targetFile.toPath(), 
-				  StandardCopyOption.REPLACE_EXISTING);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		 
-		    IOUtils.closeQuietly(cours);	
-		    return targetFile  ;
+	public byte[] getObjectCours(String nomFichier ) {
+		try {
+		InputStream fileInputStream = fileUploader.getObjectCours(nomFichier );
+		byte[] bytes;
+			bytes = IOUtils.toByteArray(fileInputStream);
+			return bytes  ;
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
     
 

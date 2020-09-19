@@ -18,6 +18,7 @@ import com.pfe.madrasati.model.Eleve;
 import com.pfe.madrasati.model.Registre;
 import com.pfe.madrasati.model.RegistreDTO;
 import com.pfe.madrasati.model.RegistrePk;
+import com.pfe.madrasati.model.RegsitreDTOEnseignant;
 
 @Repository(value = "registreDAO")
 @Transactional
@@ -75,6 +76,12 @@ public class RegistreDAOImpl implements RegistreDAO {
 	     this.getCurrentSession().saveOrUpdate(registreBd);
 		});
 		return registreDTO;
+	}
+
+
+	@Override
+	public List<RegsitreDTOEnseignant> getPresenceByIdEnseignant(LocalDateTime datePresence, Integer idEnseignant) {
+		return null;
 	}
 	
 	

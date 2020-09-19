@@ -73,6 +73,7 @@ public class FileUploader  {
 			Iterable<Result<Item>> result;
 			try {
 				result = minioClient.listObjects("madrasati");
+			
 				result.forEach(obj -> { 
 					getListFilesNames(listCour, obj);	
 				});
@@ -88,8 +89,12 @@ public class FileUploader  {
 	private void getListFilesNames(List<String> listCour, Result<Item> obj) {
 		try {
 			
-		String cours = obj.get().objectName();
-		listCour.add(cours) ; 
+		String nomFichierComplet = obj.get().objectName();
+		Integer idEnseignant = 1;
+		if(nomFichierComplet.contains("math/niveau1/cours/"+idEnseignant.toString())) {
+			listCour.add(nomFichierComplet) ; 
+			
+		}
 
 		} catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException
 				| InsufficientDataException | InternalException | InvalidBucketNameException
@@ -100,22 +105,23 @@ public class FileUploader  {
 			e.printStackTrace();
 		}
 	}
-      public void putFile(MultipartFile files) {
+      public void putFile(MultipartFile file) {
       // Upload the zip file to the bucket with putObject
-   
-				//creating an InputStreamReader object
+    		//creating an InputStreamReader object
 				try {
 					PutObjectOptions options = new PutObjectOptions(-1,6 * 1024 * 1024);
-						this.minioClient.putObject("madrasati", "niveau1/cours/"+files.getOriginalFilename(), files.getInputStream(), options);
+					Integer idEnseignant = 1;
+						this.minioClient.putObject("madrasati", "math/niveau1/cours/"+idEnseignant.toString()+"/"+file.getOriginalFilename(), file.getInputStream(), options);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException | InsufficientDataException
 						| InternalException | InvalidBucketNameException | InvalidResponseException
-						| NoSuchAlgorithmException | ServerException | XmlParserException  e) {
+			 			| NoSuchAlgorithmException | ServerException | XmlParserException  e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 				
 
 //			minioClient.putObject("madrasati","/matiere/cours/file.pdf", file, null);

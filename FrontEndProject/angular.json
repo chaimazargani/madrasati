@@ -21,15 +21,17 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/@fullcalendar/core/main.min.css",
               "node_modules/@fullcalendar/daygrid/main.min.css",
-              "node_modules/@fullcalendar/timegrid/main.min.css"
+              "node_modules/@fullcalendar/timegrid/main.min.css",
+              "node_modules/css-file-icons/build/css-file-icons.css",
+              "node_modules/primeflex/primeflex.css",
+              "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/css-file-icons/build/css-file-icons.js"]
           },
           "configurations": {
             "production": {

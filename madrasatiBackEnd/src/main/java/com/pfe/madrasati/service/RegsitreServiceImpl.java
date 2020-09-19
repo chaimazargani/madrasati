@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pfe.madrasati.dao.RegistreDAO;
 import com.pfe.madrasati.model.Eleve;
 import com.pfe.madrasati.model.RegistreDTO;
+import com.pfe.madrasati.model.RegsitreDTOEnseignant;
 
 @Service(value = "registreService")
 
@@ -58,8 +59,14 @@ public class RegsitreServiceImpl implements RegistreService {
 
 	@Override
 	public List<RegistreDTO> getPresence(String datePresence, Integer idClasse) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+
+	@Override
+	public List<RegsitreDTOEnseignant> getPresenceByIdEnseignant(LocalDateTime datePresence, Integer idEnseignant) {
+		return registreDAO.getPresenceByIdEnseignant(datePresence, idEnseignant) ;
 	}
 
 }

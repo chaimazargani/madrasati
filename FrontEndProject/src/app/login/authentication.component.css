@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+body {
+    position:absolute;
+}
+
+
+.login-form{
+    padding:40px;
+    /* background-color:rgba(27, 186, 214, 0.2); */
+    background-color: rgb(3, 77, 109,0.8);
+    position: relative;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+.signin {
+display: table-cell;
+margin-top: -100px;
+vertical-align: middle;
+width: 300px;
+}
+
+.wrapper{
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.page-container {
+    bottom: 0;
+    height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+}
+
+.bg{
+    background: url('../../assets/images/backtoschool__.jpg') no-repeat center;
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
+  .field label{
+      color:white;
+  }
+  .logo {
+    background: url('../../assets/images/logo.png') center no-repeat;
+    display: block;
+    height: 90px;
+    margin: 0 auto;
+    width: 90px;
+    background-position: center center;
+    border :1px solid white;
+}
+
+.chalkboard{
+    width:200px;
+    height:100px;
+    position:absolute;
+    margin-top:-100px;
+    color:white;
+    z-index: 100;
+    font-size: 20px;
+    text-align: left ;
+    font-family: 'Indie Flower', cursive;
+}
+.chalkwriting{
+    line-height: 100px;
+    position: absolute;
+    bottom: 0;
+    left:0;
+}
+
+.app-title {
+    width: 100%;
+    height: 110px;
+    color:rgb(225,222,253);
+    font-size: 80px;
+    text-align: center;
+}
+/* .arabic-elif{
+    position: absolute;
+    right:0;
+    bottom:17px;
+    width: 70px;
+    height: 70px;
+    background-image: url('../../assets/images/ألف.png');
+    background-size: cover;
+} */

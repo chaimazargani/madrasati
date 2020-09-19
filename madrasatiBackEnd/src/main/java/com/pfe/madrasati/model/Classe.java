@@ -1,36 +1,34 @@
 package com.pfe.madrasati.model;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 @Entity
-@Table (name = "classe")
+@Table(name = "classe")
 public class Classe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
-    @SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
-	  @Column(name = "idclasse")
-    private Integer idClasse;
-	@Column(name="nomclasse")
+	@SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
+	@Column(name = "idclasse")
+	private Integer idClasse;
+	@Column(name = "nomclasse")
 	private String nomClasse;
-	@Column(name="nombreeleve")
+	@Column(name = "nombreeleve")
 	private Integer nombreEleve;
-	@Column(name="idniveau")
+	@Column(name = "idniveau")
 	private Integer idNiveau;
+
 	public Classe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Classe(Integer idClasse, String nomClasse, Integer nombreEleve, Integer idNiveau) {
 		super();
 		this.idClasse = idClasse;
@@ -38,30 +36,39 @@ public class Classe {
 		this.nombreEleve = nombreEleve;
 		this.idNiveau = idNiveau;
 	}
+
 	public Integer getIdClasse() {
 		return idClasse;
 	}
+
 	public void setIdClasse(Integer idClasse) {
 		this.idClasse = idClasse;
 	}
+
 	public String getNomClasse() {
 		return nomClasse;
 	}
+
 	public void setNomClasse(String nomClasse) {
 		this.nomClasse = nomClasse;
 	}
+
 	public Integer getNombreEleve() {
 		return nombreEleve;
 	}
+
 	public void setNombreEleve(Integer nombreEleve) {
 		this.nombreEleve = nombreEleve;
 	}
+
 	public Integer getIdNiveau() {
 		return idNiveau;
 	}
+
 	public void setIdNiveau(Integer idNiveau) {
 		this.idNiveau = idNiveau;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,6 +79,7 @@ public class Classe {
 		result = prime * result + ((nombreEleve == null) ? 0 : nombreEleve.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -103,7 +111,5 @@ public class Classe {
 			return false;
 		return true;
 	}
-
-
 
 }

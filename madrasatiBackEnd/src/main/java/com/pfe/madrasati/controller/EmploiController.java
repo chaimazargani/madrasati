@@ -20,8 +20,8 @@ public class EmploiController {
 	EmploiService emploiService  ;
 	
 	@RequestMapping (value = "/creerEvent", method = RequestMethod.POST)
-    public	List<Event> ajouterEvent(@RequestBody Event event   ){
-		return (List<Event>) emploiService.ajouterEvent(event);
+    public Event ajouterEvent(@RequestBody Event event   ){
+		return emploiService.ajouterEvent(event);
 		
 	}
 	

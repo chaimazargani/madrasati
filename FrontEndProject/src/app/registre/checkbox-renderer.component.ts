@@ -7,15 +7,10 @@ import { RegistreDTO } from '../model/RegistreDTO';
 @Component({
   selector: 'checkbox-renderer',
   template: `
-    <input 
+    <p-checkbox 
       type="checkbox" 
       (click)="onChangeEtat($event)"
-      [checked]="params.value
-                    ? params.value.etat =='P'
-                        ? true 
-                        : false 
-                : return"
-    />
+    ></p-checkbox>
 `,
 })
 export class CheckboxRenderer implements ICellRendererAngularComp {

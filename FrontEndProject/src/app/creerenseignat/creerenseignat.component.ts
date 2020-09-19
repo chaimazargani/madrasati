@@ -30,7 +30,7 @@ export class CreerenseignatComponent implements OnInit {
       login: new FormControl(this.data.enseignant.login , Validators.maxLength(8)),
       motDepasse: new FormControl(this.data.enseignant.motDepasse  , Validators.maxLength(8)),
       identifiant: new FormControl(this.data.enseignant.identifiant ,Validators.max(200)),
-      dateNaissance: new FormControl(this.data.enseignant.dateNaissanceString ),
+      // dateNaissance: new FormControl(this.data.enseignant.dateNaissanceString ),
 
 
 

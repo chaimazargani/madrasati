@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { CreerenseignatComponent } from '../../app/creerenseignat/creerenseignat.component';
-import { LoginComponent } from '../../app/login/login.component';
+// import { LoginComponent } from '../../app/login/login.component';
 import { CreerclasseComponent } from '../../app/creerclasse/creerclasse.component';
 import { EnseignantComponent } from '../../app/app-web/enseignant/enseignant.component';
 import { NoteComponent } from '../../app/app-web/enseignant/note/note.component';
@@ -22,13 +22,14 @@ import { ListenseignantComponent } from '../../app/listenseignant/listenseignant
 import { EmploiComponent } from '../../app/emploi/emploi.component';
 import { CreereventemploiComponent } from '../../app/creereventemploi/creereventemploi.component';
 import { NoteeleveComponent } from '../../app/noteeleve/noteeleve.component';
+import { AuthenticationComponent } from '../../app/login/authentication.component';
 
 
 const appRoutes: Routes = [
   { path: 'creerEnseignant', component: CreerenseignatComponent },
   { path: 'creerexamen', component: CreerexamenComponent },
 
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: AuthenticationComponent },
   { path: 'creerclasse', component: CreerclasseComponent },
   { path: 'enseignant', component: EnseignantComponent },
   { path: 'note', component: NoteComponent},

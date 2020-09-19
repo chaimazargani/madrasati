@@ -19,14 +19,13 @@ export class AppComponent implements OnInit {
     this.items = [
       {
           label: 'Administration',
-          icon: 'pi pi-fw pi-file',
           items: [{},
               {label: 'Configuration Examen'  , routerLink : "listexamen"},
               {separator:true},
               {label: 'Configuration Note'  , routerLink :"note"},
               {separator:true},
 
-              {label: 'Lister les Personnels' , routerLink : "listenseignant"},
+              {label: 'Géstion les Personnels' , routerLink : "listenseignant"},
               {separator:true},
 
               {label: 'Configuration Matiére' , routerLink : "listmatiere" },
@@ -45,28 +44,20 @@ export class AppComponent implements OnInit {
       },
       {
         label: 'Registre'  , routerLink : "registre",
-        icon: 'pi pi-fw pi-pencil',
         },
       
         {
             label: 'Emploi du Temps' , routerLink : "emploi",
-            icon: 'pi pi-fw pi-pencil',
             },
              {
                 label: 'Note'  , routerLink : "note",
-                icon: 'pi pi-fw pi-pencil',
                 },
                 {
                     label: 'NoteEleve'  , routerLink : "noteeleve",
-                    icon: 'pi pi-fw pi-pencil',
                     },
                     {
                       label: 'Cours'  , routerLink : "cours",
-                      icon: 'pi pi-fw pi-pencil',
-                      },
- {
-          label: 'Quit', icon: 'pi pi-fw pi-times'
-      }
+                      }
   ];
   }
  

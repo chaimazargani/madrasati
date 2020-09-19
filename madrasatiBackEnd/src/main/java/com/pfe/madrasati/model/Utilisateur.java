@@ -10,11 +10,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.pfe.madrasati.model.security.Role;
 
 @Entity
 @Table(name = "utilisateur")
@@ -42,8 +47,8 @@ public class Utilisateur implements Serializable , UserDetails {
 	@Column(name = "numtel")
 	private Integer numTel;
 
-	@Column(name = "datedenaissance")
-	private Date dateNaissance;
+//	@Column(name = "datedenaissance")
+//	private Date dateNaissance;
 	@Column(name = "adresse")
 	private String adresse;
 	@Column(name = "emaill", unique = true)
@@ -51,29 +56,48 @@ public class Utilisateur implements Serializable , UserDetails {
 	// @NotEmpty(message="Please Enter your email")
 	private String email;
 	@Column(name = "login")
-	private String login;
+	private String username;
 	@Column(name = "motdepasse")
-	private String motDepasse;
+	private String password;
+	
+//	@MapsId("idRole")
+//	@ManyToOne
+//	@JoinColumn(name="idrole", insertable = true ,updatable = true)
+//	private Role role ; 
+	
+	
 
 	public Utilisateur() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+	
 	public Utilisateur(Integer idUtilisateur, String nom, String prenom, Integer identifiant, Integer numTel,
-			Date dateNaissance, String adresse, String email, String login, String motDepasse) {
+			Date dateNaissance, String adresse, String email, String username, String password, Role role) {
 		super();
 		this.idUtilisateur = idUtilisateur;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.identifiant = identifiant;
 		this.numTel = numTel;
-		this.dateNaissance = dateNaissance;
+//		this.dateNaissance = dateNaissance;
 		this.adresse = adresse;
 		this.email = email;
-		this.login = login;
-		this.motDepasse = motDepasse;
+		this.username = username;
+		this.password = password;
+//		this.role = role;
 	}
+
+
+//	public Role getRole() {
+//		return role;
+//	}
+//
+//
+//	public void setRole(Role role) {
+//		this.role = role;
+//	}
+
 
 	public Integer getIdUtilisateur() {
 		return idUtilisateur;
@@ -115,13 +139,13 @@ public class Utilisateur implements Serializable , UserDetails {
 		this.numTel = numTel;
 	}
 
-	public Date getDateNaissance() {
-		return dateNaissance;
-	}
-
-	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
+//	public Date getDateNaissance() {
+//		return dateNaissance;
+//	}
+//
+//	public void setDateNaissance(Date dateNaissance) {
+//		this.dateNaissance = dateNaissance;
+//	}
 
 	public String getAdresse() {
 		return adresse;
@@ -139,20 +163,19 @@ public class Utilisateur implements Serializable , UserDetails {
 		this.email = email;
 	}
 
-	public String getLogin() {
-		return login;
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getMotDepasse() {
-		return motDepasse;
-	}
 
-	public void setMotDepasse(String motDepasse) {
-		this.motDepasse = motDepasse;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
@@ -163,35 +186,26 @@ public class Utilisateur implements Serializable , UserDetails {
 
 	@Override
 	public String getPassword() {
-		return this.motDepasse;
+		return this.password;
 	}
 
 	@Override
-	public String getUsername() {
-		return this.nom;
-		}
-
-	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -1,2 +1,46 @@
 
-  
+  /*HEADER*/
+::ng-deep body .ui-menubar .ui-menuitem-link .ui-menuitem-text {
+    color: #ffffff;
+}
+::ng-deep body .ui-menubar .ui-menuitem-link {
+    padding: 0.714em 0.857em;
+    color: #ffffff;
+}
+::ng-deep body .ui-menubar {
+    padding: 10px;
+    background-color: #298add;
+    border: 0;
+    border-radius: 0;
+    color: #ffffff;
+}
+::ng-deep body .ui-menubar .ui-menuitem-link.ui-menuitem-link-active .ui-menuitem-text {
+    color: #ffffff;
+}
+::ng-deep body .ui-menubar ul {
+    margin-top: 6px;
+}
+::ng-deep body .ui-menubar .ui-menubar-root-list > .ui-menuitem > .ui-menuitem-link {
+    padding: 0.214em 1.57em;
+    border-right: 1px solid #1b88e4;
+}
+.username{
+    font-size: 12px;
+    padding: 9px 20px;
+}
+.main-container {
+    margin: 20px 20px 0;
+    max-height: calc(100vh - 82px);
+    background: #ffffff;
+    padding: 0 20px;
+    overflow: auto;
+    height: calc(100vh - 82px);
+}
+.main-title{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    margin: 20px 0;
+    font-weight: 700;
+    color: #298add;
+}

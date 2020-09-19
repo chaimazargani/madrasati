@@ -8,7 +8,8 @@ export class Utilisateur {
     public adresse: string;
     public email: String;
     public login: string;
-    public motDepasse: string;
+    public password: string;
    public dateNaissanceString : any ;
+   
     constructor() {}
 }

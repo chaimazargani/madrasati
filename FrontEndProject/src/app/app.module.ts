@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreerenseignatComponent } from './creerenseignat/creerenseignat.component';
 import { RoutingModule } from '../modules/routing/routing.module';
-import { LoginComponent } from './login/login.component';
+// import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreerclasseComponent } from './creerclasse/creerclasse.component';
 import { AppWebComponent } from './app-web/app-web.component';
@@ -38,6 +38,7 @@ import { NoteeleveComponent } from './noteeleve/noteeleve.component';
 import { CheckboxRenderer } from './registre/checkbox-renderer.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { CourseleveComponent } from './courseleve/courseleve.component';
+import { AuthenticationComponent } from './login/authentication.component';
 
 //import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
@@ -48,7 +49,7 @@ import { CourseleveComponent } from './courseleve/courseleve.component';
   declarations: [
     AppComponent,
     CreerenseignatComponent,
-    LoginComponent,
+    // LoginComponent,
     CreerclasseComponent,
     AppWebComponent,
     EnseignantComponent,
@@ -68,9 +69,7 @@ import { CourseleveComponent } from './courseleve/courseleve.component';
     EmploiComponent,
     CreereventemploiComponent,
     NoteeleveComponent, 
-    CheckboxRenderer, CourseleveComponent,
-    
-  ],
+    CheckboxRenderer, CourseleveComponent ,AuthenticationComponent ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -84,7 +83,6 @@ import { CourseleveComponent } from './courseleve/courseleve.component';
     AgGridModule.withComponents([CheckboxRenderer]),
     MatTableModule,
     MatSortModule,
-    
   ],
   providers: [
     AppareilService ,

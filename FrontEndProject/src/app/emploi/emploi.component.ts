@@ -115,7 +115,7 @@ export class EmploiComponent implements OnInit {
       }
     ]
 
-    this.options =
+    this.options  =
     {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       defaultDate: '2017-02-01',
@@ -127,8 +127,8 @@ export class EmploiComponent implements OnInit {
       dateClick: ($dateObject) => {this.dateClick($dateObject,null)},
       eventClick: ($eventObject) => {this.dateClick(null,$eventObject)},
       editable: true,
-      durationEditable:true
-     
+      durationEditable:true,
+      defaultView: 'timeGridWeek'
     }
 
   } 
@@ -137,22 +137,21 @@ export class EmploiComponent implements OnInit {
   dateClick(dateObject, eventObject)  {
    let popupData : any = [];
      if (dateObject) {
-      this.popupData.start = dateObject.dateStr  ;
+      this.popupData.start = new Date(dateObject.dateStr)  ;
       this.dialogRefCreerevent = this.dialog.open(CreereventemploiComponent, {
         width: '400px',
         height:'100%',
-        data: {popupData : popupData}
+        data: {popupData : this.popupData}
      }); 
      this.dialogRefCreerevent.afterClosed() 
      .subscribe(result => {
         
           if (result.validation == "sauvegarder"){
             let event = new EventMadrasati();
-            event.start = new Date(result.event.start);
-            event.end = new Date(result.event.end);
+            event.start = result.event.start;
+            event.end = result.event.end;
             event.title = result.event.title;
-              
-       this.httpClient.post<any>('http://localhost:8080/madrasati/creerEvent', event )
+         this.httpClient.post<any>('http://localhost:8080/madrasati/creerEvent', event )
           .subscribe (d =>{
             console.log(d);
           
@@ -176,10 +175,10 @@ export class EmploiComponent implements OnInit {
     .subscribe(result => {
        if (result.validation == "sauvegarder"){
       let event = new EventMadrasati();
-      event.start = new Date(result.event.start);
-      event.end = new Date(result.event.end);
+      event.start = result.event.start;
+      event.end = result.event.end;
       event.title = result.event.title;
-        event.id = result.event.id ;
+        // event.id = result.event.id ;
          this.httpClient.post<any>('http://localhost:8080/madrasati/modifierEvent',event)
          .subscribe (d =>{
           console.log(d);

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration 
 @EnableWebMvc 
 @ComponentScan(basePackages = "com.pfe.madrasati")
-public class SpringMvcConfiguration  {
+public class SpringMvcConfiguration {
 	@Bean
 	public CommonsMultipartResolver multipartResolver(){
 		   CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
@@ -17,4 +17,5 @@ public class SpringMvcConfiguration  {
 		    commonsMultipartResolver.setMaxUploadSize(50000000);
 		    return commonsMultipartResolver;
 	}
+
 }

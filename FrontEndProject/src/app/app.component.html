@@ -1,15 +1,10 @@
 <p-menubar [model]="items">
-    <input type="text" pInputText placeholder="Search">
-    <button pButton label="Logout" icon="pi pi-power-off"></button>
-  </p-menubar>
-<div>
-<ul >
-
-</ul>
+    <span class="username">Bienvenue M.HamzaBA</span>
+    <button pButton label="Logout" class="p-button-text" icon="pi pi-power-off"></button>
+</p-menubar>
+<div class="main-container">
+  <h3 class="main-title">Registre</h3>
+  <router-outlet></router-outlet>
 </div>
-
-<div > 
-    <div >
-        <router-outlet></router-outlet>
 
         

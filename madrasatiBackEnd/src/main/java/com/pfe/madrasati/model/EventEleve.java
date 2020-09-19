@@ -49,8 +49,8 @@ public class EventEleve {
 	@JoinColumn(name = "start")
     public  Date start ;
 //public any startEditable  ; 
-	@JoinColumn(name = "textcolor")
-   public  String textColor ; 
+//	@JoinColumn(name = "textcolor")
+//   public  String textColor ; 
 	
 	@JoinColumn(name = "title")
     public String title  ; 
@@ -81,7 +81,7 @@ public class EventEleve {
 		this.groupId = groupId;
 		this.rendering = rendering;
 		this.start = start;
-		this.textColor = textColor;
+//		this.textColor = textColor;
 		this.title = title;
 		this.idEleve = idEleve;
 		this.nomEleve = nomEleve;
@@ -146,12 +146,12 @@ public class EventEleve {
 	public void setStart(Date start) {
 		this.start = start;
 	}
-	public String getTextColor() {
-		return textColor;
-	}
-	public void setTextColor(String textColor) {
-		this.textColor = textColor;
-	}
+//	public String getTextColor() {
+//		return textColor;
+//	}
+//	public void setTextColor(String textColor) {
+//		this.textColor = textColor;
+//	}
 	public String getTitle() {
 		return title;
 	}
@@ -186,94 +186,9 @@ public class EventEleve {
 		result = prime * result + ((nomEleve == null) ? 0 : nomEleve.hashCode());
 		result = prime * result + ((rendering == null) ? 0 : rendering.hashCode());
 		result = prime * result + ((start == null) ? 0 : start.hashCode());
-		result = prime * result + ((textColor == null) ? 0 : textColor.hashCode());
+//		result = prime * result + ((textColor == null) ? 0 : textColor.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EventEleve other = (EventEleve) obj;
-		if (allDay != other.allDay)
-			return false;
-		if (allow == null) {
-			if (other.allow != null)
-				return false;
-		} else if (!allow.equals(other.allow))
-			return false;
-		if (backgroundColor == null) {
-			if (other.backgroundColor != null)
-				return false;
-		} else if (!backgroundColor.equals(other.backgroundColor))
-			return false;
-		if (borderColor == null) {
-			if (other.borderColor != null)
-				return false;
-		} else if (!borderColor.equals(other.borderColor))
-			return false;
-		if (classNames == null) {
-			if (other.classNames != null)
-				return false;
-		} else if (!classNames.equals(other.classNames))
-			return false;
-		if (end == null) {
-			if (other.end != null)
-				return false;
-		} else if (!end.equals(other.end))
-			return false;
-		if (groupId == null) {
-			if (other.groupId != null)
-				return false;
-		} else if (!groupId.equals(other.groupId))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (idEleve == null) {
-			if (other.idEleve != null)
-				return false;
-		} else if (!idEleve.equals(other.idEleve))
-			return false;
-		if (nomEleve == null) {
-			if (other.nomEleve != null)
-				return false;
-		} else if (!nomEleve.equals(other.nomEleve))
-			return false;
-		if (rendering == null) {
-			if (other.rendering != null)
-				return false;
-		} else if (!rendering.equals(other.rendering))
-			return false;
-		if (start == null) {
-			if (other.start != null)
-				return false;
-		} else if (!start.equals(other.start))
-			return false;
-		if (textColor == null) {
-			if (other.textColor != null)
-				return false;
-		} else if (!textColor.equals(other.textColor))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "EventEleve [id=" + id + ", allDay=" + allDay + ", allow=" + allow + ", backgroundColor="
-				+ backgroundColor + ", borderColor=" + borderColor + ", classNames=" + classNames + ", end=" + end
-				+ ", groupId=" + groupId + ", rendering=" + rendering + ", start=" + start + ", textColor=" + textColor
-				+ ", title=" + title + ", idEleve=" + idEleve + ", nomEleve=" + nomEleve + "]";
 	}
 	
 	

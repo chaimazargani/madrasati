@@ -7,3 +7,42 @@
 @import "../node_modules/primeicons/primeicons.css";
 @import "../node_modules/primeng/resources/themes/nova-light/theme.css";
 @import "../node_modules/primeng/resources/primeng.min.css";
+
+@import "../node_modules/css-file-icons/build/css-file-icons.css";
+
+body{
+    background: #eee;
+    margin: 0;
+    font-size: 12px;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+ag-grid-angular{
+    width: 100%;
+    height: 400px;
+}
+.filter-section {
+    background: rgb(17 111 191 / 16%);
+    padding: 10px 10px 0;
+    margin-bottom: 20px;
+}
+.filter-section .mat-form-field-wrapper {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.bottom-section{
+    text-align: right;
+    padding: 20px 0 10px;
+}
+/*--STYLE TABLE--*/
+::ng-deep body .ag-theme-balham .ag-root {
+    border: 1px solid #eeeeee;
+}
+::ng-deep body ag-theme-balham .ag-header {
+    background-color: #298add;
+    color: rgb(255 255 255);
+    font-weight: 600;
+    font-size: 12px;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    border-bottom: 1px solid #298add;
+}

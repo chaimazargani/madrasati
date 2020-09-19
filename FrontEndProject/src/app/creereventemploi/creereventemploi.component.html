@@ -1,6 +1,6 @@
 <html>
 <body>
- <form [formGroup]="profileFormGroup" (ngSubmit)="dialogClose()" (ngSubmit)="supprimerEvent(data)">
+ <form [formGroup]="profileFormGroup" (ngSubmit)="dialogClose()" (ngSubmit)="ajouterEmploie(data)">
     <table>
        <div>
         <tr>
@@ -15,9 +15,9 @@
           </mat-form-field>
         </tr> -->
         <tr>dateDebut</tr>
-        <p-calendar [(ngModel)]="data.popupData.start" showTime="true" hourFormat="24"></p-calendar>
+        <p-calendar [(ngModel)]="data.popupData.start" showTime="true" hourFormat="24" formControlName="start"></p-calendar>
         <tr>dateFin</tr>
-        <p-calendar [(ngModel)]="data.popupData.end" showTime="true" hourFormat="24" ></p-calendar>
+        <p-calendar [(ngModel)]="data.popupData.end" showTime="true" hourFormat="24"  formControlName="end"></p-calendar>
 
         
         <!-- <tr>
@@ -32,8 +32,8 @@
         </tr>-->
       <tr>
           <button mat-raised-button mat-dialog-close>Cancel</button>
-          <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Sauvegarder</button>
-          <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Supprimer</button>
+          <button mat-raised-button type="submit" >Sauvegarder</button>
+          <!-- <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Supprimer</button> -->
 
       </tr> 
     

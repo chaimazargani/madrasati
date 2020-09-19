@@ -1,0 +1,71 @@
+<div class="page-container">
+	<div class="bg">
+		<div class="wrapper">
+			<section class="signin" role="main">
+				<div class="chalkboard">
+					<span class="chalkwriting">{{loginFormGroup.value.email}}</span>
+				</div>
+				<div class="login-form">
+					<div class="logo">
+						<span class='icon'></span>
+					</div>
+					<div style="display: flex;position: relative;">
+						<div class="app-title">Madrasati</div>
+					</div>
+					<form (ngSubmit)="onSubmit()" class="form-horizontal" [formGroup]="loginFormGroup">
+						<div class="form-group">
+							<tr>
+								<mat-form-field class="form-control">
+									<input matInput type="text" id="name" name="email" placeholder="Email"
+										formControlName="email" required>
+								</mat-form-field>
+							</tr>
+							<!-- <div class="field">
+								<div class="required">
+									<label for="email" class="label">{{ 'Email' }}</label>
+									<input class="form-control" name="email" formControlName="email"
+										placeholder="Email" />
+								</div>
+							</div> -->
+							<tr>
+								<mat-form-field class="form-control">
+									<input matInput type="password" id="password" name="password" placeholder="password"
+										formControlName="password" required>
+								</mat-form-field>
+							</tr>
+						</div>
+						<!-- <div class="field">
+								
+								<div class="required">
+									<label for="password" class="label">{{ 'Password' }}</label>
+									<input type="password" class="form-control" name="password"
+										formControlName="password" placeholder="Password" />
+								</div>
+							</div> -->
+						<!-- <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Sauvegarder</button> -->
+						<span *ngIf="isAuthFailed">               
+							<small>
+							 	lblWrongCredentials
+							</small>             
+						  </span>
+						<div style="position: relative;">
+
+
+							<button style="background-color:rgb(3, 77, 109); left:0;top:5px;position: absolute;"
+								class="btn btn-primary" type="submit"
+								[disabled]="!loginFormGroup.valid">{{'Login'}}</button>
+
+							<a [routerLink]="['/']" class="btn btn-primary"
+								style="background-color:rgb(3, 77, 109);right:0;top:5px;position: absolute;">Cancel</a>
+						</div>
+					</form>
+				</div>
+				<div *ngIf="errorMessage">
+					<div class="alert alert-danger" role="alert">
+						{{errorMessage}}
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

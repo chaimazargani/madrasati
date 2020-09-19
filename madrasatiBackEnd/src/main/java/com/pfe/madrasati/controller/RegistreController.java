@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pfe.madrasati.model.Examen;
 import com.pfe.madrasati.model.RegistreDTO;
+import com.pfe.madrasati.model.RegsitreDTOEnseignant;
 import com.pfe.madrasati.service.RegistreService;
 
 @RestController
@@ -30,29 +31,11 @@ public class RegistreController {
 	@ResponseBody
 	public Map<String, List<RegistreDTO>> getPresenceByIdEleve(@RequestParam("idClasse") Integer idClasse,
 			@RequestParam("datePresenceString") String datePresenceString) {
-
-		
-//OffsetDateTime offsetStartDateTime = OffsetDateTime.parse(datePresenceString);
-//	
-//		final LocalDateTime datePresence = offsetStartDateTime.toLocalDateTime();
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'.000Z'")
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'.000Z'")
 	            .withZone(ZoneId.of("UTC"));
-//	        LocalDateTime date = LocalDateTime.parse("+2017-02-26T01:02:03Z", formatter);	
 	       LocalDateTime datePresence = LocalDateTime.parse(datePresenceString, formatter);
-
-		// return new ArrayList () ;
-		
-		final List<RegistreDTO> dbResultList =  registreService.getPresenceByIdEleve(datePresence , idClasse);
-
-		
-//		List<RegistreDTO> registreDTOList = new ArrayList<>();
-//		RegistreDTO registreDTO = new RegistreDTO(datePresence, "absent", "ahmed");
-//		RegistreDTO registreDTO1 = new RegistreDTO(datePresence, "Absent", "amal");
-//		RegistreDTO registreDTO2 = new RegistreDTO(datePresence, "Absent", "chaima");
-//		registreDTOList.add(registreDTO);
-//		registreDTOList.add(registreDTO1);
-//		registreDTOList.add(registreDTO2);
-		return  getPresenceGroupeBY(dbResultList);
+  final List<RegistreDTO> dbResultList =  registreService.getPresenceByIdEleve(datePresence , idClasse);
+   return  getPresenceGroupeBY(dbResultList);
 
 	}
 
@@ -69,4 +52,24 @@ public class RegistreController {
 	 final  List<RegistreDTO> list  = registreService.sauvegarderPresence( registreDTOList) ;
 		  return  list;
 	}
+	
+//	@RequestMapping(value = "/getPresenceByIdEleve", method = RequestMethod.GET)
+//	@ResponseBody
+//	public Map<String, List<RegsitreDTOEnseignant>> getPresenceByIdEnseignant(@RequestParam("idEnseiganat") Integer idEnseignat,
+//			@RequestParam("datePresenceString") String datePresenceString) {
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'.000Z'")
+//	            .withZone(ZoneId.of("UTC"));
+//	       LocalDateTime datePresence = LocalDateTime.parse(datePresenceString, formatter);
+//  final List<RegsitreDTOEnseignant> ResultList =  registreService.getPresenceByIdEnseignant(datePresence, idEnseignat);
+//   return  getPresenceGroupeBYidEnseiganat(ResultList);
+//
+//	}
+//
+//	public Map<String, List<RegsitreDTOEnseignant>> getPresenceGroupeBYidEnseiganat(List<RegsitreDTOEnseignant> registreDTOList) {
+//		List<RegsitreDTOEnseignant> list = registreDTOList;
+//
+//		Map<String, List<RegsitreDTOEnseignant>> map = list.stream().collect(Collectors.groupingBy(RegsitreDTOEnseignant::getNomEnseigant));
+//
+//		return map;
+//	}
 }

@@ -1,5 +1,6 @@
 package com.pfe.madrasati.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,19 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 @Entity
-@Table (name = "event")
+@Table(name = "event")
 public class Event {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
-    @SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
-	@Column(name="id")
-      public  Integer id ;  
-	
+	@SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
+	@Column(name = "id")
+	public Integer id;
+
 //	@JoinColumn(name = "allday")
 //	 public  boolean allDay ; 
 //	
@@ -39,8 +40,8 @@ public class Event {
 //	
 //	@JoinColumn(name = "durationeditable")
 //   public  String  durationEditable ; 
-    @Column(name="end")
-  public Date  end ;
+	@Column(name = "end")
+	public LocalDateTime end;
 ////public  any extendedProps ;
 //	@JoinColumn(name = "groupid")
 //    public  String groupId ;
@@ -52,20 +53,19 @@ public class Event {
 //    public  String rendering ; 
 ////public  EventSourceApi source:  ;
 
-  @Column(name="start")
-    public  Date start ;
-  @Column(name="color")
-	public String color ;
-  @Column(name="textColor")
-	public String textColor ;
+	@Column(name = "start")
+	public LocalDateTime start;
+	
+	@Column(name = "color")
+	public String color;
 
 //    public String  startEditable  ; 
 //	
 
 //   public  String textColor ; 
 //	
-  @Column(name="title")
-    public String title  ; 
+	@Column(name = "title")
+	public String title;
 //	
 //	@JoinColumn(name = "url")
 //     public  String  url ; 
@@ -84,68 +84,58 @@ public class Event {
 //    public boolean editable ;
 //
 
-public Event() {
-	super();
-	// TODO Auto-generated constructor stub
-}
+	public Event() {
+		super();
+	}
 
-public Event(Integer id, Date end, Date start, String color, String textColor, String title) {
-	super();
-	this.id = id;
-	this.end = end;
-	this.start = start;
-	this.color = color;
-	this.textColor = textColor;
-	this.title = title;
-}
+	public Integer getId() {
+		return id;
+	}
 
-public Integer getId() {
-	return id;
-}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-public void setId(Integer id) {
-	this.id = id;
-}
 
-public Date getEnd() {
-	return end;
-}
+	public LocalDateTime getEnd() {
+		return end;
+	}
 
-public void setEnd(Date end) {
-	this.end = end;
-}
+	public void setEnd(LocalDateTime end) {
+		this.end = end;
+	}
 
-public Date getStart() {
-	return start;
-}
+	public LocalDateTime getStart() {
+		return start;
+	}
 
-public void setStart(Date start) {
-	this.start = start;
-}
+	public void setStart(LocalDateTime start) {
+		this.start = start;
+	}
 
-public String getColor() {
-	return color;
-}
+	public String getColor() {
+		return color;
+	}
 
-public void setColor(String color) {
-	this.color = color;
-}
+	public void setColor(String color) {
+		this.color = color;
+	}
 
-public String getTextColor() {
-	return textColor;
-}
+	public String getTitle() {
+		return title;
+	}
 
-public void setTextColor(String textColor) {
-	this.textColor = textColor;
-}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-public String getTitle() {
-	return title;
-}
+	public Event(Integer id, LocalDateTime end, LocalDateTime start, String color, String title) {
+		super();
+		this.id = id;
+		this.end = end;
+		this.start = start;
+		this.color = color;
+		this.title = title;
+	}
 
-public void setTitle(String title) {
-	this.title = title;
-}
-	
-	
 }

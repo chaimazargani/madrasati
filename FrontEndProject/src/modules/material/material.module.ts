@@ -46,6 +46,7 @@ import {MenubarModule} from 'primeng/menubar';
 import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
 import {FileUploadModule} from 'primeng/fileupload';
+import {TooltipModule} from 'primeng/tooltip';
 @NgModule({
   imports: [
     CommonModule,
@@ -104,6 +105,7 @@ import {FileUploadModule} from 'primeng/fileupload';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FileUploadModule,
+    TooltipModule,
     ],
     exports: [
       MatSelectModule,
@@ -161,6 +163,7 @@ import {FileUploadModule} from 'primeng/fileupload';
       ToastModule,
       ReactiveFormsModule,
       FileUploadModule,
+      TooltipModule,
     ],
   declarations: [
     

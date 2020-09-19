@@ -3,36 +3,48 @@
 
 
 
-<button mat-raised-button type="submit" (click)="listCour()">List des Cours</button>
-<p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="putFiles($event.files)">
-        <ng-template pTemplate="toolbar">
-                <button pButton type="button" label="Download Files"
-                (click)="Downloadfiles()">
-                </button>
-        </ng-template> 
-</p-fileUpload>
+<ng-container>
+        <p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="putFiles($event.files)" [(ngModel)]="filesToUploadList"  multiple="multiple">
+        
+        </p-fileUpload>
 
 
-<table mat-table [dataSource]="listNomFichier" class="mat-elevation-z8">
+<mat-table [dataSource]="listNomFichierDataSource" #fichierTable class="mat-elevation-z8">
 
         <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Position Column -->
-        <ng-container matColumnDef="cours">
-                <th mat-header-cell *matHeaderCellDef> cours </th>
-                <td mat-cell *matCellDef="let nomFichier "> {{nomFichier}} </td>
-        </ng-container>
+         <ng-container matColumnDef="cours">
+                        <mat-header-cell *matHeaderCellDef>Cours</mat-header-cell>
+                        <mat-cell *matCellDef="let fichier">
+                                {{fichier.nomFichier}} </mat-cell>
+                </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="telechargement">
-                <mat-header-cell *matHeaderCellDef> Télécharger </mat-header-cell>
-                <mat-cell *matCellDef="let nomFichier">
-                        <input matButton class='button' type="button" (click)="getObjectFile(nomFichier)"
-                                value="Télécharger Cour">
-                </mat-cell>
-        </ng-container>
+         <ng-container matColumnDef="telechargement">
+                        <mat-header-cell *matHeaderCellDef>Télécharger</mat-header-cell>
+                        <mat-cell *matCellDef="let fichier">
+                                <span class="downloadButton">
+                                        <button pButton icon="pi pi-download" type="button" pTooltip="Telecharger"
+                                                (click)="getObjectFile(fichier.nomFichierComp)">
+                                                <i class="pi pi-file-{{fichier.typeFichier== 'docx' ? 'o' : fichier.typeFichier}}"></i>
+                                        </button>
+                                </span>
+                        </mat-cell>
+                </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+
+         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table> 
+        <!-- <ng-container class="flex-container">
+                <div *ngFor="let fichier of listNomFichier">
+                        <div>{{fichier.nomFichier}}
+                                <i class="pi pi-download" style="margin:5px"></i>
+                                <i class="pi pi-file-{{fichier.typeFichier}}" style="margin:5px"></i>
+                        </div>
+
+                </div>
+        </ng-container> -->
+</ng-container>
