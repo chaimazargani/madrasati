@@ -19,7 +19,7 @@ body{
 
 ag-grid-angular{
     width: 100%;
-    height: 400px;
+    height: 270px;
 }
 .filter-section {
     background: rgb(17 111 191 / 16%);
@@ -34,15 +34,77 @@ ag-grid-angular{
     text-align: right;
     padding: 20px 0 10px;
 }
-/*--STYLE TABLE--*/
-::ng-deep body .ag-theme-balham .ag-root {
-    border: 1px solid #eeeeee;
+::ng-deep body .ui-chkbox .ui-chkbox-box {
+    width: 15px;
+    height: 15px;
+  }
+    
+.ui-menubar .ui-menuitem-active > .ui-submenu > .ui-submenu-list {
+    display: block;
+    background-color: rgb(92 134 172 / 93%);
 }
-::ng-deep body ag-theme-balham .ag-header {
-    background-color: #298add;
-    color: rgb(255 255 255);
-    font-weight: 600;
-    font-size: 12px;
+.ui-menubar .ui-menubar-root-list>.ui-menuitem>.ui-menuitem-link>.ui-submenu-icon :hover{
+    vertical-align: middle;
+    color: #333333;
+    margin-left: 0.25em;
+}
+
+div#cdk-overlay-0  {
+    top: 196.708px !important;
+}
+div#cdk-overlay-1  {
+    top: 196.708px !important;
+}
+div#cdk-overlay-2  {
+    top: 196.708px !important;
+}
+div#cdk-overlay-3  {
+    top: 196.708px !important;
+}
+div#cdk-overlay-4  {
+    top: 196.708px !important;
+}
+
+.p-grid {
+    width: 100%;
+    margin-right: 0px ;
+    margin-left: 0px;
+}
+
+/** --CUSTOM SCROLLBAR-- **/
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: none ;
+    background-color: transparent;
+}
+*::-webkit-scrollbar{
+    width: 10px;
+    height: 4px;
+    background-color: transparent;
+}
+*::-webkit-scrollbar-thumb {
+ border-radius: 10px;
+ background-color: #8a8787;
+}
+
+.main-title{
+    font-size: 18px;
+    text-transform: uppercase;
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
-    border-bottom: 1px solid #298add;
+    margin: 20px 20px;
+    font-weight: 700;
+    color: #298add;
+}
+
+mat-table.mat-table {
+    width: 100%;
+    height: 298px;
+    overflow: hidden scroll;
+}
+
+.p-grid.table-section {
+height: 350px;
+}
+mat-paginator.mat-paginator {
+    border-top: #298add 1px solid;
+    width: 100%;
 }

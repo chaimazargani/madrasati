@@ -24,25 +24,6 @@ export interface Food {
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css'],
-  styles: [`
-  :host ::ng-deep button {
-      margin-right: .25em;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message {
-      background: #FC466B;
-      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
-      background: linear-gradient(to right, #3F5EFB, #FC466B);
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message div {
-      color: #ffffff;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
-      color: #ffffff;
-  }
-`],
   providers: [MessageService]
 })
 export class NoteComponent implements OnInit {
@@ -75,7 +56,8 @@ export class NoteComponent implements OnInit {
     this.ngGridTableau();
     //this.NoteEleve()
   }
- 
+  public selectedScreen = "Registre des notes";
+
   constructor(private noteService: NoteService, private httpClient: HttpClient, private noteHttpService: NoteHttpService, private messageService : MessageService ) {
 
   }

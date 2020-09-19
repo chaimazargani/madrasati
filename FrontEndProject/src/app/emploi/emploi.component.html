@@ -1,23 +1,14 @@
-
-
- <mat-form-field>
-    <mat-label>selectionner la classe </mat-label>
-    <mat-select  [(ngModel)]="classeSelectionner" (ngModelChange)="getListEvent()">
-      <mat-option *ngFor= "let classe of classeList" [value]="classe.idClasse">{{classe.nomClasse}}</mat-option>
-    </mat-select>
-     </mat-form-field>
-  
-<!-- <input matButton class='button' type="button"
-        (click)="getListEvent()" value="Supprimer Event">  -->
-   
-   
-
-  
-<p-fullCalendar #daySchedule  [events]="eventList" [options]="options"></p-fullCalendar>
-
-
-
-
-
-
-
+<h3 class="main-title">{{selectedScreen}}</h3>
+<div class="p-grid filter-section">
+  <div class="p-col-auto">
+    <mat-form-field>
+      <mat-label>selectionner la classe </mat-label>
+      <mat-select [(ngModel)]="classeSelectionner" (ngModelChange)="getListEvent()">
+        <mat-option *ngFor="let classe of classeList" [value]="classe.idClasse">{{classe.nomClasse}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div class="p-grid table-section">
+  <p-fullCalendar #daySchedule [events]="eventList" [options]="options"></p-fullCalendar>
+</div>

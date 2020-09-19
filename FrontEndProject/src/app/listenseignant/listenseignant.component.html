@@ -1,45 +1,41 @@
-<body>
-  <div class="definition-header">Enseignant
-    <div class="example-container mat-elevation-z8" style="position: relative;">
-      <div class="filter">
-        <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-      </div>
-      <div style="position: absolute;top: 15px;right:50px;">
-        <tr>
-          <!-- <input matButton class = 'button' type="button" (click)=" ajouterClasse()" value="Ajouter classe"> -->
-          <button mat-raised-button (click)="ajouterEnseignant(enseignant)" style="font-size:40px;color:gray;">+</button>
-        </tr>
-      </div>
-      <div style="position:absolute;width:100%;top:100px;left:auto">
-        <ng-container matColumnDef="select">
-          <mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? null: null" [checked]="selection.hasValue() && isAllSelected()"
-              [indeterminate]="selection.hasValue() && !isAllSelected()">
-            </mat-checkbox>
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-              [checked]="selection.isSelected(row)">
-            </mat-checkbox>
-          </mat-cell>
-        </ng-container>
- 
-    <mat-table #table [dataSource]="listEnseignantdata">
-      <ng-container matColumnDef="supprimer">
-        <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
-        <mat-cell *matCellDef="let enseignant"> <input matButton class='button' type="button"
-            (click)="supprimerEnseignant(enseignant)" value="Supprimer enseignant">
-        </mat-cell>
-      </ng-container>
+<h3 class="main-title">{{selectedScreen}}</h3>
+<div class="p-grid filter-section">
+  <div class="p-col-auto">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div class="p-col-auto">
+    <button mat-raised-button pTooltip="Ajouter un nouveau utlisateur" (click)="ajouterEnseignant(enseignant)"
+      style="font-size:40px;color:gray;">+</button>
+  </div>
+</div>
+<div class="p-grid table-section">
+  <mat-header-cell *matHeaderCellDef>
+    <mat-checkbox (change)="$event ? null: null" [checked]="selection.hasValue() && isAllSelected()"
+      [indeterminate]="selection.hasValue() && !isAllSelected()">
+    </mat-checkbox>
+  </mat-header-cell>
+  <mat-cell *matCellDef="let row">
+    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+      [checked]="selection.isSelected(row)">
+    </mat-checkbox>
+  </mat-cell>
 
-      <ng-container matColumnDef="modifier">
-        <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
-        <mat-cell *matCellDef="let enseignant"> <input matButton class='button' type="button"
-            (click)="modifierEnseignant(enseignant)" value="Modifier Enseignant">
-        </mat-cell>
-      </ng-container>
+  <mat-table #table [dataSource]="listEnseignantdata">
+    <ng-container matColumnDef="supprimer">
+      <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+      <mat-cell *matCellDef="let enseignant"> <button pButton icon="pi pi-trash"
+          (click)="supprimerEnseignant(enseignant)" value="Supprimer enseignant"></button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="modifier">
+      <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
+      <mat-cell *matCellDef="let enseignant"> <button pButton icon="pi pi-pencil" 
+ (click)="modifierEnseignant(enseignant)"></button>
+      </mat-cell>
+    </ng-container>
 
     <ng-container matColumnDef="nom">
       <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
@@ -72,7 +68,7 @@
     </ng-container>
 
     <ng-container matColumnDef="login">
-      <mat-header-cell *matHeaderCellDef> Login  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Login </mat-header-cell>
       <mat-cell *matCellDef="let enseignant"> {{enseignant.login }} </mat-cell>
     </ng-container>
 
@@ -89,20 +85,16 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-</mat-paginator> 
-
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
 </div>
-</div></div>
+
+
 <ng-template #alertDialog>
   <h2 mat-dialog-title>voulez vous vraiment supprimer l'enseignant </h2>
-  <mat-dialog-actions align="end"class="footer">
+  <mat-dialog-actions align="end" class="footer">
     <button mat-raised-button mat-dialog-close>Cancel</button>
     <button mat-raised-button (click)="dialogClose()">Supprimer</button>
   </mat-dialog-actions>
 </ng-template>
 <p-toast></p-toast>
-
-</body>

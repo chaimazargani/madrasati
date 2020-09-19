@@ -32,7 +32,8 @@ export class EmploiComponent implements OnInit {
   public dialogRefAlert: MatDialogRef<any>;
   @ViewChild('daySchedule', { static: true }) fc: FullCalendar;
   @ViewChild('alertDialog', {static: true})  dialogsuppression ;
-
+  
+  public selectedScreen = "Emploi du Temps";
   options: any;
 
   constructor(public dialog: MatDialog, private httpClient: HttpClient,  ) { }
@@ -128,7 +129,8 @@ export class EmploiComponent implements OnInit {
       eventClick: ($eventObject) => {this.dateClick(null,$eventObject)},
       editable: true,
       durationEditable:true,
-      defaultView: 'timeGridWeek'
+      defaultView: 'timeGridWeek',
+      allDaySlot: false
     }
 
   } 

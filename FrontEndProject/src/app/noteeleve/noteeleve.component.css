@@ -1,0 +1,27 @@
+table {
+  width: 100%;
+}
+
+/*--STYLE TABLE--*/
+.ag-theme-balham .ag-root {
+border: 1px solid #eeeeee;
+}
+.ag-theme-balham .ag-header {
+background-color: #298add;
+color: rgb(255 255 255);
+font-weight: 600;
+font-size: 12px;
+font-family: "Open Sans", "Helvetica Neue", sans-serif;
+border-bottom: 1px solid #298add;
+}
+.ag-theme-balham .ag-row {
+border-color: #eeeeee;
+}
+
+/*--CHECKBOX STYLE--*/
+::ng-deep body .table-section .ui-chkbox .ui-chkbox-box .ui-chkbox-icon {
+overflow: hidden;
+position: relative;
+font-size: 11px;
+top: 2px;
+}

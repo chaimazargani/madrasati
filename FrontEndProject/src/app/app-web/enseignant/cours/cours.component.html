@@ -1,8 +1,4 @@
-<!-- <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple"
-        accept="image/*"></p-fileUpload> -->
-
-
-
+<h3 class="main-title">{{selectedScreen}}</h3>
 <ng-container>
         <p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="putFiles($event.files)" [(ngModel)]="filesToUploadList"  multiple="multiple">
         

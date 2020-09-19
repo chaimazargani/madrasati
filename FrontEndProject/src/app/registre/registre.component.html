@@ -1,3 +1,4 @@
+<h3 class="main-title">{{selectedScreen}}</h3>
 <div class="p-grid filter-section">
   <div class="p-col-auto">
     <mat-form-field>
@@ -26,8 +27,12 @@
   </div>
 </div>
 <div class="p-grid table-section">
-  <ag-grid-angular #agGridComponent class="ag-theme-balham" [rowData]="listresult" [columnDefs]="columnDefs"
-    [frameworkComponents]="frameworkComponents" (gridReady)="onGridReady($event)">
+  <ag-grid-angular #agGridComponent class="ag-theme-balham" 
+  [rowData]="listresult" 
+  [columnDefs]="columnDefs"
+  [frameworkComponents]="frameworkComponents"
+  [rowHeight]="rowHeight"
+  (gridReady)="onGridReady($event)">
   </ag-grid-angular>
 </div>
 <div class="p-grid">

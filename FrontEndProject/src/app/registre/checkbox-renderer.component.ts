@@ -27,6 +27,7 @@ export class CheckboxRenderer implements ICellRendererAngularComp {
     this.params = params;
   }
 
+
   onChangeEtat(checkbox) {
       let checked = checkbox.target.checked;
     let colId = this.params.column.colId;

@@ -1,12 +1,4 @@
-<!doctype html>
-
-<html>
-
-<head>
-  <title> Definition Classes</title>
-</head>
-
-<body>
+<h3 class="main-title">{{selectedScreen}}</h3>
 <div class="definition-header">Classes
   <div class="example-container mat-elevation-z8" style="position: relative;">
     <div class="filter">
@@ -36,14 +28,14 @@
       <mat-table #table [dataSource]="listClassedata">
         <ng-container matColumnDef="supprimer">
           <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
-          <mat-cell *matCellDef="let classe"> <input matButton class='button' type="button"
-              (click)="supprimerClasse(classe)" value="Supprimer Classe">
+          <mat-cell *matCellDef="let classe"> <button pButton icon="pi pi-trash"
+              (click)="supprimerClasse(classe)" value="Supprimer Classe"></button>
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="modifier">
           <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
-          <mat-cell *matCellDef="let classe"> <input matButton class='button' type="button"
-              (click)="modifierClasse(classe)" value="Modifier Classe">
+          <mat-cell *matCellDef="let classe"> <button pButton icon="pi pi-pencil"
+              (click)="modifierClasse(classe)" value="Modifier Classe"></button>
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="nomClasse">
@@ -76,7 +68,4 @@
       <button mat-raised-button (click)="dialogClose()">Supprimer</button>
     </mat-dialog-actions>
   </ng-template>
-</body>
 <p-toast></p-toast>
-
-</html>

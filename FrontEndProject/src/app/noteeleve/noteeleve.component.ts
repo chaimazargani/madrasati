@@ -1,31 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-noteeleve',
   templateUrl: './noteeleve.component.html',
-  styleUrls: ['./noteeleve.component.css']
+  styleUrls: ['./noteeleve.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NoteeleveComponent implements OnInit {
 public columnDefs  : any ;
 public niveauList : any ;
 public listresult : any ;
+
+public selectedScreen = "Carnet de Note";
+
   constructor(private httpClient : HttpClient) {
 
    
     this.columnDefs = [
-      {  headerName:"list des Matiére " ,
-      children: [ 
         {headerName:"Matiére ", field:"nomMatier", minWidth:300,maxWidth:null,columnGroupShow:null , sortable: false , filter: true},
         {headerName: 'Note Controle 1', field: 'controle1' , sortable: true , filter: true , editable : false  },
         {headerName: 'Note Controle 2', field: 'controle2' , sortable: true , filter: true , editable : false },
         {headerName: 'Note Orale', field: 'orale' , sortable: true , filter: true , editable : false },
         {headerName: 'Note Synthése', field: 'synthése' , sortable: true , filter: true , editable : false } ,
         {headerName: 'Moyenne', field: 'moyenne' , sortable: true , filter: true , editable : false},
-    
-        ]
-      }];
+      ];
     
     
     

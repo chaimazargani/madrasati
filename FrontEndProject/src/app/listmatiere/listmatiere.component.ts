@@ -12,25 +12,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   selector: 'app-listmatiere',
   templateUrl: './listmatiere.component.html',
   styleUrls: ['./listmatiere.component.css'],
-  styles: [`
-  :host ::ng-deep button {
-      margin-right: .25em;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message {
-      background: #FC466B;
-      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
-      background: linear-gradient(to right, #3F5EFB, #FC466B);
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message div {
-      color: #ffffff;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
-      color: #ffffff;
-  }
-`],
   providers: [MessageService]
 })
 export class ListmatiereComponent implements OnInit {
@@ -42,6 +23,7 @@ export class ListmatiereComponent implements OnInit {
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // For pagination
 
  @ViewChild(MatSort, {static: true}) sort: MatSort; // For pagination
+ public selectedScreen = "Configuration Matières";
 
  selection = new SelectionModel<Matier>(true, []);
  public dialogRefCreermatiere: MatDialogRef<CreermatierComponent> ;

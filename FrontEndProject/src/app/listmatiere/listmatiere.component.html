@@ -1,89 +1,79 @@
-<!doctype html>
+<h3 class="main-title">{{selectedScreen}}</h3>
+<div class="definition-header">Matières
+  <div class="example-container mat-elevation-z8" style="position: relative;">
+    <div class="filter">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    <div style="position: absolute;top: 15px;right:50px;">
+      <tr>
+        <!-- <input matButton class = 'button' type="button" (click)=" ajouterClasse()" value="Ajouter classe"> -->
+        <button mat-raised-button (click)="ajouterMatiere(matiere)" style="font-size:40px;color:gray;">+</button>
+      </tr>
+    </div>
+    <div style="position:absolute;width:100%;top:100px;left:auto">
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? null: null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
 
-
-
-<body>
-  <div class="definition-header">Matières 
-    <div class="example-container mat-elevation-z8" style="position: relative;">
-      <div class="filter">
-        <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-      </div>
-      <div style="position: absolute;top: 15px;right:50px;">
-        <tr>
-          <!-- <input matButton class = 'button' type="button" (click)=" ajouterClasse()" value="Ajouter classe"> -->
-          <button mat-raised-button (click)="ajouterMatiere(matiere)" style="font-size:40px;color:gray;">+</button>
-        </tr>
-      </div>
-      <div style="position:absolute;width:100%;top:100px;left:auto">
+      <mat-table #table [dataSource]="listmatieredata">
         <ng-container matColumnDef="select">
-          <mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? null: null" [checked]="selection.hasValue() && isAllSelected()"
-              [indeterminate]="selection.hasValue() && !isAllSelected()">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
             </mat-checkbox>
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row">
+          </th>
+          <td mat-cell *matCellDef="let row">
             <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-              [checked]="selection.isSelected(row)">
+              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
             </mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="modifier">
+          <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
+          <mat-cell *matCellDef="let matiere"> <button pButton icon="pi pi-trash"
+              (click)="modifierMatiere(matiere)" value="Modifier Matiére"></button>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="supprimer">
+          <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+          <mat-cell *matCellDef="let matiere"> <button pButton icon="pi pi-pencil"
+              (click)="supprimerMatiere(matiere)" value="Supprimer Matiére"></button>
           </mat-cell>
         </ng-container>
 
-     <mat-table #table [dataSource]="listmatieredata">
-      <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event ? masterToggle() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()"
-                      [aria-label]="checkboxLabel()">
-        </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()"
-                      (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)"
-                      [aria-label]="checkboxLabel(row)">
-        </mat-checkbox>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="modifier">
-      <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
-      <mat-cell *matCellDef="let matiere"> <input matButton class='button' type="button"
-          (click)="modifierMatiere(matiere)" value="Modifier Matiére">
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="supprimer">
-      <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
-      <mat-cell *matCellDef="let matiere"> <input matButton class='button' type="button"
-          (click)="supprimerMatiere(matiere)" value="Supprimer Matiére">
-      </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="nomMatier">
-      <mat-header-cell *matHeaderCellDef>  Matiére </mat-header-cell>
-      <mat-cell *matCellDef="let matiere"> {{matiere.nomMatier}} </mat-cell>
-    </ng-container> -->
-    <ng-container matColumnDef="coefficeint">
-      <mat-header-cell *matHeaderCellDef> coefficeint </mat-header-cell>
-      <mat-cell *matCellDef="let  matiere"> {{matiere.coefficeint}} </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-  <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[3, 10, 25, 100]">
-</mat-paginator> 
-<ng-template #alertDialog>
-  <h2 mat-dialog-title>voulez vous vraiment supprimer la Matiére </h2>
-  <mat-dialog-actions align="end"class="footer">
-    <button mat-raised-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button (click)="dialogClose()">Supprimer</button>
-  </mat-dialog-actions>
-</ng-template>
-</div>
-<p-toast></p-toast>
+        <ng-container matColumnDef="nomMatier">
+          <mat-header-cell *matHeaderCellDef> Matiére </mat-header-cell>
+          <mat-cell *matCellDef="let matiere"> {{matiere.nomMatier}} </mat-cell>
+        </ng-container> -->
+        <ng-container matColumnDef="coefficeint">
+          <mat-header-cell *matHeaderCellDef> coefficeint </mat-header-cell>
+          <mat-cell *matCellDef="let  matiere"> {{matiere.coefficeint}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[3, 10, 25, 100]">
+      </mat-paginator>
+      <ng-template #alertDialog>
+        <h2 mat-dialog-title>voulez vous vraiment supprimer la Matiére </h2>
+        <mat-dialog-actions align="end" class="footer">
+          <button mat-raised-button mat-dialog-close>Cancel</button>
+          <button mat-raised-button (click)="dialogClose()">Supprimer</button>
+        </mat-dialog-actions>
+      </ng-template>
+    </div>
+    <p-toast></p-toast>
 
-</div></div>
-</body>
+  </div>
+</div>

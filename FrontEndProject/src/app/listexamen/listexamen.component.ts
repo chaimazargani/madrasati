@@ -11,25 +11,6 @@ import { MessageService } from 'primeng/api';
   selector: 'app-listexamen',
   templateUrl: './listexamen.component.html',
   styleUrls: ['./listexamen.component.css'],
-  styles: [`
-  :host ::ng-deep button {
-      margin-right: .25em;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message {
-      background: #FC466B;
-      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
-      background: linear-gradient(to right, #3F5EFB, #FC466B);
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message div {
-      color: #ffffff;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
-      color: #ffffff;
-  }
-`],
   providers: [MessageService]
 })
 export class ListexamenComponent implements OnInit {
@@ -43,6 +24,9 @@ export class ListexamenComponent implements OnInit {
  selection = new SelectionModel<Examen>(true, []);
  public dialogRefCreerClass: MatDialogRef<CreerexamenComponent> ;
  public dialogRefAlert: MatDialogRef<any>;
+
+ public selectedScreen = "Configuration Examens";
+
   constructor(private httpClient : HttpClient , public dialog: MatDialog , private  messageService : MessageService)  { 
     this.examens = new Examen();
   }

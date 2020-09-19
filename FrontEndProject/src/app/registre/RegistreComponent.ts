@@ -44,26 +44,29 @@ public frameworkComponents;
 public placeholder = 'Please select Date'
   selected = 'option2';
   selected2 = 'option2';
+  public rowHeight ;
 
+  public selectedScreen = "Registre de Présence";
 
   constructor(private httpClient: HttpClient , public messageService : MessageService) {
 
    
-   
+    this.rowHeight = 30;
+
 
     this.columnDefs = [
-    {headerName:"Nom et Prénom", field:"nomEleve", width: 110 ,columnGroupShow:null , sortable: true , filter: true},
-    { headerName: '8h', field: '8' , width: 100,   sortable: false, editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
-    { headerName: '9h', field: '9' , width: 100,  editable: false , filter: true , cellRenderer:'checkboxRenderer' },
-    { headerName: '10h', field: '10', width: 100 , /*  */  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'} ,
-    { headerName: '11h', field: '11', width: 100 ,  editable: false  , filter: true , cellRenderer: 'checkboxRenderer'},
-    { headerName: '12h', field: '12', width: 100 ,  editable: false , filter: true , cellRenderer: 'checkboxRenderer'},
-    { headerName: '13h', field: '13', width: 100 ,  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
-    { headerName: '14h', field: '14', width: 100,  editable: false   ,filter: true, cellRenderer: 'checkboxRenderer'},
-    { headerName: '15h', field: '12', width: 100 ,  editable: false  , filter: true, cellRenderer:'checkboxRenderer'},
-    { headerName: '16h', field: '16', width: 100 ,  editable: false ,filter: true , cellRenderer:'checkboxRenderer'},
-    { headerName: '17h', field: '17', width: 100,  editable: false ,filter: true, cellRenderer:'checkboxRenderer'},
-    { headerName: '18h', field: '18', width: 100,  editable: false ,filter: true, cellRenderer:'checkboxRenderer'},
+    {headerName:"Nom et Prénom", field:"nomEleve", width: 190 ,resizable:true,columnGroupShow:null , sortable: true , filter: true},
+    { headerName: '8h', field: '8' , width: 95,  resizable:true, sortable: false, editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '9h', field: '9' , width: 95,  editable: false , filter: true , cellRenderer:'checkboxRenderer' },
+    { headerName: '10h', field: '10', width: 95 ,resizable:true, /*  */  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'} ,
+    { headerName: '11h', field: '11', width: 95 ,resizable:true,  editable: false  , filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '12h', field: '12', width: 95 ,resizable:true,  editable: false , filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '13h', field: '13', width: 95 ,resizable:true,  editable: false ,filter: true , cellRenderer: 'checkboxRenderer'},
+    { headerName: '14h', field: '14', width: 95,resizable:true,  editable: false   ,filter: true, cellRenderer: 'checkboxRenderer'},
+    { headerName: '15h', field: '12', width: 95 ,resizable:true,  editable: false  , filter: true, cellRenderer:'checkboxRenderer'},
+    { headerName: '16h', field: '16', width: 95 ,resizable:true,  editable: false ,filter: true , cellRenderer:'checkboxRenderer'},
+    { headerName: '17h', field: '17', width: 95, resizable:true, editable: false ,filter: true, cellRenderer:'checkboxRenderer'},
+    { headerName: '18h', field: '18', width: 95,resizable:true,  editable: false ,filter: true, cellRenderer:'checkboxRenderer'},
   ];
   this.frameworkComponents = {
     
@@ -155,7 +158,7 @@ console.log(dateIsoFormat);
  }
 
  public rowDataList :  RegistreDTO [] = [] ;
- 
+
 
   @ViewChild('agGridComponent', {static: true}) agGridComponent : AgGridAngular
  // datePresenceString : string = "2020-10-19T08:00Z"
@@ -249,5 +252,5 @@ getClasseByNiveau( ): Observable <Classe[]> {
   }
 
 
- 
+
 }

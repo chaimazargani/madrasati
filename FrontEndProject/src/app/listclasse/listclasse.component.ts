@@ -12,31 +12,15 @@ import { MessageService } from 'primeng/api';
   selector: 'app-listclasse',
   templateUrl: './listclasse.component.html',
   styleUrls: ['./listclasse.component.css'],
-  styles: [`
-  :host ::ng-deep button {
-      margin-right: .25em;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message {
-      background: #FC466B;
-      background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
-      background: linear-gradient(to right, #3F5EFB, #FC466B);
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message div {
-      color: #ffffff;
-  }
-
-  :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
-      color: #ffffff;
-  }
-`],
   providers: [MessageService]
 })
 export class ListclasseComponent implements OnInit {
   public listClassedata : MatTableDataSource<Classe> ;
   public classe : Classe[] = [];
   public data : any
+
+  public selectedScreen = "Configuration Classe";
+
   displayedColumns = ['nomClasse', 'niveauClasse', 'nombreEleve' , 'supprimer' ,'modifier'];
   selection = new SelectionModel<Classe>(true, []);
     @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;

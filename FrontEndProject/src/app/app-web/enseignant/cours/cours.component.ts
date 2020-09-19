@@ -27,6 +27,8 @@ public listNomFichier : FileObject [] = [];
 @ViewChild('fichierTable', {static:true}) fichierTable: MatTable<any>;
 public filesToUploadList:[]=[];
 
+public selectedScreen = "Documents & Cours";
+
   constructor(public httpClient : HttpClient  ) {
     // let file = new Blob(['hello world'], { type: 'text/csv;charset=utf-8' });
     // saveAs.saveAs(file, 'helloworld.csv')

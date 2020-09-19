@@ -1,42 +1,28 @@
-<!doctype html>
-
-<html>
-
-<head>
-  <title>Note</title>
-</head>
-<body>
-    <!-- <div class="div">
-<input matButton class = 'button' type="button"  value="Acceuil"> -->
-  <mat-form-field>        
-      <mat-label>Classe</mat-label>                                                              
-    <mat-select [(ngModel)] ="classeSelectione"  (ngModelChange)="creerAgGridNoteEleve()"  >
-
-        <mat-option *ngFor= "let mecClasses of Classe " [value]="mecClasses.idClasse">  {{mecClasses.nomClasse}}  </mat-option>
-       
-    </mat-select>
-  </mat-form-field> 
-  <button mat-raised-button color="primary" (click)="sauvegarderNote(listresult)">Sauvegarder</button>
-
-  <!-- <mat-form-field>
-      <mat-label>Matiere</mat-label>                                                              
-    <mat-select [(ngModel)] ="matiereSelectionee"  (change)="selectionnermatier()" >
-        <mat-option *ngFor= "let mec of matierEnseignantClasse" [value]="mec.idMatier"> {{mec.nomMatier}} </mat-option> 
-    </mat-select>
-</mat-form-field> -->
-<!-- </div> -->
-<ag-grid-angular 
-    style="width: 1000px; height: 500px;" 
-    class="ag-theme-balham"
-    [rowData]="listresult" 
-    [columnDefs]="columnDefs" > <!-- la liste des colonnes -->
-  </ag-grid-angular>
-  <mat-divider></mat-divider>
-<!-- <section>
-  <div class="example-button-row">
-  <button mat-raised-button color="primary" (click)=" enregistrerNote()" >Sauvegarder Note</button>
+<h3 class="main-title">{{selectedScreen}}</h3>
+<div class="p-grid filter-section">
+  <div class="p-col-auto">
+    <mat-form-field>
+      <mat-label>Classe</mat-label>
+      <mat-select [(ngModel)]="classeSelectione" (ngModelChange)="creerAgGridNoteEleve()">
+        <mat-option *ngFor="let mecClasses of Classe " [value]="mecClasses.idClasse"> 
+          {{mecClasses.nomClasse}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-</section> -->
+</div>
+<div class="p-grid table-section">
+  <ag-grid-angular
+  class="ag-theme-balham" 
+  [rowData]="listresult" 
+  [columnDefs]="columnDefs">
+  </ag-grid-angular>
+</div>
+<div class="p-grid">
+  <div class="p-col-12 bottom-section">
+    <button pButton type="button" label="Sauvegarder" class="p-button-text"
+      (click)="sauvegarderNote(listresult)"></button>
+  </div>
+</div>
+<mat-divider></mat-divider>
 <p-toast></p-toast>
-</body>
-</html>

@@ -14,4 +14,14 @@ table {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   border-bottom: 1px solid #298add;
 }
-  
+.ag-theme-balham .ag-row {
+  border-color: #eeeeee;
+}
+
+/*--CHECKBOX STYLE--*/
+::ng-deep body .table-section .ui-chkbox .ui-chkbox-box .ui-chkbox-icon {
+  overflow: hidden;
+  position: relative;
+  font-size: 11px;
+  top: 2px;
+}
