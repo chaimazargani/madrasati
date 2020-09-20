@@ -20,7 +20,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
   
     @Override
     protected Filter[] getServletFilters() {
-        return new Filter[]{new CORSFilter()};
+        return null;
     }    
     @Override
     protected String[] getServletMappings() {

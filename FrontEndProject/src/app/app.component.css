@@ -22,15 +22,15 @@
 }
 ::ng-deep body .ui-menubar .ui-menubar-root-list > .ui-menuitem > .ui-menuitem-link {
     padding: 0.4em 1.57em;
-    border-right: 1px solid #1b88e4;
-}
+    border-right: 1px solid #c8b9a1;}
+
 .username{
     font-size: 12px;
     padding: 9px 20px;
 }
 .main-container {
     margin: 20px 20px 0;
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 95px);
     background: #ffffff;
     /* padding: 0 20px; */
     overflow: auto;

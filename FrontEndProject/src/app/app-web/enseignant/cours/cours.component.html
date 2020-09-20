@@ -1,24 +1,26 @@
 <h3 class="main-title">{{selectedScreen}}</h3>
 <ng-container>
-        <p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="putFiles($event.files)" [(ngModel)]="filesToUploadList"  multiple="multiple">
-        
+        <p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="putFiles($event.files)"
+                [(ngModel)]="filesToUploadList" multiple="multiple"
+                cancelLabel="Annuler" uploadLabel="Charger" chooseLabel="Ajouter Fichier">
+
         </p-fileUpload>
 
 
-<mat-table [dataSource]="listNomFichierDataSource" #fichierTable class="mat-elevation-z8">
+        <!-- <mat-table [dataSource]="listNomFichierDataSource" #fichierTable class="mat-elevation-z8"> -->
 
         <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Position Column -->
-         <ng-container matColumnDef="cours">
+        <!-- <ng-container matColumnDef="cours">
                         <mat-header-cell *matHeaderCellDef>Cours</mat-header-cell>
                         <mat-cell *matCellDef="let fichier">
                                 {{fichier.nomFichier}} </mat-cell>
-                </ng-container>
+                </ng-container> -->
 
         <!-- Name Column -->
-         <ng-container matColumnDef="telechargement">
+        <!-- <ng-container matColumnDef="telechargement">
                         <mat-header-cell *matHeaderCellDef>Télécharger</mat-header-cell>
                         <mat-cell *matCellDef="let fichier">
                                 <span class="downloadButton">
@@ -33,14 +35,14 @@
 
          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table> 
-        <!-- <ng-container class="flex-container">
+        </mat-table>  -->
+        <div class="flex-container">
                 <div *ngFor="let fichier of listNomFichier">
-                        <div>{{fichier.nomFichier}}
-                                <i class="pi pi-download" style="margin:5px"></i>
-                                <i class="pi pi-file-{{fichier.typeFichier}}" style="margin:5px"></i>
-                        </div>
-
+                        
+                        <button pButton type="button" class="p-button-text"
+                        label="{{fichier.nomFichier}}" icon="pi pi-file-{{fichier.typeFichier}}"
+                                (click)="getObjectFile(fichier.nomFichierComp) ">
+                                <i class="pi pi-download"></i></button>
                 </div>
-        </ng-container> -->
+        </div>
 </ng-container>

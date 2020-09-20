@@ -213,7 +213,7 @@ console.log(hour)
 getNiveau():  Observable<Niveau[]> {
   let httpHeader:HttpHeaders = new HttpHeaders();
   httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-  return this.httpClient.get<Niveau[]>('http://localhost:8080/madrasati/getListNiveau?idNiveau= 1,2,3',{headers:httpHeader});
+  return this.httpClient.get<Niveau[]>('http://localhost:8080/madrasati/getListNiveau?idNiveau= 1,2,3',{headers:httpHeader,withCredentials:true},);
 
 
 }

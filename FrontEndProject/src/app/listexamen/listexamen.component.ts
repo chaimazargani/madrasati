@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialogRef, MatDialog } from '@angular/material';
 import { Examen } from '../model/examen';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -11,6 +11,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-listexamen',
   templateUrl: './listexamen.component.html',
   styleUrls: ['./listexamen.component.css'],
+  encapsulation:ViewEncapsulation.None,
   providers: [MessageService]
 })
 export class ListexamenComponent implements OnInit {

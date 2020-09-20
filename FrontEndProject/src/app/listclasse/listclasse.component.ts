@@ -1,4 +1,4 @@
-import { Component, OnInit , ViewChild } from '@angular/core';
+import { Component, OnInit , ViewChild, ViewEncapsulation } from '@angular/core';
 import { Classe } from '../model/classe';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-listclasse',
   templateUrl: './listclasse.component.html',
   styleUrls: ['./listclasse.component.css'],
+  encapsulation:ViewEncapsulation.None,
   providers: [MessageService]
 })
 export class ListclasseComponent implements OnInit {

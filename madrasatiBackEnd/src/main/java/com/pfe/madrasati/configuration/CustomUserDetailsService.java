@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pfe.madrasati.dao.UtilisateurDAO;
@@ -24,6 +25,12 @@ public class CustomUserDetailsService   implements UserDetailsService {
          throw new UsernameNotFoundException(username);
      }
      return new UserPrinciple(user);
+	}
+	
+	public static void main(String[] args) {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		String p = bCryptPasswordEncoder.encode("password");
+		System.out.println(bCryptPasswordEncoder.matches("password", p));
 	}
 
 }

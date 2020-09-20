@@ -39,7 +39,6 @@ export class EmploiComponent implements OnInit {
   constructor(public dialog: MatDialog, private httpClient: HttpClient,  ) { }
   ngOnInit() {
     this.getListclasse();
-  
     //this.eventService.getEvents().then(events => {this.events = events;});
     this.data = [
       {
@@ -130,7 +129,8 @@ export class EmploiComponent implements OnInit {
       editable: true,
       durationEditable:true,
       defaultView: 'timeGridWeek',
-      allDaySlot: false
+      allDaySlot: false,
+      firstHour: 8
     }
 
   } 

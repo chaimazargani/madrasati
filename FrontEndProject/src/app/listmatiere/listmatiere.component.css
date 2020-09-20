@@ -21,3 +21,7 @@
     flex:1 1 auto;
     margin:5px;  /* and that, will result in a 10px gap */
 }
+
+.p-grid.table-section {
+    height: calc(100vh - 240px);
+}

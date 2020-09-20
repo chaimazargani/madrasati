@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Utilisateur } from '../model/utilisateur';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatDialogRef } from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,6 +10,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-listenseignant',
   templateUrl: './listenseignant.component.html',
   styleUrls: ['./listenseignant.component.css'],
+  encapsulation:ViewEncapsulation.None,
   providers: [MessageService]
 })
 export class ListenseignantComponent implements OnInit {

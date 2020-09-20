@@ -10,10 +10,15 @@ import { RegistreDTO } from '../model/RegistreDTO';
     <p-checkbox 
       type="checkbox" 
       (click)="onChangeEtat($event)"
+      (ngModelChange) = "onChangeEtat($event)"
+      [(ngModel)]="params ? params.value ? params.value.booleanEtat : return : return"
+      [binary]="true"
     ></p-checkbox>
 `,
 })
 export class CheckboxRenderer implements ICellRendererAngularComp {
+
+  public checked :boolean = false;
   refresh(params: any): boolean {
     return true;
       // throw new Error("Method not implemented.");
@@ -25,8 +30,10 @@ export class CheckboxRenderer implements ICellRendererAngularComp {
 
   agInit(params: any): void {
     this.params = params;
+     if(this.params.value && this.params.value.etat =='P') {
+      this.params.value.booleanEtat = true ;
+     }
   }
-
 
   onChangeEtat(checkbox) {
       let checked = checkbox.target.checked;

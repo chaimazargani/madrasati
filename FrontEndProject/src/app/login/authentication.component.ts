@@ -64,8 +64,8 @@ export class AuthenticationComponent implements OnInit {
      let  username =this.loginFormGroup.value.email;
      let password = this.loginFormGroup.value.password
      this.httpClient.post<any>( 'http://localhost:8080/madrasati/login', `username=${username}&password=${password}`,
-            { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } ).subscribe(d => {
-              window.location.href = 'http://localhost:4200/';
+            { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },withCredentials:true } ).subscribe(d => {
+              window.location.href = 'http://localhost:4200/registre';
               // this.store.dispatch(new AuthenticationActions.LogIn(payload));
   } , 
   error => {

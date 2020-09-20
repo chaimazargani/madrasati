@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Matier } from '../model/matier';
 import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -12,6 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   selector: 'app-listmatiere',
   templateUrl: './listmatiere.component.html',
   styleUrls: ['./listmatiere.component.css'],
+  encapsulation:ViewEncapsulation.None,
   providers: [MessageService]
 })
 export class ListmatiereComponent implements OnInit {
