@@ -58,7 +58,7 @@ export class ListexamenComponent implements OnInit {
   
     let httpHeader:HttpHeaders = new HttpHeaders();
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-      return this.httpClient.get<Examen[]>('http://localhost:8080/madrasati/getExamen',{headers:httpHeader});
+      return this.httpClient.get<Examen[]>('/getExamen',{headers:httpHeader});
     }
 
     afficherListDesExamen() : void {
@@ -96,7 +96,7 @@ showSuccessModification() {
             if (result.validation == "sauvegarder"){
               console.log('Creation en cours ...');
         
-              this.httpClient.post<Examen>('http://localhost:8080/madrasati/ajouterExamen', result.examen )
+              this.httpClient.post<Examen>('/ajouterExamen', result.examen )
               .subscribe (
                 dataAfterSave =>{
                       this.showSuccess(); 
@@ -123,7 +123,7 @@ showSuccessModification() {
             if (result.validation == "sauvegarder"){
               console.log('Modification en cours ... ');
         
-              this.httpClient.post<Examen>('http://localhost:8080/madrasati/modifierExamen', result.examen )
+              this.httpClient.post<Examen>('/modifierExamen', result.examen )
               .subscribe (d =>{
                       console.log(d);
                       this.showSuccessModification(); 
@@ -149,7 +149,7 @@ showSuccessModification() {
             if (result == "supprimer"){
               console.log('Suppression en cours ...');
         
-              this.httpClient.post<Examen>('http://localhost:8080/madrasati/supprimerExamen', examen )
+              this.httpClient.post<Examen>('/supprimerExamen', examen )
               .subscribe (d =>{
                       console.log(d);
                       this.showSuccessSuppression(); 

@@ -23,7 +23,7 @@ public selectedScreen = "Carnet de Note";
         {headerName: 'Note Controle 1', field: 'controle1' , sortable: true , filter: true , editable : false  },
         {headerName: 'Note Controle 2', field: 'controle2' , sortable: true , filter: true , editable : false },
         {headerName: 'Note Orale', field: 'orale' , sortable: true , filter: true , editable : false },
-        {headerName: 'Note Synthése', field: 'synthése' , sortable: true , filter: true , editable : false } ,
+        {headerName: 'Note Synthése', field: 'synthese' , sortable: true , filter: true , editable : false } ,
         {headerName: 'Moyenne', field: 'moyenne' , sortable: true , filter: true , editable : false},
       ];
     
@@ -40,7 +40,7 @@ public selectedScreen = "Carnet de Note";
     let httpHeader:HttpHeaders = new HttpHeaders();
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
     let params: HttpParams = new HttpParams();
-    return this.httpClient.get<any> ('http://localhost:8080/madrasati/getNoteBYEleve?idEleve=1', {headers:httpHeader ,  params:params });
+    return this.httpClient.get<any> ('/getNoteBYEleve?idEleve=1', {headers:httpHeader ,  params:params });
   }
 
   getNote() : void {

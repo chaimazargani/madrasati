@@ -26,8 +26,8 @@ import { AuthenticationComponent } from '../../app/login/authentication.componen
 
 
 const appRoutes: Routes = [
-  { path: 'creerEnseignant', component: CreerenseignatComponent },
-  { path: 'creerexamen', component: CreerexamenComponent },
+  // { path: 'creerEnseignant', component: CreerenseignatComponent },
+  // { path: 'creerexamen', component: CreerexamenComponent },
 
   { path: 'login', component: AuthenticationComponent },
   { path: 'creerclasse', component: CreerclasseComponent },

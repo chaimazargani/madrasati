@@ -20,11 +20,11 @@ public class RegistrePk implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	@Column(name = "ideleve",insertable = false, updatable = false)
+	@Column(name = "ideleve")
 	private Integer idEleve ;
 	 
 	@Convert(converter = LocalDateTimeConverter.class)
-	@Column(name = "datepresence",insertable = false, updatable = false)
+	@Column(name = "datepresence")
 	private LocalDateTime datePresence ;
 	
 

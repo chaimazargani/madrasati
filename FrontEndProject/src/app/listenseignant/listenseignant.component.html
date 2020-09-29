@@ -47,9 +47,9 @@
       <mat-cell *matCellDef="let  enseignant"> {{enseignant.prenom}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="cin">
+    <ng-container matColumnDef="identifiant">
       <mat-header-cell *matHeaderCellDef> CIN </mat-header-cell>
-      <mat-cell *matCellDef="let enseignant"> {{enseignant.cin }} </mat-cell>
+      <mat-cell *matCellDef="let enseignant"> {{enseignant.identifiant }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="numTel">
@@ -58,18 +58,18 @@
     </ng-container>
 
     <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef style="width:140px"> Email </mat-header-cell>
       <mat-cell *matCellDef="let enseignant"> {{enseignant.email }} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="dateNaissance">
+    <!-- <ng-container matColumnDef="dateNaissance">
       <mat-header-cell *matHeaderCellDef> Date de Naissance </mat-header-cell>
       <mat-cell *matCellDef="let enseignant"> {{enseignant.dateNaissanceString }} </mat-cell>
-    </ng-container>
+    </ng-container> -->
 
-    <ng-container matColumnDef="login">
+    <ng-container matColumnDef="username">
       <mat-header-cell *matHeaderCellDef> Login </mat-header-cell>
-      <mat-cell *matCellDef="let enseignant"> {{enseignant.login }} </mat-cell>
+      <mat-cell *matCellDef="let enseignant"> {{enseignant.username }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="adresse">
@@ -77,10 +77,10 @@
       <mat-cell *matCellDef="let enseignant"> {{enseignant.adresse }} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="motDepasse">
+    <!-- <ng-container matColumnDef="password">
       <mat-header-cell *matHeaderCellDef> Mot de passe </mat-header-cell>
-      <mat-cell *matCellDef="let enseignant"> {{enseignant.motDepasse }} </mat-cell>
-    </ng-container>
+      <mat-cell *matCellDef="let enseignant"> {{enseignant.password }} </mat-cell>
+    </ng-container> -->
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

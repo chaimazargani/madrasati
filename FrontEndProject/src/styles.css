@@ -22,7 +22,7 @@ body{
 
 ag-grid-angular{
     width: 100%;
-    height: calc(100vh - 270px);
+    height: calc(100vh - 250px);
 }
 .filter-section {
     background: rgb(17 111 191 / 16%);
@@ -33,10 +33,13 @@ ag-grid-angular{
     margin-left: 10px;
     margin-right: 10px;
 }
-.bottom-section{
+/* .bottom-section{
     text-align: right;
-    padding :15px 20px 10px;;
-}
+    padding :15px 20px 10px;
+    z-index: 99999;
+    background-color:#f4f4f4;
+    border: 1px solid #c8c8c8;
+} */
 ::ng-deep body .ui-chkbox .ui-chkbox-box {
     width: 15px;
     height: 15px;

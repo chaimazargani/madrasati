@@ -25,184 +25,271 @@ export class EmploiComponent implements OnInit {
   public classeList: Classe[];
   public eventList: any[];
   public examen: Event[] = [];
-  public  popupData : any  = [];
+  public popupData: any = [];
   data: any[];
-  event: Event[] = [];
+  event: EventMadrasati[] = [];
   public dialogRefCreerevent: MatDialogRef<CreereventemploiComponent>;
   public dialogRefAlert: MatDialogRef<any>;
   @ViewChild('daySchedule', { static: true }) fc: FullCalendar;
-  @ViewChild('alertDialog', {static: true})  dialogsuppression ;
-  
+  @ViewChild('alertDialog', { static: true }) dialogsuppression;
+
   public selectedScreen = "Emploi du Temps";
   options: any;
 
-  constructor(public dialog: MatDialog, private httpClient: HttpClient,  ) { }
-  ngOnInit() {
-    this.getListclasse();
-    //this.eventService.getEvents().then(events => {this.events = events;});
+  constructor(private eventService: EventService, public dialog: MatDialog, private httpClient: HttpClient,) {
     this.data = [
       {
         id: 1,
-        title: "All Day Event",
-        start: "2017-02-01",
-        color: 'yellow',   // an option!
-        textColor: 'black' // an option!
+        title: "anglais",
+        start: "2020-09-15 08:00:00",
+        end: "2020-09-15 09:00:00",
+
       },
       {
         id: 2,
-        title: "Long Event",
-        start: "2017-02-07",
-        end: "2017-02-10"
+        title: "Phisique",
+        start: "2020-09-15 09:00:00",
+        end: "2020-09-15 11:00:00",
       },
       {
         id: 3,
-        title: "Repeating Event",
-        start: "2017-02-09T16:00:00"
+        title: "Arab",
+        start: "2020-09-15 14:00:00",
+        end: "2020-09-15 16:00:00",
       },
       {
         id: 4,
-        title: "Repeating Event",
-        start: "2017-02-16T16:00:00"
+        title: "Géographie",
+        start: "2020-09-15 16:00:00",
+        end: "2020-09-15 17:00:00",
       },
       {
         id: 5,
-        title: "Conference",
-        start: "2017-02-11",
-        end: "2017-02-13"
+        title: "Français",
+        start: "2020-09-16 08:00:00",
+        end: "2020-09-15 10:00:00",
       },
       {
         id: 6,
-        title: "Meeting",
-        start: "2017-02-12T10:30:00",
-        end: "2017-02-12T12:30:00"
+        title: "Science de la vie et de la terPre",
+        start: "2020-09-16 10:00:00",
+        end: "2020-09-16 12:00:00",
       },
       {
         id: 7,
-        title: "Lunch",
-        start: "2017-02-12T12:00:00"
+        title: "Anglais",
+        start: "2020-09-16 14:00:00",
+        end: "2020-09-16 16:00:00",
       },
       {
         id: 8,
-        title: "Meeting",
-        start: "2017-02-12T14:30:00"
+        title: "Dessin",
+        start: "2020-09-16 16:00:00",
+        end: "2020-09-16 17:00:00",
       },
       {
         id: 9,
-        title: "Happy Hour",
-        start: "2017-02-12T17:30:00"
+        title: "Histoire",
+        start: "2020-09-17 08:00:00",
+        end: "2020-09-17 09:00:00",
       },
       {
         id: 10,
-        title: "Dinner",
-        start: "2017-02-12T20:00:00",
-        color: 'yellow',   // an option!
-        textColor: 'black' // an option!
+        title: "Sport",
+        start: "2020-09-17  10:00:00",
+        end: "2020-09-17  12:00:00",
       },
       {
         id: 11,
-        title: "Birthday Party",
-        start: "2017-02-13T07:00:00",
-        color: 'yellow',   // an option!
-        textColor: 'black' // an option!
+        title: "Mathématique",
+        start: "2020-09-17  12:00:00",
+        end: "2020-09-17  13:00:00",
+      },
+      {
+        id: 11,
+        title: "Arab",
+        start: "2020-09-17  12:00:00",
+        end: "2020-09-17  13:00:00",
+      },
+      {
+        id: 12,
+        title: "Education civile",
+        start: "2020-09-18 08:00:00",
+        end: "2020-09-18 09:00:00",
+      },
+      {
+        id: 13,
+        title: "Education islamique",
+        start: "2020-09-18 09:00:00",
+        end: "2020-09-18 10:00:00",
+      },
+      {
+        id: 14,
+        title: "Arab",
+        start: "2020-09-18 10:00:00",
+        end: "2020-09-18 12:00:00",
+      },
+      {
+        id: 15,
+        title: "Mathématique",
+        start: "2020-09-18 14:00:00",
+        end: "2020-09-18 16:00:00",
+      },
+      {
+        id: 16,
+        title: "Français",
+        start: "2020-09-18 16:00:00",
+        end: "2020-09-18 17:00:00",
+      },
+      {
+        id: 17,
+        title: "Français",
+        start: "2020-09-19 08:00:00",
+        end: "2020-09-17 10:00:00",
+      },
+      {
+        id: 18,
+        title: "Téathre",
+        start: "2020-09-19 10:00:00",
+        end: "2020-09-18 12:00:00",
+      },
+      {
+        id: 19,
+        title: "Technique",
+        start: "2020-09-19 14:00:00",
+        end: "2020-09-18 15:00:00",
+      },
+      {
+        id: 20,
+        title: "Informatique",
+        start: "2020-09-19 15:00:00",
+        end: "2020-09-17 16:00:00",
+      },
+      {
+        id: 20,
+        title: "Sport",
+        start: "2020-09-19 16:00:00",
+        end: "2020-09-17 17:00:00",
       },
       {
         id: 12,
         title: "Click for Google",
         url: "http://google.com/",
-        start: "2017-02-28",
+        start: "2020-09-15",
         color: 'yellow',   // an option!
-  textColor: 'black' // an option!,
+        textColor: 'black' // an option!,
       }
     ]
 
-    this.options  =
+    this.options =
     {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      defaultDate: '2017-02-01',
+      defaultDate: '2020-09-15',
       header: {
         left: 'prev,next',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      dateClick: ($dateObject) => {this.dateClick($dateObject,null)},
-      eventClick: ($eventObject) => {this.dateClick(null,$eventObject)},
+      dateClick: ($dateObject) => { this.dateClick($dateObject, null) },
+      eventClick: ($eventObject) => { this.dateClick(null, $eventObject) },
+      eventDrop: eventDropInfo => {
+        const { event } = eventDropInfo;
+        this.eventService.modifiedElements.push(event);
+      },
       editable: true,
-      durationEditable:true,
+      durationEditable: true,
       defaultView: 'timeGridWeek',
       allDaySlot: false,
       firstHour: 8
     }
+  }
 
-  } 
- 
+  //this.eventService.getEvents().then(events => {this.events = events;});
 
-  dateClick(dateObject, eventObject)  {
-   let popupData : any = [];
-     if (dateObject) {
-      this.popupData.start = new Date(dateObject.dateStr)  ;
+
+
+  ngOnInit() {
+    this.getListclasse();
+  }
+
+
+  dateClick(dateObject, eventObject) {
+    let popupData: any = [];
+    if (dateObject) {
+      this.popupData.start = new Date(dateObject.dateStr);
+      let _endDate = new Date(this.popupData.start);
+      this.popupData.end = new Date(_endDate.setHours(_endDate.getHours() + 1));
       this.dialogRefCreerevent = this.dialog.open(CreereventemploiComponent, {
         width: '400px',
-        height:'100%',
-        data: {popupData : this.popupData}
-     }); 
-     this.dialogRefCreerevent.afterClosed() 
-     .subscribe(result => {
-        
-          if (result.validation == "sauvegarder"){
+        height: '100%',
+        data: { popupData: this.popupData }
+      });
+      this.dialogRefCreerevent.afterClosed()
+        .subscribe(result => {
+
+          if (result.validation == "sauvegarder") {
             let event = new EventMadrasati();
-            event.start = result.event.start;
-            event.end = result.event.end;
+            event.startString = new Date(result.event.start).toISOString().substring(0, 19);
+            event.endString = new Date(result.event.end).toISOString().substring(0, 19);
             event.title = result.event.title;
-         this.httpClient.post<any>('http://localhost:8080/madrasati/creerEvent', event )
-          .subscribe (d =>{
-            console.log(d);
-          
- 
-            });
-      }
-  
-         });
+            event.idclasse = this.classeSelectionner;
+            event.color = '#116fbf'
+            this.httpClient.post<any>('/creerEvent', event)
+              .subscribe(d => {
+                this.getListEvent();
+              });
+          }
+
+        });
     }
     else {
-    popupData.start = eventObject.event.start ; 
-    popupData.title = eventObject.event.title ;
-      popupData.end = eventObject.event.end ;
-      popupData.id =  eventObject.event.id ;
-     this.dialogRefCreerevent = this.dialog.open(CreereventemploiComponent, {
-       width: '400px',
-       height:'100%',
-       data: {popupData : popupData}
-    }); 
-    this.dialogRefCreerevent.afterClosed() 
-    .subscribe(result => {
-       if (result.validation == "sauvegarder"){
-      let event = new EventMadrasati();
-      event.start = result.event.start;
-      event.end = result.event.end;
-      event.title = result.event.title;
-        // event.id = result.event.id ;
-         this.httpClient.post<any>('http://localhost:8080/madrasati/modifierEvent',event)
-         .subscribe (d =>{
-          console.log(d);
-         
-
-           });
-     }
-    
+      popupData.start = eventObject.event.start;
+      popupData.title = eventObject.event.title;
+      popupData.end = eventObject.event.end;
+      popupData.id = +eventObject.event.id;
+      popupData.idclasse = this.classeSelectionner;
+      popupData.color = eventObject.event.backgroundColor;
+      this.dialogRefCreerevent = this.dialog.open(CreereventemploiComponent, {
+        width: '400px',
+        height: '100%',
+        data: { popupData: popupData }
+      });
+      this.dialogRefCreerevent.afterClosed()
+        .subscribe(result => {
+          if (result.validation == "sauvegarder") {
+            let event = new EventMadrasati();
+            event.startString = new Date(result.event.start).toISOString().substring(0, 19);
+            event.endString = new Date(result.event.end).toISOString().substring(0, 19);
+            event.title = result.event.title;
+            event.id = +result.event.id;
+            event.color = result.event.color;
+            event.idclasse = this.classeSelectionner;
+            this.httpClient.post<any>('/modifierEvent', event)
+              .subscribe(d => {
+                this.getListEvent();
+              });
+          } else if (result.validation == "supprimer") {
+            console.log('Suppression en cours ...');
+            this.httpClient.post<any>('/supprimerEvent', result.event)
+              .subscribe(d => {
+                this.getListEvent()
+              });
+          } 
         });
-      }
+    }
 
   }
   getClasse(): Observable<Classe[]> {
 
     let httpHeader: HttpHeaders = new HttpHeaders();
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.get<Classe[]>('http://localhost:8080/madrasati/getClasse', { headers: httpHeader });
+    return this.httpClient.get<Classe[]>('/getClasse', { headers: httpHeader });
   }
   getListclasse(): void {
     this.getClasse().subscribe(result => {
       this.classeList = result;
     });
+    console.log(this.classeList);
   }
 
 
@@ -212,43 +299,75 @@ export class EmploiComponent implements OnInit {
     params = params.append('idClasse', this.classeSelectionner.toString());
 
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.get<any[]>('http://localhost:8080/madrasati/getEventByClasse', { headers: httpHeader, params: params });
+    return this.httpClient.get<any[]>('/getEventByClasse', { headers: httpHeader, params: params });
   }
 
+  convertDate(dateJson) {
+    // var input = JSON.parse(dateJson);
+
+    var day = dateJson.dayOfMonth;
+    var month = dateJson.monthValue - 1; // Month is 0-indexed
+    var year = dateJson.year;
+    var hour = dateJson.hour;
+    var minute = dateJson.minute;
+    var second = dateJson.second;
+    return new Date(Date.UTC(year, month, day, hour, minute, second));
+  }
   getListEvent(): void {
     this.getEventByClasse().subscribe(result => {
+      result.map((event) => {
+
+        event.start = this.convertDate(event.start);
+        event.end = this.convertDate(event.enddate);
+      })
       this.eventList = result;
       // this.eventList.forEach(e => {
       //   e.click = ($data) => this.dateClick($data)
       // });
-      console.log(this.eventList);
       this.eventList = this.eventList.concat(this.data);
-      console.log(this.fc._options);
-      console.log(this.fc.options);
     })
   }
   // supprimerEvent(eventObject) {
   //   this.dialogRefAlert = this.dialog.open(this.dialogsuppression, {
   //     width: '250px',
-  
+
   //  });
   //  this.dialogRefAlert.afterClosed()
   //   .subscribe(result => {
   //     if (result == "supprimer"){
   //       console.log('Suppression en cours ...');
-  
-  //       this.httpClient.post<Event>('http://localhost:8080/madrasati/supprimerEvent', eventObject )
+
+  //       this.httpClient.post<Event>('/supprimerEvent', eventObject )
   //       .subscribe (d =>{
   //               console.log(d);
-                
-  
+
+
   //          });
   //     }
-     
+
   //       });
   // }
-  dialogClose(){
+  dialogClose() {
     this.dialogRefAlert.close("supprimer");
+  }
+
+  sauvegarder() {
+    let listFinal = [];
+    this.eventService.modifiedElements.forEach((modifiedElem) => {
+      let event = new EventMadrasati();
+      event.id = +modifiedElem.id;
+      event.title = modifiedElem.title;
+      event.startString = new Date(modifiedElem.start).toISOString().substring(0, 19);
+      event.endString = new Date(modifiedElem.end).toISOString().substring(0, 19);
+      event.color = modifiedElem.backgroundColor;
+      event.idclasse = this.classeSelectionner;
+      listFinal.push(event);
+    })
+    this.httpClient.post<any>('/modifierEventList', listFinal)
+      .subscribe(d => {
+        this.eventService.modifiedElements = [];
+        this.getListEvent();
+      });
   }
 }
 

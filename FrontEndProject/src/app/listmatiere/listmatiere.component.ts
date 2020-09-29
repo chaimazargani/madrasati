@@ -46,7 +46,7 @@ public heroForm : any ;
   
     let httpHeader:HttpHeaders = new HttpHeaders();
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-      return this.httpClient.get<Matier[]>('http://localhost:8080/madrasati/getMatiere',{headers:httpHeader});
+      return this.httpClient.get<Matier[]>('/getMatiere',{headers:httpHeader});
     }
     afficherListDesMatieres() : void {
       this.getListMatiere().subscribe(listdesmatieres=> {
@@ -76,7 +76,7 @@ this.messageService.add({severity:'success', summary: 'Modification avec succé'
         if (result.validation == "sauvegarder"){
           console.log('Creation en cours ...');
     
-          this.httpClient.post<Matier>('http://localhost:8080/madrasati/ajouterMatiere', result.matiere )
+          this.httpClient.post<Matier>('/ajouterMatiere', result.matiere )
           .subscribe (d =>{
                   console.log(d);
                   this.showSuccess(); 
@@ -104,7 +104,7 @@ this.messageService.add({severity:'success', summary: 'Modification avec succé'
         if (result.validation == "sauvegarder"){
           console.log('Modification en cours ... ');
     
-          this.httpClient.post<Matier>('http://localhost:8080/madrasati/modifierMatiere', result.matiere )
+          this.httpClient.post<Matier>('/modifierMatiere', result.matiere )
           .subscribe (d =>{
                   console.log(d);
                   this.showSuccessModification(); 
@@ -129,7 +129,7 @@ this.messageService.add({severity:'success', summary: 'Modification avec succé'
         if (result == "supprimer"){
           console.log('Suppression en cours ...');
     
-          this.httpClient.post<Matier>('http://localhost:8080/madrasati/supprimerMatiers', matiere )
+          this.httpClient.post<Matier>('/supprimerMatiers', matiere )
           .subscribe (d =>{
                   console.log(d);
                   this.showSuccessSuppression(); 

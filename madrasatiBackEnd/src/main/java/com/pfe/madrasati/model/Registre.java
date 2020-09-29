@@ -3,6 +3,7 @@ package com.pfe.madrasati.model;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,10 +17,10 @@ public class Registre{
 	private RegistrePk registrePk ;
 
 	
-	@Column(name = "nomEtat",insertable = true, updatable = true)
+	@Column(name = "nomEtat")
     private String nomEtat ;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ideleve",insertable = false, updatable = false)
 	private Eleve eleve;
 

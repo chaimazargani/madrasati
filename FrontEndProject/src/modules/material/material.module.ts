@@ -47,6 +47,8 @@ import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
 import {FileUploadModule} from 'primeng/fileupload';
 import {TooltipModule} from 'primeng/tooltip';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -106,6 +108,7 @@ import {TooltipModule} from 'primeng/tooltip';
     ReactiveFormsModule,
     FileUploadModule,
     TooltipModule,
+    ProgressSpinnerModule
     ],
     exports: [
       MatSelectModule,
@@ -164,6 +167,7 @@ import {TooltipModule} from 'primeng/tooltip';
       ReactiveFormsModule,
       FileUploadModule,
       TooltipModule,
+      ProgressSpinnerModule
     ],
   declarations: [
     

@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Classe } from '../../../model/classe';
-import { CreerclasseComponent } from '../../../creerclasse/creerclasse.component';
 import { NoteHttpService } from './note-http.service';
-import { Matier } from '../../../model/matier';
 import { MatierEnseignantClasse } from '../../../model/MatierEnseignantClasse';
 import { Observable } from 'rxjs';
-import { EleveNoteDTO } from '../../../model/EleveNoteDTO';
+import { Examen } from '../../../model/examen';
 
 @Injectable()
 export class NoteService {
@@ -28,4 +25,8 @@ export class NoteService {
      postNote(){
         return this.noteHttpService.ajouterNote()
      }
+
+     getListExamen() :Observable<Examen[]>{
+        return this.noteHttpService.getExamen()
+     } 
 }

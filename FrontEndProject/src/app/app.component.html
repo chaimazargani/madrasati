@@ -1,10 +1,13 @@
-<p-menubar [model]="items">
+<ng-container *ngIf="isLoggedIn">
+  <p-menubar [model]="items">
     <span class="username">Bienvenue M.HamzaBA</span>
-    <button pButton label="Logout" class="p-button-text" icon="pi pi-power-off"></button>
-</p-menubar>
+    <button pButton label="Logout" (click)="logout()" class="p-button-text" icon="pi pi-power-off"></button>
+  </p-menubar>
 <div class="main-container">
   <h3 class="main-title">{{selectedScreen}}</h3>
   <router-outlet></router-outlet>
 </div>
-
-        
+</ng-container>
+<ng-container *ngIf="!isLoggedIn">
+<router-outlet></router-outlet>
+</ng-container>

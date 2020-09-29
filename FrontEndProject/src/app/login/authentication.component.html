@@ -6,9 +6,9 @@
 					<span class="chalkwriting">{{loginFormGroup.value.email}}</span>
 				</div>
 				<div class="login-form">
-					<div class="logo">
+					<!-- <div class="logo">
 						<span class='icon'></span>
-					</div>
+					</div> -->
 					<div style="display: flex;position: relative;">
 						<div class="app-title">Madrasati</div>
 					</div>
@@ -16,7 +16,7 @@
 						<div class="form-group">
 							<tr>
 								<mat-form-field class="form-control">
-									<input matInput type="text" id="name" name="email" placeholder="Email"
+									<input autocomplete="off" #emailInput matInput type="text" id="name" name="email" placeholder="Email"
 										formControlName="email" required>
 								</mat-form-field>
 							</tr>
@@ -29,7 +29,7 @@
 							</div> -->
 							<tr>
 								<mat-form-field class="form-control">
-									<input matInput type="password" id="password" name="password" placeholder="password"
+									<input autocomplete="off" value="" #passwordInput matInput type="password" id="password" name="password" placeholder="Mot De Passe"
 										formControlName="password" required>
 								</mat-form-field>
 							</tr>
@@ -51,12 +51,11 @@
 						<div style="position: relative;">
 
 
-							<button style="background-color:rgb(3, 77, 109); left:0;top:5px;position: absolute;"
-								class="btn btn-primary" type="submit"
+							<button type="submit"  pButton class="p-button-text"
 								[disabled]="!loginFormGroup.valid">{{'Login'}}</button>
 
-							<a [routerLink]="['/']" class="btn btn-primary"
-								style="background-color:rgb(3, 77, 109);right:0;top:5px;position: absolute;">Cancel</a>
+							<button pButton type="button" class="p-button-text" (click)="reset()"
+								[disabled]="loginFormGroup.durty">{{'Effacer'}}</button>
 						</div>
 					</form>
 				</div>

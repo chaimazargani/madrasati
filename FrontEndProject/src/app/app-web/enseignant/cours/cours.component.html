@@ -1,48 +1,28 @@
 <h3 class="main-title">{{selectedScreen}}</h3>
-<ng-container>
-        <p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="putFiles($event.files)"
-                [(ngModel)]="filesToUploadList" multiple="multiple"
-                cancelLabel="Annuler" uploadLabel="Charger" chooseLabel="Ajouter Fichier">
+<div class="p-grid filter-section">
+        <div class="p-col-auto">
 
-        </p-fileUpload>
-
-
-        <!-- <mat-table [dataSource]="listNomFichierDataSource" #fichierTable class="mat-elevation-z8"> -->
-
-        <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
-        <!-- <ng-container matColumnDef="cours">
-                        <mat-header-cell *matHeaderCellDef>Cours</mat-header-cell>
-                        <mat-cell *matCellDef="let fichier">
-                                {{fichier.nomFichier}} </mat-cell>
-                </ng-container> -->
-
-        <!-- Name Column -->
-        <!-- <ng-container matColumnDef="telechargement">
-                        <mat-header-cell *matHeaderCellDef>Télécharger</mat-header-cell>
-                        <mat-cell *matCellDef="let fichier">
-                                <span class="downloadButton">
-                                        <button pButton icon="pi pi-download" type="button" pTooltip="Telecharger"
-                                                (click)="getObjectFile(fichier.nomFichierComp)">
-                                                <i class="pi pi-file-{{fichier.typeFichier== 'docx' ? 'o' : fichier.typeFichier}}"></i>
-                                        </button>
-                                </span>
-                        </mat-cell>
-                </ng-container>
-
-
-         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>  -->
-        <div class="flex-container">
-                <div *ngFor="let fichier of listNomFichier">
-                        
-                        <button pButton type="button" class="p-button-text"
-                        label="{{fichier.nomFichier}}" icon="pi pi-file-{{fichier.typeFichier}}"
-                                (click)="getObjectFile(fichier.nomFichierComp) ">
-                                <i class="pi pi-download"></i></button>
-                </div>
+                <mat-form-field>
+                        <mat-label>Matiére</mat-label>
+                        <mat-select [(ngModel)]="matiereSelectione">
+                                <mat-option *ngFor="let matiere of listmatiere" [value]="matiere">
+                                        {{matiere}}
+                                </mat-option>
+                        </mat-select>
+                </mat-form-field>
         </div>
-</ng-container>
+</div>
+<p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="putFiles($event.files)"
+        [(ngModel)]="filesToUploadList" multiple="multiple" cancelLabel="Annuler" uploadLabel="Charger"
+        chooseLabel="Ajouter Fichier">
+
+</p-fileUpload>
+<div class="flex-container">
+        <div *ngFor="let fichier of listNomFichier">
+
+                <button pButton type="button" class="p-button-text" tooltipPosition="top"
+                        pTooltip="{{fichier.nomFichier}}" label="{{fichier.nomFichier}}"
+                        icon="pi pi-{{fichier.typeFichier}}" (click)="getObjectFile(fichier.nomFichierComp) ">
+                        <i class="pi pi-download"></i></button>
+        </div>
+</div>

@@ -16,7 +16,7 @@ import { MessageService } from 'primeng/api';
 export class ListenseignantComponent implements OnInit {
   public Listenseignant : Utilisateur[] = [] ;
   public listEnseignantdata : MatTableDataSource<Utilisateur>
-  displayedColumns: string[] = ['nom', 'prenom', 'cin' ,'numTel' ,'email', 'dateNaissance' , 'adresse', 'login' ,'motDepasse', 'supprimer' ,'modifier'];
+  displayedColumns: string[] = ['nom', 'prenom', 'identifiant' ,'numTel' ,'email' , 'adresse', 'username' , 'supprimer' ,'modifier'];
   private utilisateur: Utilisateur;
   private listeDesutilisateur: Utilisateur[];
   public listdesnewdate : any[] = [];
@@ -83,7 +83,7 @@ showError() {
   let httpHeader:HttpHeaders = new HttpHeaders();
 
   httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.get<Utilisateur[]>('http://localhost:8080/madrasati/listUtilisateur',{headers:httpHeader});
+    return this.httpClient.get<Utilisateur[]>('/listUtilisateur',{headers:httpHeader});
   }
   supprimerEnseignant(enseignant) {
     this.dialogRefAlert = this.dialog.open(this.daialogSuppression, {
@@ -95,7 +95,7 @@ showError() {
       if (result == "supprimer"){
         console.log('Suppression en cours ...');
   
-        this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/supprimerUtiisateur', enseignant )
+        this.httpClient.post<Utilisateur>('/supprimerUtiisateur', enseignant )
         .subscribe (d =>{
                 console.log(d);
                 this.showSuccessSuppression()
@@ -116,14 +116,14 @@ showError() {
     this.dialogRefCreerEnseignant = this.dialog.open(CreerenseignatComponent, {
       width: '400px',
       height:'100%',
-      data: {enseignant:new Utilisateur()}
+      data: {enseignant:new Utilisateur(),title:'ajouter'}
    });
    this.dialogRefCreerEnseignant.afterClosed()
     .subscribe(result => {
       if (result.validation == "sauvegarder"){
         console.log('Creation en cours ...');
   
-        this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/creerUtilisateur', result.enseignant )
+        this.httpClient.post<Utilisateur>('/creerUtilisateur', result.enseignant )
         .subscribe (d =>{
                 console.log(d);
                 this.showSuccess();
@@ -152,7 +152,7 @@ showError() {
     this.dialogRefCreerEnseignant = this.dialog.open(CreerenseignatComponent, {
       width: '400px',
       height:'100%',
-      data: {enseignant:enseignant},
+      data: {enseignant:enseignant, title:'modifier'},
   
    });
    this.dialogRefCreerEnseignant.afterClosed()
@@ -160,7 +160,7 @@ showError() {
       if (result.validation == "sauvegarder"){
         console.log('Modification en cours ... ');
   
-        this.httpClient.post<Utilisateur>('http://localhost:8080/madrasati/modifierUtlisateur', result.enseignant )
+        this.httpClient.post<Utilisateur>('/modifierUtlisateur', result.enseignant )
         .subscribe (d =>{
                 console.log(d);
                 this.showSuccessModification()

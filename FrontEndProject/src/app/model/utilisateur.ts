@@ -7,7 +7,7 @@ export class Utilisateur {
     public  dateNaissance:  Date;
     public adresse: string;
     public email: String;
-    public login: string;
+    public username: string;
     public password: string;
    public dateNaissanceString : any ;
    

@@ -36,16 +36,16 @@
         </mat-checkbox>
       </td>
     </ng-container>
-    <ng-container matColumnDef="supprimer">
-      <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
-      <mat-cell *matCellDef="let examen"> 
-        <button pButton icon="pi pi-trash" (click)="supprimerExamen(examen)"  icon="pi pi-trash"></button>
-      </mat-cell>
-    </ng-container>
     <ng-container matColumnDef="modifier">
       <mat-header-cell *matHeaderCellDef> Modifier </mat-header-cell>
       <mat-cell *matCellDef="let examen"> 
         <button pButton (click)=" modifierExamen(examen)"  icon="pi pi-pencil"></button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="supprimer">
+      <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+      <mat-cell *matCellDef="let examen"> 
+        <button pButton icon="pi pi-trash" (click)="supprimerExamen(examen)"  icon="pi pi-trash"></button>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="nomExamen">

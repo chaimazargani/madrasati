@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pfe.madrasati.model.EleveMatiereMoyenne;
 import com.pfe.madrasati.model.Note;
 import com.pfe.madrasati.model.NoteDTO;
 import com.pfe.madrasati.model.NoteEleveDTO;
@@ -37,17 +38,25 @@ public class NoteDAOImp implements NoteDAO {
 				+ " N.valeurNote as valeurNote  ,"
 				+ " E.nomEleve as nomEleve ,"
 				+ " X.nomExamen as nomExamen ,"
+				
 				+ " N.notePk.idEleve as idEleve ,"
 				+ " N.notePk.idExamen as idExamen ,"
 				+ " N.notePk.idMatier as idMatier "
 				+ " from Note N"
+//				+ " right join N.eleve E ON N.notePk.idEleve=E.idEleve"
 				+ " right join N.eleve E "
+//				+ " left join  N.matiere M ON N.notePk.idMatier=M.idMatier"
 				+ " left join  N.matiere M "
+//				+ " left join  N.examen X ON N.notePk.idExamen=E.idExamen"
 				+ " left join  N.examen X "
 				+ " where "
-				+ " E.idClasse = :idClasse" ;
+				+ " E.idClasse = :idClasse"
+				+ " AND"
+				+ " N.notePk.idMatier = :idmatier" ;
 		Query query = getCurrentSession().createQuery(hql2);
 		query.setParameter("idClasse", idClasse);
+		//TODO ne pas oublier de mettre la bonne valeure de la matiere
+		query.setParameter("idmatier", 3);
 		query.setResultTransformer(Transformers.aliasToBean(NoteDTO.class));
 
 		List<NoteDTO> results = query.list();
@@ -97,6 +106,17 @@ public class NoteDAOImp implements NoteDAO {
 			     this.getCurrentSession().saveOrUpdate(noteBD);
 				});
 				return noteDto;
-			}}
+			}
+			
+			
+			@Override
+			public List<EleveMatiereMoyenne> getMoyenne() {
+				 String hql1="select * from  elevematieremoyenne";
+				   Query query= getCurrentSession().createQuery(hql1);
+				   List<Note> results= query.list();		
+				   return null;
+			}
+			
+    
 
-
+}

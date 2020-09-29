@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreerenseignatComponent } from './creerenseignat/creerenseignat.component';
 import { RoutingModule } from '../modules/routing/routing.module';
 // import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CreerclasseComponent } from './creerclasse/creerclasse.component';
 import { AppWebComponent } from './app-web/app-web.component';
 import { EnseignantComponent } from './app-web/enseignant/enseignant.component';
@@ -39,6 +39,8 @@ import { CheckboxRenderer } from './registre/checkbox-renderer.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { CourseleveComponent } from './courseleve/courseleve.component';
 import { AuthenticationComponent } from './login/authentication.component';
+import { HeaderHttpInterceptor } from './app-web/header-http-interceptor';
+import { MessageService } from 'primeng/api';
 
 //import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
@@ -85,11 +87,13 @@ import { AuthenticationComponent } from './login/authentication.component';
     MatSortModule,
   ],
   providers: [
+    MessageService,
     AppareilService ,
     AuthService,
     EventService,
+    {provide: HTTP_INTERCEPTORS, useClass: HeaderHttpInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent]
-
+  bootstrap: [AppComponent],
+entryComponents : [CreerenseignatComponent]
 })
 export class AppModule { }

@@ -23,7 +23,7 @@ public class EleveServiceImlp implements EleveService {
 
 	@Override
 	public List<Eleve> getListEleveByIdClasse(Integer idClasse) {
-		 List<Eleve> list = (List<Eleve>)  eleveDAO.getListEleveByIdClasse(idClasse);
+		 List<Eleve> list = eleveDAO.getListEleveByIdClasse(idClasse);
 		return list;
 	}
 

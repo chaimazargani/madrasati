@@ -11,7 +11,7 @@
   <div class="p-col-auto">
     <mat-form-field>
       <mat-label>selectionner la classe </mat-label>
-      <mat-select [(ngModel)]="classeSelectionner" (change)="getListregistre()">
+      <mat-select [(ngModel)]="classeSelectionner" (ngModelChange)="getListregistre()">
         <mat-option *ngFor="let classe of classeList" [value]="classe.idClasse">{{classe.nomClasse}}</mat-option>
 
       </mat-select>
@@ -27,18 +27,13 @@
   </div>
 </div>
 <div class="p-grid table-section">
-  <ag-grid-angular #agGridComponent class="ag-theme-balham" 
-  [rowData]="listresult" 
-  [columnDefs]="columnDefs"
-  [frameworkComponents]="frameworkComponents"
-  [rowHeight]="rowHeight"
-  (gridReady)="onGridReady($event)">
+  <ag-grid-angular #agGridComponent class="ag-theme-balham" [rowData]="listresult" [columnDefs]="columnDefs"
+    [frameworkComponents]="frameworkComponents" [rowHeight]="rowHeight" (gridReady)="onGridReady($event)">
   </ag-grid-angular>
 </div>
 <div class="p-grid">
   <div class="p-col-12 bottom-section">
-    <button pButton type="button" label="Sauvegarder" class="p-button-text"
-      (click)="valider(this.listresult)"></button>
+    <button pButton type="button" label="Sauvegarder" class="p-button-text" (click)="valider(this.listresult)"></button>
   </div>
 </div>
 <p-toast></p-toast>

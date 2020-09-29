@@ -18,6 +18,7 @@ export class CreerexamenComponent implements OnInit {
  
   }
 
+  
   ngOnInit() {
     this.profileFormGroup = new FormGroup({
       nomExamen: new FormControl(this.data.examen.nomExamen,Validators.maxLength(10)),

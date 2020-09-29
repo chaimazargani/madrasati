@@ -8,7 +8,7 @@ body {
 .login-form{
     padding:40px;
     /* background-color:rgba(27, 186, 214, 0.2); */
-    background-color: rgb(3, 77, 109,0.8);
+    background-color: rgb(17 19 17 / 80%);
     position: relative;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
 }
@@ -56,18 +56,41 @@ width: 300px;
     background: url('../../assets/images/backtoschool__.jpg') no-repeat center;
   /* Full height */
   height: 100%;
-
+    background-color: cornsilk;
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   }
+  ::ng-deep body  label#mat-form-field-label-1 {
+      color:white
+}
+::ng-deep body label#mat-form-field-label-3 {  
+    color:white
+}
 
-  .field label{
+::ng-deep body .mat-form-field-flex {
+    height: 50px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    height: 50px;
+    font-size: 14px;
+    width: 100%;
+}
+::ng-deep body  .mat-form-field-infix {
+    width: 250px;
+    height: 50px;
+    color: white;
+    font-size : 14px
+}
+::ng-deep body  .field label{
       color:white;
   }
   .logo {
-    background: url('../../assets/images/logo.png') center no-repeat;
+    /* background: url('../../assets/images/logo.png') center no-repeat; */
     display: block;
     height: 90px;
     margin: 0 auto;
@@ -97,8 +120,8 @@ width: 300px;
 .app-title {
     width: 100%;
     height: 110px;
-    color:rgb(225,222,253);
-    font-size: 80px;
+    color:white;
+    font-size: 40px;
     text-align: center;
 }
 /* .arabic-elif{
@@ -110,3 +133,26 @@ width: 300px;
     background-image: url('../../assets/images/ألف.png');
     background-size: cover;
 } */
+/* .mat-input-element .mat-form-field-autofill-control 
+.cdk-text-field-autofill-monitored .ng-dirty .ng-valid .ng-touched {
+    background-color: crimson;
+} */
+
+
+::ng-deep body .ui-button {
+    margin: 0;
+    color: #282a2a;
+    background-color: #ececec;
+    border: 1px solid #000000;
+    height: 35px;
+    width: 40%;
+    margin-left: 15px;
+    font-size: 14px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+::ng-deep body .ui-button:enabled:hover {
+    background-color: #000000 !important;
+    color: #ececec !important;
+    /* border-color: #116fbf !important; */
+}

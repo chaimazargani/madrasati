@@ -1,6 +1,6 @@
 <html>
 <body>
- <form [formGroup]="profileFormGroup" (ngSubmit)="dialogClose()" (ngSubmit)="ajouterEmploie(data)">
+ <form [formGroup]="profileFormGroup">
     <table>
        <div>
         <tr>
@@ -32,8 +32,8 @@
         </tr>-->
       <tr>
           <button mat-raised-button mat-dialog-close>Cancel</button>
-          <button mat-raised-button type="submit" >Sauvegarder</button>
-          <!-- <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Supprimer</button> -->
+          <button mat-raised-button (click)="dialogClose()" [disabled]="!profileFormGroup.valid" >Sauvegarder</button>
+          <button mat-raised-button (click)="supprimerEvent()">Supprimer</button>
 
       </tr> 
     
@@ -42,7 +42,7 @@
         <h2 mat-dialog-title>voulez vous vraiment supprimer l'evénement </h2>
         <mat-dialog-actions align="end"class="footer">
           <button mat-raised-button mat-dialog-close>Cancel</button>
-          <button mat-raised-button (click)="dialoggClose()">Supprimer</button>
+          <button mat-raised-button (click)="supprimer()">Supprimer</button>
         </mat-dialog-actions>
       </ng-template>
       

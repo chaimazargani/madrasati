@@ -1,9 +1,10 @@
 package com.pfe.madrasati.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +18,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.StringUtils;
 
+import com.pfe.madrasati.model.security.Autorite;
 import com.pfe.madrasati.model.security.Role;
 
 @Entity
@@ -60,18 +64,24 @@ public class Utilisateur implements Serializable , UserDetails {
 	@Column(name = "motdepasse")
 	private String password;
 	
-//	@MapsId("idRole")
-//	@ManyToOne
-//	@JoinColumn(name="idrole", insertable = true ,updatable = true)
-//	private Role role ; 
+	@MapsId("idRole")
+	@ManyToOne
+	@JoinColumn(name="idrole", insertable = false ,updatable = false)
+	private Role role ; 
 	
 	
-
+	private List<Autorite> authorities;
+	
 	public Utilisateur() {
 		super();
 	}
 
-	
+
+
+	public void setAuthorities(List<Autorite> authorities) {
+		this.authorities = authorities;
+	}
+
 	public Utilisateur(Integer idUtilisateur, String nom, String prenom, Integer identifiant, Integer numTel,
 			Date dateNaissance, String adresse, String email, String username, String password, Role role) {
 		super();
@@ -85,18 +95,18 @@ public class Utilisateur implements Serializable , UserDetails {
 		this.email = email;
 		this.username = username;
 		this.password = password;
-//		this.role = role;
+		this.role = role;
 	}
 
 
-//	public Role getRole() {
-//		return role;
-//	}
-//
-//
-//	public void setRole(Role role) {
-//		this.role = role;
-//	}
+	public Role getRole() {
+		return role;
+	}
+
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 
 	public Integer getIdUtilisateur() {
@@ -180,8 +190,15 @@ public class Utilisateur implements Serializable , UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		final boolean hasAuthorities = !(this.authorities == null || this.authorities.isEmpty());
+		final List<GrantedAuthority> authorities = new ArrayList<>();
+		for (Autorite authority : this.authorities) {
+			final String authorityName = authority.getNomAutorite();
+			final boolean hasAuthorityName = !StringUtils.isEmpty(authorityName);
+			final SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(authorityName);
+			authorities.add(simpleGrantedAuthority);
+		}
+		return authorities;
 	}
 
 	@Override

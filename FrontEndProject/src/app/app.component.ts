@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from './service/auth.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,19 +11,17 @@ import {Location} from '@angular/common';
 })
 export class AppComponent implements OnInit {
   public items: MenuItem[];
-  constructor() {
+  public isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
+
+  constructor(private httpClient: HttpClient) {
     this.items = [
       {
         label: 'Administration',
         items: [
-          { label: 'Configuration Examen', routerLink: "listexamen"},
+          { label: 'Configuration Examen', routerLink: "listexamen" },
           { separator: true },
-          { label: 'Configuration Note', routerLink: "note" },
-          { separator: true },
-
           { label: 'Géstion les Personnels', routerLink: "listenseignant" },
           { separator: true },
-
           { label: 'Configuration Matiére', routerLink: "listmatiere" },
           { separator: true },
 
@@ -52,6 +51,16 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
 
+  }
+
+  logout() {
+    this.httpClient.post<any>('/logout', null).subscribe(() => {
+      this.isLoggedIn = false;
+      localStorage.setItem('isLoggedIn',"false");
+      window.location.href = 'http://localhost:4200/login';
+    }
+
+    )
   }
 }
 

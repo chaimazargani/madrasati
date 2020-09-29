@@ -66,7 +66,7 @@ showError() {
     console.log(this.listeDesclasse);
   let httpHeader:HttpHeaders = new HttpHeaders();
   httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.get<Classe[]>('http://localhost:8080/madrasati/getClasse',{headers:httpHeader});
+    return this.httpClient.get<Classe[]>('/getClasse',{headers:httpHeader});
   }
 
  
@@ -93,7 +93,7 @@ supprimerClasse(classe) {
     if (result == "supprimer"){
       console.log('Suppression en cours ...');
 
-      this.httpClient.post<Classe>('http://localhost:8080/madrasati/supprimerClasse', classe )
+      this.httpClient.post<Classe>('/supprimerClasse', classe )
       .subscribe (d =>{
               
               this.showSuccessSuppression();
@@ -120,7 +120,7 @@ creerClasse() {
     if (result.validation == "sauvegarder"){
       console.log('Creation en cours ...');
 
-      this.httpClient.post<Classe>('http://localhost:8080/madrasati/creerclasse', result.classe )
+      this.httpClient.post<Classe>('/creerclasse', result.classe )
       .subscribe (d =>{
               console.log(d);
               this. showSuccess();
@@ -156,7 +156,7 @@ modifierClasse(classe) {
     if (result.validation == "sauvegarder"){
       console.log('Modification en cours ... ');
 
-      this.httpClient.post<Classe>('http://localhost:8080/madrasati/creerclasse', result.classe )
+      this.httpClient.post<Classe>('/creerclasse', result.classe )
       .subscribe (d =>{
               console.log(d);
               this.showSuccessModification();

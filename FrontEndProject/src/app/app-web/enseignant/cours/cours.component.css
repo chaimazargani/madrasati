@@ -28,6 +28,8 @@
   width: 160px;
   height: 2.2em;
   white-space: nowrap;
+  color:black;
+  font-weight: 530;
 }
 .flex-container .ui-button {
   font-size: 12px;

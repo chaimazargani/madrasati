@@ -1,4 +1,5 @@
-<h3 class="main-title">{{selectedScreen}}</h3>
+<!-- <p-progressSpinner #spinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"> -->
+  <h3 class="main-title">{{selectedScreen}}</h3>
 <div class="p-grid filter-section">
   <div class="p-col-auto">
     <mat-form-field>
@@ -15,7 +16,8 @@
   <ag-grid-angular
   class="ag-theme-balham" 
   [rowData]="listresult" 
-  [columnDefs]="columnDefs">
+  [columnDefs]="columnDefs"
+  (cellValueChanged)="onCellValueChanged($event)">
   </ag-grid-angular>
 </div>
 <div class="p-grid">
@@ -26,3 +28,5 @@
 </div>
 <mat-divider></mat-divider>
 <p-toast></p-toast>
+
+<!-- </p-progressSpinner> -->

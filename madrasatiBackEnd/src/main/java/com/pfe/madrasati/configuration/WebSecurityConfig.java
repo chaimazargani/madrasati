@@ -18,6 +18,7 @@ import com.pfe.madrasati.configuration.filters.CORSFilter;
 import com.pfe.madrasati.configuration.security.AuthFailure;
 import com.pfe.madrasati.configuration.security.AuthSuccess;
 import com.pfe.madrasati.configuration.security.LimitLoginAuthenticationProviderBasicAuth;
+import com.pfe.madrasati.configuration.security.LogoutSuccess;
 
 @EnableWebSecurity
 @Configuration
@@ -37,6 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthSuccess authSuccess;
+
+	@Autowired
+	private LogoutSuccess logoutSuccess;
 
 	@Autowired
 	private AuthFailure authFailure;
@@ -64,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //          .antMatchers("/admin/**").hasRole("ADMIN")
 //          .antMatchers("/anonymous*")
 //          .anonymous()
-          .antMatchers("/login*").permitAll()
+          .antMatchers("/login*","/logout*").permitAll()
           .anyRequest().authenticated()
           .and()
           .formLogin()
@@ -73,7 +77,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .failureHandler(this.authFailure)
           .and()
           .logout()
-          .logoutUrl("/perform_logout")
+          .logoutUrl("/logout")
+          .logoutSuccessHandler(this.logoutSuccess)
           .deleteCookies("JSESSIONID");
     }
 

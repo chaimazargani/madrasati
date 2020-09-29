@@ -1,40 +1,16 @@
-<!doctype html>
-
-<html>
-
-<head>
-  <title> Ajouter un Examen </title>
-</head>
-
-<body>
- <form [formGroup]="profileFormGroup" (ngSubmit)="dialogClose()">
-    <table>
-       <div>
-       
-        <tr>
+<h1 mat-dialog-title>{{data.title === 'modifier' ?   'Modifier Examen': 'Creer Examen'}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="profileFormGroup" (ngSubmit)="dialogClose()">
           <mat-form-field class="input">
             <input matInput type="text" id="name" name="name" placeholder="nom de l'examen"  formControlName="nomExamen" required>
           </mat-form-field>
-        </tr>
-        
-  
-
-        
-        <tr>
           <mat-form-field class="input">
             <input matInput type="number" id="coefficeint" name="coefficeint de l'examen" placeholder="coefficeint de l'examen"  formControlName="coefficeint" required>
             </mat-form-field>
-        </tr>
-    
-        <tr>
+          <div mat-dialog-actions>
           <button mat-raised-button mat-dialog-close>Cancel</button>
           <button mat-raised-button type="submit" [disabled]="!profileFormGroup.valid">Sauvegarder</button>
+        </div>
 
-      </tr>
-      </div>
-     </table>
     </form>
-
-  </body>
-
-</html>
+  </div>

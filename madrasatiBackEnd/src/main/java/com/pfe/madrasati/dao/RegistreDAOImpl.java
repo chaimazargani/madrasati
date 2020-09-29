@@ -42,9 +42,9 @@ public class RegistreDAOImpl implements RegistreDAO {
 //		String hql2 = "select U.nom as nom, E.nomEtat as nometat, R.datePresence as datepresence from Utilisateur U , Etat E , Registre R , Eleve EL where U.idUtilisateur = EL.idEleve and EL.idEleve = R.idEleve and R.idEtat = E.idEtat and R.datePresence ='2020-10-19 08:00:00+01' and R.idEleve in (2) ";
 		String hql2 = "select R.registrePk.datePresence as datePresence ,R.nomEtat as nomEtat, EL.nomEleve as nomEleve  ,R.registrePk.idEleve as idEleve from Registre R , Eleve EL where EL.idEleve = R.registrePk.idEleve and R.registrePk.datePresence between :datePresenceParam and :datePresencePlus1 and R.registrePk.idEleve in  :listEleve  ";
 		Query query = getCurrentSession().createQuery(hql2);
-		query.setParameter("datePresenceParam", datePresence.withHour(0));
+		query.setParameter("datePresenceParam", datePresence.withHour(0).withNano(0));
 		query.setParameterList("listEleve", list1);
-		query.setParameter("datePresencePlus1", datePresencePlus1.withHour(0));
+		query.setParameter("datePresencePlus1", datePresencePlus1.withHour(0).withNano(0));
 
 		query.setResultTransformer(Transformers.aliasToBean(RegistreDTO.class));
 		List<RegistreDTO> results = query.list();
@@ -65,7 +65,6 @@ public class RegistreDAOImpl implements RegistreDAO {
 
 	@Override
 	public List<RegistreDTO> sauvegarderPresence(List<RegistreDTO> registreDTO) {
-		System.out.println(registreDTO);
 		registreDTO.forEach( object -> {
 			RegistrePk registrePK =  new RegistrePk() ; 
 			Registre registreBd = new Registre()   ; 

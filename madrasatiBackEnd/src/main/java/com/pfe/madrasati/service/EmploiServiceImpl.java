@@ -17,40 +17,34 @@ public class EmploiServiceImpl implements EmploiService {
 	public EmploiDAO emlpoiDAO ;
 	
 	@Override
-	  @Transactional
 	public List<Event> getEvent(Integer idClasse) {
 		return emlpoiDAO.getEvent(idClasse);
 	}
 
 	@Override
-	@Transactional
 	public Event delete(Event data) {
 		// TODO Auto-generated method stub
 		return (Event) emlpoiDAO.delete(data);
 	}
 
 	@Override
-	@Transactional
 	public List<Event> findAll() {
 		// TODO Auto-generated method stub
 		return ( List<Event>) emlpoiDAO.findAll() ;
 	}
 
 	@Override
-	@Transactional
 	public Event update(Event event) {
 		return emlpoiDAO.update(event);
 	}
 
 	@Override
-	@Transactional
 	public Event findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	@Transactional
 	public Event ajouterEvent(Event event) {
 		return emlpoiDAO.ajouterEvent(event) ;
 	}

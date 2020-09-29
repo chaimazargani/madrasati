@@ -1,5 +1,8 @@
 package com.pfe.madrasati.controller;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pfe.madrasati.model.Event;
 import com.pfe.madrasati.model.EventEleve;
+import com.pfe.madrasati.model.dto.EventDTO;
 import com.pfe.madrasati.service.EmploiService;
 
 @RestController
@@ -20,16 +24,41 @@ public class EmploiController {
 	EmploiService emploiService  ;
 	
 	@RequestMapping (value = "/creerEvent", method = RequestMethod.POST)
-    public Event ajouterEvent(@RequestBody Event event   ){
-		return emploiService.ajouterEvent(event);
-		
+    public Event ajouterEvent(@RequestBody EventDTO event   ){
+		final Event e = new Event();
+		e.title = event.getTitle();
+		e.start = LocalDateTime.parse(event.getStartString()).withNano(0);
+		e.enddate = LocalDateTime.parse(event.getEndString()).withNano(0);
+		e.idclasse = event.getIdclasse();
+		e.color = event.getColor();
+		return emploiService.ajouterEvent(e);
 	}
 	
 	@RequestMapping(value = "/modifierEvent", method = RequestMethod.POST) 
-   public Event  modifierEvent(@RequestBody Event event){
-		return  (Event) emploiService.update(event);
-	  
+   public Event  modifierEvent(@RequestBody EventDTO event){
+		final Event e = new Event();
+		e.id = event.getId();
+		e.title = event.getTitle();
+		e.start = LocalDateTime.parse(event.getStartString()).withNano(0);
+		e.enddate = LocalDateTime.parse(event.getEndString()).withNano(0);
+		e.idclasse = event.getIdclasse();
+		e.color = event.getColor();	
+		return emploiService.update(e);
 	}
+	@RequestMapping(value = "/modifierEventList", method = RequestMethod.POST) 
+	   public List<Event>  modifierEvent(@RequestBody List<EventDTO> eventList){
+		eventList.forEach((event) -> {
+			final Event e = new Event();
+			e.id = event.getId();
+			e.title = event.getTitle();
+			e.start = LocalDateTime.parse(event.getStartString()).withNano(0);
+			e.enddate = LocalDateTime.parse(event.getEndString()).withNano(0);
+			e.idclasse = event.getIdclasse();
+			e.color = event.getColor();	
+			emploiService.update(e);
+		});
+			return new ArrayList<>();
+		}
 	@RequestMapping (value = "/getEventByClasse", method = RequestMethod.GET)
 	@ResponseBody
     public	List<Event> getEvent(@RequestParam ("idClasse") Integer idClasse  ){
@@ -49,7 +78,7 @@ public class EmploiController {
 	
 	@RequestMapping(value = "/supprimerEvent", method = RequestMethod.POST) 
 	public Event _(@RequestBody  Event data ){
-		return  (Event) emploiService.delete( data) ;
+		return  emploiService.delete( data) ;
 		
 	}
 	

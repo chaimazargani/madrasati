@@ -10,6 +10,9 @@ export class EventMadrasati {
   //  public constraint: string ;
   //  public  durationEditable: boolean ;
     public end: Date ;
+    public enddate;
+    public startString;
+    public endString;
   //  public extendedProps: string ;
   //  public groupId: string ;
    public id: number ;
@@ -27,6 +30,7 @@ export class EventMadrasati {
   // public editable: boolean ;
   public  color : string ;
   public textColor : string ;
+  public idclasse :number;
  public constructor () {
 }
 

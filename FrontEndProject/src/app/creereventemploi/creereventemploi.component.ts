@@ -29,21 +29,6 @@ export class CreereventemploiComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.options =
-    // {
-    //   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-    //   defaultDate: '2017-02-01',
-    //   header: {
-    //     left: 'prev,next',
-    //     center: 'title',
-    //     right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    //   },
-    //   dateClick: ($dateObject) => {this.supprimerEvent($dateObject)},
-    //   eventClick: ($eventObject) => {this.supprimerEvent($eventObject)},
-    //   editable: true,
-    //   durationEditable:true
-     
-    // }
     this.profileFormGroup = new FormGroup({
       title: new FormControl(this.data.popupData.title,Validators.maxLength(20)),
       start: new FormControl(this.data.popupData.start),
@@ -56,15 +41,15 @@ export class CreereventemploiComponent implements OnInit {
     this.dialogRef.close()
   } 
 
-    
-
+  
   dialogClose(){
     let event = new PopupData();
     event.title = this.profileFormGroup.value.title;
     event.start = this.profileFormGroup.value.start;
     event.end = this.profileFormGroup.value.end;
-    event.id = this.profileFormGroup.value.id;
-
+    event.id = this.data.popupData.id;
+    event.idclasse = this.data.popupData.idclasse;
+    event.color = this.data.popupData.color;
     this.dialogRef.close({event: event ,validation:"sauvegarder" });
     
   }
@@ -74,28 +59,24 @@ export class CreereventemploiComponent implements OnInit {
   supprimerEvent(data) {
     this.dialogRefAlert = this.dialog.open(this.dialogsuppression, {
       width: '250px',
-  
    });
    this.dialogRefAlert.afterClosed()
     .subscribe(result => {
-      if (result == "supprimer"){
-        console.log('Suppression en cours ...');
-  
-        this.httpClient.post<any>('http://localhost:8080/madrasati/supprimerEvent', data.event )
-        .subscribe (d =>{
-                console.log(d);
-                
-  
-           });
+      if(result.validation == "supprimer"){
+      this.dialogRef.close({event: result.event ,validation:"supprimer" });
       }
-     
-        });
-  }
+  });
+}
+supprimer(){
+  let event = new PopupData();
+  event.id = this.data.popupData.id;
+  this.dialogRefAlert.close({event: event ,validation:"supprimer"});
+}
 
 
-  dialoggClose(){
-    this.dialogRefAlert.close("supprimer");
-  }
+  // dialoggClose(){
+  //   this.dialogRefAlert.close("supprimer");
+  // }
 
   
   getEventByClasse(): Observable<EventMadrasati[]> {
@@ -104,7 +85,7 @@ export class CreereventemploiComponent implements OnInit {
     params = params.append('idClasse', this.classeSelectionner.toString());
 
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.get<any[]>('http://localhost:8080/madrasati/getEventByClasse', { headers: httpHeader, params: params });
+    return this.httpClient.get<any[]>('/getEventByClasse', { headers: httpHeader, params: params });
   }
 
   getListEvent(): void {

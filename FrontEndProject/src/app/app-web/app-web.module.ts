@@ -11,6 +11,9 @@ import { NoteHttpService } from './enseignant/note/note-http.service';
 import { NoteService } from './enseignant/note/note.service';
 import { CoursComponent } from './enseignant/cours/cours.component';
 import { CoursService } from './enseignant/cours/cours.service';
+import { ToastUtils } from './utils/toast-util';
+import { MessageService } from 'primeng/api';
+import { RegistreService } from '../registre/RegistreService';
 //import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 @NgModule({
@@ -23,7 +26,8 @@ import { CoursService } from './enseignant/cours/cours.service';
     FormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [NoteHttpService, NoteService  , CoursService
+  providers: [NoteHttpService, NoteService  , CoursService,ToastUtils,MessageService,RegistreService
+
   ],
   bootstrap: [NoteComponent],
   declarations: [

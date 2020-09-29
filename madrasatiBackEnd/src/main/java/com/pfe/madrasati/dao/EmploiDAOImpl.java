@@ -34,7 +34,6 @@ public class EmploiDAOImpl implements EmploiDAO {
 	}
 
 	@Override
-	@Transactional
 	public Event delete(Event data) {
 		this.getCurrentSession().delete(data);
         this.getCurrentSession().flush();		
@@ -50,16 +49,8 @@ public class EmploiDAOImpl implements EmploiDAO {
 	}
 
 	@Override
-	@Transactional
 	public Event update(Event event) {
-		//final Event eventDTO = new Event();
-		//eventDTO.setTitle(event.getTitle());
-		//eventDTO.setId(event.getId());
-		/// LocalDateTime ldt = this.convertToLocalDateTimeViaSqlTimestamp(event.getEnd());
-		//final LocalDateTime ldtStart = this.convertToLocalDateTimeViaSqlTimestamp(event.getStart());
-		//eventDTO.setStart(ldtStart);
-		//eventDTO.setEnd(ldt);
-		this.getCurrentSession().update(event);
+		this.getCurrentSession().saveOrUpdate(event);
 		return event;
 	}
 	
@@ -74,7 +65,6 @@ public class EmploiDAOImpl implements EmploiDAO {
 	}
 
 	@Override
-	@Transactional
 	public Event ajouterEvent(Event event) {
 		this.getCurrentSession().save(event);		
 		return event;

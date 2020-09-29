@@ -25,3 +25,12 @@ table {
   font-size: 11px;
   top: 2px;
 }
+
+
+.bottom-section {
+  text-align: right;
+  padding: 0px 67px 0px;
+  z-index: 99999;
+  background-color: #f4f4f4;
+  border: 1px solid #c8c8c8;
+}
