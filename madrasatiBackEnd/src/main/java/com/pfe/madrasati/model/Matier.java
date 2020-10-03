@@ -1,4 +1,5 @@
 package com.pfe.madrasati.model;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,25 +7,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 @Entity
-@Table (name = "matier")
+@Table(name = "matier")
 public class Matier {
 	@Id
-	   
-		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
-	    @SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
-	  @Column(name = "idmatier")
-private Integer idMatier;
-	
-	  @Column(name = "nommatier")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
+	@SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", initialValue = 1, allocationSize = 1)
+	@Column(name = "idmatier")
+	private Integer idMatier;
+
+	@Column(name = "nommatier")
 	private String nomMatier;
-	
-		
-	  @Column(name = "idenseignant")
-	private Integer idEnseignant ;
-	  
-	  @Column(name = "coefficeint")
-		private Integer coefficeint ;
+
+	@Column(name = "idenseignant")
+	private Integer idEnseignant;
+
+	@Column(name = "coefficeint")
+	private Integer coefficeint;
 
 	public Matier() {
 		super();
@@ -114,7 +114,4 @@ private Integer idMatier;
 		return true;
 	}
 
-
-	
-	
 }

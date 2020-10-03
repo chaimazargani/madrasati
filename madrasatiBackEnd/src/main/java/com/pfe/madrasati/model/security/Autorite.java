@@ -27,6 +27,14 @@ public class Autorite {
 		super();
 	}
 
+	
+	public Autorite(Integer idAutorite, String nomAutorite) {
+		super();
+		this.idAutorite = idAutorite;
+		this.nomAutorite = nomAutorite;
+	}
+
+
 	public Autorite(Integer idAutorite, String nomAutorite, List<AutoriteRole> autoriteRole) {
 		super();
 		this.idAutorite = idAutorite;

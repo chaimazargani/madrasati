@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder, Validators, PatternValidator } from '@angular/f
 // import { LogOut } from 'src/app/elif-store/auth-store/actions/auth.actions';
 import { HttpClient } from '@angular/common/http';
 import { Button } from 'primeng/button';
+import { AppService } from '../app.service';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 //https://mherman.org/blog/authentication-in-angular-with-ngrx/#configure-login-1
 
@@ -21,25 +23,17 @@ export class AuthenticationComponent implements OnInit {
 
   public loginFormGroup: FormGroup;
   user: Utilisateur = new Utilisateur();
-  // getState: Observable<any>;
   errorMessage: string | null;
 
-  // Observable's unsubscribe
   private unsubscribe = new Subject<void>();
 
       // Auth failed
       isAuthFailed: Boolean = false;
 
-  // Login Params
-  constructor(private httpClient:HttpClient, private formBuilder: FormBuilder) {
-    // this.getState = this.store.select(selectAuthState);
+  constructor(private httpClient:HttpClient, private formBuilder: FormBuilder,private appService:AppService,private ngxPermissionService:NgxPermissionsService) {
   }
   ngOnInit() {
     this.initFormGroup();
-    //ensure that it's logged out
-    // this.store.dispatch(new LogOut());
-    //set Error message from authState
-    // this.getState.subscribe((authState:any) => this.errorMessage = authState.errorMessage)
   }
 
   //From Group Init
@@ -67,14 +61,28 @@ export class AuthenticationComponent implements OnInit {
      this.httpClient.post<any>( '/login', `username=${username}&password=${password}`,
             { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },  } ).subscribe(d => {
               localStorage.setItem('isLoggedIn', "true");
-              window.location.href = 'http://localhost:4200/registre';
-              // this.store.dispatch(new AuthenticationActions.LogIn(payload));
+              this.getAuthorities();
   } , 
   error => {
     if ( Number( error.status ) == 401 || Number( error.status ) == 500 ) {
       this.isAuthFailed = true;
   }
   })
+}
+public defaultPath:string;
+getAuthorities(){
+  this.httpClient.get<any>('/getAuthorities').subscribe(
+    (authorities) => {
+      localStorage.setItem('authorities', JSON.stringify(authorities));
+      this.ngxPermissionService.loadPermissions(authorities);
+      if(this.ngxPermissionService.getPermission('administration'))
+      this.defaultPath = 'registre';
+      if(this.ngxPermissionService.getPermission('enseignant'))
+      this.defaultPath = 'note';
+      if(this.ngxPermissionService.getPermission('eleve'))
+      this.defaultPath = 'noteeleve';
+      window.location.href = 'http://localhost:4200/'+this.defaultPath;
+    });
 }
 
 @ViewChild('emailInput',{static:true}) inputEmail: ElementRef;

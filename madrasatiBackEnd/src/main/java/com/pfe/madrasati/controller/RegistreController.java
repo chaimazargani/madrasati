@@ -31,8 +31,8 @@ public class RegistreController {
 	@ResponseBody
 	public Map<String, List<RegistreDTO>> getPresenceByIdEleve(@RequestParam("idClasse") Integer idClasse,
 			@RequestParam("datePresenceString") String datePresenceString) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'.000Z'")
-	            .withZone(ZoneId.of("UTC"));
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+	            .withZone(ZoneId.of("UTC"));					
 	       LocalDateTime datePresence = LocalDateTime.parse(datePresenceString, formatter);
   final List<RegistreDTO> dbResultList =  registreService.getPresenceByIdEleve(datePresence , idClasse);
    return  getPresenceGroupeBY(dbResultList);

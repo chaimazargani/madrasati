@@ -114,7 +114,8 @@ export class NoteComponent implements OnInit {
   getclasse() {
     this.noteService.getClasseservice(8).subscribe(result => {
       this.Classe = result;
-      console.log(this.Classe);
+      this.classeSelectione = this.Classe[0].idClasse;
+      this.creerAgGridNoteEleve();
     });
   }
   getListExamen() {

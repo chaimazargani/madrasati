@@ -1,5 +1,4 @@
 package com.pfe.madrasati.service;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pfe.madrasati.dao.ClasseDAO;
 import com.pfe.madrasati.model.Classe;
-import com.pfe.madrasati.model.Examen;
+import com.pfe.madrasati.model.Eleve;
 import com.pfe.madrasati.model.MatierEnseignantClasse;
-import com.pfe.madrasati.model.RegistreDTO;
 
 @Service (value="classeService")
 public class ClasseServiceImpl implements ClasseService {
@@ -50,13 +48,8 @@ public class ClasseServiceImpl implements ClasseService {
 
 
 		@Override
-	    @Transactional
-
 		public List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant) {
-			List<MatierEnseignantClasse> list = (List<MatierEnseignantClasse>)  classeDAO.getClassesByIdEnseignant(idEnseignant);
-			return list ;
-					
-					
+			return classeDAO.getClassesByIdEnseignant(idEnseignant);
 		}
 
 
@@ -66,7 +59,13 @@ public class ClasseServiceImpl implements ClasseService {
 			// TODO Auto-generated method stub
 			return classeDAO.getClassesByIdNiveau(idNiveau) ;
 		}
-
+		
+		@Override
+		public Classe getClasseByEleveId(Integer idEleve) {
+			final Eleve eleve=  classeDAO.getClasseByEleveId(idEleve) ;
+			return eleve.getClasse();
+		}
+		
 
 		@Override
 		public Classe delete(Classe classe) {

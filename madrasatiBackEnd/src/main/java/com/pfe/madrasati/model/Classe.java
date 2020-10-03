@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,6 +25,19 @@ public class Classe {
 	private Integer nombreEleve;
 	@Column(name = "idniveau")
 	private Integer idNiveau;
+	
+	@ManyToOne
+	@JoinColumn(name ="idNiveau",insertable = false,updatable = false)
+	private Niveau niveau;
+	
+	
+	public Niveau getNiveau() {
+		return niveau;
+	}
+
+	public void setNiveau(Niveau niveau) {
+		this.niveau = niveau;
+	}
 
 	public Classe() {
 		super();

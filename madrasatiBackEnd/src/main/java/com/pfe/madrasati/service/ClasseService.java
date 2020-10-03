@@ -15,5 +15,6 @@ public interface ClasseService {
 	public Classe ajouterClasse(Classe classe);
 	List<MatierEnseignantClasse> getClassesByIdEnseignant (Integer idEnseignant);
 	List<Classe> getClassesByIdNiveau( Integer idNiveau);
+	public Classe getClasseByEleveId(Integer idUtilisateur);
 	
 }

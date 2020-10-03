@@ -4,11 +4,19 @@
 
                 <mat-form-field>
                         <mat-label>Matiére</mat-label>
-                        <mat-select [(ngModel)]="matiereSelectione">
-                                <mat-option *ngFor="let matiere of listmatiere" [value]="matiere">
-                                        {{matiere}}
+                        <mat-select [(ngModel)]="matiereSelectione" (ngModelChange)="changerMatier()">
+                                <mat-option *ngFor="let matiere of listmatiere" [value]="matiere.idMatier">
+                                        {{matiere.nomMatier}}
                                 </mat-option>
                         </mat-select>
+                </mat-form-field>
+        </div>
+        <div class="p-col-auto">
+                <mat-form-field>
+                  <mat-label>selectionner le niveau</mat-label>
+                  <mat-select [(ngModel)]="niveauSelectionner" (ngModelChange)="changerNiveau()">
+                    <mat-option *ngFor="let niveau of niveauList" [value]="niveau.idNiveau">{{niveau.nomNiveau}}</mat-option>
+                  </mat-select>
                 </mat-form-field>
         </div>
 </div>

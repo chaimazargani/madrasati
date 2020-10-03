@@ -15,14 +15,18 @@ public class UserPrinciple implements UserDetails {
 	 private final Utilisateur user;
 
 	    //
-
+	 	
 	    public UserPrinciple(Utilisateur user) {
 	        this.user = user;
 	    }
 
 	    //
 
-	    @Override
+	    public Utilisateur getUser() {
+			return user;
+		}
+
+		@Override
 	    public String getUsername() {
 	        return user.getUsername();
 	    }

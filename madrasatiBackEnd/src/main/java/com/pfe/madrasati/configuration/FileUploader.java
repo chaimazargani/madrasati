@@ -1,23 +1,31 @@
 package com.pfe.madrasati.configuration;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.pfe.madrasati.model.FileDTO;
+import com.pfe.madrasati.model.Matier;
+import com.pfe.madrasati.model.MatierEnseignantClasse;
+import com.pfe.madrasati.model.Niveau;
+import com.pfe.madrasati.model.Utilisateur;
+import com.pfe.madrasati.model.security.UserPrinciple;
+import com.pfe.madrasati.service.ClasseService;
 
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectOptions;
 import io.minio.Result;
-import io.minio.UploadObjectArgs;
 import io.minio.errors.ErrorResponseException;
 import io.minio.errors.InsufficientDataException;
 import io.minio.errors.InternalException;
@@ -67,15 +75,20 @@ public class FileUploader  {
      }
     } 
 
-	public List<String> getFile() {
-    List<String>  listCour = new ArrayList();
+	public List<String> getFile(final FileDTO fileDTO) {
+    List<String>  listCour = new ArrayList<>();
 		
 			Iterable<Result<Item>> result;
 			try {
 				result = minioClient.listObjects("madrasati");
-			
+
+				final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				final Utilisateur utilisateur = ((UserPrinciple) principal).getUser();
+				final List<MatierEnseignantClasse> list = this.getListClasseByIdEnseignantIdMatiere(utilisateur.getIdUtilisateur(), fileDTO.getMatier().getIdMatier());
+				final Niveau niveau = fileDTO.getNiveau();
+				final Matier matier = fileDTO.getMatier();
 				result.forEach(obj -> { 
-					getListFilesNames(listCour, obj);	
+					getListFilesNames(listCour, obj,matier,niveau,utilisateur.getIdUtilisateur());	
 				});
 				return listCour ;
 			} catch (XmlParserException e) {
@@ -86,16 +99,15 @@ public class FileUploader  {
 
 	}
 
-	private void getListFilesNames(List<String> listCour, Result<Item> obj) {
+	private void getListFilesNames(List<String> listCour, 
+			Result<Item> obj,final Matier matier,final Niveau niveau,final Integer idUtilisateur) {
 		try {
 			
 		String nomFichierComplet = obj.get().objectName();
-		Integer idEnseignant = 1;
-		if(nomFichierComplet.contains("math/niveau1/cours/"+idEnseignant.toString())) {
-			listCour.add(nomFichierComplet) ; 
-			
+		final String path = matier.getNomMatier()+"/"+niveau.getNomNiveau()+"/cours/"+idUtilisateur.toString();
+		if(nomFichierComplet.contains(path)) {
+			listCour.add(nomFichierComplet) ;
 		}
-
 		} catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException
 				| InsufficientDataException | InternalException | InvalidBucketNameException
 				| InvalidResponseException | NoSuchAlgorithmException | ServerException | XmlParserException
@@ -105,7 +117,17 @@ public class FileUploader  {
 			e.printStackTrace();
 		}
 	}
-      public void putFile(MultipartFile file) {
+	
+	@Autowired
+	ClasseService classeService;
+	
+	private List<MatierEnseignantClasse> getListClasseByIdEnseignantIdMatiere(final Integer idEnseignant,final Integer idMatier){
+		return this.classeService.getClassesByIdEnseignant(idEnseignant).stream()
+				.filter(mec -> mec.getMatierEnseignantClassePk().getIdMatier() == idMatier)
+				.collect(Collectors.toList());
+	}
+
+	public void putFile(MultipartFile file) {
       // Upload the zip file to the bucket with putObject
     		//creating an InputStreamReader object
 				try {

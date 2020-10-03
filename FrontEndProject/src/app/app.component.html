@@ -1,6 +1,6 @@
 <ng-container *ngIf="isLoggedIn">
   <p-menubar [model]="items">
-    <span class="username">Bienvenue M.HamzaBA</span>
+    <span class="username">Bienvenue {{currentUser}}</span>
     <button pButton label="Logout" (click)="logout()" class="p-button-text" icon="pi pi-power-off"></button>
   </p-menubar>
 <div class="main-container">

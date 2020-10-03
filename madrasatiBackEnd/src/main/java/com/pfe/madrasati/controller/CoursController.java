@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pfe.madrasati.model.ResponseType;
+import com.pfe.madrasati.model.FileDTO;
 import com.pfe.madrasati.service.CoursService;
 
 @RestController
@@ -22,9 +22,9 @@ public class CoursController {
 	
 	
 
-	@RequestMapping(value = "/getNomCours", method = RequestMethod.GET)
-   public List<String> getCours() {
-   return coursService.getCours();
+	@RequestMapping(value = "/getNomCours", method = RequestMethod.POST)
+   public List<String> getCours(@RequestBody final FileDTO obj) {
+		return coursService.getCours(obj);
 	}
 	
 

@@ -283,13 +283,14 @@ export class EmploiComponent implements OnInit {
 
     let httpHeader: HttpHeaders = new HttpHeaders();
     httpHeader = httpHeader.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.get<Classe[]>('/getClasse', { headers: httpHeader });
+    return this.httpClient.get<Classe[]>('/getClasseFiltre', { headers: httpHeader });
   }
   getListclasse(): void {
     this.getClasse().subscribe(result => {
       this.classeList = result;
+      this.classeSelectionner = this.classeList[0].idClasse;
+      this.getListEvent();
     });
-    console.log(this.classeList);
   }
 
 
@@ -321,32 +322,10 @@ export class EmploiComponent implements OnInit {
         event.end = this.convertDate(event.enddate);
       })
       this.eventList = result;
-      // this.eventList.forEach(e => {
-      //   e.click = ($data) => this.dateClick($data)
-      // });
       this.eventList = this.eventList.concat(this.data);
     })
   }
-  // supprimerEvent(eventObject) {
-  //   this.dialogRefAlert = this.dialog.open(this.dialogsuppression, {
-  //     width: '250px',
 
-  //  });
-  //  this.dialogRefAlert.afterClosed()
-  //   .subscribe(result => {
-  //     if (result == "supprimer"){
-  //       console.log('Suppression en cours ...');
-
-  //       this.httpClient.post<Event>('/supprimerEvent', eventObject )
-  //       .subscribe (d =>{
-  //               console.log(d);
-
-
-  //          });
-  //     }
-
-  //       });
-  // }
   dialogClose() {
     this.dialogRefAlert.close("supprimer");
   }

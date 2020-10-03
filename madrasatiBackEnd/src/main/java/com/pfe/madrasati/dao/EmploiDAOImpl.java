@@ -32,6 +32,15 @@ public class EmploiDAOImpl implements EmploiDAO {
 		List<Event> results = query.list();
 				return results;
 	}
+	
+	@Override
+	public List<Event> getEventForEnseignant(Integer idEnseignant ){
+		String hql1 = " from  Event E  where idEnseignant = :idEnseignant";
+		Query query = getCurrentSession().createQuery(hql1);
+		query.setParameter("idEnseignant", idEnseignant);
+		List<Event> results = query.list();
+		return results;
+	}
 
 	@Override
 	public Event delete(Event data) {

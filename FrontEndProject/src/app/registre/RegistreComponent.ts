@@ -156,7 +156,7 @@ export class RegistreComponent implements OnInit {
     console.log('datepicker badalnéh de type Date javascript Timestamp w zédnéh sé3a')
     console.log(datePlusHour);
     console.log('date piker Date transofrm iso Datefomat 20102020T');
-    let dateIsoFormat = dataDatePlusHour.toISOString();
+    let dateIsoFormat = new Date(dataDatePlusHour).toISOString().substring(0, 19);
     console.log(dateIsoFormat);
     params = params.append('idClasse', this.classeSelectionner.toString());
     params = params.append('datePresenceString', dateIsoFormat.toString());

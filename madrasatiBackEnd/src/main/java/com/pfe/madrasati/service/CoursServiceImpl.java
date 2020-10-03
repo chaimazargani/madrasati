@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pfe.madrasati.configuration.FileUploader;
+import com.pfe.madrasati.model.FileDTO;
 @Service (value="CoursService")
 
 public class CoursServiceImpl implements CoursService{
@@ -19,8 +20,8 @@ public class CoursServiceImpl implements CoursService{
 	
 	
 	@Override
-	public List<String> getCours( ) {
-		return   fileUploader.getFile(); 
+	public List<String> getCours(final FileDTO matier ) {
+		return   fileUploader.getFile(matier); 
 
 //				    
 		

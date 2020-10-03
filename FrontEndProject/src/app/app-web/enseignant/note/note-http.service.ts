@@ -40,9 +40,9 @@ getClasse(idEnseignant: Number ): Observable<Classe> {
   //const params: HttpParams = new HttpParams();
  // params.set('idEnseignant', idEnseignant.toString());
   //params.set( 'idMatier', idMatier.toString() );
-  params = params.append('idEnseignant', idEnseignant.toString());
+  // params = params.append('idEnseignant', idEnseignant.toString());
 
-  return this.httpClient.get<Classe> ('/getClassesByIdEnseignant', { params: params} );
+  return this.httpClient.get<Classe> ('/getClasseFiltre');
 }
 
 getMatier(idEnseignant: Number): Observable<any> {

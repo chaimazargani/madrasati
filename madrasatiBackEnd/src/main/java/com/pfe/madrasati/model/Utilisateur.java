@@ -16,18 +16,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pfe.madrasati.model.security.Autorite;
 import com.pfe.madrasati.model.security.Role;
 
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur implements Serializable , UserDetails {
+public class Utilisateur implements Serializable , UserDetails , CredentialsContainer {
 
 	/**
 	 * 
@@ -67,9 +70,10 @@ public class Utilisateur implements Serializable , UserDetails {
 	@MapsId("idRole")
 	@ManyToOne
 	@JoinColumn(name="idrole", insertable = false ,updatable = false)
+	@JsonIgnore
 	private Role role ; 
 	
-	
+	@Transient
 	private List<Autorite> authorities;
 	
 	public Utilisateur() {
@@ -80,6 +84,10 @@ public class Utilisateur implements Serializable , UserDetails {
 
 	public void setAuthorities(List<Autorite> authorities) {
 		this.authorities = authorities;
+	}
+	
+	public List<Autorite> getListAutorite(){
+		return this.authorities;
 	}
 
 	public Utilisateur(Integer idUtilisateur, String nom, String prenom, Integer identifiant, Integer numTel,
@@ -97,6 +105,21 @@ public class Utilisateur implements Serializable , UserDetails {
 		this.password = password;
 		this.role = role;
 	}
+
+	@Transient
+	private Utilisateur user;
+	
+
+	public Utilisateur getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(Utilisateur user) {
+		this.user = user;
+	}
+
 
 
 	public Role getRole() {
@@ -224,6 +247,14 @@ public class Utilisateur implements Serializable , UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return false;
+	}
+
+
+
+	@Override
+	public void eraseCredentials() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

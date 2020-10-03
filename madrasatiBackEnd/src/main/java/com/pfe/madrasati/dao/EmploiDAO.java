@@ -7,6 +7,7 @@ import com.pfe.madrasati.model.EventEleve;
 
 public interface EmploiDAO {
 	   List<Event> getEvent( Integer idClasse  ) ;
+	   List<Event> getEventForEnseignant ( Integer idEnseignant  ) ;
 	   List<EventEleve> getEventbyeleve( Integer idEleve) ;
 
 	   public Event delete(Event data);

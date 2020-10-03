@@ -11,6 +11,8 @@ declare module 'file-saver';
 import * as saveAs from 'file-saver';
 import { ToastUtils } from '../../utils/toast-util';
 import { MessageService } from 'primeng/api';
+import { Matier } from '../../../model/matier';
+import { Niveau } from '../../../model/niveau';
 
 @Component({
   selector: 'app-cours',
@@ -28,13 +30,40 @@ export class CoursComponent implements OnInit {
   public listNomFichierDataSource: MatTableDataSource<FileObject>;
   public listNomFichier: FileObject[] = [];
   public filesToUploadList: [] = [];
-public matiereSelectione : any ; 
+  public matiereSelectione: any;
   public selectedScreen = "Documents & Cours";
-public listmatiere : string[] = ["Mathématique" , "Français"]
+  public listmatiere: Matier[] = [];
+  public niveauList:Niveau[] = [];
+  public niveauSelectionner:any;
   constructor(public httpClient: HttpClient, public messageService: MessageService) {
     // let file = new Blob(['hello world'], { type: 'text/csv;charset=utf-8' });
     // saveAs.saveAs(file, 'helloworld.csv')
-
+    this.listmatiere = [{
+      idMatier: 79,
+      idEnseignant: 3,
+      nomMatier: "Informatique",
+      coefficeint: 3
+    }, {
+      idMatier: 3,
+      idEnseignant: 3,
+      nomMatier: "Science",
+      coefficeint: 3
+    }
+    ];
+    this.matiereSelectione = 79;
+    this.niveauList = [{
+       idClasse :1,
+       nomClasse:"9 éme année B3",
+       idNiveau : 3,
+       nomNiveau:"Niveau3"
+    },
+    {
+      idClasse :2,
+      nomClasse:"9 éme année B3",
+      idNiveau : 2,
+      nomNiveau:"Niveau2"
+   }]
+   this.niveauSelectionner = 2;
   }
 
 
@@ -47,13 +76,22 @@ public listmatiere : string[] = ["Mathématique" , "Français"]
     this.listNameFichier();
   }
 
-  getFiles(): Observable<any> {
-    // let params: HttpParams = new HttpParams();
-    // params = params.append( 'files' ,  this.files);
-    return this.httpClient.get<any>('/getNomCours',);
+  getFiles(idMatier: number): Observable<any> {
+    let indexMatier = this.listmatiere.findIndex( obj => obj.idMatier == idMatier);
+    let indexNiveau = this.niveauList.findIndex( obj => obj.idNiveau == this.niveauSelectionner);
+    let obj = {
+      "matier":this.listmatiere[indexMatier],
+      "niveau":this.niveauList[indexNiveau]
+    }
+    return this.httpClient.post<any>('/getNomCours',obj );
   }
 
-
+  changerMatier(){
+    this.listNameFichier();
+  }
+  changerNiveau(){
+    this.listNameFichier();
+  }
   putFiles(files: File[]): void {
     files.forEach((element: File) => {
       let formData = new FormData();
@@ -77,7 +115,7 @@ public listmatiere : string[] = ["Mathématique" , "Français"]
 
   listNameFichier() {
 
-    this.getFiles().subscribe((listStringNomComplet: string[]) => {
+    this.getFiles(this.matiereSelectione).subscribe((listStringNomComplet: string[]) => {
       this.listNomFichier = [];
       for (let stringNomComplet of listStringNomComplet) {
         let fichier: FileObject = new FileObject();

@@ -15,13 +15,13 @@ public class MatierEnseignantClassePk implements Serializable{
 
 	
 	
-	@Column(name="idmatier",insertable = false, updatable = false)
+	@Column(name="idmatier")
 	private Integer idMatier;
 
-	@Column(name="idenseignant",insertable = false, updatable = false)
+	@Column(name="idenseignant")
 	private Integer idEnseignant;
 
-	@Column(name="idclasse",insertable = false, updatable = false)
+	@Column(name="idclasse")
 	private Integer idClasse;
 
 	

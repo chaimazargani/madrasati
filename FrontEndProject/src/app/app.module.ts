@@ -41,6 +41,7 @@ import { CourseleveComponent } from './courseleve/courseleve.component';
 import { AuthenticationComponent } from './login/authentication.component';
 import { HeaderHttpInterceptor } from './app-web/header-http-interceptor';
 import { MessageService } from 'primeng/api';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 //import { CreerexamenComponent } from './creerexamen/creerexamen.component';
 //import { CenderCellRendererComponent } from './cender-cell-renderer/cender-cell-renderer.component';
@@ -85,6 +86,7 @@ import { MessageService } from 'primeng/api';
     AgGridModule.withComponents([CheckboxRenderer]),
     MatTableModule,
     MatSortModule,
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
     MessageService,
