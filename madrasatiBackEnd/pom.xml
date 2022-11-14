@@ -9,7 +9,7 @@
 	<name>madrasatiBackEnd Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<spring-framework-version>4.2.0.RELEASE</spring-framework-version>
+		<spring-framework-version>4.2.7.RELEASE</spring-framework-version>
 	</properties>
 	<dependencies>
 		<dependency>
